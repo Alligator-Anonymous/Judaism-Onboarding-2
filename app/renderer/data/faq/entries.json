@@ -1,0 +1,122 @@
+[
+  {
+    "id": "meaning-of-life",
+    "question": "What is the meaning of life in Judaism?",
+    "tldr": "To cultivate a relationship with the Divine and partner in healing the world through mitzvot and kindness.",
+    "fiveMin": "Judaism invites each person to see life as a covenantal partnership with HaShem. We learn Torah, practice mitzvot, refine our middot (inner qualities), and seek to bring more justice and compassion into the world.",
+    "deepDive": "Classics like Pirkei Avot teach that the world stands on Torah, worship, and acts of lovingkindness. Rambam emphasizes intellectual and moral growth, while modern teachers highlight tikkun olam—making the world kinder and more whole.",
+    "sources": ["Pirkei Avot 1:2", "Maimonides, Guide 3:54", "Isaiah 1:17"]
+  },
+  {
+    "id": "what-is-mitzvah",
+    "question": "What is a mitzvah?",
+    "tldr": "A mitzvah is a sacred responsibility or opportunity to connect with God and community.",
+    "fiveMin": "The word mitzvah literally means commandment, but many teachers also note its root in 'tzavta'—connection. Performing mitzvot shapes Jewish time, ethics, and relationships.",
+    "deepDive": "There are traditionally 613 mitzvot in the Torah, expanded through rabbinic practice. Studying how different communities live mitzvot helps us appreciate diversity while honoring core values.",
+    "sources": ["Deuteronomy 6", "Sefer HaChinuch"]
+  },
+  {
+    "id": "what-is-teshuvah",
+    "question": "What is teshuvah?",
+    "tldr": "Teshuvah is the practice of returning—repairing relationships with God, others, and ourselves.",
+    "fiveMin": "Teshuvah involves honest reflection, naming harm, making amends, and choosing better paths. It is always possible, and it is central during the High Holy Days.",
+    "deepDive": "Rambam’s Hilchot Teshuvah lays out steps: confession, remorse, restitution, and commitment. Hasidic teachers add the joy of reconnecting with one's soul.",
+    "sources": ["Maimonides, Hilchot Teshuvah", "Isaiah 55:7"]
+  },
+  {
+    "id": "blessings-before-food",
+    "question": "Why say blessings before food?",
+    "tldr": "Blessings help us pause, notice the Source of nourishment, and eat with gratitude.",
+    "fiveMin": "Before eating, Jews recite short berachot that match the food type. This cultivates mindfulness and a sense that eating can be a holy act.",
+    "deepDive": "The Talmud teaches that enjoying this world without a blessing is like taking without permission. Blessings align us with appreciation and ethical consumption.",
+    "sources": ["Berachot 35a"]
+  },
+  {
+    "id": "what-is-shabbat",
+    "question": "What is Shabbat?",
+    "tldr": "Shabbat is a weekly 25-hour sanctuary in time to rest, pray, and delight.",
+    "fiveMin": "From Friday evening to Saturday night, Jews pause creative work, share meals, and celebrate community.",
+    "deepDive": "Shabbat echoes creation and liberation. Lighting candles, sharing kiddush, and enjoying restorative rest express trust and joy.",
+    "sources": ["Exodus 20:8-11", "Deuteronomy 5:12-15"]
+  },
+  {
+    "id": "what-is-chosenness",
+    "question": "What is chosenness?",
+    "tldr": "Being 'chosen' means being invited into covenantal responsibility, not superiority.",
+    "fiveMin": "Jewish tradition frames chosenness as a call to live ethically and model justice.",
+    "deepDive": "Many thinkers, from Rabbi Abraham Joshua Heschel to contemporary voices, see chosenness as mission: to testify to God's presence and care for the vulnerable.",
+    "sources": ["Exodus 19:6", "Amos 3:2"]
+  },
+  {
+    "id": "why-conversion",
+    "question": "Why do people choose conversion?",
+    "tldr": "People convert out of love for Judaism, a sense of belonging, or family connection.",
+    "fiveMin": "Conversion involves study, practice, and immersion in community, guided by a rabbi.",
+    "deepDive": "Each path is personal; Jewish law emphasizes sincerity, ethical living, and joining the Jewish people in joy and responsibility.",
+    "sources": ["Ruth 1:16", "Yevamot 47a"]
+  },
+  {
+    "id": "how-to-pray",
+    "question": "How do I start praying?",
+    "tldr": "Begin with honest words, a simple structure, and patience.",
+    "fiveMin": "Modeh Ani, Shema, and personal gratitude lists are approachable starting points.",
+    "deepDive": "Prayer in Judaism combines fixed liturgy with heart language. Siddurim, melodies, and mindfulness can support your growth.",
+    "sources": ["Berachot 4b"]
+  },
+  {
+    "id": "what-is-kosher",
+    "question": "What does keeping kosher mean?",
+    "tldr": "Kashrut guides what and how we eat to bring mindfulness into meals.",
+    "fiveMin": "Core elements include permitted species, separation of meat and dairy, and mindful preparation.",
+    "deepDive": "Families adapt kashrut differently. Speak with a rabbi about how to grow into practices that fit your community.",
+    "sources": ["Leviticus 11"]
+  },
+  {
+    "id": "whats-a-mitzvah-project",
+    "question": "What is a mitzvah project?",
+    "tldr": "A mitzvah project is a focused act of service tied to learning.",
+    "fiveMin": "Many conversion candidates and B'nai Mitzvah students choose a cause that reflects Jewish values.",
+    "deepDive": "Projects can support shelters, ecological work, or Torah learning. The key is sustained commitment and reflection.",
+    "sources": ["Micah 6:8"]
+  },
+  {
+    "id": "what-is-halakha",
+    "question": "What is halakha?",
+    "tldr": "Halakha is the evolving path of Jewish practice and law.",
+    "fiveMin": "It includes Torah, rabbinic interpretation, and community customs.",
+    "deepDive": "Different movements interpret halakha differently. Always seek guidance from your rabbi for personal practice.",
+    "sources": ["Pirkei Avot 1:1"]
+  },
+  {
+    "id": "how-to-celebrate-holidays",
+    "question": "How can I celebrate Jewish holidays if I'm new?",
+    "tldr": "Start small: candles, blessings, and learning the story.",
+    "fiveMin": "Choose one practice for each holiday and build over time.",
+    "deepDive": "Connect with communities, attend services, and use this app's holiday guides as starting points.",
+    "sources": ["Leviticus 23"]
+  },
+  {
+    "id": "what-are-middot",
+    "question": "What are middot?",
+    "tldr": "Middot are character traits we cultivate with intention.",
+    "fiveMin": "Examples include patience, humility, and gratitude.",
+    "deepDive": "Mussar teachers offer daily practices to refine middot and align actions with values.",
+    "sources": ["Mesillat Yesharim"]
+  },
+  {
+    "id": "why-hebrew",
+    "question": "Do I need to know Hebrew?",
+    "tldr": "Hebrew opens doors, but you can start learning step by step.",
+    "fiveMin": "Many prayers include transliteration and translation. Begin with the Alef-Bet and key blessings.",
+    "deepDive": "Studying Hebrew connects you to Jewish texts and global communities; this app's Alef-Bet lab supports first steps.",
+    "sources": ["Shabbat 12b"]
+  },
+  {
+    "id": "role-of-community",
+    "question": "Why is community so central?",
+    "tldr": "Judaism is lived in community—we learn, pray, and celebrate together.",
+    "fiveMin": "Joining a synagogue or learning circle helps you experience holidays and mitzvot with guidance.",
+    "deepDive": "The Talmud teaches that communal prayer and study bring added blessing. Even introverts can find gentle ways to connect.",
+    "sources": ["Berachot 6a"]
+  }
+]
