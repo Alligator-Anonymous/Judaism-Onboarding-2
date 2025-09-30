@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="#ecfeff" rx="16" />
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="72" font-family="'Frank Ruehl', serif">מ</text>
+  <path d="M30 90 Q60 70 90 90" stroke="#0e7490" stroke-width="4" fill="none" />
+</svg>

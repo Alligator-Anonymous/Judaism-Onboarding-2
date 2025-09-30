@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="#fef3f2" rx="16" />
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="72" font-family="'Frank Ruehl', serif">א</text>
+  <path d="M30 90 Q60 70 90 90" stroke="#d94841" stroke-width="4" fill="none" />
+</svg>

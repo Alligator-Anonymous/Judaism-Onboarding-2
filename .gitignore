@@ -1,0 +1,10 @@
+node_modules
+.dist
+.dist-electron
+dist
+dist-electron
+out
+playwright-report
+coverage
+.DS_Store
+.vscode/
