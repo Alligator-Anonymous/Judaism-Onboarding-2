@@ -14,3 +14,21 @@ npm run dev
 ```
 
 See [`docs/README.md`](docs/README.md) for full instructions, architecture notes, accessibility commitments, and content licensing details.
+
+Windows Setup Notes
+
+“npm is not recognized” → Install Node.js LTS, then open a new terminal. Verify: node -v and npm -v.
+
+PowerShell blocks npm.ps1 → Use Command Prompt, or in PowerShell run:
+
+Temporary: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+Per-user: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+Reinstall after pulling fixes:
+
+Delete node_modules and package-lock.json
+
+npm install
+
+npm run dev
