@@ -128,4 +128,38 @@ export interface ParshaMetadataEntry {
   ordinal: number;
   bookId: string;
   range: [string, string] | null;
+  combinedWith?: string | null;
+}
+
+export interface PackedTanakhBook {
+  bookId: string;
+  he: string;
+  en: string;
+  chapters: Record<string, string[]>;
+  meta: {
+    chapters: number;
+    versesPerChapter: number[];
+  };
+}
+
+export interface ParshaSpan {
+  from: { c: number; v: number };
+  to: { c: number; v: number };
+}
+
+export interface ParshaAliyahRange {
+  n: number;
+  from: { c: number; v: number };
+  to: { c: number; v: number };
+}
+
+export interface ParshaRangeEntry {
+  id: string;
+  ordinal: number;
+  bookId: string;
+  he: string;
+  en: string;
+  spans: ParshaSpan[];
+  aliyot: ParshaAliyahRange[];
+  combinedWith?: string | null;
 }

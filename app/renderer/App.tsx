@@ -1,3 +1,4 @@
+// Codex change: Rebuilt the app shell with hash-based navigation, global accessibility sync, and text explorer routes.
 import React, { useEffect } from "react";
 import { Today } from "@components/Today";
 import { SiddurView } from "@components/Siddur/SiddurView";
