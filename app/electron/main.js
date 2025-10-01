@@ -1,3 +1,4 @@
+// Codex change: Guarded DevTools opening behind an environment flag.
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,10 +22,13 @@ function createWindow() {
 
   if (isDev) {
     win.loadURL(devUrl);
-    win.webContents.openDevTools({ mode: 'detach' });
   } else {
     const indexPath = path.join(__dirname, '../renderer/dist/index.html');
     win.loadFile(indexPath);
+  }
+
+  if (process.env.ELECTRON_OPEN_DEVTOOLS === '1') {
+    win.webContents.openDevTools({ mode: 'detach' });
   }
 }
 

@@ -1,4 +1,6 @@
+// Codex change: Styled the kabbalah system selector with the shared Select wrapper.
 import React from "react";
+import { Select } from "@components/UI/Select";
 import { useSettings } from "@stores/useSettings";
 
 const OPTIONS = [
@@ -16,15 +18,11 @@ export function KabbalahSystemSelector() {
   return (
     <label className="block space-y-2">
       <span className="text-sm font-medium">Kabbalah system</span>
-      <select
-        value={system}
-        onChange={(e) => setSystem(e.target.value as any)}
-        className="rounded border px-2 py-1"
-      >
+      <Select value={system} onChange={(e) => setSystem(e.target.value as any)}>
         {OPTIONS.map((o) => (
           <option key={o.id} value={o.id}>{o.label}</option>
         ))}
-      </select>
+      </Select>
       <p className="text-xs text-slate-500">
         Traditions differ; choose with a qualified teacher. (Golden Dawn is shown for comparison.)
       </p>

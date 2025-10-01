@@ -1,3 +1,5 @@
+// Codex change: Extended shared types with Tanakh metadata definitions.
+
 export interface VerseWord {
   surface: string;
   lemma?: string;
@@ -96,4 +98,68 @@ export interface ContentRegistry {
   holidays: Record<string, Holiday>;
   faq: Record<string, FAQEntry>;
   alefbet: AlefBetLetter[];
+  tanakhMeta: TanakhMetadata | null;
+  parshaMeta: ParshaMetadataEntry[];
+}
+
+export interface TanakhBookMetadata {
+  id: string;
+  he: string;
+  en: string;
+  chapters: number;
+}
+
+export interface TanakhSectionMetadata {
+  id: string;
+  he: string;
+  en: string;
+  books: TanakhBookMetadata[];
+}
+
+export interface TanakhMetadata {
+  id: string;
+  sections: TanakhSectionMetadata[];
+}
+
+export interface ParshaMetadataEntry {
+  id: string;
+  he: string;
+  en: string;
+  ordinal: number;
+  bookId: string;
+  range: [string, string] | null;
+  combinedWith?: string | null;
+}
+
+export interface PackedTanakhBook {
+  bookId: string;
+  he: string;
+  en: string;
+  chapters: Record<string, string[]>;
+  meta: {
+    chapters: number;
+    versesPerChapter: number[];
+  };
+}
+
+export interface ParshaSpan {
+  from: { c: number; v: number };
+  to: { c: number; v: number };
+}
+
+export interface ParshaAliyahRange {
+  n: number;
+  from: { c: number; v: number };
+  to: { c: number; v: number };
+}
+
+export interface ParshaRangeEntry {
+  id: string;
+  ordinal: number;
+  bookId: string;
+  he: string;
+  en: string;
+  spans: ParshaSpan[];
+  aliyot: ParshaAliyahRange[];
+  combinedWith?: string | null;
 }
