@@ -1,3 +1,4 @@
+// Codex change: Expose Alef-Bet lab details for dedicated practice routing.
 import React from "react";
 import { useContent } from "@stores/useContent";
 import { useSettings } from "@stores/useSettings";

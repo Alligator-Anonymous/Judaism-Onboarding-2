@@ -1,3 +1,4 @@
+// Codex change: Ensured settings expose accessibility and kabbalah preferences for new views.
 import { create } from "zustand";
 
 export type Nusach = "ashkenaz" | "sefard" | "edot-mizrach";
