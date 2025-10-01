@@ -1,0 +1,31 @@
+{
+  "systemId": "ramak",
+  "name": "Ramak (Cordovero)",
+  "version": "1.0.0",
+  "mappings": {
+    "א": { "path": null, "element": "Air", "notes": "Mother letter (Air)." },
+    "מ": { "path": null, "element": "Water" },
+    "ש": { "path": null, "element": "Fire" },
+
+    "ב": { "path": null, "planet": null, "notes": "Double letter." },
+    "ג": { "path": null, "planet": null },
+    "ד": { "path": null, "planet": null },
+    "כ": { "path": null, "planet": null },
+    "פ": { "path": null, "planet": null },
+    "ר": { "path": null, "planet": null },
+    "ת": { "path": null, "planet": null },
+
+    "ה": { "path": null, "zodiac": null, "month": null },
+    "ו": { "path": null, "zodiac": null, "month": null },
+    "ז": { "path": null, "zodiac": null, "month": null },
+    "ח": { "path": null, "zodiac": null, "month": null },
+    "ט": { "path": null, "zodiac": null, "month": null },
+    "י": { "path": null, "zodiac": null, "month": null },
+    "ל": { "path": null, "zodiac": null, "month": null },
+    "נ": { "path": null, "zodiac": null, "month": null },
+    "ס": { "path": null, "zodiac": null, "month": null },
+    "ע": { "path": null, "zodiac": null, "month": null },
+    "צ": { "path": null, "zodiac": null, "month": null },
+    "ק": { "path": null, "zodiac": null, "month": null }
+  }
+}
