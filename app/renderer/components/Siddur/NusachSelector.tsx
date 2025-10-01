@@ -1,4 +1,6 @@
+// Codex change: Routed nusach selection through the styled Select component.
 import React from "react";
+import { Select } from "@components/UI/Select";
 import { useSettings, type Nusach } from "@stores/useSettings";
 
 const NUSACH_LABELS: Record<Nusach, string> = {
@@ -14,9 +16,8 @@ export const NusachSelector: React.FC = () => {
       <label htmlFor="nusach" className="text-sm font-medium">
         Nusach
       </label>
-      <select
+      <Select
         id="nusach"
-        className="rounded-lg border border-slate-300 px-3 py-1 text-sm focus:border-pomegranate focus:outline-none focus:ring focus:ring-pomegranate/30 dark:border-slate-600 dark:bg-slate-900"
         value={nusach}
         onChange={(event) => setNusach(event.target.value as Nusach)}
       >
@@ -25,7 +26,7 @@ export const NusachSelector: React.FC = () => {
             {label}
           </option>
         ))}
-      </select>
+      </Select>
     </div>
   );
 };
