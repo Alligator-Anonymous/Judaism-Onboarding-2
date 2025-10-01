@@ -20,6 +20,7 @@ export interface SettingsState {
   dyslexiaFriendlyHebrew: boolean;
   nusach: Nusach;
   transliterationMode: TransliterationMode;
+  kabbalahSystem: "none" | "gra" | "ari" | "ramak" | "kircher";
   location: LocationSettings;
   zmanimOffsets: ZmanimOffsets;
   minhagProfile?: string; // reserved for future customisations
@@ -28,6 +29,7 @@ export interface SettingsState {
   setDyslexiaFriendlyHebrew: (value: boolean) => void;
   setNusach: (nusach: Nusach) => void;
   setTransliterationMode: (mode: TransliterationMode) => void;
+  setKabbalahSystem: (system: "none" | "gra" | "ari" | "ramak" | "kircher") => void;
   setLocation: (location: LocationSettings) => void;
   setZmanimOffsets: (offsets: ZmanimOffsets) => void;
 }
@@ -44,6 +46,7 @@ export const useSettings = create<SettingsState>((set) => ({
   dyslexiaFriendlyHebrew: false,
   nusach: "ashkenaz",
   transliterationMode: "ashkenazi",
+  kabbalahSystem: "none",
   location: defaultLocation,
   zmanimOffsets: {
     dawnOffsetMinutes: -72,
@@ -54,6 +57,7 @@ export const useSettings = create<SettingsState>((set) => ({
   setDyslexiaFriendlyHebrew: (value) => set({ dyslexiaFriendlyHebrew: value }),
   setNusach: (nusach) => set({ nusach }),
   setTransliterationMode: (mode) => set({ transliterationMode: mode }),
+  setKabbalahSystem: (system) => set({ kabbalahSystem: system }),
   setLocation: (location) => set({ location }),
   setZmanimOffsets: (offsets) => set({ zmanimOffsets: offsets })
 }));

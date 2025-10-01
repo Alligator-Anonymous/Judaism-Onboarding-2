@@ -5,7 +5,7 @@ import { getLetterMapping, getSystemDisplayName } from "../../lib/kabbalah";
 
 export const AlefBetLab: React.FC = () => {
   const letters = useContent((state) => state.registry?.alefbet ?? []);
-  const system = useSettings((s) => s.kabbalahSystem);
+  const system = useSettings((s) => s.kabbalahSystem ?? "none");
   const systemName = getSystemDisplayName(system);
 
   return (

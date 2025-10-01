@@ -5,7 +5,7 @@
     "sound": "silent / ah",
     "finalForm": null,
     "confusions": ["ע"],
-    "svg": "../../assets/svg/letters/alef.svg"
+    "svg": "../../../../assets/svg/letters/alef.svg"
   },
   {
     "letter": "ב",
@@ -13,7 +13,7 @@
     "sound": "b / v",
     "finalForm": null,
     "confusions": ["כ"],
-    "svg": "../../assets/svg/letters/bet.svg"
+    "svg": "../../../../assets/svg/letters/bet.svg"
   },
   {
     "letter": "מ",
@@ -21,7 +21,7 @@
     "sound": "m",
     "finalForm": "ם",
     "confusions": ["ס"],
-    "svg": "../../assets/svg/letters/mem.svg"
+    "svg": "../../../../assets/svg/letters/mem.svg"
   },
   {
     "letter": "נ",
@@ -29,7 +29,7 @@
     "sound": "n",
     "finalForm": "ן",
     "confusions": ["ג"],
-    "svg": "../../assets/svg/letters/nun.svg"
+    "svg": "../../../../assets/svg/letters/nun.svg"
   },
   {
     "letter": "ש",
@@ -37,7 +37,7 @@
     "sound": "sh / s",
     "finalForm": null,
     "confusions": ["ס"],
-    "svg": "../../assets/svg/letters/shin.svg"
+    "svg": "../../../../assets/svg/letters/shin.svg"
   },
   {
     "letter": "ת",
@@ -45,6 +45,6 @@
     "sound": "t",
     "finalForm": null,
     "confusions": ["ט"],
-    "svg": "../../assets/svg/letters/tav.svg"
+    "svg": "../../../../assets/svg/letters/tav.svg"
   }
 ]
