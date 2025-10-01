@@ -1,4 +1,3 @@
-// Codex change: Render live parsha readings with aliyah markers and navigation controls.
 import React from "react";
 import { useContent } from "@stores/useContent";
 import { Breadcrumbs } from "./Breadcrumbs";

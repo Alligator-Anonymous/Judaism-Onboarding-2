@@ -1,4 +1,3 @@
-// Codex change: Render live Tanakh chapters with dynamic translation loading and commentary placeholders.
 import React from "react";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { Select } from "@components/UI/Select";
