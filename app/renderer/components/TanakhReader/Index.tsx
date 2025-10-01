@@ -24,29 +24,37 @@ export const TanakhReader: React.FC = () => {
     return rashi.filter((entry) => entry.refs.includes(selectedRef));
   }, [rashi, selectedRef]);
 
+  const hasVerses = verses.length > 0;
+
   return (
     <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
       <section className="space-y-4" aria-label="Tanakh verses">
-        {verses.map((verse) => (
-          <VerseView
-            key={verse.ref}
-            verse={verse}
-            showTranslit={settings.transliterationMode !== "none"}
-            transliterationLabel={transliterationLabel}
-            onWordClick={setWordInfo}
-            onSelect={() => {
-              setSelectedRef(verse.ref);
-            }}
-            isSelected={selectedRef === verse.ref}
-          />
-        {verses.length === 0 ? (
+        {!hasVerses ? (
           <p className="text-sm text-slate-500">Loading core text…</p>
-        ) : null}
+        ) : (
+          verses.map((verse) => (
+            <VerseView
+              key={verse.ref}
+              verse={verse}
+              showTranslit={settings.transliterationMode !== "none"}
+              transliterationLabel={transliterationLabel}
+              onWordClick={setWordInfo}
+              onSelect={() => {
+                setSelectedRef(verse.ref);
+              }}
+              isSelected={selectedRef === verse.ref}
+            />
+          ))
+        )}
       </section>
+
       <aside className="space-y-4">
         <CommentaryPanel commentary={selectedCommentary} verseRef={selectedRef ?? ""} />
         {wordInfo ? (
-          <div className="rounded-lg border border-slate-200 p-4 text-sm shadow-sm dark:border-slate-700" aria-live="polite">
+          <div
+            className="rounded-lg border border-slate-200 p-4 text-sm shadow-sm dark:border-slate-700"
+            aria-live="polite"
+          >
             <h4 className="font-semibold text-pomegranate">Word insights</h4>
             <p>
               <strong>Surface:</strong> {wordInfo.surface}
@@ -62,9 +70,8 @@ export const TanakhReader: React.FC = () => {
               </p>
             ) : null}
             <p className="text-xs text-slate-500">
-              Mini concordance demo: this root appears {verses.filter((verse) =>
-                verse.words.some((word) => word.root === wordInfo.root)
-              ).length}{" "}
+              Mini concordance demo: this root appears{" "}
+              {verses.filter((v) => v.words?.some((w) => w.root === wordInfo.root)).length}{" "}
               time(s) in Genesis 1 sample.
             </p>
           </div>
