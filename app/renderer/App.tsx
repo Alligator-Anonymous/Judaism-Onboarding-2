@@ -1,7 +1,5 @@
-// Codex change: Rebuilt the app shell with hash-based navigation and global accessibility sync.
 import React, { useEffect } from "react";
 import { Today } from "@components/Today";
-import { TanakhReader } from "@components/TanakhReader/Index";
 import { SiddurView } from "@components/Siddur/SiddurView";
 import { PracticeView } from "@components/Practice";
 import { AlefBetLab } from "@components/Practice/AlefBet";
@@ -11,10 +9,16 @@ import { FAQ } from "@components/Practice/FAQ";
 import { TropeCoach } from "@components/Practice/TropeCoach";
 import { KabbalahOverview } from "@components/Practice/KabbalahOverview";
 import { SettingsView } from "@components/Settings/SettingsView";
-import { Tabs } from "@components/UI/Tabs";
 import { copy } from "@/copy";
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
+import { TextsView } from "@components/Texts/TextsView";
+import { TanakhIndex } from "@components/Texts/TanakhIndex";
+import { SectionIndex } from "@components/Texts/SectionIndex";
+import { BookIndex } from "@components/Texts/BookIndex";
+import { ChapterView } from "@components/Texts/ChapterView";
+import { ParshaIndex } from "@components/Texts/ParshaIndex";
+import { ParshaView } from "@components/Texts/ParshaView";
 
 interface PageSectionProps {
   title: string;
@@ -39,10 +43,7 @@ const primaryNavItems = [
   { path: "/settings", label: "Settings" }
 ] as const;
 
-const validPaths = new Set<string>([
-  ...primaryNavItems.map((item) => item.path),
-  ...practiceNavItems.map((item) => item.path)
-]);
+const practicePathSet = new Set<string>(practiceNavItems.map((item) => item.path));
 
 function getPathFromHash(): string {
   const raw = window.location.hash ?? "";
@@ -84,15 +85,6 @@ const PageSection: React.FC<PageSectionProps> = ({ title, description, children 
   </section>
 );
 
-const TextsView: React.FC = () => (
-  <Tabs
-    tabs={[
-      { id: "tanakh", label: "Tanakh", panel: <TanakhReader /> },
-      { id: "siddur", label: "Siddur", panel: <SiddurView /> }
-    ]}
-  />
-);
-
 export const App: React.FC = () => {
   const darkMode = useSettings((state) => state.darkMode);
   const setDarkMode = useSettings((state) => state.setDarkMode);
@@ -124,74 +116,117 @@ export const App: React.FC = () => {
 
   const currentPath = path || "/";
 
+  const isTextsPath = currentPath === "/texts" || currentPath.startsWith("/texts/");
+
   useEffect(() => {
-    if (!validPaths.has(currentPath)) {
+    const isKnownPrimary = primaryNavItems.some((item) => item.path === currentPath);
+    const isKnownPractice = practicePathSet.has(currentPath);
+    if (!(isKnownPrimary || isKnownPractice || isTextsPath)) {
       navigate("/");
     }
-  }, [currentPath, navigate]);
+  }, [currentPath, navigate, isTextsPath]);
   const isPracticeSection = practiceNavItems.some((item) => item.path === currentPath);
 
+  const segments = currentPath.split("/").filter(Boolean);
+
   let content: React.ReactNode;
-  switch (currentPath) {
-    case "/":
-      content = <Today />;
-      break;
-    case "/texts":
+  if (segments.length === 0) {
+    content = <Today />;
+  } else if (segments[0] === "texts") {
+    if (segments.length === 1) {
       content = <TextsView />;
-      break;
-    case "/practice":
-      content = <PracticeView practiceNavItems={practiceNavItems} />;
-      break;
-    case "/alefbet":
-      content = (
-        <PageSection
-          title="Alef-Bet Lab"
-          description="Explore each Hebrew letter, pronunciation tips, and optional kabbalistic correspondences."
-        >
-          <AlefBetLab />
-        </PageSection>
-      );
-      break;
-    case "/kabbalah":
-      content = <KabbalahOverview />;
-      break;
-    case "/faq":
-      content = (
-        <PageSection title="Curious Questions" description="Gentle answers to common beginner questions.">
-          <FAQ />
-        </PageSection>
-      );
-      break;
-    case "/vocab":
-      content = (
-        <PageSection title="Word Garden" description="Practice vocabulary with a light-touch spaced repetition queue.">
-          <WordGarden />
-        </PageSection>
-      );
-      break;
-    case "/syllables":
-      content = (
-        <PageSection title="Compose a syllable" description="Build confidence by pairing Hebrew letters with vowel marks.">
-          <NiqqudBuilder />
-        </PageSection>
-      );
-      break;
-    case "/trope":
-      content = (
-        <PageSection title="Trope Lab" description="Cantillation trainer coming soon.">
-          <TropeCoach />
-        </PageSection>
-      );
-      break;
-    case "/settings":
-      content = <SettingsView />;
-      break;
-    default:
-      content = <Today />;
+    } else if (segments[1] === "tanakh") {
+      if (segments.length === 2) {
+        content = <TanakhIndex />;
+      } else if (segments[2] === "torah" && segments[3] === "parsha") {
+        if (segments.length === 4) {
+          content = <ParshaIndex />;
+        } else if (segments.length === 5) {
+          content = <ParshaView parshaSlug={segments[4]} />;
+        } else {
+          content = <ParshaIndex />;
+        }
+      } else {
+        const sectionSlug = segments[2];
+        if (segments.length === 3) {
+          content = <SectionIndex sectionSlug={sectionSlug} />;
+        } else if (segments.length === 4) {
+          const bookSlug = segments[3];
+          content = <BookIndex sectionSlug={sectionSlug} bookSlug={bookSlug} />;
+        } else if (segments.length === 5) {
+          const bookSlug = segments[3];
+          const chapterParam = Number.parseInt(segments[4] ?? "", 10);
+          const chapterNumber = Number.isNaN(chapterParam) ? -1 : chapterParam;
+          content = <ChapterView sectionSlug={sectionSlug} bookSlug={bookSlug} chapterNumber={chapterNumber} />;
+        } else {
+          content = <SectionIndex sectionSlug={sectionSlug} />;
+        }
+      }
+    } else if (segments[1] === "siddur") {
+      content = <SiddurView />;
+    } else {
+      content = <TextsView />;
+    }
+  } else {
+    switch (currentPath) {
+      case "/practice":
+        content = <PracticeView practiceNavItems={practiceNavItems} />;
+        break;
+      case "/alefbet":
+        content = (
+          <PageSection
+            title="Alef-Bet Lab"
+            description="Explore each Hebrew letter, pronunciation tips, and optional kabbalistic correspondences."
+          >
+            <AlefBetLab />
+          </PageSection>
+        );
+        break;
+      case "/kabbalah":
+        content = <KabbalahOverview />;
+        break;
+      case "/faq":
+        content = (
+          <PageSection title="Curious Questions" description="Gentle answers to common beginner questions.">
+            <FAQ />
+          </PageSection>
+        );
+        break;
+      case "/vocab":
+        content = (
+          <PageSection title="Word Garden" description="Practice vocabulary with a light-touch spaced repetition queue.">
+            <WordGarden />
+          </PageSection>
+        );
+        break;
+      case "/syllables":
+        content = (
+          <PageSection title="Compose a syllable" description="Build confidence by pairing Hebrew letters with vowel marks.">
+            <NiqqudBuilder />
+          </PageSection>
+        );
+        break;
+      case "/trope":
+        content = (
+          <PageSection title="Trope Lab" description="Cantillation trainer coming soon.">
+            <TropeCoach />
+          </PageSection>
+        );
+        break;
+      case "/settings":
+        content = <SettingsView />;
+        break;
+      default:
+        content = <Today />;
+        break;
+    }
   }
 
   const renderNavLink = (item: { path: string; label: string }) => {
-    const active = currentPath === item.path;
+    const active =
+      currentPath === item.path ||
+      (item.path === "/practice" && practicePathSet.has(currentPath)) ||
+      (item.path === "/texts" && isTextsPath);
     return (
       <a
         key={item.path}
