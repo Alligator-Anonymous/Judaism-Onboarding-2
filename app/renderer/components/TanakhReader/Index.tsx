@@ -39,7 +39,6 @@ export const TanakhReader: React.FC = () => {
             }}
             isSelected={selectedRef === verse.ref}
           />
-        ))}
         {verses.length === 0 ? (
           <p className="text-sm text-slate-500">Loading core text…</p>
         ) : null}
