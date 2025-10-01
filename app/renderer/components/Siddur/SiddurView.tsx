@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { basicPrayers } from "@data/siddur";
 import { useSettings } from "@stores/useSettings";
 import { NusachSelector } from "./NusachSelector";
+import { useContent } from "@stores/useContent";
 
 const SECTION_LABELS: Record<string, string> = {
   morning: "Morning",
@@ -12,14 +12,16 @@ const SECTION_LABELS: Record<string, string> = {
 
 export const SiddurView: React.FC = () => {
   const { transliterationMode, setTransliterationMode } = useSettings();
+  const registry = useContent((state) => state.registry);
+  const prayers = registry?.siddur.basic ?? [];
 
   const grouped = useMemo(() => {
-    return basicPrayers.reduce<Record<string, typeof basicPrayers>>((acc, prayer) => {
+    return prayers.reduce<Record<string, typeof prayers>>((acc, prayer) => {
       if (!acc[prayer.section]) acc[prayer.section] = [];
       acc[prayer.section].push(prayer);
       return acc;
-    }, {});
-  }, []);
+    }, {} as Record<string, typeof prayers>);
+  }, [prayers]);
 
   return (
     <div className="space-y-6">
@@ -41,14 +43,14 @@ export const SiddurView: React.FC = () => {
           </select>
         </div>
       </div>
-      {Object.entries(grouped).map(([section, prayers]) => (
+      {Object.entries(grouped).map(([section, sectionPrayers]) => (
         <section key={section} className="space-y-3">
           <header>
             <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">{SECTION_LABELS[section]}</h3>
             <p className="text-sm text-slate-500">"What am I saying?" notes follow each paragraph.</p>
           </header>
           <div className="space-y-3">
-            {prayers.map((prayer) => {
+            {sectionPrayers.map((prayer) => {
               const translit =
                 transliterationMode === "ashkenazi"
                   ? prayer.translitAshkenazi
@@ -75,6 +77,9 @@ export const SiddurView: React.FC = () => {
           </div>
         </section>
       ))}
+      {prayers.length === 0 ? (
+        <p className="text-sm text-slate-500">Siddur content is loading…</p>
+      ) : null}
       <p className="text-xs text-slate-500">
         Transliteration is a learning aid. For personal practice consult a rabbi to learn your community’s pronunciation.
       </p>

@@ -13,6 +13,8 @@ npm install
 npm run dev
 ```
 
+Core learning content now lives in `app/renderer/data/packs/core-v1`; add or extend JSON files there to grow the curriculum without touching code.
+
 See [`docs/README.md`](docs/README.md) for full instructions, architecture notes, accessibility commitments, and content licensing details.
 
 Windows Setup Notes

@@ -2,10 +2,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { copy } from "@/copy";
 import { Card } from "./UI/Card";
 import { useCalendar } from "@stores/useCalendar";
-import { holidays } from "@data/holidays";
-import { learningBite } from "@data/learningBite";
 import { formatFriendlyGregorian, gregorianToHebrew } from "@lib/hebrewCalendar";
 import { useSettings } from "@stores/useSettings";
+import { useContent } from "@stores/useContent";
 
 export const Today: React.FC = () => {
   const hebrewDate = useCalendar((state) => state.hebrewDate);
@@ -15,14 +14,24 @@ export const Today: React.FC = () => {
   const isShabbatEve = useCalendar((state) => state.isShabbatEve);
   const refresh = useCalendar((state) => state.refresh);
   const settings = useSettings();
+  const registry = useContent((state) => state.registry);
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
-    refresh(holidays);
-  }, [refresh]);
+    if (registry) {
+      refresh(Object.values(registry.holidays));
+    }
+  }, [refresh, registry]);
 
   const tz = settings.location.timezone;
   const now = useMemo(() => new Date(), []);
+  const isShabbatDay = now.getDay() === 5 || now.getDay() === 6;
+
+  const genesisChapter = registry?.tanakh["genesis-1"];
+  const featuredVerse = genesisChapter?.verses[0];
+  const featuredCommentary = featuredVerse
+    ? registry?.commentary["rashi-gen-1"]?.find((entry) => entry.refs.includes(featuredVerse.ref))
+    : undefined;
 
   return (
     <div className="space-y-4">
@@ -31,7 +40,7 @@ export const Today: React.FC = () => {
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{formatFriendlyGregorian(now)}</h1>
         <p className="text-lg text-pomegranate">{hebrewDate}</p>
       </header>
-      {isShabbatEve && (
+      {(isShabbatEve || isShabbatDay) && (
         <Card tone="accent" className="border-2 border-pomegranate">
           <p className="font-semibold">{copy.today.shabbatBanner}</p>
           <p className="text-sm text-slate-700 dark:text-slate-200">
@@ -77,13 +86,19 @@ export const Today: React.FC = () => {
         <Card className="space-y-3" title={copy.today.learningBiteTitle}>
           <header>
             <p className="text-sm uppercase tracking-wide text-slate-500">{copy.today.learningBiteTitle}</p>
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{learningBite.title}</h2>
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
+              {featuredVerse?.ref ?? "Genesis 1"}
+            </h2>
           </header>
           <blockquote className="rounded-lg bg-slate-50 p-3 text-right font-hebrew text-lg leading-relaxed dark:bg-slate-900 dark:text-slate-100">
-            {learningBite.hebrew}
+            {featuredVerse?.hebrew ?? ""}
           </blockquote>
-          <p className="text-sm text-slate-600 dark:text-slate-300">{learningBite.translation}</p>
-          <p className="text-sm text-slate-600 dark:text-slate-200">{learningBite.note}</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300">{featuredVerse?.translation}</p>
+          {featuredCommentary ? (
+            <p className="text-sm text-slate-600 dark:text-slate-200">
+              Rashi: {featuredCommentary.text}
+            </p>
+          ) : null}
           <button
             type="button"
             onClick={() => {
@@ -99,9 +114,15 @@ export const Today: React.FC = () => {
         <Card className="space-y-3" title={copy.today.journalPromptTitle}>
           <header>
             <p className="text-sm uppercase tracking-wide text-slate-500">{copy.today.journalPromptTitle}</p>
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{learningBite.prompt.title}</h2>
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
+              {featuredVerse ? "Creation sparks gratitude" : "Reflect on today"}
+            </h2>
           </header>
-          <p className="text-sm text-slate-600 dark:text-slate-300">{learningBite.prompt.body}</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300">
+            {featuredVerse
+              ? "Where do you notice new beginnings or light in your life this week?"
+              : "Take a breath and note one thing you learned today."}
+          </p>
           <textarea
             className="w-full rounded-lg border border-slate-300 p-3 text-sm shadow-inner focus:border-pomegranate focus:outline-none focus:ring focus:ring-pomegranate/30 dark:border-slate-600 dark:bg-slate-900"
             rows={4}

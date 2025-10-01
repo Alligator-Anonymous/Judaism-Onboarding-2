@@ -13,6 +13,8 @@ export interface Verse {
   words: VerseWord[];
   audio?: { url: string; startMs?: number; endMs?: number };
   commentaryRefs?: string[];
+  license?: string;
+  source?: string;
 }
 
 export interface Commentary {
@@ -21,6 +23,7 @@ export interface Commentary {
   refs: string[];
   text: string;
   license: string;
+  source?: string;
 }
 
 export interface Prayer {
@@ -31,6 +34,8 @@ export interface Prayer {
   translitSephardi?: string;
   translation: string;
   notes?: string;
+  license?: string;
+  source?: string;
 }
 
 export interface FAQEntry {
@@ -40,6 +45,8 @@ export interface FAQEntry {
   fiveMin: string;
   deepDive: string;
   sources?: string[];
+  license?: string;
+  disclaimer?: string;
 }
 
 export interface Holiday {
@@ -50,4 +57,43 @@ export interface Holiday {
   blessings?: string[];
   notesForBeginners?: string[];
   dates?: string[];
+  license?: string;
+  source?: string;
+}
+
+export interface AlefBetLetter {
+  letter: string;
+  nameHe: string;
+  nameEn: string;
+  sound: string;
+  finalForm: string | null;
+  tips?: string;
+  license?: string;
+}
+
+export interface TanakhChapter {
+  book: string;
+  chapter: number;
+  verses: Verse[];
+  license?: string;
+  source?: string;
+}
+
+export interface ContentPackManifest {
+  id: string;
+  name: string;
+  version: string;
+  license: string;
+  languages: string[];
+  files: Record<string, string[]>;
+}
+
+export interface ContentRegistry {
+  manifest: ContentPackManifest;
+  siddur: Record<string, Prayer[]>;
+  tanakh: Record<string, TanakhChapter>;
+  commentary: Record<string, Commentary[]>;
+  holidays: Record<string, Holiday>;
+  faq: Record<string, FAQEntry>;
+  alefbet: AlefBetLetter[];
 }

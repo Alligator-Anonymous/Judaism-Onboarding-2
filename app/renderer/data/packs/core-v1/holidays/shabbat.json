@@ -1,0 +1,21 @@
+{
+  "id": "shabbat",
+  "names": { "he": "שַׁבָּת", "en": "Shabbat" },
+  "description": "Weekly sacred pause from Friday sundown to Saturday nightfall, celebrating creation and covenant.",
+  "practices": [
+    "Light candles before sunset (consult local time).",
+    "Make Kiddush over wine or grape juice.",
+    "Share festive meals, bless loved ones, and rest from creative labor."
+  ],
+  "blessings": [
+    "Candle-lighting blessing",
+    "Kiddush Friday night",
+    "Havdalah at close"
+  ],
+  "notesForBeginners": [
+    "This app is for learning; check customs with your rabbi or sponsoring community.",
+    "Prepare before Shabbat begins: set lights, cook food, and plan transportation."
+  ],
+  "license": "Original summary © Derech team (CC BY-SA 4.0)",
+  "source": "Derived from common halachic guides"
+}

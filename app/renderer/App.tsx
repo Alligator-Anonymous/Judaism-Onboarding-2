@@ -6,6 +6,7 @@ import { SiddurView } from "@components/Siddur/SiddurView";
 import { PracticeView } from "@components/Practice";
 import { copy } from "@/copy";
 import { useSettings } from "@stores/useSettings";
+import { useContent } from "@stores/useContent";
 
 const TextsPanel: React.FC = () => (
   <Tabs
@@ -25,6 +26,11 @@ export const App: React.FC = () => {
     dyslexiaFriendlyHebrew,
     setDyslexiaFriendlyHebrew
   } = useSettings();
+  const hydrateContent = useContent((state) => state.hydrate);
+
+  useEffect(() => {
+    hydrateContent();
+  }, [hydrateContent]);
 
   useEffect(() => {
     const root = document.documentElement;
