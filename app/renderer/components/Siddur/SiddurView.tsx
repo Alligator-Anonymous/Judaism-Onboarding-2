@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { useSettings } from "@stores/useSettings";
 import { NusachSelector } from "./NusachSelector";
 import { useContent } from "@stores/useContent";
+import { KabbalahSystemSelector } from "../Settings/KabbalahSystemSelector";
 
 const SECTION_LABELS: Record<string, string> = {
   morning: "Morning",
@@ -27,6 +28,7 @@ export const SiddurView: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-4">
         <NusachSelector />
+
         <div className="flex items-center gap-2 text-sm">
           <label htmlFor="translit-mode" className="font-medium">
             Transliteration
@@ -42,7 +44,11 @@ export const SiddurView: React.FC = () => {
             <option value="none">Hide transliteration</option>
           </select>
         </div>
+
+        {/* NEW: Kabbalah system selector */}
+        <KabbalahSystemSelector />
       </div>
+
       {Object.entries(grouped).map(([section, sectionPrayers]) => (
         <section key={section} className="space-y-3">
           <header>

@@ -1,0 +1,31 @@
+{
+  "systemId": "kircher",
+  "name": "Kircher / Golden Dawn (comparative)",
+  "version": "1.0.0",
+  "mappings": {
+    "א": { "path": null, "element": "Air", "planet": null, "zodiac": null, "month": null, "notes": "Mother letter (Air). Shown for comparative study." },
+    "מ": { "path": null, "element": "Water", "notes": "Mother letter (Water)." },
+    "ש": { "path": null, "element": "Fire", "notes": "Mother letter (Fire)." },
+
+    "ב": { "path": null, "planet": null, "zodiac": null, "month": null, "notes": "Double letter (planetary attributions vary in Hermetic systems)." },
+    "ג": { "path": null, "planet": null, "zodiac": null, "month": null },
+    "ד": { "path": null, "planet": null, "zodiac": null, "month": null },
+    "כ": { "path": null, "planet": null, "zodiac": null, "month": null },
+    "פ": { "path": null, "planet": null, "zodiac": null, "month": null },
+    "ר": { "path": null, "planet": null, "zodiac": null, "month": null },
+    "ת": { "path": null, "planet": null, "zodiac": null, "month": null },
+
+    "ה": { "path": null, "zodiac": null, "month": null },
+    "ו": { "path": null, "zodiac": null, "month": null },
+    "ז": { "path": null, "zodiac": null, "month": null },
+    "ח": { "path": null, "zodiac": null, "month": null },
+    "ט": { "path": null, "zodiac": null, "month": null },
+    "י": { "path": null, "zodiac": null, "month": null },
+    "ל": { "path": null, "zodiac": null, "month": null },
+    "נ": { "path": null, "zodiac": null, "month": null },
+    "ס": { "path": null, "zodiac": null, "month": null },
+    "ע": { "path": null, "zodiac": null, "month": null },
+    "צ": { "path": null, "zodiac": null, "month": null },
+    "ק": { "path": null, "zodiac": null, "month": null }
+  }
+}

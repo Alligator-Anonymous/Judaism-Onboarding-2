@@ -3,10 +3,21 @@
     "letter": "א",
     "nameHe": "אָלֶף",
     "nameEn": "Alef",
-    "sound": "silent / ah",
+    "sound": "silent / glottal carrier",
     "finalForm": null,
-    "tips": "Pairs with vowels to carry sound; breathe before pronouncing.",
-    "license": "Stroke descriptions © Derech team (CC BY-SA 4.0)"
+    "tips": "Carries the vowel sound; think of a quiet breath before the vowel.",
+    "order": 1,
+    "category": "mother",
+    "unicode": "U+05D0",
+    "gematria": { "standard": 1, "ordinal": 1, "misparGadol": 1 },
+    "themes": ["Oneness/Unity", "Breath", "Mastery (אַלּוּף)"],
+    "numerologyNotes": "1 symbolizes divine unity; many see א as two י with a ו (10+10+6=26).",
+    "kabbalah": { "seferYetzirahGroup": "mother", "treeOfLife": { "path": null, "notes": "Letter–path mappings vary by tradition." } },
+    "examples": [
+      { "he": "אֱמֶת", "tr": "emet", "en": "truth" },
+      { "he": "אֱלֹהִים", "tr": "Elohim", "en": "God (name)" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ב",
@@ -15,16 +26,38 @@
     "sound": "b (with dagesh) / v (without)",
     "finalForm": null,
     "tips": "Dot inside = b; without dot = vet.",
-    "license": "© Derech team"
+    "order": 2,
+    "category": "double",
+    "unicode": "U+05D1",
+    "gematria": { "standard": 2, "ordinal": 2, "misparGadol": 2 },
+    "themes": ["House", "Blessing (בְּרָכָה)", "Beginnings"],
+    "numerologyNotes": "2 suggests duality/relationship.",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "בַּיִת", "tr": "bayit", "en": "house" },
+      { "he": "בְּרָכָה", "tr": "berakhah", "en": "blessing" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ג",
-    "nameHe": "גִּימֵל",
+    "nameHe": "גִּימֶל",
     "nameEn": "Gimel",
     "sound": "g",
     "finalForm": null,
-    "tips": "Remember the foot stretching forward.",
-    "license": "© Derech team"
+    "tips": "Picture a person striding—gimel ‘goes’ toward dalet.",
+    "order": 3,
+    "category": "double",
+    "unicode": "U+05D2",
+    "gematria": { "standard": 3, "ordinal": 3, "misparGadol": 3 },
+    "themes": ["Giving (גומל חסדים)", "Movement", "Kindness pursues need"],
+    "numerologyNotes": "3 often symbolizes balance/wholeness.",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "גְּמִילוּת חֲסָדִים", "tr": "gemilut ḥasadim", "en": "acts of kindness" },
+      { "he": "גָּמָל", "tr": "gamal", "en": "camel" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ד",
@@ -32,8 +65,19 @@
     "nameEn": "Dalet",
     "sound": "d",
     "finalForm": null,
-    "tips": "Back edge should be squared, unlike resh.",
-    "license": "© Derech team"
+    "tips": "Squared back; do not round like ר.",
+    "order": 4,
+    "category": "double",
+    "unicode": "U+05D3",
+    "gematria": { "standard": 4, "ordinal": 4, "misparGadol": 4 },
+    "themes": ["Door", "Dal (דַל) = poor → receives from ג"],
+    "numerologyNotes": "4 directions/foundations.",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "דֶּלֶת", "tr": "delet", "en": "door" },
+      { "he": "דַל", "tr": "dal", "en": "poor" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ה",
@@ -41,17 +85,39 @@
     "nameEn": "Hei",
     "sound": "h",
     "finalForm": null,
-    "tips": "Small gap on top left distinguishes from chet.",
-    "license": "© Derech team"
+    "tips": "Tiny gap on top-left distinguishes from ח.",
+    "order": 5,
+    "category": "simple",
+    "unicode": "U+05D4",
+    "gematria": { "standard": 5, "ordinal": 5, "misparGadol": 5 },
+    "themes": ["Breath/Revelation", "Window", "Divine Name letter"],
+    "numerologyNotes": "5 = the hand/five senses; revelation through form.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "הַלֵּל", "tr": "halel", "en": "praise" },
+      { "he": "הַר", "tr": "har", "en": "mountain" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ו",
     "nameHe": "וָו",
     "nameEn": "Vav",
-    "sound": "v / o / u",
+    "sound": "v / consonantal; also letters for o/u vowels",
     "finalForm": null,
-    "tips": "Single upright line; doubles as vowel carrier.",
-    "license": "© Derech team"
+    "tips": "A ‘hook’—often the letter ‘and’.",
+    "order": 6,
+    "category": "simple",
+    "unicode": "U+05D5",
+    "gematria": { "standard": 6, "ordinal": 6, "misparGadol": 6 },
+    "themes": ["Connection/And", "Hook", "Heaven–earth link"],
+    "numerologyNotes": "6 days of creation; linkage.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "וְ", "tr": "ve-", "en": "and (prefix)" },
+      { "he": "וָו", "tr": "vav", "en": "hook/peg" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ז",
@@ -59,8 +125,19 @@
     "nameEn": "Zayin",
     "sound": "z",
     "finalForm": null,
-    "tips": "Looks like a crowned sword.",
-    "license": "© Derech team"
+    "tips": "Often drawn with a crown; looks like a small sword.",
+    "order": 7,
+    "category": "simple",
+    "unicode": "U+05D6",
+    "gematria": { "standard": 7, "ordinal": 7, "misparGadol": 7 },
+    "themes": ["Sustenance/Weapon", "Shabbat (7)", "Crown"],
+    "numerologyNotes": "7 = completion; the seventh day.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "זָהָב", "tr": "zahav", "en": "gold" },
+      { "he": "זֶה", "tr": "zeh", "en": "this" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ח",
@@ -68,8 +145,19 @@
     "nameEn": "Chet",
     "sound": "kh (guttural)",
     "finalForm": null,
-    "tips": "Closed box shape—no gap.",
-    "license": "© Derech team"
+    "tips": "Closed box; no gap like ה.",
+    "order": 8,
+    "category": "simple",
+    "unicode": "U+05D7",
+    "gematria": { "standard": 8, "ordinal": 8, "misparGadol": 8 },
+    "themes": ["Life (חיים)", "Fence/Enclosure", "Beyond the natural seven"],
+    "numerologyNotes": "8 = transcendence (brit milah day 8).",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "חַיִּים", "tr": "ḥayim", "en": "life" },
+      { "he": "חֶסֶד", "tr": "ḥesed", "en": "lovingkindness" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ט",
@@ -77,8 +165,19 @@
     "nameEn": "Tet",
     "sound": "t (emphatic)",
     "finalForm": null,
-    "tips": "Rounded shape hugging itself.",
-    "license": "© Derech team"
+    "tips": "Rounded, hugging shape.",
+    "order": 9,
+    "category": "simple",
+    "unicode": "U+05D8",
+    "gematria": { "standard": 9, "ordinal": 9, "misparGadol": 9 },
+    "themes": ["Goodness (טוֹב)", "Hidden good within"],
+    "numerologyNotes": "9 → ‘tov’; also 9 months gestation imagery.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "טוֹב", "tr": "tov", "en": "good" },
+      { "he": "טַל", "tr": "tal", "en": "dew" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "י",
@@ -86,17 +185,39 @@
     "nameEn": "Yod",
     "sound": "y",
     "finalForm": null,
-    "tips": "Tiny arm floating above line.",
-    "license": "© Derech team"
+    "tips": "Tiny suspended point; hand (יד).",
+    "order": 10,
+    "category": "simple",
+    "unicode": "U+05D9",
+    "gematria": { "standard": 10, "ordinal": 10, "misparGadol": 10 },
+    "themes": ["Point/Spark", "Hand (יד)", "Ten utterances/commandments"],
+    "numerologyNotes": "10 = completion in unity; seed of forms.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "יָד", "tr": "yad", "en": "hand" },
+      { "he": "יוֹם", "tr": "yom", "en": "day" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "כ",
     "nameHe": "כַּף",
     "nameEn": "Kaf",
-    "sound": "k / kh",
+    "sound": "k (with dagesh) / kh (without)",
     "finalForm": "ך",
-    "tips": "Final kaf drops below line.",
-    "license": "© Derech team"
+    "tips": "Cup/palm; final kaf drops below line.",
+    "order": 11,
+    "category": "double",
+    "unicode": "U+05DB",
+    "gematria": { "standard": 20, "ordinal": 11, "misparGadol": 20, "finalGadol": 500 },
+    "themes": ["Palm/Cup", "Capacity/Receptacle"],
+    "numerologyNotes": "20 = a fuller measure (2 × 10).",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "כַּף", "tr": "kaf", "en": "palm" },
+      { "he": "כֹּל", "tr": "kol", "en": "all" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ל",
@@ -104,8 +225,19 @@
     "nameEn": "Lamed",
     "sound": "l",
     "finalForm": null,
-    "tips": "Tall tower reaching above others.",
-    "license": "© Derech team"
+    "tips": "Tallest letter; a shepherd’s goad—learn/teach.",
+    "order": 12,
+    "category": "simple",
+    "unicode": "U+05DC",
+    "gematria": { "standard": 30, "ordinal": 12, "misparGadol": 30 },
+    "themes": ["Learning (לָמַד)", "Aspiration/Ascent"],
+    "numerologyNotes": "30 = maturation, teaching.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "לִמּוּד", "tr": "limmud", "en": "study" },
+      { "he": "לֵב", "tr": "lev", "en": "heart" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "מ",
@@ -113,8 +245,19 @@
     "nameEn": "Mem",
     "sound": "m",
     "finalForm": "ם",
-    "tips": "Open mem has a gap; final mem closed square.",
-    "license": "© Derech team"
+    "tips": "Open mem (מ) has a small gap; final mem (ם) closed square.",
+    "order": 13,
+    "category": "mother",
+    "unicode": "U+05DE",
+    "gematria": { "standard": 40, "ordinal": 13, "misparGadol": 40, "finalGadol": 600 },
+    "themes": ["Water (מַיִם)", "Torah as water", "Concealment/Revelation"],
+    "numerologyNotes": "40 = formation/time (40 days/years).",
+    "kabbalah": { "seferYetzirahGroup": "mother", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "מַיִם", "tr": "mayim", "en": "water" },
+      { "he": "מִצְוָה", "tr": "mitzvah", "en": "commandment" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "נ",
@@ -122,35 +265,79 @@
     "nameEn": "Nun",
     "sound": "n",
     "finalForm": "ן",
-    "tips": "Final nun drops straight down.",
-    "license": "© Derech team"
+    "tips": "Final nun descends straight below the line.",
+    "order": 14,
+    "category": "simple",
+    "unicode": "U+05E0",
+    "gematria": { "standard": 50, "ordinal": 14, "misparGadol": 50, "finalGadol": 700 },
+    "themes": ["Fish/Propagation", "Falling & Rising", "Faithfulness"],
+    "numerologyNotes": "50 = gates of understanding (alluded to in rabbinic texts).",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "נֶפֶשׁ", "tr": "nefesh", "en": "soul" },
+      { "he": "נֵס", "tr": "nes", "en": "miracle/standard" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ס",
-    "nameHe": "סָמֵךְ",
+    "nameHe": "סָמֶךְ",
     "nameEn": "Samekh",
     "sound": "s",
     "finalForm": null,
-    "tips": "Circular shape—think safety circle.",
-    "license": "© Derech team"
+    "tips": "Circular—think support/surround.",
+    "order": 15,
+    "category": "simple",
+    "unicode": "U+05E1",
+    "gematria": { "standard": 60, "ordinal": 15, "misparGadol": 60 },
+    "themes": ["Support (סוֹמֵךְ)", "Protection/Circle"],
+    "numerologyNotes": "60 = support/structure.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "סוֹמֵךְ", "tr": "somekh", "en": "supporting" },
+      { "he": "סוּכָּה", "tr": "sukkah", "en": "booth" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ע",
     "nameHe": "עַיִן",
     "nameEn": "Ayin",
-    "sound": "voiced throat stop",
+    "sound": "voiced pharyngeal; often silent in modern",
     "finalForm": null,
-    "tips": "Like alef but with open top.",
-    "license": "© Derech team"
+    "tips": "Eye/insight; distinct from א.",
+    "order": 16,
+    "category": "simple",
+    "unicode": "U+05E2",
+    "gematria": { "standard": 70, "ordinal": 16, "misparGadol": 70 },
+    "themes": ["Eye/Sight", "Inner seeing", "Providence"],
+    "numerologyNotes": "70 nations/elders—comprehensiveness.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "עַיִן", "tr": "ayin", "en": "eye" },
+      { "he": "עֵד", "tr": "ed", "en": "witness" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "פ",
     "nameHe": "פֵּא",
     "nameEn": "Pe",
-    "sound": "p / f",
+    "sound": "p (with dagesh) / f (without)",
     "finalForm": "ף",
-    "tips": "Final pe loops downward.",
-    "license": "© Derech team"
+    "tips": "Mouth/speech; final pe drops below line.",
+    "order": 17,
+    "category": "double",
+    "unicode": "U+05E4",
+    "gematria": { "standard": 80, "ordinal": 17, "misparGadol": 80, "finalGadol": 800 },
+    "themes": ["Mouth/Speech", "Declaration", "Creative word"],
+    "numerologyNotes": "80 (8×10): power of speech magnified.",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "פֶּה", "tr": "peh", "en": "mouth" },
+      { "he": "פִּי", "tr": "pi", "en": "my mouth" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "צ",
@@ -158,17 +345,39 @@
     "nameEn": "Tsadi",
     "sound": "ts",
     "finalForm": "ץ",
-    "tips": "Final tsadi looks like fishing hook.",
-    "license": "© Derech team"
+    "tips": "Righteous figure bending in humility; final form hooks down.",
+    "order": 18,
+    "category": "simple",
+    "unicode": "U+05E6",
+    "gematria": { "standard": 90, "ordinal": 18, "misparGadol": 90, "finalGadol": 900 },
+    "themes": ["Righteousness (צֶדֶק)", "Humility", "Justice"],
+    "numerologyNotes": "90: maturity/fruitfulness.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "צֶדֶק", "tr": "tzedek", "en": "righteousness" },
+      { "he": "צַדִּיק", "tr": "tzaddik", "en": "righteous person" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ק",
     "nameHe": "קוֹף",
     "nameEn": "Qof",
-    "sound": "k (back)",
+    "sound": "k (posterior)",
     "finalForm": null,
-    "tips": "Tail drops below line unlike kaf.",
-    "license": "© Derech team"
+    "tips": "Tail drops below the line (unlike כ).",
+    "order": 19,
+    "category": "simple",
+    "unicode": "U+05E7",
+    "gematria": { "standard": 100, "ordinal": 19, "misparGadol": 100 },
+    "themes": ["Holiness within the mundane", "Back of the head imagery"],
+    "numerologyNotes": "100 = fullness × 10.",
+    "kabbalah": { "seferYetzirahGroup": "simple", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "קָדוֹשׁ", "tr": "kadosh", "en": "holy" },
+      { "he": "קוֹל", "tr": "kol", "en": "voice/sound" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ר",
@@ -176,70 +385,135 @@
     "nameEn": "Resh",
     "sound": "r",
     "finalForm": null,
-    "tips": "Rounded corner; do not square like dalet.",
-    "license": "© Derech team"
+    "tips": "Rounded head; don’t square like ד.",
+    "order": 20,
+    "category": "double",
+    "unicode": "U+05E8",
+    "gematria": { "standard": 200, "ordinal": 20, "misparGadol": 200 },
+    "themes": ["Head (רֹאשׁ)", "Humility receptive to giving"],
+    "numerologyNotes": "200 extends ‘headship’ into the hundreds.",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "רֹאשׁ", "tr": "rosh", "en": "head" },
+      { "he": "רַחֲמִים", "tr": "raḥamim", "en": "compassion" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ש",
-    "nameHe": "שִׁין",
+    "nameHe": "שִׁן",
     "nameEn": "Shin",
-    "sound": "sh / s",
+    "sound": "sh (dot right) / s (dot left)",
     "finalForm": null,
-    "tips": "Dot right = sh, dot left = s.",
-    "license": "© Derech team"
+    "tips": "Three flames/branches; dots indicate sound.",
+    "order": 21,
+    "category": "mother",
+    "unicode": "U+05E9",
+    "gematria": { "standard": 300, "ordinal": 21, "misparGadol": 300 },
+    "themes": ["Fire/Teeth", "Divine Names (ש–ד–י)", "Three pillars"],
+    "numerologyNotes": "300 = expansive fire/energy.",
+    "kabbalah": { "seferYetzirahGroup": "mother", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "שָׁלוֹם", "tr": "shalom", "en": "peace/wholeness" },
+      { "he": "שַׁבָּת", "tr": "shabbat", "en": "Sabbath" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ת",
-    "nameHe": "תָּו",
+    "nameHe": "תָו",
     "nameEn": "Tav",
     "sound": "t",
     "finalForm": null,
-    "tips": "Remember small foot on left.",
-    "license": "© Derech team"
+    "tips": "Mark/seal; small foot on left in many fonts.",
+    "order": 22,
+    "category": "double",
+    "unicode": "U+05EA",
+    "gematria": { "standard": 400, "ordinal": 22, "misparGadol": 400 },
+    "themes": ["Sign/Seal", "Completion", "Truth (א–מ–ת ends with ת)"],
+    "numerologyNotes": "400 = the outer boundary—completion of the series.",
+    "kabbalah": { "seferYetzirahGroup": "double", "treeOfLife": { "path": null, "notes": "Path varies by system." } },
+    "examples": [
+      { "he": "תּוֹרָה", "tr": "torah", "en": "Torah" },
+      { "he": "תָּם", "tr": "tam", "en": "whole/innocent" }
+    ],
+    "license": "Text © Derech team (CC BY 4.0)"
   },
+
   {
     "letter": "ך",
     "nameHe": "כף סופית",
     "nameEn": "Final Kaf",
-    "sound": "same as base letter",
+    "sound": "k / kh (as base letter)",
     "finalForm": null,
-    "tips": "Soft curve when ending a word.",
-    "license": "© Derech team"
+    "tips": "Descends below the line; often rounded end.",
+    "order": null,
+    "category": "final",
+    "unicode": "U+05DA",
+    "gematria": { "standard": 20, "ordinal": 11, "misparGadol": 500 },
+    "themes": ["Closure of capacity", "Receiving completed"],
+    "numerologyNotes": "Final values used in mispar gadol 500–900.",
+    "base": "כ",
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ם",
     "nameHe": "מם סופית",
     "nameEn": "Final Mem",
-    "sound": "same as base letter",
+    "sound": "m",
     "finalForm": null,
-    "tips": "Closed box ending.",
-    "license": "© Derech team"
+    "tips": "Closed square; seals the word.",
+    "order": null,
+    "category": "final",
+    "unicode": "U+05DD",
+    "gematria": { "standard": 40, "ordinal": 13, "misparGadol": 600 },
+    "themes": ["Sealed waters", "Concealment completed"],
+    "base": "מ",
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ן",
     "nameHe": "נון סופית",
     "nameEn": "Final Nun",
-    "sound": "same as base letter",
+    "sound": "n",
     "finalForm": null,
-    "tips": "Long tail to the bottom.",
-    "license": "© Derech team"
+    "tips": "Long straight descent.",
+    "order": null,
+    "category": "final",
+    "unicode": "U+05DF",
+    "gematria": { "standard": 50, "ordinal": 14, "misparGadol": 700 },
+    "themes": ["Descent to rise", "Humility to elevation"],
+    "base": "נ",
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ף",
     "nameHe": "פה סופית",
     "nameEn": "Final Pe",
-    "sound": "same as base letter",
+    "sound": "p / f",
     "finalForm": null,
-    "tips": "Drop the loop below the line.",
-    "license": "© Derech team"
+    "tips": "Loop descends; mouth completes the statement.",
+    "order": null,
+    "category": "final",
+    "unicode": "U+05E3",
+    "gematria": { "standard": 80, "ordinal": 17, "misparGadol": 800 },
+    "themes": ["Speech fulfilled", "Sealed word"],
+    "base": "פ",
+    "license": "Text © Derech team (CC BY 4.0)"
   },
   {
     "letter": "ץ",
     "nameHe": "צדי סופית",
     "nameEn": "Final Tsadi",
-    "sound": "same as base letter",
+    "sound": "ts",
     "finalForm": null,
-    "tips": "Hooked leg reaching down.",
-    "license": "© Derech team"
+    "tips": "Hooked tail further below the line.",
+    "order": null,
+    "category": "final",
+    "unicode": "U+05E5",
+    "gematria": { "standard": 90, "ordinal": 18, "misparGadol": 900 },
+    "themes": ["Righteousness brought to completion"],
+    "base": "צ",
+    "license": "Text © Derech team (CC BY 4.0)"
   }
 ]
