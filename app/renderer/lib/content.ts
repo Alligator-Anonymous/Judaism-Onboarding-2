@@ -1,4 +1,19 @@
-import { ContentPackManifest, ContentRegistry, FAQEntry, Holiday, Prayer, TanakhChapter, Commentary, AlefBetLetter } from "@/types";
+// Codex change: Hydrate the content registry with Tanakh and parsha metadata alongside pack content.
+
+import {
+  ContentPackManifest,
+  ContentRegistry,
+  FAQEntry,
+  Holiday,
+  Prayer,
+  TanakhChapter,
+  Commentary,
+  AlefBetLetter,
+  TanakhMetadata,
+  ParshaMetadataEntry
+} from "@/types";
+import tanakhMeta from "@/data/metadata/tanakh.index.json";
+import parshaMeta from "@/data/metadata/parshiyot.index.json";
 
 const jsonModules = import.meta.glob("@/data/packs/core-v1/**/*.json", {
   eager: true
@@ -18,6 +33,9 @@ export function loadContentRegistry(): ContentRegistry {
   }
   const manifest = (jsonModules[manifestKey] as { default: ContentPackManifest }).default;
 
+  const tanakhMetadata = tanakhMeta as TanakhMetadata;
+  const parshaMetadata = parshaMeta as ParshaMetadataEntry[];
+
   const registry: ContentRegistry = {
     manifest,
     siddur: {},
@@ -25,7 +43,9 @@ export function loadContentRegistry(): ContentRegistry {
     commentary: {},
     holidays: {},
     faq: {},
-    alefbet: []
+    alefbet: [],
+    tanakhMeta: tanakhMetadata ?? null,
+    parshaMeta: parshaMetadata ?? []
   };
 
   Object.entries(jsonModules).forEach(([key, mod]) => {

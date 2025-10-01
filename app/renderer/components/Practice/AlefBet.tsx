@@ -1,3 +1,4 @@
+// Codex change: Expose Alef-Bet lab details for dedicated practice routing.
 import React from "react";
 import { useContent } from "@stores/useContent";
 import { useSettings } from "@stores/useSettings";
@@ -5,7 +6,7 @@ import { getLetterMapping, getSystemDisplayName } from "../../lib/kabbalah";
 
 export const AlefBetLab: React.FC = () => {
   const letters = useContent((state) => state.registry?.alefbet ?? []);
-  const system = useSettings((s) => s.kabbalahSystem);
+  const system = useSettings((s) => s.kabbalahSystem ?? "none");
   const systemName = getSystemDisplayName(system);
 
   return (

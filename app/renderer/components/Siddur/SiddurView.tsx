@@ -1,8 +1,7 @@
+// Codex change: Streamlined Siddur view to read settings and link to the dedicated Settings page.
 import React, { useMemo } from "react";
 import { useSettings } from "@stores/useSettings";
-import { NusachSelector } from "./NusachSelector";
 import { useContent } from "@stores/useContent";
-import { KabbalahSystemSelector } from "../Settings/KabbalahSystemSelector";
 
 const SECTION_LABELS: Record<string, string> = {
   morning: "Morning",
@@ -12,7 +11,7 @@ const SECTION_LABELS: Record<string, string> = {
 };
 
 export const SiddurView: React.FC = () => {
-  const { transliterationMode, setTransliterationMode } = useSettings();
+  const transliterationMode = useSettings((state) => state.transliterationMode);
   const registry = useContent((state) => state.registry);
   const prayers = registry?.siddur.basic ?? [];
 
@@ -26,27 +25,9 @@ export const SiddurView: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center gap-4">
-        <NusachSelector />
-
-        <div className="flex items-center gap-2 text-sm">
-          <label htmlFor="translit-mode" className="font-medium">
-            Transliteration
-          </label>
-          <select
-            id="translit-mode"
-            className="rounded-lg border border-slate-300 px-3 py-1 focus:border-pomegranate focus:outline-none focus:ring focus:ring-pomegranate/30 dark:border-slate-600 dark:bg-slate-900"
-            value={transliterationMode}
-            onChange={(event) => setTransliterationMode(event.target.value as typeof transliterationMode)}
-          >
-            <option value="ashkenazi">Ashkenazi</option>
-            <option value="sephardi">Sephardi</option>
-            <option value="none">Hide transliteration</option>
-          </select>
-        </div>
-
-        {/* NEW: Kabbalah system selector */}
-        <KabbalahSystemSelector />
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+        Prayer preferences now live in <a className="font-medium text-pomegranate underline" href="#/settings">Settings</a>.
+        Adjust nusach, transliteration style, and kabbalah overlays there.
       </div>
 
       {Object.entries(grouped).map(([section, sectionPrayers]) => (

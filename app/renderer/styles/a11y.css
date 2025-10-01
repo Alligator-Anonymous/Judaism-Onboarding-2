@@ -1,0 +1,28 @@
+/* // Codex change: Provide global accessibility theming for font scaling and dyslexia-friendly Hebrew. */
+:root {
+  --codex-font-scale: 100%;
+}
+
+html {
+  font-size: var(--codex-font-scale);
+}
+
+[data-font-scale="large"] {
+  --codex-font-scale: 112%;
+}
+
+[data-font-scale="large"] body {
+  line-height: 1.7;
+}
+
+[data-dyslexia-hebrew="true"] [dir="rtl"],
+[data-dyslexia-hebrew="true"] .hebrew {
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "rlig" 0;
+}
+
+[data-dyslexia-hebrew="true"] [dir="rtl"] {
+  word-spacing: 0.1em;
+}
