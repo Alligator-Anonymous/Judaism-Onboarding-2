@@ -1,0 +1,18 @@
+{
+  "id": "shabbat",
+  "names": { "he": "שבת", "en": "Shabbat" },
+  "description": "A weekly sanctuary in time celebrating creation and liberation.",
+  "practices": [
+    "Light candles before sunset",
+    "Share kiddush over wine or grape juice",
+    "Enjoy festive meals and restful time"
+  ],
+  "blessings": [
+    "Baruch atah Adonai... lehadlik ner shel Shabbat",
+    "Vayechulu"
+  ],
+  "notesForBeginners": [
+    "Set an alarm to light candles 18 minutes before sunset.",
+    "Ask a friend or rabbi how their community celebrates."
+  ]
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "id": "modeh-ani",
+    "section": "morning",
+    "hebrew": "מוֹדֶה אֲנִי לְפָנֶיךָ...",
+    "translitAshkenazi": "Modeh ani lefanekha...",
+    "translitSephardi": "Mode ani lefanecha...",
+    "translation": "I offer thanks to You, living and eternal Sovereign, for You have mercifully restored my soul within me; great is Your faithfulness.",
+    "notes": "First words upon waking, expressing gratitude for a new day.",
+    "license": "Original English gloss © Derech team (CC BY-SA 4.0)",
+    "source": "Traditional liturgy"
+  },
+  {
+    "id": "netilat-yadayim",
+    "section": "morning",
+    "hebrew": "בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל נְטִילַת יָדַיִם.",
+    "translitAshkenazi": "Baruch atah Adonai Eloheinu Melekh ha'olam asher kid'shanu b'mitzvosav v'tzivanu al n'tilas yadayim.",
+    "translitSephardi": "Baruch ata Adonai Eloheinu Melech ha'olam asher kid'shanu b'mitzvotav v'tzivanu al netilat yadayim.",
+    "translation": "Blessed are You, Adonai our God, Sovereign of the universe, who has sanctified us with commandments and commanded us concerning the washing of the hands.",
+    "notes": "Said when washing hands upon rising.",
+    "license": "Translation public domain (1917 JPS paraphrase)",
+    "source": "Shulchan Aruch Orach Chayim 4"
+  },
+  {
+    "id": "birkot-hashachar",
+    "section": "morning",
+    "hebrew": "בָּרוּךְ... פּוֹקֵחַ עִוְרִים\nבָּרוּךְ... מַלְבִּישׁ עֲרוּמִים\nבָּרוּךְ... הַמֵּכִין מִצְעֲדֵי גָבֶר",
+    "translitAshkenazi": "Baruch... pokeach ivrim / malbish arumim / hamechin mitz'adei gaver",
+    "translitSephardi": "Baruch... pokeach ivrim / malbish arumim / hamechin mits'adei gaver",
+    "translation": "Blessed... who opens the eyes of the blind; ...who clothes the naked; ...who steadies our steps.",
+    "notes": "Morning blessings of gratitude for daily abilities.",
+    "license": "English summary © Derech team (CC BY-SA 4.0)",
+    "source": "Talmud Berakhot 60b"
+  },
+  {
+    "id": "shema-morning",
+    "section": "morning",
+    "hebrew": "שְׁמַע יִשְׂרָאֵל יְיָ אֱלֹהֵינוּ יְיָ אֶחָד...",
+    "translitAshkenazi": "Shema Yisrael Adonai Eloheinu Adonai echad...",
+    "translitSephardi": "Shema Yisrael Adonai Eloheinu Adonai echad...",
+    "translation": "Hear, O Israel: Adonai is our God, Adonai is One...",
+    "notes": "Affirmation of God's unity; traditionally recited morning and night.",
+    "license": "Translation public domain (JPS 1917 excerpt)",
+    "source": "Deuteronomy 6:4-9"
+  },
+  {
+    "id": "shema-evening",
+    "section": "evening",
+    "hebrew": "וְהָיָה אִם שָׁמוֹעַ...",
+    "translitAshkenazi": "V'haya im shamo'a...",
+    "translitSephardi": "Vehaya im shamoa...",
+    "translation": "If you surely heed My commandments...",
+    "notes": "Second paragraph of the Shema, focusing on living Torah daily.",
+    "license": "Translation public domain (JPS 1917 excerpt)",
+    "source": "Deuteronomy 11:13-21"
+  },
+  {
+    "id": "amidah-structure",
+    "section": "morning",
+    "hebrew": "עמידת שחרית",
+    "translitAshkenazi": "Amidat Shacharis",
+    "translitSephardi": "Amidat Shacharit",
+    "translation": "The standing prayer with blessings of praise, petitions, and gratitude.",
+    "notes": "Structure: 3 opening praises, 13 requests, 3 closing thanks. Take three steps forward/back.",
+    "license": "Summary © Derech team (CC BY-SA 4.0)",
+    "source": "Amidah liturgy"
+  },
+  {
+    "id": "mincha-amidah",
+    "section": "afternoon",
+    "hebrew": "עמידת מנחה",
+    "translitAshkenazi": "Amidas Mincha",
+    "translitSephardi": "Amidat Mincha",
+    "translation": "Afternoon Amidah with the same core blessings as morning; add supplication.",
+    "notes": "Short, mindful pause mid-day; face Jerusalem if possible.",
+    "license": "Summary © Derech team (CC BY-SA 4.0)",
+    "source": "Mincha liturgy"
+  },
+  {
+    "id": "maariv-amidah",
+    "section": "evening",
+    "hebrew": "עמידת ערבית",
+    "translitAshkenazi": "Amidas Maariv",
+    "translitSephardi": "Amidat Arvit",
+    "translation": "Evening Amidah, adding Hashkiveinu prayer for peaceful rest.",
+    "notes": "Many communities add "Peace" themes at night; consult your rabbi for local custom.",
+    "license": "Summary © Derech team (CC BY-SA 4.0)",
+    "source": "Maariv liturgy"
+  },
+  {
+    "id": "bedtime-shema",
+    "section": "bedtime",
+    "hebrew": "שְׁמַע בְּמִטָּתְךָ...",
+    "translitAshkenazi": "Shema b'mitasekha...",
+    "translitSephardi": "Shema b'mitatcha...",
+    "translation": "Recite the Shema upon your bed...",
+    "notes": "Invite calm, reflect on the day, release grudges before sleep.",
+    "license": "Summary © Derech team (CC BY-SA 4.0)",
+    "source": "Talmud Berakhot 60b"
+  }
+]

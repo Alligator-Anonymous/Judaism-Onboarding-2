@@ -1,0 +1,64 @@
+{
+  "book": "Genesis",
+  "chapter": 1,
+  "verses": [
+    {
+      "ref": "Genesis 1:1",
+      "hebrew": "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ.",
+      "hebrewPlain": "בראשית ברא אלהים את השמים ואת הארץ",
+      "translation": "In the beginning God created the heaven and the earth.",
+      "words": [
+        { "surface": "בְּרֵאשִׁית", "root": "ראש" },
+        { "surface": "בָּרָא", "root": "ברא" }
+      ],
+      "commentaryRefs": ["rashi-gen-1-1"],
+      "license": "Hebrew text public domain; translation JPS 1917"
+    },
+    {
+      "ref": "Genesis 1:2",
+      "hebrew": "וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ...",
+      "hebrewPlain": "והארץ היתה תהו ובהו",
+      "translation": "And the earth was waste and void; and darkness was upon the face of the deep.",
+      "words": [
+        { "surface": "תֹהוּ", "root": "תהו" },
+        { "surface": "וָבֹהוּ", "root": "בהו" }
+      ],
+      "license": "Hebrew text public domain; translation JPS 1917"
+    },
+    {
+      "ref": "Genesis 1:3",
+      "hebrew": "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר.",
+      "hebrewPlain": "ויאמר אלהים יהי אור ויהי אור",
+      "translation": "And God said: 'Let there be light.' And there was light.",
+      "words": [
+        { "surface": "אוֹר", "root": "אור" }
+      ],
+      "commentaryRefs": ["rashi-gen-1-3"],
+      "license": "Hebrew text public domain; translation JPS 1917"
+    },
+    {
+      "ref": "Genesis 1:4",
+      "hebrew": "וַיַּרְא אֱלֹהִים אֶת הָאוֹר כִּי טוֹב...",
+      "hebrewPlain": "וירא אלהים את האור כי טוב",
+      "translation": "And God saw the light, that it was good; and God divided the light from the darkness.",
+      "words": [
+        { "surface": "אוֹר", "root": "אור" },
+        { "surface": "טוֹב", "root": "טוב" }
+      ],
+      "license": "Hebrew text public domain; translation JPS 1917"
+    },
+    {
+      "ref": "Genesis 1:5",
+      "hebrew": "וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם...",
+      "hebrewPlain": "ויקרא אלהים לאור יום",
+      "translation": "And God called the light Day, and the darkness He called Night.",
+      "words": [
+        { "surface": "יוֹם", "root": "יום" },
+        { "surface": "לַיְלָה", "root": "ליל" }
+      ],
+      "license": "Hebrew text public domain; translation JPS 1917"
+    }
+  ],
+  "license": "Hebrew text public domain; translation JPS 1917",
+  "source": "Public domain Torah text"
+}

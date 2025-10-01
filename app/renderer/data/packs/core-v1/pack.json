@@ -1,0 +1,26 @@
+{
+  "id": "core-v1",
+  "name": "Derech Core Content Pack",
+  "version": "1.0.0",
+  "license": "CC BY-SA 4.0 for original English notes; Hebrew texts and Rashi excerpts public domain",
+  "languages": ["he", "en"],
+  "files": {
+    "siddur": ["siddur/basic.json"],
+    "tanakh": ["tanakh/genesis-1.json"],
+    "commentary": ["commentary/rashi-gen-1.json"],
+    "holidays": ["holidays/shabbat.json", "holidays/rosh-chodesh.json"],
+    "faq": [
+      "faq/meaning-of-life.json",
+      "faq/shabbat.json",
+      "faq/mitzvah.json",
+      "faq/teshuvah.json",
+      "faq/tzedakah.json",
+      "faq/chosenness.json",
+      "faq/blessings-food.json",
+      "faq/kashrut-basics.json",
+      "faq/lashon-hara.json",
+      "faq/tikkun-olam.json"
+    ],
+    "alefbet": ["alefbet/letters.json"]
+  }
+}

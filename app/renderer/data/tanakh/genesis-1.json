@@ -1,0 +1,59 @@
+[
+  {
+    "ref": "Genesis 1:1",
+    "hebrew": "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ",
+    "hebrewPlain": "בראשית ברא אלהים את השמים ואת הארץ",
+    "translation": "In the beginning God created the heaven and the earth.",
+    "translit": "Bereshit bara Elohim et hashamayim ve'et ha'aretz",
+    "words": [
+      { "surface": "בְּרֵאשִׁית", "lemma": "בְּרֵאשִׁית", "root": "ראש" },
+      { "surface": "בָּרָא", "lemma": "בָּרָא", "root": "ברא" },
+      { "surface": "אֱלֹהִים", "lemma": "אֱלֹהִים", "root": "אלה" },
+      { "surface": "אֵת", "lemma": "אֵת" },
+      { "surface": "הַשָּׁמַיִם", "lemma": "שָׁמַיִם", "root": "שׁמה" },
+      { "surface": "וְאֵת", "lemma": "אֵת" },
+      { "surface": "הָאָרֶץ", "lemma": "אֶרֶץ", "root": "ארצ" }
+    ],
+    "commentaryRefs": ["rashi-gen-1-1"],
+    "audio": {
+      "url": "../../../../assets/audio/shema_demo.mp3",
+      "startMs": 0,
+      "endMs": 6000
+    }
+  },
+  {
+    "ref": "Genesis 1:2",
+    "hebrew": "וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחֹשֶׁךְ עַל־פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם",
+    "translation": "Now the earth was unformed and void, and darkness was upon the face of the deep; and the spirit of God hovered over the face of the waters.",
+    "words": [
+      { "surface": "וְהָאָרֶץ", "lemma": "אֶרֶץ" },
+      { "surface": "הָיְתָה", "lemma": "היה", "root": "היה" },
+      { "surface": "תֹהוּ", "lemma": "תֹהוּ", "root": "תהה" }
+    ]
+  },
+  {
+    "ref": "Genesis 1:3",
+    "hebrew": "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר",
+    "translation": "And God said: 'Let there be light.' And there was light.",
+    "words": [
+      { "surface": "וַיֹּאמֶר", "lemma": "אָמַר", "root": "אמר" },
+      { "surface": "יְהִי", "lemma": "היה", "root": "היה" }
+    ]
+  },
+  {
+    "ref": "Genesis 1:4",
+    "hebrew": "וַיַּרְא אֱלֹהִים אֶת־הָאוֹר כִּי־טוֹב וַיַּבְדֵּל אֱלֹהִים בֵּין הָאוֹר וּבֵין הַחֹשֶׁךְ",
+    "translation": "And God saw the light, that it was good; and God divided the light from the darkness.",
+    "words": [
+      { "surface": "וַיַּרְא", "lemma": "ראה", "root": "ראה" }
+    ]
+  },
+  {
+    "ref": "Genesis 1:5",
+    "hebrew": "וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם וְלַחֹשֶׁךְ קָרָא לָיְלָה וַיְהִי־עֶרֶב וַיְהִי־בֹקֶר יוֹם אֶחָד",
+    "translation": "And God called the light Day, and the darkness He called Night. And there was evening and there was morning, one day.",
+    "words": [
+      { "surface": "וַיִּקְרָא", "lemma": "קרא", "root": "קרא" }
+    ]
+  }
+]

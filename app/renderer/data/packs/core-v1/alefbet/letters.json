@@ -1,0 +1,245 @@
+[
+  {
+    "letter": "א",
+    "nameHe": "אָלֶף",
+    "nameEn": "Alef",
+    "sound": "silent / ah",
+    "finalForm": null,
+    "tips": "Pairs with vowels to carry sound; breathe before pronouncing.",
+    "license": "Stroke descriptions © Derech team (CC BY-SA 4.0)"
+  },
+  {
+    "letter": "ב",
+    "nameHe": "בֵּית",
+    "nameEn": "Bet",
+    "sound": "b (with dagesh) / v (without)",
+    "finalForm": null,
+    "tips": "Dot inside = b; without dot = vet.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ג",
+    "nameHe": "גִּימֵל",
+    "nameEn": "Gimel",
+    "sound": "g",
+    "finalForm": null,
+    "tips": "Remember the foot stretching forward.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ד",
+    "nameHe": "דָּלֶת",
+    "nameEn": "Dalet",
+    "sound": "d",
+    "finalForm": null,
+    "tips": "Back edge should be squared, unlike resh.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ה",
+    "nameHe": "הֵא",
+    "nameEn": "Hei",
+    "sound": "h",
+    "finalForm": null,
+    "tips": "Small gap on top left distinguishes from chet.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ו",
+    "nameHe": "וָו",
+    "nameEn": "Vav",
+    "sound": "v / o / u",
+    "finalForm": null,
+    "tips": "Single upright line; doubles as vowel carrier.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ז",
+    "nameHe": "זַיִן",
+    "nameEn": "Zayin",
+    "sound": "z",
+    "finalForm": null,
+    "tips": "Looks like a crowned sword.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ח",
+    "nameHe": "חֵית",
+    "nameEn": "Chet",
+    "sound": "kh (guttural)",
+    "finalForm": null,
+    "tips": "Closed box shape—no gap.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ט",
+    "nameHe": "טֵית",
+    "nameEn": "Tet",
+    "sound": "t (emphatic)",
+    "finalForm": null,
+    "tips": "Rounded shape hugging itself.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "י",
+    "nameHe": "יוֹד",
+    "nameEn": "Yod",
+    "sound": "y",
+    "finalForm": null,
+    "tips": "Tiny arm floating above line.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "כ",
+    "nameHe": "כַּף",
+    "nameEn": "Kaf",
+    "sound": "k / kh",
+    "finalForm": "ך",
+    "tips": "Final kaf drops below line.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ל",
+    "nameHe": "לָמֶד",
+    "nameEn": "Lamed",
+    "sound": "l",
+    "finalForm": null,
+    "tips": "Tall tower reaching above others.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "מ",
+    "nameHe": "מֵם",
+    "nameEn": "Mem",
+    "sound": "m",
+    "finalForm": "ם",
+    "tips": "Open mem has a gap; final mem closed square.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "נ",
+    "nameHe": "נוּן",
+    "nameEn": "Nun",
+    "sound": "n",
+    "finalForm": "ן",
+    "tips": "Final nun drops straight down.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ס",
+    "nameHe": "סָמֵךְ",
+    "nameEn": "Samekh",
+    "sound": "s",
+    "finalForm": null,
+    "tips": "Circular shape—think safety circle.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ע",
+    "nameHe": "עַיִן",
+    "nameEn": "Ayin",
+    "sound": "voiced throat stop",
+    "finalForm": null,
+    "tips": "Like alef but with open top.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "פ",
+    "nameHe": "פֵּא",
+    "nameEn": "Pe",
+    "sound": "p / f",
+    "finalForm": "ף",
+    "tips": "Final pe loops downward.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "צ",
+    "nameHe": "צַדִּי",
+    "nameEn": "Tsadi",
+    "sound": "ts",
+    "finalForm": "ץ",
+    "tips": "Final tsadi looks like fishing hook.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ק",
+    "nameHe": "קוֹף",
+    "nameEn": "Qof",
+    "sound": "k (back)",
+    "finalForm": null,
+    "tips": "Tail drops below line unlike kaf.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ר",
+    "nameHe": "רֵישׁ",
+    "nameEn": "Resh",
+    "sound": "r",
+    "finalForm": null,
+    "tips": "Rounded corner; do not square like dalet.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ש",
+    "nameHe": "שִׁין",
+    "nameEn": "Shin",
+    "sound": "sh / s",
+    "finalForm": null,
+    "tips": "Dot right = sh, dot left = s.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ת",
+    "nameHe": "תָּו",
+    "nameEn": "Tav",
+    "sound": "t",
+    "finalForm": null,
+    "tips": "Remember small foot on left.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ך",
+    "nameHe": "כף סופית",
+    "nameEn": "Final Kaf",
+    "sound": "same as base letter",
+    "finalForm": null,
+    "tips": "Soft curve when ending a word.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ם",
+    "nameHe": "מם סופית",
+    "nameEn": "Final Mem",
+    "sound": "same as base letter",
+    "finalForm": null,
+    "tips": "Closed box ending.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ן",
+    "nameHe": "נון סופית",
+    "nameEn": "Final Nun",
+    "sound": "same as base letter",
+    "finalForm": null,
+    "tips": "Long tail to the bottom.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ף",
+    "nameHe": "פה סופית",
+    "nameEn": "Final Pe",
+    "sound": "same as base letter",
+    "finalForm": null,
+    "tips": "Drop the loop below the line.",
+    "license": "© Derech team"
+  },
+  {
+    "letter": "ץ",
+    "nameHe": "צדי סופית",
+    "nameEn": "Final Tsadi",
+    "sound": "same as base letter",
+    "finalForm": null,
+    "tips": "Hooked leg reaching down.",
+    "license": "© Derech team"
+  }
+]
