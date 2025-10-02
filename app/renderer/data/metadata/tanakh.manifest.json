@@ -55,19 +55,6 @@
       }
     },
     {
-      "slug": "i-kings",
-      "title": "I Kings",
-      "section": "Nevi'im",
-      "chapters": 22,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
       "slug": "i-samuel",
       "title": "I Samuel",
       "section": "Nevi'im",
