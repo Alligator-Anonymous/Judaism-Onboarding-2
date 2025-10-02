@@ -12,8 +12,8 @@ import {
 } from "@lib/tanakhLoader";
 
 const translationOptions: { id: TanakhTranslationId; label: string }[] = [
-  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
   { id: "en-jps1917", label: "English (JPS 1917)" },
+  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
   { id: "ar-onqelos", label: "Targum Onqelos (Aramaic)" }
 ];
 
@@ -27,7 +27,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
   const registry = useContent((state) => state.registry);
   const section = getSectionBySlug(registry?.tanakhManifest, sectionSlug);
   const book = getBookBySlug(section, bookSlug);
-  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-taamei");
+  const [translation, setTranslation] = React.useState<TanakhTranslationId>("en-jps1917");
   const [activeBook, setActiveBook] = React.useState<LoadedTanakhBook | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -43,8 +43,8 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
 
   const defaultTranslation = React.useMemo<TanakhTranslationId>(() => {
     const preferredOrder: TanakhTranslationId[] = [
-      "he-taamei",
       "en-jps1917",
+      "he-taamei",
       "ar-onqelos"
     ];
     for (const option of preferredOrder) {

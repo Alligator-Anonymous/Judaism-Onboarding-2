@@ -13,8 +13,8 @@ import {
 import type { ParshaRangeEntry } from "@/types";
 
 const translationOptions: { id: TanakhTranslationId; label: string }[] = [
-  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
   { id: "en-jps1917", label: "English (JPS 1917)" },
+  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
   { id: "ar-onqelos", label: "Targum Onqelos (Aramaic)" }
 ];
 
@@ -29,7 +29,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
   const [parshaRanges, setParshaRanges] = React.useState<ParshaRangeEntry[] | null>(null);
   const [parshaRange, setParshaRange] = React.useState<ParshaRangeEntry | null>(null);
   const [reading, setReading] = React.useState<ParshaReading | null>(null);
-  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-taamei");
+  const [translation, setTranslation] = React.useState<TanakhTranslationId>("en-jps1917");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -113,7 +113,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
   }, [book?.book, parshaRange]);
 
   const defaultTranslation = React.useMemo<TanakhTranslationId>(() => {
-    const order: TanakhTranslationId[] = ["he-taamei", "en-jps1917", "ar-onqelos"];
+    const order: TanakhTranslationId[] = ["en-jps1917", "he-taamei", "ar-onqelos"];
     for (const option of order) {
       if (availability[option]) {
         return option;
