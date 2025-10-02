@@ -20,7 +20,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
     "seed": "ts-node scripts/seed.ts",
     "fetch:tanakh": "node scripts/fetch-tanakh.mjs",
-    "check:tanakh": "node scripts/check-tanakh-integrity.mjs"
+    "check:tanakh": "node scripts/check-tanakh-integrity.mjs",
+    "import:tanakh:batch": "node ./scripts/local-import-tanakh.mjs"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",

@@ -1,7 +1,7 @@
 import React from "react";
 import { useContent } from "@stores/useContent";
 import { Breadcrumbs } from "./Breadcrumbs";
-import { getParshaBySlug, getPrevNextParsha } from "@lib/tanakhMetadata";
+import { getParshaBySlug, getPrevNextParsha, getSections } from "@lib/tanakhMetadata";
 import { Select } from "@components/UI/Select";
 import {
   composeParshaReading,
@@ -11,6 +11,13 @@ import {
   type TanakhTranslationId
 } from "@lib/tanakhLoader";
 import type { ParshaRangeEntry } from "@/types";
+
+const translationOptions: { id: TanakhTranslationId; label: string }[] = [
+  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
+  { id: "en-sct", label: "English (Sefaria Community)" },
+  { id: "en-jps1917", label: "English (JPS 1917)" },
+  { id: "ar-onqelos", label: "Targum Onqelos (Aramaic)" }
+];
 
 interface ParshaViewProps {
   parshaSlug: string;
@@ -23,7 +30,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
   const [parshaRanges, setParshaRanges] = React.useState<ParshaRangeEntry[] | null>(null);
   const [parshaRange, setParshaRange] = React.useState<ParshaRangeEntry | null>(null);
   const [reading, setReading] = React.useState<ParshaReading | null>(null);
-  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-masoretic");
+  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-taamei");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -49,7 +56,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
       setParshaRange(null);
       return;
     }
-    const found = parshaRanges.find((entry) => entry.id === parshaSlug) ?? null;
+    const found = parshaRanges.find((entry) => entry.slug === parshaSlug) ?? null;
     setParshaRange(found);
   }, [parshaRanges, parshaSlug]);
 
@@ -81,14 +88,51 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
     };
   }, [parshaRange, translation]);
 
+  const sections = React.useMemo(() => getSections(registry?.tanakhManifest), [registry?.tanakhManifest]);
+
   const book = React.useMemo(() => {
-    if (!parsha || !registry?.tanakhMeta) return null;
-    for (const section of registry.tanakhMeta.sections) {
+    if (!parsha) return null;
+    for (const section of sections) {
       const found = section.books.find((bookMeta) => bookMeta.id === parsha.bookId);
       if (found) return { section, book: found };
     }
     return null;
-  }, [parsha, registry?.tanakhMeta]);
+  }, [parsha, sections]);
+
+  const availability = React.useMemo(() => {
+    const fallback = {
+      "he-taamei": parshaRange ? hasTranslation(parshaRange.book, "he-taamei") : false,
+      "en-sct": parshaRange ? hasTranslation(parshaRange.book, "en-sct") : false,
+      "en-jps1917": parshaRange ? hasTranslation(parshaRange.book, "en-jps1917") : false,
+      "ar-onqelos": parshaRange ? hasTranslation(parshaRange.book, "ar-onqelos") : false
+    };
+    if (!book?.book) return fallback;
+    return {
+      "he-taamei": book.book.available.he ?? fallback["he-taamei"],
+      "en-sct": book.book.available.en?.sct ?? fallback["en-sct"],
+      "en-jps1917": book.book.available.en?.jps1917 ?? fallback["en-jps1917"],
+      "ar-onqelos": book.book.available.onqelos ?? fallback["ar-onqelos"]
+    };
+  }, [book?.book, parshaRange]);
+
+  const defaultTranslation = React.useMemo<TanakhTranslationId>(() => {
+    const order: TanakhTranslationId[] = ["he-taamei", "en-sct", "en-jps1917", "ar-onqelos"];
+    for (const option of order) {
+      if (availability[option]) {
+        return option;
+      }
+    }
+    return "he-taamei";
+  }, [availability]);
+
+  React.useEffect(() => {
+    setTranslation(defaultTranslation);
+  }, [parshaSlug, defaultTranslation]);
+
+  React.useEffect(() => {
+    if (availability[translation]) return;
+    setTranslation(defaultTranslation);
+  }, [availability, translation, defaultTranslation]);
 
   if (!parsha) {
     return (
@@ -107,13 +151,11 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
     );
   }
 
-  const onqelosAvailable = parshaRange ? hasTranslation(parshaRange.bookId, "ar-onqelos") : false;
-
   const aliyahStarts = React.useMemo(() => {
     const starts = new Map<string, number>();
     if (reading?.aliyot) {
       for (const aliyah of reading.aliyot) {
-        starts.set(`${aliyah.from.c}:${aliyah.from.v}`, aliyah.n);
+        starts.set(`${aliyah.start.c}:${aliyah.start.v}`, aliyah.n);
       }
     }
     return starts;
@@ -153,10 +195,12 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
           value={translation}
           onChange={(event) => setTranslation(event.target.value as TanakhTranslationId)}
         >
-          <option value="he-masoretic">Hebrew (Masoretic)</option>
-          <option value="ar-onqelos" disabled={!onqelosAvailable}>
-            Targum Onqelos{!onqelosAvailable ? " (Unavailable)" : ""}
-          </option>
+          {translationOptions.map((option) => (
+            <option key={option.id} value={option.id} disabled={!availability[option.id]}>
+              {option.label}
+              {!availability[option.id] ? " (Unavailable)" : ""}
+            </option>
+          ))}
         </Select>
       </section>
       <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
@@ -167,7 +211,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
         ) : !reading || reading.tokens.length === 0 ? (
           <p className="text-sm text-slate-500 dark:text-slate-400">No text available for this parsha.</p>
         ) : (
-          <ol dir="rtl" className="space-y-4 text-lg leading-relaxed">
+          <ol dir={reading.direction} className="space-y-4 text-lg leading-relaxed">
             {reading.tokens.map((token) => {
               const aliyah = aliyahStarts.get(`${token.c}:${token.v}`);
               return (
@@ -181,7 +225,14 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
                     <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-pomegranate/10 text-xs font-semibold text-pomegranate dark:bg-pomegranate/20">
                       {token.c}:{token.v}
                     </span>
-                    <span>{token.text || "—"}</span>
+                    <div className="space-y-1">
+                      <span>{token.primary ?? "—"}</span>
+                      {token.secondary ? (
+                        <p className="text-sm text-slate-600 dark:text-slate-300" dir="ltr">
+                          {token.secondary}
+                        </p>
+                      ) : null}
+                    </div>
                   </div>
                 </li>
               );

@@ -2,11 +2,13 @@
 import React from "react";
 import { useContent } from "@stores/useContent";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { getSections } from "@lib/tanakhMetadata";
 
 export const TanakhIndex: React.FC = () => {
-  const tanakhMeta = useContent((state) => state.registry?.tanakhMeta);
+  const tanakhManifest = useContent((state) => state.registry?.tanakhManifest);
+  const sections = React.useMemo(() => getSections(tanakhManifest), [tanakhManifest]);
 
-  if (!tanakhMeta) {
+  if (!tanakhManifest) {
     return <p className="text-sm text-slate-500">Loading Tanakh metadata…</p>;
   }
 
@@ -20,7 +22,7 @@ export const TanakhIndex: React.FC = () => {
         </p>
       </header>
       <div className="grid gap-4 md:grid-cols-3">
-        {tanakhMeta.sections.map((section) => (
+        {sections.map((section) => (
           <a
             key={section.id}
             href={`#/texts/tanakh/${section.id}`}

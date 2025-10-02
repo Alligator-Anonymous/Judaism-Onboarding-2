@@ -73,14 +73,6 @@ export interface AlefBetLetter {
   license?: string;
 }
 
-export interface TanakhChapter {
-  book: string;
-  chapter: number;
-  verses: Verse[];
-  license?: string;
-  source?: string;
-}
-
 export interface ContentPackManifest {
   id: string;
   name: string;
@@ -88,6 +80,85 @@ export interface ContentPackManifest {
   license: string;
   languages: string[];
   files: Record<string, string[]>;
+}
+
+export interface TanakhManifestBookAvailability {
+  he: boolean;
+  en: { sct: boolean; jps1917: boolean };
+  onqelos: boolean;
+}
+
+export interface TanakhManifestBook {
+  slug: string;
+  title: string;
+  heTitle?: string;
+  section: "Torah" | "Prophets" | "Writings";
+  chapters: number;
+  available: TanakhManifestBookAvailability;
+}
+
+export interface TanakhManifest {
+  books: TanakhManifestBook[];
+}
+
+export interface HebrewPackVerse {
+  n: number;
+  he: string;
+  ref: string;
+}
+
+export interface HebrewPackChapter {
+  chapter: number;
+  verses: HebrewPackVerse[];
+}
+
+export interface HebrewPackBook {
+  bookId: string;
+  bookTitle: string;
+  chapters: HebrewPackChapter[];
+}
+
+export interface EnglishPackVerse {
+  n: number;
+  en: { sct: string | null; jps1917: string | null };
+  ref: string;
+}
+
+export interface EnglishPackChapter {
+  chapter: number;
+  verses: EnglishPackVerse[];
+}
+
+export interface EnglishPackBook {
+  bookId: string;
+  bookTitle: string;
+  chapters: EnglishPackChapter[];
+}
+
+export interface OnqelosPackVerse {
+  n: number;
+  ar_he: string | null;
+  ar_en: string | null;
+  ref: string;
+}
+
+export interface OnqelosPackChapter {
+  chapter: number;
+  verses: OnqelosPackVerse[];
+}
+
+export interface OnqelosPackBook {
+  bookId: string;
+  bookTitle: string;
+  chapters: OnqelosPackChapter[];
+}
+
+export interface TanakhChapter {
+  book: string;
+  chapter: number;
+  verses: Verse[];
+  license?: string;
+  source?: string;
 }
 
 export interface ContentRegistry {
@@ -98,27 +169,9 @@ export interface ContentRegistry {
   holidays: Record<string, Holiday>;
   faq: Record<string, FAQEntry>;
   alefbet: AlefBetLetter[];
-  tanakhMeta: TanakhMetadata | null;
+  tanakhManifest: TanakhManifest | null;
   parshaMeta: ParshaMetadataEntry[];
-}
-
-export interface TanakhBookMetadata {
-  id: string;
-  he: string;
-  en: string;
-  chapters: number;
-}
-
-export interface TanakhSectionMetadata {
-  id: string;
-  he: string;
-  en: string;
-  books: TanakhBookMetadata[];
-}
-
-export interface TanakhMetadata {
-  id: string;
-  sections: TanakhSectionMetadata[];
+  parshaRanges: ParshaRangeEntry[];
 }
 
 export interface ParshaMetadataEntry {
@@ -131,35 +184,9 @@ export interface ParshaMetadataEntry {
   combinedWith?: string | null;
 }
 
-export interface PackedTanakhBook {
-  bookId: string;
-  he: string;
-  en: string;
-  chapters: Record<string, string[]>;
-  meta: {
-    chapters: number;
-    versesPerChapter: number[];
-  };
-}
-
-export interface ParshaSpan {
-  from: { c: number; v: number };
-  to: { c: number; v: number };
-}
-
-export interface ParshaAliyahRange {
-  n: number;
-  from: { c: number; v: number };
-  to: { c: number; v: number };
-}
-
 export interface ParshaRangeEntry {
-  id: string;
-  ordinal: number;
-  bookId: string;
-  he: string;
-  en: string;
-  spans: ParshaSpan[];
-  aliyot: ParshaAliyahRange[];
-  combinedWith?: string | null;
+  parsha: string;
+  slug: string;
+  book: string;
+  aliyot: { n: number; start: string; end: string }[];
 }

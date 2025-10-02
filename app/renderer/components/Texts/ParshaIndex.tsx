@@ -12,13 +12,11 @@ export const ParshaIndex: React.FC = () => {
 
   const bookLookup = React.useMemo(() => {
     const lookup = new Map<string, { he: string; en: string }>();
-    registry?.tanakhMeta?.sections.forEach((section) => {
-      section.books.forEach((book) => {
-        lookup.set(book.id, { he: book.he, en: book.en });
-      });
+    registry?.tanakhManifest?.books.forEach((book) => {
+      lookup.set(book.slug, { he: book.heTitle ?? book.title, en: book.title });
     });
     return lookup;
-  }, [registry?.tanakhMeta]);
+  }, [registry?.tanakhManifest]);
 
   if (!registry?.parshaMeta?.length) {
     return <p className="text-sm text-slate-500">Loading parsha metadata…</p>;

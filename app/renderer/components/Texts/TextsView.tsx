@@ -1,9 +1,11 @@
 // Codex change: Landing view for the Texts tab with Tanakh entry point.
 import React from "react";
 import { useContent } from "@stores/useContent";
+import { getSections } from "@lib/tanakhMetadata";
 
 export const TextsView: React.FC = () => {
-  const tanakhMeta = useContent((state) => state.registry?.tanakhMeta);
+  const tanakhManifest = useContent((state) => state.registry?.tanakhManifest);
+  const sections = React.useMemo(() => getSections(tanakhManifest), [tanakhManifest]);
 
   return (
     <div className="space-y-8">
@@ -25,9 +27,9 @@ export const TextsView: React.FC = () => {
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
             Navigate Torah, Nevi'im, and Ketuvim with chapter and parsha placeholders.
           </p>
-          {tanakhMeta ? (
+          {tanakhManifest ? (
             <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">
-              {tanakhMeta.sections.length} sections · {tanakhMeta.sections.reduce((count, section) => count + section.books.length, 0)} books
+              {sections.length} sections · {sections.reduce((count, section) => count + section.books.length, 0)} books
             </p>
           ) : (
             <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">Loading metadata…</p>

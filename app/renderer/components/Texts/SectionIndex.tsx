@@ -9,10 +9,10 @@ interface SectionIndexProps {
 }
 
 export const SectionIndex: React.FC<SectionIndexProps> = ({ sectionSlug }) => {
-  const tanakhMeta = useContent((state) => state.registry?.tanakhMeta);
-  const section = getSectionBySlug(tanakhMeta, sectionSlug);
+  const tanakhManifest = useContent((state) => state.registry?.tanakhManifest);
+  const section = getSectionBySlug(tanakhManifest, sectionSlug);
 
-  if (!tanakhMeta) {
+  if (!tanakhManifest) {
     return <p className="text-sm text-slate-500">Loading Tanakh metadata…</p>;
   }
 

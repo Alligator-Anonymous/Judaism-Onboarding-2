@@ -1,1 +1,2270 @@
-[]
+[
+  {
+    "parsha": "Bereshit",
+    "slug": "bereshit",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 1:1",
+        "end": "genesis 2:3"
+      },
+      {
+        "n": 2,
+        "start": "genesis 2:4",
+        "end": "genesis 2:19"
+      },
+      {
+        "n": 3,
+        "start": "genesis 2:20",
+        "end": "genesis 3:21"
+      },
+      {
+        "n": 4,
+        "start": "genesis 3:22",
+        "end": "genesis 4:18"
+      },
+      {
+        "n": 5,
+        "start": "genesis 4:19",
+        "end": "genesis 4:22"
+      },
+      {
+        "n": 6,
+        "start": "genesis 4:23",
+        "end": "genesis 5:24"
+      },
+      {
+        "n": 7,
+        "start": "genesis 5:25",
+        "end": "genesis 6:8"
+      }
+    ]
+  },
+  {
+    "parsha": "Noach",
+    "slug": "noach",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 6:9",
+        "end": "genesis 6:22"
+      },
+      {
+        "n": 2,
+        "start": "genesis 7:1",
+        "end": "genesis 7:16"
+      },
+      {
+        "n": 3,
+        "start": "genesis 7:17",
+        "end": "genesis 8:14"
+      },
+      {
+        "n": 4,
+        "start": "genesis 8:15",
+        "end": "genesis 9:7"
+      },
+      {
+        "n": 5,
+        "start": "genesis 9:8",
+        "end": "genesis 9:17"
+      },
+      {
+        "n": 6,
+        "start": "genesis 9:18",
+        "end": "genesis 10:32"
+      },
+      {
+        "n": 7,
+        "start": "genesis 11:1",
+        "end": "genesis 11:32"
+      }
+    ]
+  },
+  {
+    "parsha": "Lech-Lecha",
+    "slug": "lech-lecha",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 12:1",
+        "end": "genesis 12:13"
+      },
+      {
+        "n": 2,
+        "start": "genesis 12:14",
+        "end": "genesis 13:4"
+      },
+      {
+        "n": 3,
+        "start": "genesis 13:5",
+        "end": "genesis 13:18"
+      },
+      {
+        "n": 4,
+        "start": "genesis 14:1",
+        "end": "genesis 14:20"
+      },
+      {
+        "n": 5,
+        "start": "genesis 14:21",
+        "end": "genesis 15:6"
+      },
+      {
+        "n": 6,
+        "start": "genesis 15:7",
+        "end": "genesis 17:6"
+      },
+      {
+        "n": 7,
+        "start": "genesis 17:7",
+        "end": "genesis 17:27"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayera",
+    "slug": "vayera",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 18:1",
+        "end": "genesis 18:14"
+      },
+      {
+        "n": 2,
+        "start": "genesis 18:15",
+        "end": "genesis 18:33"
+      },
+      {
+        "n": 3,
+        "start": "genesis 19:1",
+        "end": "genesis 19:20"
+      },
+      {
+        "n": 4,
+        "start": "genesis 19:21",
+        "end": "genesis 21:4"
+      },
+      {
+        "n": 5,
+        "start": "genesis 21:5",
+        "end": "genesis 21:21"
+      },
+      {
+        "n": 6,
+        "start": "genesis 21:22",
+        "end": "genesis 21:34"
+      },
+      {
+        "n": 7,
+        "start": "genesis 22:1",
+        "end": "genesis 22:24"
+      }
+    ]
+  },
+  {
+    "parsha": "Chayei Sarah",
+    "slug": "chayei-sarah",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 23:1",
+        "end": "genesis 23:16"
+      },
+      {
+        "n": 2,
+        "start": "genesis 23:17",
+        "end": "genesis 24:9"
+      },
+      {
+        "n": 3,
+        "start": "genesis 24:10",
+        "end": "genesis 24:26"
+      },
+      {
+        "n": 4,
+        "start": "genesis 24:27",
+        "end": "genesis 24:52"
+      },
+      {
+        "n": 5,
+        "start": "genesis 24:53",
+        "end": "genesis 24:67"
+      },
+      {
+        "n": 6,
+        "start": "genesis 25:1",
+        "end": "genesis 25:11"
+      },
+      {
+        "n": 7,
+        "start": "genesis 25:12",
+        "end": "genesis 25:18"
+      }
+    ]
+  },
+  {
+    "parsha": "Toldot",
+    "slug": "toldot",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 25:19",
+        "end": "genesis 26:5"
+      },
+      {
+        "n": 2,
+        "start": "genesis 26:6",
+        "end": "genesis 26:12"
+      },
+      {
+        "n": 3,
+        "start": "genesis 26:13",
+        "end": "genesis 26:22"
+      },
+      {
+        "n": 4,
+        "start": "genesis 26:23",
+        "end": "genesis 26:29"
+      },
+      {
+        "n": 5,
+        "start": "genesis 26:30",
+        "end": "genesis 27:27"
+      },
+      {
+        "n": 6,
+        "start": "genesis 27:28",
+        "end": "genesis 28:4"
+      },
+      {
+        "n": 7,
+        "start": "genesis 28:5",
+        "end": "genesis 28:9"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayetze",
+    "slug": "vayetze",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 28:10",
+        "end": "genesis 28:22"
+      },
+      {
+        "n": 2,
+        "start": "genesis 29:1",
+        "end": "genesis 29:17"
+      },
+      {
+        "n": 3,
+        "start": "genesis 29:18",
+        "end": "genesis 30:13"
+      },
+      {
+        "n": 4,
+        "start": "genesis 30:14",
+        "end": "genesis 30:27"
+      },
+      {
+        "n": 5,
+        "start": "genesis 30:28",
+        "end": "genesis 31:16"
+      },
+      {
+        "n": 6,
+        "start": "genesis 31:17",
+        "end": "genesis 31:42"
+      },
+      {
+        "n": 7,
+        "start": "genesis 31:43",
+        "end": "genesis 32:3"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayishlach",
+    "slug": "vayishlach",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 32:4",
+        "end": "genesis 32:13"
+      },
+      {
+        "n": 2,
+        "start": "genesis 32:14",
+        "end": "genesis 32:30"
+      },
+      {
+        "n": 3,
+        "start": "genesis 32:31",
+        "end": "genesis 33:5"
+      },
+      {
+        "n": 4,
+        "start": "genesis 33:6",
+        "end": "genesis 33:20"
+      },
+      {
+        "n": 5,
+        "start": "genesis 34:1",
+        "end": "genesis 35:11"
+      },
+      {
+        "n": 6,
+        "start": "genesis 35:12",
+        "end": "genesis 36:19"
+      },
+      {
+        "n": 7,
+        "start": "genesis 36:20",
+        "end": "genesis 36:43"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayeshev",
+    "slug": "vayeshev",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 37:1",
+        "end": "genesis 37:11"
+      },
+      {
+        "n": 2,
+        "start": "genesis 37:12",
+        "end": "genesis 37:22"
+      },
+      {
+        "n": 3,
+        "start": "genesis 37:23",
+        "end": "genesis 37:36"
+      },
+      {
+        "n": 4,
+        "start": "genesis 38:1",
+        "end": "genesis 38:30"
+      },
+      {
+        "n": 5,
+        "start": "genesis 39:1",
+        "end": "genesis 39:6"
+      },
+      {
+        "n": 6,
+        "start": "genesis 39:7",
+        "end": "genesis 39:23"
+      },
+      {
+        "n": 7,
+        "start": "genesis 40:1",
+        "end": "genesis 40:23"
+      }
+    ]
+  },
+  {
+    "parsha": "Miketz",
+    "slug": "miketz",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 41:1",
+        "end": "genesis 41:14"
+      },
+      {
+        "n": 2,
+        "start": "genesis 41:15",
+        "end": "genesis 41:38"
+      },
+      {
+        "n": 3,
+        "start": "genesis 41:39",
+        "end": "genesis 41:52"
+      },
+      {
+        "n": 4,
+        "start": "genesis 41:53",
+        "end": "genesis 42:18"
+      },
+      {
+        "n": 5,
+        "start": "genesis 42:19",
+        "end": "genesis 43:15"
+      },
+      {
+        "n": 6,
+        "start": "genesis 43:16",
+        "end": "genesis 44:17"
+      },
+      {
+        "n": 7,
+        "start": "genesis 28:9",
+        "end": "genesis 28:15"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayigash",
+    "slug": "vayigash",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 44:18",
+        "end": "genesis 44:30"
+      },
+      {
+        "n": 2,
+        "start": "genesis 44:31",
+        "end": "genesis 45:7"
+      },
+      {
+        "n": 3,
+        "start": "genesis 45:8",
+        "end": "genesis 45:18"
+      },
+      {
+        "n": 4,
+        "start": "genesis 45:19",
+        "end": "genesis 45:27"
+      },
+      {
+        "n": 5,
+        "start": "genesis 45:28",
+        "end": "genesis 46:27"
+      },
+      {
+        "n": 6,
+        "start": "genesis 46:28",
+        "end": "genesis 47:10"
+      },
+      {
+        "n": 7,
+        "start": "genesis 47:11",
+        "end": "genesis 47:27"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayechi",
+    "slug": "vayechi",
+    "book": "genesis",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "genesis 47:28",
+        "end": "genesis 48:9"
+      },
+      {
+        "n": 2,
+        "start": "genesis 48:10",
+        "end": "genesis 48:16"
+      },
+      {
+        "n": 3,
+        "start": "genesis 48:17",
+        "end": "genesis 48:22"
+      },
+      {
+        "n": 4,
+        "start": "genesis 49:1",
+        "end": "genesis 49:18"
+      },
+      {
+        "n": 5,
+        "start": "genesis 49:19",
+        "end": "genesis 49:26"
+      },
+      {
+        "n": 6,
+        "start": "genesis 49:27",
+        "end": "genesis 50:20"
+      },
+      {
+        "n": 7,
+        "start": "genesis 50:21",
+        "end": "genesis 50:26"
+      }
+    ]
+  },
+  {
+    "parsha": "Shemot",
+    "slug": "shemot",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 1:1",
+        "end": "exodus 1:17"
+      },
+      {
+        "n": 2,
+        "start": "exodus 1:18",
+        "end": "exodus 2:10"
+      },
+      {
+        "n": 3,
+        "start": "exodus 2:11",
+        "end": "exodus 2:25"
+      },
+      {
+        "n": 4,
+        "start": "exodus 3:1",
+        "end": "exodus 3:15"
+      },
+      {
+        "n": 5,
+        "start": "exodus 3:16",
+        "end": "exodus 4:17"
+      },
+      {
+        "n": 6,
+        "start": "exodus 4:18",
+        "end": "exodus 4:31"
+      },
+      {
+        "n": 7,
+        "start": "exodus 5:1",
+        "end": "exodus 6:1"
+      }
+    ]
+  },
+  {
+    "parsha": "Vaera",
+    "slug": "vaera",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 6:2",
+        "end": "exodus 6:13"
+      },
+      {
+        "n": 2,
+        "start": "exodus 6:14",
+        "end": "exodus 6:28"
+      },
+      {
+        "n": 3,
+        "start": "exodus 6:29",
+        "end": "exodus 7:7"
+      },
+      {
+        "n": 4,
+        "start": "exodus 7:8",
+        "end": "exodus 8:6"
+      },
+      {
+        "n": 5,
+        "start": "exodus 8:7",
+        "end": "exodus 8:18"
+      },
+      {
+        "n": 6,
+        "start": "exodus 8:19",
+        "end": "exodus 9:16"
+      },
+      {
+        "n": 7,
+        "start": "exodus 9:17",
+        "end": "exodus 9:35"
+      }
+    ]
+  },
+  {
+    "parsha": "Bo",
+    "slug": "bo",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 10:1",
+        "end": "exodus 10:11"
+      },
+      {
+        "n": 2,
+        "start": "exodus 10:12",
+        "end": "exodus 10:23"
+      },
+      {
+        "n": 3,
+        "start": "exodus 10:24",
+        "end": "exodus 11:3"
+      },
+      {
+        "n": 4,
+        "start": "exodus 11:4",
+        "end": "exodus 12:20"
+      },
+      {
+        "n": 5,
+        "start": "exodus 12:21",
+        "end": "exodus 12:28"
+      },
+      {
+        "n": 6,
+        "start": "exodus 12:29",
+        "end": "exodus 12:51"
+      },
+      {
+        "n": 7,
+        "start": "exodus 13:1",
+        "end": "exodus 13:16"
+      }
+    ]
+  },
+  {
+    "parsha": "Beshalach",
+    "slug": "beshalach",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 13:17",
+        "end": "exodus 14:8"
+      },
+      {
+        "n": 2,
+        "start": "exodus 14:9",
+        "end": "exodus 14:14"
+      },
+      {
+        "n": 3,
+        "start": "exodus 14:15",
+        "end": "exodus 14:25"
+      },
+      {
+        "n": 4,
+        "start": "exodus 14:26",
+        "end": "exodus 15:26"
+      },
+      {
+        "n": 5,
+        "start": "exodus 15:27",
+        "end": "exodus 16:10"
+      },
+      {
+        "n": 6,
+        "start": "exodus 16:11",
+        "end": "exodus 16:36"
+      },
+      {
+        "n": 7,
+        "start": "exodus 17:1",
+        "end": "exodus 17:16"
+      }
+    ]
+  },
+  {
+    "parsha": "Yitro",
+    "slug": "yitro",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 18:1",
+        "end": "exodus 18:12"
+      },
+      {
+        "n": 2,
+        "start": "exodus 18:13",
+        "end": "exodus 18:23"
+      },
+      {
+        "n": 3,
+        "start": "exodus 18:24",
+        "end": "exodus 18:27"
+      },
+      {
+        "n": 4,
+        "start": "exodus 19:1",
+        "end": "exodus 19:6"
+      },
+      {
+        "n": 5,
+        "start": "exodus 19:7",
+        "end": "exodus 19:19"
+      },
+      {
+        "n": 6,
+        "start": "exodus 19:20",
+        "end": "exodus 20:14"
+      },
+      {
+        "n": 7,
+        "start": "exodus 20:15",
+        "end": "exodus 20:23"
+      }
+    ]
+  },
+  {
+    "parsha": "Mishpatim",
+    "slug": "mishpatim",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 21:1",
+        "end": "exodus 21:19"
+      },
+      {
+        "n": 2,
+        "start": "exodus 21:20",
+        "end": "exodus 22:3"
+      },
+      {
+        "n": 3,
+        "start": "exodus 22:4",
+        "end": "exodus 22:26"
+      },
+      {
+        "n": 4,
+        "start": "exodus 22:27",
+        "end": "exodus 23:5"
+      },
+      {
+        "n": 5,
+        "start": "exodus 23:6",
+        "end": "exodus 23:19"
+      },
+      {
+        "n": 6,
+        "start": "exodus 23:20",
+        "end": "exodus 23:25"
+      },
+      {
+        "n": 7,
+        "start": "exodus 23:26",
+        "end": "exodus 24:18"
+      }
+    ]
+  },
+  {
+    "parsha": "Terumah",
+    "slug": "terumah",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 25:1",
+        "end": "exodus 25:16"
+      },
+      {
+        "n": 2,
+        "start": "exodus 25:17",
+        "end": "exodus 25:40"
+      },
+      {
+        "n": 3,
+        "start": "exodus 26:1",
+        "end": "exodus 26:14"
+      },
+      {
+        "n": 4,
+        "start": "exodus 26:15",
+        "end": "exodus 26:30"
+      },
+      {
+        "n": 5,
+        "start": "exodus 26:31",
+        "end": "exodus 26:37"
+      },
+      {
+        "n": 6,
+        "start": "exodus 27:1",
+        "end": "exodus 27:8"
+      },
+      {
+        "n": 7,
+        "start": "exodus 27:9",
+        "end": "exodus 27:19"
+      }
+    ]
+  },
+  {
+    "parsha": "Tetzaveh",
+    "slug": "tetzaveh",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 27:20",
+        "end": "exodus 28:12"
+      },
+      {
+        "n": 2,
+        "start": "exodus 28:13",
+        "end": "exodus 28:30"
+      },
+      {
+        "n": 3,
+        "start": "exodus 28:31",
+        "end": "exodus 28:43"
+      },
+      {
+        "n": 4,
+        "start": "exodus 29:1",
+        "end": "exodus 29:18"
+      },
+      {
+        "n": 5,
+        "start": "exodus 29:19",
+        "end": "exodus 29:37"
+      },
+      {
+        "n": 6,
+        "start": "exodus 29:38",
+        "end": "exodus 29:46"
+      },
+      {
+        "n": 7,
+        "start": "exodus 30:1",
+        "end": "exodus 30:10"
+      }
+    ]
+  },
+  {
+    "parsha": "Ki Tisa",
+    "slug": "ki-tisa",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 30:11",
+        "end": "exodus 31:17"
+      },
+      {
+        "n": 2,
+        "start": "exodus 31:18",
+        "end": "exodus 33:11"
+      },
+      {
+        "n": 3,
+        "start": "exodus 33:12",
+        "end": "exodus 33:16"
+      },
+      {
+        "n": 4,
+        "start": "exodus 33:17",
+        "end": "exodus 33:23"
+      },
+      {
+        "n": 5,
+        "start": "exodus 34:1",
+        "end": "exodus 34:9"
+      },
+      {
+        "n": 6,
+        "start": "exodus 34:10",
+        "end": "exodus 34:26"
+      },
+      {
+        "n": 7,
+        "start": "exodus 34:27",
+        "end": "exodus 34:35"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayakhel",
+    "slug": "vayakhel",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 35:1",
+        "end": "exodus 35:29"
+      },
+      {
+        "n": 2,
+        "start": "exodus 35:30",
+        "end": "exodus 37:16"
+      },
+      {
+        "n": 3,
+        "start": "exodus 37:17",
+        "end": "exodus 37:29"
+      },
+      {
+        "n": 4,
+        "start": "exodus 38:1",
+        "end": "exodus 39:1"
+      },
+      {
+        "n": 5,
+        "start": "exodus 39:2",
+        "end": "exodus 39:21"
+      },
+      {
+        "n": 6,
+        "start": "exodus 39:22",
+        "end": "exodus 39:43"
+      },
+      {
+        "n": 7,
+        "start": "exodus 40:1",
+        "end": "exodus 40:38"
+      }
+    ]
+  },
+  {
+    "parsha": "Pekudei",
+    "slug": "pekudei",
+    "book": "exodus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "exodus 35:1",
+        "end": "exodus 35:29"
+      },
+      {
+        "n": 2,
+        "start": "exodus 35:30",
+        "end": "exodus 37:16"
+      },
+      {
+        "n": 3,
+        "start": "exodus 37:17",
+        "end": "exodus 37:29"
+      },
+      {
+        "n": 4,
+        "start": "exodus 38:1",
+        "end": "exodus 39:1"
+      },
+      {
+        "n": 5,
+        "start": "exodus 39:2",
+        "end": "exodus 39:21"
+      },
+      {
+        "n": 6,
+        "start": "exodus 39:22",
+        "end": "exodus 39:43"
+      },
+      {
+        "n": 7,
+        "start": "exodus 40:1",
+        "end": "exodus 40:38"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayikra",
+    "slug": "vayikra",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 1:1",
+        "end": "leviticus 1:13"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 1:14",
+        "end": "leviticus 2:6"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 2:7",
+        "end": "leviticus 2:16"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 3:1",
+        "end": "leviticus 3:17"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 4:1",
+        "end": "leviticus 4:26"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 4:27",
+        "end": "leviticus 5:10"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 5:11",
+        "end": "leviticus 5:26"
+      }
+    ]
+  },
+  {
+    "parsha": "Tzav",
+    "slug": "tzav",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 6:1",
+        "end": "leviticus 6:11"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 6:12",
+        "end": "leviticus 7:10"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 7:11",
+        "end": "leviticus 7:38"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 8:1",
+        "end": "leviticus 8:13"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 8:14",
+        "end": "leviticus 8:21"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 8:22",
+        "end": "leviticus 8:29"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 8:30",
+        "end": "leviticus 8:36"
+      }
+    ]
+  },
+  {
+    "parsha": "Shemini",
+    "slug": "shemini",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 9:1",
+        "end": "leviticus 9:16"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 9:17",
+        "end": "leviticus 9:23"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 9:24",
+        "end": "leviticus 10:11"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 10:12",
+        "end": "leviticus 10:15"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 10:16",
+        "end": "leviticus 10:20"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 11:1",
+        "end": "leviticus 11:32"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 11:33",
+        "end": "leviticus 11:47"
+      }
+    ]
+  },
+  {
+    "parsha": "Tazria",
+    "slug": "tazria",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 12:1",
+        "end": "leviticus 13:23"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 13:24",
+        "end": "leviticus 13:39"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 13:40",
+        "end": "leviticus 13:54"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 13:55",
+        "end": "leviticus 14:20"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 14:21",
+        "end": "leviticus 14:32"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 14:33",
+        "end": "leviticus 15:15"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 15:16",
+        "end": "leviticus 15:33"
+      }
+    ]
+  },
+  {
+    "parsha": "Metzora",
+    "slug": "metzora",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 12:1",
+        "end": "leviticus 13:23"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 13:24",
+        "end": "leviticus 13:39"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 13:40",
+        "end": "leviticus 13:54"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 13:55",
+        "end": "leviticus 14:20"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 14:21",
+        "end": "leviticus 14:32"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 14:33",
+        "end": "leviticus 15:15"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 15:16",
+        "end": "leviticus 15:33"
+      }
+    ]
+  },
+  {
+    "parsha": "Acharei Mot",
+    "slug": "acharei-mot",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 16:1",
+        "end": "leviticus 16:24"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 16:25",
+        "end": "leviticus 17:7"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 17:8",
+        "end": "leviticus 18:21"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 18:22",
+        "end": "leviticus 19:14"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 19:15",
+        "end": "leviticus 19:32"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 19:33",
+        "end": "leviticus 20:7"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 20:8",
+        "end": "leviticus 20:27"
+      }
+    ]
+  },
+  {
+    "parsha": "Kedoshim",
+    "slug": "kedoshim",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 16:1",
+        "end": "leviticus 16:24"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 16:25",
+        "end": "leviticus 17:7"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 17:8",
+        "end": "leviticus 18:21"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 18:22",
+        "end": "leviticus 19:14"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 19:15",
+        "end": "leviticus 19:32"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 19:33",
+        "end": "leviticus 20:7"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 20:8",
+        "end": "leviticus 20:27"
+      }
+    ]
+  },
+  {
+    "parsha": "Emor",
+    "slug": "emor",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 21:1",
+        "end": "leviticus 21:15"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 21:16",
+        "end": "leviticus 22:16"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 22:17",
+        "end": "leviticus 22:33"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 23:1",
+        "end": "leviticus 23:22"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 23:23",
+        "end": "leviticus 23:32"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 23:33",
+        "end": "leviticus 23:44"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 24:1",
+        "end": "leviticus 24:23"
+      }
+    ]
+  },
+  {
+    "parsha": "Behar",
+    "slug": "behar",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 25:1",
+        "end": "leviticus 25:18"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 25:19",
+        "end": "leviticus 25:28"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 25:29",
+        "end": "leviticus 25:38"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 25:39",
+        "end": "leviticus 26:9"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 26:10",
+        "end": "leviticus 26:46"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 27:1",
+        "end": "leviticus 27:15"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 27:16",
+        "end": "leviticus 27:34"
+      }
+    ]
+  },
+  {
+    "parsha": "Bechukotai",
+    "slug": "bechukotai",
+    "book": "leviticus",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "leviticus 25:1",
+        "end": "leviticus 25:18"
+      },
+      {
+        "n": 2,
+        "start": "leviticus 25:19",
+        "end": "leviticus 25:28"
+      },
+      {
+        "n": 3,
+        "start": "leviticus 25:29",
+        "end": "leviticus 25:38"
+      },
+      {
+        "n": 4,
+        "start": "leviticus 25:39",
+        "end": "leviticus 26:9"
+      },
+      {
+        "n": 5,
+        "start": "leviticus 26:10",
+        "end": "leviticus 26:46"
+      },
+      {
+        "n": 6,
+        "start": "leviticus 27:1",
+        "end": "leviticus 27:15"
+      },
+      {
+        "n": 7,
+        "start": "leviticus 27:16",
+        "end": "leviticus 27:34"
+      }
+    ]
+  },
+  {
+    "parsha": "Bamidbar",
+    "slug": "bamidbar",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 1:1",
+        "end": "numbers 1:19"
+      },
+      {
+        "n": 2,
+        "start": "numbers 1:20",
+        "end": "numbers 1:54"
+      },
+      {
+        "n": 3,
+        "start": "numbers 2:1",
+        "end": "numbers 2:34"
+      },
+      {
+        "n": 4,
+        "start": "numbers 3:1",
+        "end": "numbers 3:13"
+      },
+      {
+        "n": 5,
+        "start": "numbers 3:14",
+        "end": "numbers 3:39"
+      },
+      {
+        "n": 6,
+        "start": "numbers 3:40",
+        "end": "numbers 3:51"
+      },
+      {
+        "n": 7,
+        "start": "numbers 4:1",
+        "end": "numbers 4:20"
+      }
+    ]
+  },
+  {
+    "parsha": "Naso",
+    "slug": "naso",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 4:21",
+        "end": "numbers 4:37"
+      },
+      {
+        "n": 2,
+        "start": "numbers 4:38",
+        "end": "numbers 4:49"
+      },
+      {
+        "n": 3,
+        "start": "numbers 5:1",
+        "end": "numbers 5:10"
+      },
+      {
+        "n": 4,
+        "start": "numbers 5:11",
+        "end": "numbers 6:27"
+      },
+      {
+        "n": 5,
+        "start": "numbers 7:1",
+        "end": "numbers 7:41"
+      },
+      {
+        "n": 6,
+        "start": "numbers 7:42",
+        "end": "numbers 7:71"
+      },
+      {
+        "n": 7,
+        "start": "numbers 7:72",
+        "end": "numbers 7:89"
+      }
+    ]
+  },
+  {
+    "parsha": "Beha'alotcha",
+    "slug": "behaalotcha",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 8:1",
+        "end": "numbers 8:14"
+      },
+      {
+        "n": 2,
+        "start": "numbers 8:15",
+        "end": "numbers 8:26"
+      },
+      {
+        "n": 3,
+        "start": "numbers 9:1",
+        "end": "numbers 9:14"
+      },
+      {
+        "n": 4,
+        "start": "numbers 9:15",
+        "end": "numbers 10:10"
+      },
+      {
+        "n": 5,
+        "start": "numbers 10:11",
+        "end": "numbers 10:34"
+      },
+      {
+        "n": 6,
+        "start": "numbers 10:35",
+        "end": "numbers 11:29"
+      },
+      {
+        "n": 7,
+        "start": "numbers 11:30",
+        "end": "numbers 12:16"
+      }
+    ]
+  },
+  {
+    "parsha": "Sh'lach",
+    "slug": "shelach",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 13:1",
+        "end": "numbers 13:20"
+      },
+      {
+        "n": 2,
+        "start": "numbers 13:21",
+        "end": "numbers 14:7"
+      },
+      {
+        "n": 3,
+        "start": "numbers 14:8",
+        "end": "numbers 14:25"
+      },
+      {
+        "n": 4,
+        "start": "numbers 14:26",
+        "end": "numbers 15:7"
+      },
+      {
+        "n": 5,
+        "start": "numbers 15:8",
+        "end": "numbers 15:16"
+      },
+      {
+        "n": 6,
+        "start": "numbers 15:17",
+        "end": "numbers 15:26"
+      },
+      {
+        "n": 7,
+        "start": "numbers 15:27",
+        "end": "numbers 15:41"
+      }
+    ]
+  },
+  {
+    "parsha": "Korach",
+    "slug": "korach",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 16:1",
+        "end": "numbers 16:13"
+      },
+      {
+        "n": 2,
+        "start": "numbers 16:14",
+        "end": "numbers 16:19"
+      },
+      {
+        "n": 3,
+        "start": "numbers 16:20",
+        "end": "numbers 17:8"
+      },
+      {
+        "n": 4,
+        "start": "numbers 17:9",
+        "end": "numbers 17:15"
+      },
+      {
+        "n": 5,
+        "start": "numbers 17:16",
+        "end": "numbers 17:24"
+      },
+      {
+        "n": 6,
+        "start": "numbers 17:25",
+        "end": "numbers 18:20"
+      },
+      {
+        "n": 7,
+        "start": "numbers 18:21",
+        "end": "numbers 18:32"
+      }
+    ]
+  },
+  {
+    "parsha": "Chukat",
+    "slug": "chukat",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 19:1",
+        "end": "numbers 20:6"
+      },
+      {
+        "n": 2,
+        "start": "numbers 20:7",
+        "end": "numbers 20:21"
+      },
+      {
+        "n": 3,
+        "start": "numbers 20:22",
+        "end": "numbers 21:20"
+      },
+      {
+        "n": 4,
+        "start": "numbers 21:21",
+        "end": "numbers 22:12"
+      },
+      {
+        "n": 5,
+        "start": "numbers 22:13",
+        "end": "numbers 22:38"
+      },
+      {
+        "n": 6,
+        "start": "numbers 22:39",
+        "end": "numbers 23:26"
+      },
+      {
+        "n": 7,
+        "start": "numbers 23:27",
+        "end": "numbers 25:9"
+      }
+    ]
+  },
+  {
+    "parsha": "Balak",
+    "slug": "balak",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 19:1",
+        "end": "numbers 20:6"
+      },
+      {
+        "n": 2,
+        "start": "numbers 20:7",
+        "end": "numbers 20:21"
+      },
+      {
+        "n": 3,
+        "start": "numbers 20:22",
+        "end": "numbers 21:20"
+      },
+      {
+        "n": 4,
+        "start": "numbers 21:21",
+        "end": "numbers 22:12"
+      },
+      {
+        "n": 5,
+        "start": "numbers 22:13",
+        "end": "numbers 22:38"
+      },
+      {
+        "n": 6,
+        "start": "numbers 22:39",
+        "end": "numbers 23:26"
+      },
+      {
+        "n": 7,
+        "start": "numbers 23:27",
+        "end": "numbers 25:9"
+      }
+    ]
+  },
+  {
+    "parsha": "Pinchas",
+    "slug": "pinchas",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 25:10",
+        "end": "numbers 26:4"
+      },
+      {
+        "n": 2,
+        "start": "numbers 26:5",
+        "end": "numbers 26:51"
+      },
+      {
+        "n": 3,
+        "start": "numbers 26:52",
+        "end": "numbers 27:5"
+      },
+      {
+        "n": 4,
+        "start": "numbers 27:6",
+        "end": "numbers 27:23"
+      },
+      {
+        "n": 5,
+        "start": "numbers 28:1",
+        "end": "numbers 28:15"
+      },
+      {
+        "n": 6,
+        "start": "numbers 28:16",
+        "end": "numbers 29:11"
+      },
+      {
+        "n": 7,
+        "start": "numbers 29:12",
+        "end": "numbers 30:1"
+      }
+    ]
+  },
+  {
+    "parsha": "Matot",
+    "slug": "matot",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 30:2",
+        "end": "numbers 31:12"
+      },
+      {
+        "n": 2,
+        "start": "numbers 31:13",
+        "end": "numbers 31:54"
+      },
+      {
+        "n": 3,
+        "start": "numbers 32:1",
+        "end": "numbers 32:19"
+      },
+      {
+        "n": 4,
+        "start": "numbers 32:20",
+        "end": "numbers 33:49"
+      },
+      {
+        "n": 5,
+        "start": "numbers 33:50",
+        "end": "numbers 34:15"
+      },
+      {
+        "n": 6,
+        "start": "numbers 34:16",
+        "end": "numbers 35:8"
+      },
+      {
+        "n": 7,
+        "start": "numbers 35:9",
+        "end": "numbers 36:13"
+      }
+    ]
+  },
+  {
+    "parsha": "Masei",
+    "slug": "masei",
+    "book": "numbers",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "numbers 30:2",
+        "end": "numbers 31:12"
+      },
+      {
+        "n": 2,
+        "start": "numbers 31:13",
+        "end": "numbers 31:54"
+      },
+      {
+        "n": 3,
+        "start": "numbers 32:1",
+        "end": "numbers 32:19"
+      },
+      {
+        "n": 4,
+        "start": "numbers 32:20",
+        "end": "numbers 33:49"
+      },
+      {
+        "n": 5,
+        "start": "numbers 33:50",
+        "end": "numbers 34:15"
+      },
+      {
+        "n": 6,
+        "start": "numbers 34:16",
+        "end": "numbers 35:8"
+      },
+      {
+        "n": 7,
+        "start": "numbers 35:9",
+        "end": "numbers 36:13"
+      }
+    ]
+  },
+  {
+    "parsha": "Devarim",
+    "slug": "devarim",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 1:1",
+        "end": "deuteronomy 1:10"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 1:11",
+        "end": "deuteronomy 1:21"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 1:22",
+        "end": "deuteronomy 1:38"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 1:39",
+        "end": "deuteronomy 2:1"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 2:2",
+        "end": "deuteronomy 2:30"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 2:31",
+        "end": "deuteronomy 3:14"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 3:15",
+        "end": "deuteronomy 3:22"
+      }
+    ]
+  },
+  {
+    "parsha": "Vaetchanan",
+    "slug": "vaetchanan",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 3:23",
+        "end": "deuteronomy 4:4"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 4:5",
+        "end": "deuteronomy 4:40"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 4:41",
+        "end": "deuteronomy 4:49"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 5:1",
+        "end": "deuteronomy 5:18"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 5:19",
+        "end": "deuteronomy 6:3"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 6:4",
+        "end": "deuteronomy 6:25"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 7:1",
+        "end": "deuteronomy 7:11"
+      }
+    ]
+  },
+  {
+    "parsha": "Eikev",
+    "slug": "eikev",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 7:12",
+        "end": "deuteronomy 8:10"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 8:11",
+        "end": "deuteronomy 9:3"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 9:4",
+        "end": "deuteronomy 9:29"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 10:1",
+        "end": "deuteronomy 10:11"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 10:12",
+        "end": "deuteronomy 11:9"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 11:10",
+        "end": "deuteronomy 11:21"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 11:22",
+        "end": "deuteronomy 11:25"
+      }
+    ]
+  },
+  {
+    "parsha": "Re'eh",
+    "slug": "reeh",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 11:26",
+        "end": "deuteronomy 12:10"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 12:11",
+        "end": "deuteronomy 12:28"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 12:29",
+        "end": "deuteronomy 13:19"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 14:1",
+        "end": "deuteronomy 14:21"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 14:22",
+        "end": "deuteronomy 14:29"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 15:1",
+        "end": "deuteronomy 15:18"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 15:19",
+        "end": "deuteronomy 16:17"
+      }
+    ]
+  },
+  {
+    "parsha": "Shoftim",
+    "slug": "shoftim",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 16:18",
+        "end": "deuteronomy 17:13"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 17:14",
+        "end": "deuteronomy 17:20"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 18:1",
+        "end": "deuteronomy 18:5"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 18:6",
+        "end": "deuteronomy 18:13"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 18:14",
+        "end": "deuteronomy 19:13"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 19:14",
+        "end": "deuteronomy 20:9"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 20:10",
+        "end": "deuteronomy 21:9"
+      }
+    ]
+  },
+  {
+    "parsha": "Ki Teitzei",
+    "slug": "ki-teitzei",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 21:10",
+        "end": "deuteronomy 21:21"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 21:22",
+        "end": "deuteronomy 22:7"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 22:8",
+        "end": "deuteronomy 23:7"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 23:8",
+        "end": "deuteronomy 23:24"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 23:25",
+        "end": "deuteronomy 24:4"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 24:5",
+        "end": "deuteronomy 24:13"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 24:14",
+        "end": "deuteronomy 25:19"
+      }
+    ]
+  },
+  {
+    "parsha": "Ki Tavo",
+    "slug": "ki-tavo",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 26:1",
+        "end": "deuteronomy 26:11"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 26:12",
+        "end": "deuteronomy 26:15"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 26:16",
+        "end": "deuteronomy 26:19"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 27:1",
+        "end": "deuteronomy 27:10"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 27:11",
+        "end": "deuteronomy 28:6"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 28:7",
+        "end": "deuteronomy 28:69"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 29:1",
+        "end": "deuteronomy 29:8"
+      }
+    ]
+  },
+  {
+    "parsha": "Nitzavim",
+    "slug": "nitzavim",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 29:9",
+        "end": "deuteronomy 29:28"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 30:1",
+        "end": "deuteronomy 30:6"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 30:7",
+        "end": "deuteronomy 30:14"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 30:15",
+        "end": "deuteronomy 31:6"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 31:7",
+        "end": "deuteronomy 31:13"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 31:14",
+        "end": "deuteronomy 31:19"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 31:20",
+        "end": "deuteronomy 31:30"
+      }
+    ]
+  },
+  {
+    "parsha": "Vayelech",
+    "slug": "vayelech",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 29:9",
+        "end": "deuteronomy 29:28"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 30:1",
+        "end": "deuteronomy 30:6"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 30:7",
+        "end": "deuteronomy 30:14"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 30:15",
+        "end": "deuteronomy 31:6"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 31:7",
+        "end": "deuteronomy 31:13"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 31:14",
+        "end": "deuteronomy 31:19"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 31:20",
+        "end": "deuteronomy 31:30"
+      }
+    ]
+  },
+  {
+    "parsha": "Ha'Azinu",
+    "slug": "haazinu",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 32:1",
+        "end": "deuteronomy 32:6"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 32:7",
+        "end": "deuteronomy 32:12"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 32:13",
+        "end": "deuteronomy 32:18"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 32:19",
+        "end": "deuteronomy 32:28"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 32:29",
+        "end": "deuteronomy 32:39"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 32:40",
+        "end": "deuteronomy 32:43"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 32:44",
+        "end": "deuteronomy 32:52"
+      }
+    ]
+  },
+  {
+    "parsha": "V'Zot HaBerachah",
+    "slug": "v-zot-haberachah",
+    "book": "deuteronomy",
+    "aliyot": [
+      {
+        "n": 1,
+        "start": "deuteronomy 33:1",
+        "end": "deuteronomy 33:7"
+      },
+      {
+        "n": 2,
+        "start": "deuteronomy 33:8",
+        "end": "deuteronomy 33:12"
+      },
+      {
+        "n": 3,
+        "start": "deuteronomy 33:13",
+        "end": "deuteronomy 33:17"
+      },
+      {
+        "n": 4,
+        "start": "deuteronomy 33:18",
+        "end": "deuteronomy 33:21"
+      },
+      {
+        "n": 5,
+        "start": "deuteronomy 33:22",
+        "end": "deuteronomy 33:26"
+      },
+      {
+        "n": 6,
+        "start": "deuteronomy 33:27",
+        "end": "deuteronomy 33:29"
+      },
+      {
+        "n": 7,
+        "start": "deuteronomy 34:1",
+        "end": "deuteronomy 34:12"
+      }
+    ]
+  }
+]

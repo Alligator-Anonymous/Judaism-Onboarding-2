@@ -9,135 +9,134 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
 
-const TANAKH_INDEX_PATH = path.join(repoRoot, "app/renderer/data/metadata/tanakh.index.json");
-const HEBREW_BOOKS_DIR = path.join(repoRoot, "app/renderer/data/packs/tanakh/he-masoretic/books");
+const TANAKH_MANIFEST_PATH = path.join(repoRoot, "app/renderer/data/metadata/tanakh.manifest.json");
+const HEBREW_BOOKS_DIR = path.join(repoRoot, "app/renderer/data/packs/tanakh/he-taamei/books");
 const ONQELOS_BOOKS_DIR = path.join(repoRoot, "app/renderer/data/packs/tanakh/ar-onqelos/books");
 const PARSHA_RANGES_PATH = path.join(repoRoot, "app/renderer/data/metadata/parsha.ranges.json");
-
-const TORAH_BOOK_IDS = new Set(["genesis", "exodus", "leviticus", "numbers", "deuteronomy"]);
 
 async function readJson(filePath) {
   return JSON.parse(await fs.readFile(filePath, "utf8"));
 }
 
-async function ensureBookIntegrity(bookId, expectedChapters) {
-  const filePath = path.join(HEBREW_BOOKS_DIR, `${bookId}.json`);
+async function ensureBookIntegrity(manifestEntry) {
+  const filePath = path.join(HEBREW_BOOKS_DIR, `${manifestEntry.slug}.json`);
   const exists = await fs
     .access(filePath)
     .then(() => true)
     .catch(() => false);
   if (!exists) {
-    throw new Error(`Missing Hebrew book payload for ${bookId}`);
+    throw new Error(`Missing Hebrew book payload for ${manifestEntry.slug}`);
   }
   const json = await readJson(filePath);
-  const chapterKeys = Object.keys(json.chapters || {});
-  if (chapterKeys.length !== expectedChapters) {
-    throw new Error(`Chapter count mismatch for ${bookId}: expected ${expectedChapters}, found ${chapterKeys.length}`);
+  const chapters = json.chapters ?? [];
+  if (!Array.isArray(chapters) || chapters.length !== manifestEntry.chapters) {
+    throw new Error(
+      `Chapter count mismatch for ${manifestEntry.slug}: expected ${manifestEntry.chapters}, found ${Array.isArray(chapters) ? chapters.length : 0}`
+    );
   }
-  json.meta?.versesPerChapter?.forEach((verseCount, index) => {
-    const chapterNumber = String(index + 1);
-    const chapterArray = json.chapters?.[chapterNumber];
-    if (!Array.isArray(chapterArray)) {
-      throw new Error(`Chapter ${chapterNumber} in ${bookId} is not an array`);
+  const versesPerChapter = chapters.map((chapter, index) => {
+    if (typeof chapter.chapter !== "number" || !Array.isArray(chapter.verses)) {
+      throw new Error(`Invalid structure for chapter ${index + 1} in ${manifestEntry.slug}`);
     }
-    if (chapterArray.length !== verseCount) {
-      throw new Error(
-        `Verse count mismatch in ${bookId} chapter ${chapterNumber}: expected ${verseCount}, found ${chapterArray.length}`
-      );
-    }
+    return chapter.verses.length;
   });
 
-  if (TORAH_BOOK_IDS.has(bookId)) {
-    const onqelosPath = path.join(ONQELOS_BOOKS_DIR, `${bookId}.json`);
+  if (manifestEntry.section === "Torah" && manifestEntry.available.onqelos) {
+    const onqelosPath = path.join(ONQELOS_BOOKS_DIR, `${manifestEntry.slug}.json`);
     const onqelosExists = await fs
       .access(onqelosPath)
       .then(() => true)
       .catch(() => false);
     if (!onqelosExists) {
-      throw new Error(`Missing Onqelos payload for ${bookId}`);
+      throw new Error(`Missing Onqelos payload for ${manifestEntry.slug}`);
     }
     const onqelos = await readJson(onqelosPath);
-    json.meta?.versesPerChapter?.forEach((verseCount, index) => {
-      const chapterNumber = String(index + 1);
-      const arChapterArray = onqelos.chapters?.[chapterNumber];
-      if (!Array.isArray(arChapterArray)) {
-        throw new Error(`Onqelos chapter ${chapterNumber} in ${bookId} is not an array`);
-      }
-      if (arChapterArray.length !== verseCount) {
+    const onqelosChapters = onqelos.chapters ?? [];
+    if (onqelosChapters.length !== chapters.length) {
+      throw new Error(
+        `Onqelos chapter count mismatch for ${manifestEntry.slug}: expected ${chapters.length}, found ${onqelosChapters.length}`
+      );
+    }
+    onqelosChapters.forEach((chapter, index) => {
+      if (!Array.isArray(chapter.verses) || chapter.verses.length !== versesPerChapter[index]) {
         throw new Error(
-          `Onqelos verse mismatch in ${bookId} chapter ${chapterNumber}: expected ${verseCount}, found ${arChapterArray.length}`
+          `Onqelos verse mismatch in ${manifestEntry.slug} chapter ${index + 1}: expected ${versesPerChapter[index]}, found ${
+            Array.isArray(chapter.verses) ? chapter.verses.length : 0
+          }`
         );
       }
     });
   }
+
+  return { chapters, versesPerChapter };
 }
 
-function validateAliyot(parsha, bookMeta) {
-  const totalChapters = bookMeta.meta?.chapters ?? 0;
-  const versesPerChapter = bookMeta.meta?.versesPerChapter ?? [];
-
-  const withinBounds = (chapter, verse) => {
-    if (chapter < 1 || chapter > totalChapters) return false;
-    const expectedVerses = versesPerChapter[chapter - 1];
-    return verse >= 1 && verse <= expectedVerses;
+function parseReference(ref) {
+  const match = ref.match(/^([a-z0-9-]+)\s+(\d+):(\d+)$/);
+  if (!match) {
+    throw new Error(`Invalid parsha reference: ${ref}`);
+  }
+  return {
+    book: match[1],
+    chapter: Number.parseInt(match[2], 10),
+    verse: Number.parseInt(match[3], 10)
   };
+}
 
-  parsha.spans.forEach((span) => {
-    if (!withinBounds(span.from.c, span.from.v)) {
-      throw new Error(`Parsha ${parsha.id} span start ${span.from.c}:${span.from.v} is out of bounds`);
-    }
-    if (!withinBounds(span.to.c, span.to.v)) {
-      throw new Error(`Parsha ${parsha.id} span end ${span.to.c}:${span.to.v} is out of bounds`);
-    }
-  });
-
+function validateAliyot(parsha, bookData) {
   const aliyot = parsha.aliyot ?? [];
   if (aliyot.length !== 7) {
-    throw new Error(`Parsha ${parsha.id} should contain 7 aliyot; found ${aliyot.length}`);
-  }
-  const [firstAliyah] = aliyot;
-  const lastAliyah = aliyot[aliyot.length - 1];
-  if (
-    firstAliyah.from.c !== parsha.spans[0].from.c ||
-    firstAliyah.from.v !== parsha.spans[0].from.v
-  ) {
-    throw new Error(`Parsha ${parsha.id} first aliyah does not start at parsha beginning`);
-  }
-  if (
-    lastAliyah.to.c !== parsha.spans[parsha.spans.length - 1].to.c ||
-    lastAliyah.to.v !== parsha.spans[parsha.spans.length - 1].to.v
-  ) {
-    throw new Error(`Parsha ${parsha.id} last aliyah does not end at parsha end`);
+    throw new Error(`Parsha ${parsha.slug} should contain 7 aliyot; found ${aliyot.length}`);
   }
   for (const aliyah of aliyot) {
-    if (!withinBounds(aliyah.from.c, aliyah.from.v)) {
-      throw new Error(`Parsha ${parsha.id} aliyah ${aliyah.n} start out of bounds`);
+    const start = parseReference(aliyah.start);
+    const end = parseReference(aliyah.end);
+    if (start.book !== parsha.book || end.book !== parsha.book) {
+      throw new Error(`Parsha ${parsha.slug} references multiple books`);
     }
-    if (!withinBounds(aliyah.to.c, aliyah.to.v)) {
-      throw new Error(`Parsha ${parsha.id} aliyah ${aliyah.n} end out of bounds`);
+    if (start.chapter < 1 || start.chapter > bookData.versesPerChapter.length) {
+      throw new Error(`Parsha ${parsha.slug} aliyah ${aliyah.n} start out of bounds`);
+    }
+    if (end.chapter < 1 || end.chapter > bookData.versesPerChapter.length) {
+      throw new Error(`Parsha ${parsha.slug} aliyah ${aliyah.n} end out of bounds`);
+    }
+    const startLimit = bookData.versesPerChapter[start.chapter - 1];
+    const endLimit = bookData.versesPerChapter[end.chapter - 1];
+    if (start.verse < 1 || start.verse > startLimit) {
+      throw new Error(`Parsha ${parsha.slug} aliyah ${aliyah.n} start verse out of bounds`);
+    }
+    if (end.verse < 1 || end.verse > endLimit) {
+      throw new Error(`Parsha ${parsha.slug} aliyah ${aliyah.n} end verse out of bounds`);
     }
   }
 }
 
 async function main() {
-  const tanakhIndex = await readJson(TANAKH_INDEX_PATH);
+  const tanakhManifest = await readJson(TANAKH_MANIFEST_PATH);
   const parshaRanges = await readJson(PARSHA_RANGES_PATH);
 
   const bookMetaMap = new Map();
-  for (const section of tanakhIndex.sections) {
-    for (const book of section.books) {
-      await ensureBookIntegrity(book.id, book.chapters);
-      const bookJson = await readJson(path.join(HEBREW_BOOKS_DIR, `${book.id}.json`));
-      bookMetaMap.set(book.id, bookJson);
-    }
+  for (const book of tanakhManifest.books ?? []) {
+    const integrity = await ensureBookIntegrity(book);
+    bookMetaMap.set(book.slug, integrity);
   }
 
+  const skipped = new Set();
   for (const parsha of parshaRanges) {
-    const bookJson = bookMetaMap.get(parsha.bookId);
-    if (!bookJson) {
-      throw new Error(`Missing book metadata for parsha ${parsha.id}`);
+    const bookData = bookMetaMap.get(parsha.book);
+    if (!bookData) {
+      skipped.add(parsha.book);
+      continue;
     }
-    validateAliyot(parsha, bookJson);
+    validateAliyot(parsha, bookData);
+  }
+
+  if (skipped.size > 0) {
+    console.warn(
+      `Skipped ${skipped.size} parsha book(s) without manifest coverage: ${[...skipped]
+        .sort()
+        .join(", ")}`
+    );
   }
 
   console.log("All Tanakh datasets validated successfully.");

@@ -10,13 +10,13 @@ interface BookIndexProps {
 }
 
 export const BookIndex: React.FC<BookIndexProps> = ({ sectionSlug, bookSlug }) => {
-  const tanakhMeta = useContent((state) => state.registry?.tanakhMeta);
-  const section = getSectionBySlug(tanakhMeta, sectionSlug);
+  const tanakhManifest = useContent((state) => state.registry?.tanakhManifest);
+  const section = getSectionBySlug(tanakhManifest, sectionSlug);
   const book = getBookBySlug(section, bookSlug);
   const chapterCount = getChapterCount(book);
   const isTorah = section?.id === "torah";
 
-  if (!tanakhMeta) {
+  if (!tanakhManifest) {
     return <p className="text-sm text-slate-500">Loading Tanakh metadata…</p>;
   }
 
