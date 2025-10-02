@@ -42,10 +42,10 @@
       }
     },
     {
-      "slug": "numbers",
-      "title": "Numbers",
-      "section": "Torah",
-      "chapters": 36,
+      "slug": "i-kings",
+      "title": "I Kings",
+      "section": "Nevi'im",
+      "chapters": 22,
       "available": {
         "he": true,
         "en": {
