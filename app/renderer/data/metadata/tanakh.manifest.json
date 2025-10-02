@@ -107,10 +107,10 @@
       }
     },
     {
-      "slug": "i-kings",
-      "title": "I Kings",
+      "slug": "ezekiel",
+      "title": "Ezekiel",
       "section": "Nevi'im",
-      "chapters": 22,
+      "chapters": 48,
       "available": {
         "he": true,
         "en": {
@@ -120,10 +120,10 @@
       }
     },
     {
-      "slug": "i-samuel",
-      "title": "I Samuel",
+      "slug": "hosea",
+      "title": "Hosea",
       "section": "Nevi'im",
-      "chapters": 31,
+      "chapters": 14,
       "available": {
         "he": true,
         "en": {
@@ -133,10 +133,10 @@
       }
     },
     {
-      "slug": "ii-kings",
-      "title": "II Kings",
+      "slug": "ezekiel",
+      "title": "Ezekiel",
       "section": "Nevi'im",
-      "chapters": 25,
+      "chapters": 48,
       "available": {
         "he": true,
         "en": {
@@ -146,10 +146,10 @@
       }
     },
     {
-      "slug": "ii-samuel",
-      "title": "II Samuel",
+      "slug": "hosea",
+      "title": "Hosea",
       "section": "Nevi'im",
-      "chapters": 24,
+      "chapters": 14,
       "available": {
         "he": true,
         "en": {
