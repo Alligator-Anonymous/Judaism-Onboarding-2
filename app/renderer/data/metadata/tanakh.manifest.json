@@ -42,10 +42,10 @@
       }
     },
     {
-      "slug": "i-kings",
-      "title": "I Kings",
+      "slug": "ezekiel",
+      "title": "Ezekiel",
       "section": "Nevi'im",
-      "chapters": 22,
+      "chapters": 48,
       "available": {
         "he": true,
         "en": {
@@ -202,6 +202,19 @@
       "title": "Job",
       "section": "Ketuvim",
       "chapters": 42,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "lamentations",
+      "title": "Lamentations",
+      "section": "Ketuvim",
+      "chapters": 5,
       "available": {
         "he": true,
         "en": {
