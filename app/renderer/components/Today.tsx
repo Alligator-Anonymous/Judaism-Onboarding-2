@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { copy } from "@/copy";
 import { Card } from "./UI/Card";
 import { useCalendar } from "@stores/useCalendar";
-import { formatFriendlyGregorian, gregorianToHebrew } from "@lib/hebrewCalendar";
+import { formatFriendlyGregorian, getHebrewDateParts } from "@lib/calendar";
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
 
@@ -189,7 +189,7 @@ const MonthCalendar: React.FC<MonthCalendarProps> = ({ referenceDate }) => {
                 if (!date) {
                   return <td key={idx} className="h-16" />;
                 }
-                const hebrew = gregorianToHebrew(date);
+                const hebrew = getHebrewDateParts(date);
                 const isToday = date.toDateString() === referenceDate.toDateString();
                 return (
                   <td
