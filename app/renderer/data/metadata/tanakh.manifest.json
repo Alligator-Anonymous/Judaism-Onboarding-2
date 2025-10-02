@@ -1,18 +1,16 @@
 {
   "books": [
     {
-      "slug": "genesis",
-      "title": "Genesis",
-      "heTitle": "בראשית",
+      "slug": "deuteronomy",
+      "title": "Deuteronomy",
       "section": "Torah",
-      "chapters": 50,
+      "chapters": 34,
       "available": {
         "he": true,
         "en": {
-          "sct": true,
           "jps1917": true
         },
-        "onqelos": true
+        "onqelos": false
       }
     },
     {
@@ -28,6 +26,99 @@
           "jps1917": true
         },
         "onqelos": true
+      }
+    },
+    {
+      "slug": "genesis",
+      "title": "Genesis",
+      "heTitle": "בראשית",
+      "section": "Torah",
+      "chapters": 50,
+      "available": {
+        "he": true,
+        "en": {
+          "sct": true,
+          "jps1917": true
+        },
+        "onqelos": true
+      }
+    },
+    {
+      "slug": "leviticus",
+      "title": "Leviticus",
+      "section": "Torah",
+      "chapters": 27,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "numbers",
+      "title": "Numbers",
+      "section": "Torah",
+      "chapters": 36,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "i-samuel",
+      "title": "I Samuel",
+      "section": "Nevi'im",
+      "chapters": 31,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ii-samuel",
+      "title": "II Samuel",
+      "section": "Nevi'im",
+      "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "joshua",
+      "title": "Joshua",
+      "section": "Nevi'im",
+      "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ruth",
+      "title": "Ruth",
+      "section": "Ketuvim",
+      "chapters": 4,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
       }
     }
   ]
