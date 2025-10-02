@@ -81,6 +81,32 @@
       }
     },
     {
+      "slug": "ezekiel",
+      "title": "Ezekiel",
+      "section": "Nevi'im",
+      "chapters": 48,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "hosea",
+      "title": "Hosea",
+      "section": "Nevi'im",
+      "chapters": 14,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "i-kings",
       "title": "I Kings",
       "section": "Nevi'im",
@@ -98,32 +124,6 @@
       "title": "I Samuel",
       "section": "Nevi'im",
       "chapters": 31,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "ii-kings",
-      "title": "II Kings",
-      "section": "Nevi'im",
-      "chapters": 25,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "ii-samuel",
-      "title": "II Samuel",
-      "section": "Nevi'im",
-      "chapters": 24,
       "available": {
         "he": true,
         "en": {
@@ -172,10 +172,62 @@
       }
     },
     {
+      "slug": "jonah",
+      "title": "Jonah",
+      "section": "Nevi'im",
+      "chapters": 4,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "joshua",
       "title": "Joshua",
       "section": "Nevi'im",
       "chapters": 22,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "micah",
+      "title": "Micah",
+      "section": "Nevi'im",
+      "chapters": 7,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "nahum",
+      "title": "Nahum",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "obadiah",
+      "title": "Obadiah",
+      "section": "Nevi'im",
+      "chapters": 1,
       "available": {
         "he": true,
         "en": {
