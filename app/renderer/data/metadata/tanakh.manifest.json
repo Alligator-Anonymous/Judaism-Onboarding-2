@@ -79,6 +79,19 @@
         },
         "onqelos": false
       }
+    },
+    {
+      "slug": "joshua",
+      "title": "Joshua",
+      "section": "Nevi'im",
+      "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
     }
   ]
 }
