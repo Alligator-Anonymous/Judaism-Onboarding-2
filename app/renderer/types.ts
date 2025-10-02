@@ -84,7 +84,7 @@ export interface ContentPackManifest {
 
 export interface TanakhManifestBookAvailability {
   he: boolean;
-  en: { sct: boolean; jps1917: boolean };
+  en: boolean;
   onqelos: boolean;
 }
 
@@ -120,7 +120,7 @@ export interface HebrewPackBook {
 
 export interface EnglishPackVerse {
   n: number;
-  en: { sct: string | null; jps1917: string | null };
+  en: string | null;
   ref: string;
 }
 
