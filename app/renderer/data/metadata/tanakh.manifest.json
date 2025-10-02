@@ -32,20 +32,21 @@
       "slug": "leviticus",
       "title": "Leviticus",
       "section": "Torah",
-      "chapters": 27,
+      "chapters": 50,
       "available": {
         "he": true,
         "en": {
+          "sct": true,
           "jps1917": true
         },
-        "onqelos": false
+        "onqelos": true
       }
     },
     {
-      "slug": "numbers",
-      "title": "Numbers",
+      "slug": "leviticus",
+      "title": "Leviticus",
       "section": "Torah",
-      "chapters": 36,
+      "chapters": 27,
       "available": {
         "he": true,
         "en": {
@@ -120,6 +121,32 @@
       }
     },
     {
+      "slug": "esther",
+      "title": "Esther",
+      "section": "Ketuvim",
+      "chapters": 10,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ezra",
+      "title": "Ezra",
+      "section": "Ketuvim",
+      "chapters": 10,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "i-chronicles",
       "title": "I Chronicles",
       "section": "Ketuvim",
@@ -137,6 +164,32 @@
       "title": "II Chronicles",
       "section": "Ketuvim",
       "chapters": 36,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "job",
+      "title": "Job",
+      "section": "Ketuvim",
+      "chapters": 42,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "nehemiah",
+      "title": "Nehemiah",
+      "section": "Ketuvim",
+      "chapters": 13,
       "available": {
         "he": true,
         "en": {
