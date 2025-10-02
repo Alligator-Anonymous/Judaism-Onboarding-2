@@ -92,7 +92,7 @@ export interface TanakhManifestBook {
   slug: string;
   title: string;
   heTitle?: string;
-  section: "Torah" | "Prophets" | "Writings";
+  section: "Torah" | "Neviim" | "Ketuvim";
   chapters: number;
   available: TanakhManifestBookAvailability;
 }
