@@ -32,20 +32,21 @@
       "slug": "leviticus",
       "title": "Leviticus",
       "section": "Torah",
-      "chapters": 27,
+      "chapters": 50,
       "available": {
         "he": true,
         "en": {
+          "sct": true,
           "jps1917": true
         },
-        "onqelos": false
+        "onqelos": true
       }
     },
     {
-      "slug": "numbers",
-      "title": "Numbers",
+      "slug": "leviticus",
+      "title": "Leviticus",
       "section": "Torah",
-      "chapters": 36,
+      "chapters": 27,
       "available": {
         "he": true,
         "en": {
