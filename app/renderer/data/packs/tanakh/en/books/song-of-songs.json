@@ -1,0 +1,631 @@
+{
+  "bookId": "song-of-songs",
+  "bookTitle": "Song of Songs",
+  "chapters": [
+    {
+      "chapter": 1,
+      "verses": [
+        {
+          "n": 1,
+          "en": "THE song of songs, which is Solomon’s.",
+          "ref": "song-of-songs 1:1"
+        },
+        {
+          "n": 2,
+          "en": "Let him kiss me with the kisses of his mouth— For thy love is better than wine.",
+          "ref": "song-of-songs 1:2"
+        },
+        {
+          "n": 3,
+          "en": "Thine ointments have a goodly fragrance; Thy name is as ointment poured forth; Therefore do the maidens love thee.",
+          "ref": "song-of-songs 1:3"
+        },
+        {
+          "n": 4,
+          "en": "Draw me, we will run after thee; The king hath brought me into his chambers; We will be glad and rejoice in thee, We will find thy love more fragrant than wine! Sincerely do they love thee.",
+          "ref": "song-of-songs 1:4"
+        },
+        {
+          "n": 5,
+          "en": "’I am black, but comely, O ye daughters of Jerusalem, As the tents of Kedar, As the curtains of Solomon.",
+          "ref": "song-of-songs 1:5"
+        },
+        {
+          "n": 6,
+          "en": "Look not upon me, that I am swarthy, That the sun hath tanned me; My mother’s sons were incensed against me, They made me keeper of the vineyards; But mine own vineyard have I not kept.’",
+          "ref": "song-of-songs 1:6"
+        },
+        {
+          "n": 7,
+          "en": "Tell me, O thou whom my soul loveth, Where thou feedest, where thou makest thy flock to rest at noon; For why should I be as one that veileth herself Beside the flocks of thy companions?",
+          "ref": "song-of-songs 1:7"
+        },
+        {
+          "n": 8,
+          "en": "If thou know not, O thou fairest among women, Go thy way forth by the footsteps of the flock And feed thy kids, beside the shepherds’tents.",
+          "ref": "song-of-songs 1:8"
+        },
+        {
+          "n": 9,
+          "en": "I have compared thee, O my love, To a steed in Pharaoh’s chariots.",
+          "ref": "song-of-songs 1:9"
+        },
+        {
+          "n": 10,
+          "en": "Thy cheeks are comely with circlets, Thy neck with beads.",
+          "ref": "song-of-songs 1:10"
+        },
+        {
+          "n": 11,
+          "en": "We will make thee circlets of gold With studs of silver.",
+          "ref": "song-of-songs 1:11"
+        },
+        {
+          "n": 12,
+          "en": "While the king sat at his table, My spikenard sent forth its fragrance.",
+          "ref": "song-of-songs 1:12"
+        },
+        {
+          "n": 13,
+          "en": "My beloved is unto me as a bag of myrrh, That lieth betwixt my breasts.",
+          "ref": "song-of-songs 1:13"
+        },
+        {
+          "n": 14,
+          "en": "My beloved is unto me as a cluster of henna In the vineyards of En-gedi.",
+          "ref": "song-of-songs 1:14"
+        },
+        {
+          "n": 15,
+          "en": "Behold, thou art fair, my love; behold, thou art fair; Thine eyes are as doves. .",
+          "ref": "song-of-songs 1:15"
+        },
+        {
+          "n": 16,
+          "en": "Behold, thou art fair, my beloved, yea, pleasant; Also our couch is leafy.",
+          "ref": "song-of-songs 1:16"
+        },
+        {
+          "n": 17,
+          "en": "The beams of our houses are cedars, And our panels are cypresses.",
+          "ref": "song-of-songs 1:17"
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "verses": [
+        {
+          "n": 1,
+          "en": "I am a rose of Sharon, A lily of the valleys.",
+          "ref": "song-of-songs 2:1"
+        },
+        {
+          "n": 2,
+          "en": "As a lily among thorns, So is my love among the daughters.",
+          "ref": "song-of-songs 2:2"
+        },
+        {
+          "n": 3,
+          "en": "As an apple-tree among the trees of the wood, So is my beloved among the sons. Under its shadow I delighted to sit, And its fruit was sweet to my taste.",
+          "ref": "song-of-songs 2:3"
+        },
+        {
+          "n": 4,
+          "en": "He hath brought me to the banqueting-house, And his banner over me is love.",
+          "ref": "song-of-songs 2:4"
+        },
+        {
+          "n": 5,
+          "en": "’Stay ye me with dainties, refresh me with apples; For I am love-sick.’",
+          "ref": "song-of-songs 2:5"
+        },
+        {
+          "n": 6,
+          "en": "Let his left hand be under my head, And his right hand embrace me.",
+          "ref": "song-of-songs 2:6"
+        },
+        {
+          "n": 7,
+          "en": "’I adjure you, O daughters of Jerusalem, By the gazelles, and by the hinds of the field, That ye awaken not, nor stir up love, until it please.’",
+          "ref": "song-of-songs 2:7"
+        },
+        {
+          "n": 8,
+          "en": "Hark! my beloved! behold, he cometh, Leaping upon the mountains, skipping upon the hills.",
+          "ref": "song-of-songs 2:8"
+        },
+        {
+          "n": 9,
+          "en": "My beloved is like a gazelle or a young hart; Behold, he standeth behind our wall, He looketh in through the windows, He peereth through the lattice.",
+          "ref": "song-of-songs 2:9"
+        },
+        {
+          "n": 10,
+          "en": "My beloved spoke, and said unto me: ‘Rise up, my love, my fair one, and come away.",
+          "ref": "song-of-songs 2:10"
+        },
+        {
+          "n": 11,
+          "en": "For, lo, the winter is past, The rain is over and gone;",
+          "ref": "song-of-songs 2:11"
+        },
+        {
+          "n": 12,
+          "en": "The flowers appear on the earth; The time of singing is come, And the voice of the turtle is heard in our land;",
+          "ref": "song-of-songs 2:12"
+        },
+        {
+          "n": 13,
+          "en": "The fig-tree putteth forth her green figs, And the vines in blossom give forth their fragrance. Arise, my love, my fair one, and come away.",
+          "ref": "song-of-songs 2:13"
+        },
+        {
+          "n": 14,
+          "en": "O my dove, that art in the clefts of the rock, in the covert of the cliff, Let me see thy countenance, let me hear thy voice; For sweet is thy voice, and thy countenance is comely.’",
+          "ref": "song-of-songs 2:14"
+        },
+        {
+          "n": 15,
+          "en": "’Take us the foxes, the little foxes, that spoil the vineyards; For our vineyards are in blossom.’",
+          "ref": "song-of-songs 2:15"
+        },
+        {
+          "n": 16,
+          "en": "My beloved is mine, and I am his, That feedeth among the lilies.",
+          "ref": "song-of-songs 2:16"
+        },
+        {
+          "n": 17,
+          "en": "Until the day breathe, and the shadows flee away, Turn, my beloved, and be thou like a gazelle or a young hart Upon the mountains of spices.",
+          "ref": "song-of-songs 2:17"
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "verses": [
+        {
+          "n": 1,
+          "en": "By night on my bed I sought him whom my soul loveth; I sought him, but I found him not.",
+          "ref": "song-of-songs 3:1"
+        },
+        {
+          "n": 2,
+          "en": "’I will rise now, and go about the city, In the streets and in the broad ways, I will seek him whom my soul loveth.’ I sought him, but I found him not.",
+          "ref": "song-of-songs 3:2"
+        },
+        {
+          "n": 3,
+          "en": "The watchmen that go about the city found me: ‘Saw ye him whom my soul loveth?’",
+          "ref": "song-of-songs 3:3"
+        },
+        {
+          "n": 4,
+          "en": "Scarce had I passed from them, When I found him whom my soul loveth: I held him, and would not let him go, Until I had brought him into my mother’s house, And into the chamber of her that conceived me.",
+          "ref": "song-of-songs 3:4"
+        },
+        {
+          "n": 5,
+          "en": "’I adjure you, O daughters of Jerusalem, By the gazelles, and by the hinds of the field, That ye awaken not, nor stir up love, Until it please.’",
+          "ref": "song-of-songs 3:5"
+        },
+        {
+          "n": 6,
+          "en": "Who is this that cometh up out of the wilderness Like pillars of smoke, Perfumed with myrrh and frankincense, With all powders of the merchant?",
+          "ref": "song-of-songs 3:6"
+        },
+        {
+          "n": 7,
+          "en": "Behold, it is the litter of Solomon; Threescore mighty men are about it, Of the mighty men of Israel.",
+          "ref": "song-of-songs 3:7"
+        },
+        {
+          "n": 8,
+          "en": "They all handle the sword, And are expert in war; Every man hath his sword upon his thigh, Because of dread in the night.",
+          "ref": "song-of-songs 3:8"
+        },
+        {
+          "n": 9,
+          "en": "King Solomon made himself a palanquin Of the wood of Lebanon.",
+          "ref": "song-of-songs 3:9"
+        },
+        {
+          "n": 10,
+          "en": "He made the pillars thereof of silver, The top thereof of gold, The seat of it of purple, The inside thereof being inlaid with love, From the daughters of Jerusalem.",
+          "ref": "song-of-songs 3:10"
+        },
+        {
+          "n": 11,
+          "en": "Go forth, O ye daughters of Zion, And gaze upon king Solomon, Even upon the crown wherewith his mother hath crowned him in the day of his espousals, And in the day of the gladness of his heart.",
+          "ref": "song-of-songs 3:11"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "verses": [
+        {
+          "n": 1,
+          "en": "Behold, thou art fair, my love; behold, thou art fair; Thine eyes are as doves behind thy veil; Thy hair is as a flock of goats, that trail down from mount Gilead.",
+          "ref": "song-of-songs 4:1"
+        },
+        {
+          "n": 2,
+          "en": "Thy teeth are like a flock of ewes all shaped alike, Which are come up from the washing; Whereof all are paired, and none faileth among them.",
+          "ref": "song-of-songs 4:2"
+        },
+        {
+          "n": 3,
+          "en": "Thy lips are like a thread of scarlet, And thy mouth is comely; Thy temples are like a pomegranate split open Behind thy veil.",
+          "ref": "song-of-songs 4:3"
+        },
+        {
+          "n": 4,
+          "en": "Thy neck is like the tower of David Builded with turrets, Whereon there hang a thousand shields, All the armour of the mighty men.",
+          "ref": "song-of-songs 4:4"
+        },
+        {
+          "n": 5,
+          "en": "Thy two breasts are like two fawns That are twins of a gazelle, Which feed among the lilies.",
+          "ref": "song-of-songs 4:5"
+        },
+        {
+          "n": 6,
+          "en": "Until the day breathe, And the shadows flee away, I will get me to the mountain of myrrh, And to the hill of frankincense.",
+          "ref": "song-of-songs 4:6"
+        },
+        {
+          "n": 7,
+          "en": "Thou art all fair, my love; And there is no spot in thee.",
+          "ref": "song-of-songs 4:7"
+        },
+        {
+          "n": 8,
+          "en": "Come with me from Lebanon, my bride, With me from Lebanon; Look from the top of Amana, From the top of Senir and Hermon, From the lions’dens, From the mountains of the leopards.",
+          "ref": "song-of-songs 4:8"
+        },
+        {
+          "n": 9,
+          "en": "Thou hast ravished my heart, my sister, my bride; Thou hast ravished my heart with one of thine eyes, With one bead of thy necklace.",
+          "ref": "song-of-songs 4:9"
+        },
+        {
+          "n": 10,
+          "en": "How fair is thy love, my sister, my bride! How much better is thy love than wine! And the smell of thine ointments than all manner of spices!",
+          "ref": "song-of-songs 4:10"
+        },
+        {
+          "n": 11,
+          "en": "Thy lips, O my bride, drop honey— Honey and milk are under thy tongue; And the smell of thy garments is like the smell of Lebanon.",
+          "ref": "song-of-songs 4:11"
+        },
+        {
+          "n": 12,
+          "en": "A garden shut up is my sister, my bride; A spring shut up, a fountain sealed.",
+          "ref": "song-of-songs 4:12"
+        },
+        {
+          "n": 13,
+          "en": "Thy shoots are a park of pomegranates, With precious fruits; Henna with spikenard plants,",
+          "ref": "song-of-songs 4:13"
+        },
+        {
+          "n": 14,
+          "en": "Spikenard and saffron, calamus and cinnamon, With all trees of frankincense; Myrrh and aloes, with all the chief spices.",
+          "ref": "song-of-songs 4:14"
+        },
+        {
+          "n": 15,
+          "en": "Thou art a fountain of gardens, A well of living waters, And flowing streams from Lebanon.",
+          "ref": "song-of-songs 4:15"
+        },
+        {
+          "n": 16,
+          "en": "Awake, O north wind; And come, thou south; Blow upon my garden, That the spices thereof may flow out. Let my beloved come into his garden, And eat his precious fruits.",
+          "ref": "song-of-songs 4:16"
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "verses": [
+        {
+          "n": 1,
+          "en": "I am come into my garden, my sister, my bride; I have gathered my myrrh with my spice; I have eaten my honeycomb with my honey; I have drunk my wine with my milk. Eat, O friends; Drink, yea, drink abundantly, O beloved.",
+          "ref": "song-of-songs 5:1"
+        },
+        {
+          "n": 2,
+          "en": "I sleep, but my heart waketh; Hark! my beloved knocketh: ‘Open to me, my sister, my love, my dove, my undefiled; For my head is filled with dew, My locks with the drops of the night.’",
+          "ref": "song-of-songs 5:2"
+        },
+        {
+          "n": 3,
+          "en": "I have put off my coat; How shall I put it on? I have washed my feet; How shall I defile them?",
+          "ref": "song-of-songs 5:3"
+        },
+        {
+          "n": 4,
+          "en": "My beloved put in his hand by the hole of the door, And my heart was moved for him.",
+          "ref": "song-of-songs 5:4"
+        },
+        {
+          "n": 5,
+          "en": "I rose up to open to my beloved; And my hands dropped with myrrh, And my fingers with flowing myrrh, Upon the handles of the bar.",
+          "ref": "song-of-songs 5:5"
+        },
+        {
+          "n": 6,
+          "en": "I opened to my beloved; But my beloved had turned away, and was gone. My soul failed me when he spoke. I sought him, but I could not find him; I called him, but he gave me no answer.",
+          "ref": "song-of-songs 5:6"
+        },
+        {
+          "n": 7,
+          "en": "The watchmen that go about the city found me, They smote me, they wounded me; The keepers of the walls took away my mantle from me.",
+          "ref": "song-of-songs 5:7"
+        },
+        {
+          "n": 8,
+          "en": "’I adjure you, O daughters of Jerusalem, If ye find my beloved, what will ye tell him? That I am love-sick.’",
+          "ref": "song-of-songs 5:8"
+        },
+        {
+          "n": 9,
+          "en": "’What is thy beloved more than another beloved, O thou fairest among women? What is thy beloved more than another beloved, That thou dost so adjure us?’",
+          "ref": "song-of-songs 5:9"
+        },
+        {
+          "n": 10,
+          "en": "’My beloved is white and ruddy, Pre-eminent above ten thousand.",
+          "ref": "song-of-songs 5:10"
+        },
+        {
+          "n": 11,
+          "en": "His head is as the most fine gold, His locks are curled, And black as a raven.",
+          "ref": "song-of-songs 5:11"
+        },
+        {
+          "n": 12,
+          "en": "His eyes are like doves Beside the water-brooks; Washed with milk, And fitly set.",
+          "ref": "song-of-songs 5:12"
+        },
+        {
+          "n": 13,
+          "en": "His cheeks are as a bed of spices, As banks of sweet herbs; His lips are as lilies, Dropping with flowing myrrh.",
+          "ref": "song-of-songs 5:13"
+        },
+        {
+          "n": 14,
+          "en": "His hands are as rods of gold Set with beryl; His body is as polished ivory Overlaid with sapphires.",
+          "ref": "song-of-songs 5:14"
+        },
+        {
+          "n": 15,
+          "en": "His legs are as pillars of marble, Set upon sockets of fine gold; His aspect is like Lebanon, Excellent as the cedars.",
+          "ref": "song-of-songs 5:15"
+        },
+        {
+          "n": 16,
+          "en": "His mouth is most sweet; Yea, he is altogether lovely. This is my beloved, and this is my friend, O daughters of Jerusalem.’",
+          "ref": "song-of-songs 5:16"
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "verses": [
+        {
+          "n": 1,
+          "en": "’Whither is thy beloved gone, O thou fairest among women? Whither hath thy beloved turned him, That we may seek him with thee?’",
+          "ref": "song-of-songs 6:1"
+        },
+        {
+          "n": 2,
+          "en": "’My beloved is gone down into his garden, To the beds of spices, To feed in the gardens, And to gather lilies.",
+          "ref": "song-of-songs 6:2"
+        },
+        {
+          "n": 3,
+          "en": "I am my beloved’s, and my beloved is mine, That feedeth among the lilies.’",
+          "ref": "song-of-songs 6:3"
+        },
+        {
+          "n": 4,
+          "en": "Thou art beautiful, O my love, as Tirzah, Comely as Jerusalem, Terrible as an army with banners.",
+          "ref": "song-of-songs 6:4"
+        },
+        {
+          "n": 5,
+          "en": "Turn away thine eyes from me, For they have overcome me. Thy hair is as a flock of goats, That trail down from Gilead.",
+          "ref": "song-of-songs 6:5"
+        },
+        {
+          "n": 6,
+          "en": "Thy teeth are like a flock of ewes, Which are come up from the washing; Whereof all are paired, And none faileth among them.",
+          "ref": "song-of-songs 6:6"
+        },
+        {
+          "n": 7,
+          "en": "Thy temples are like a pomegranate split open Behind thy veil.",
+          "ref": "song-of-songs 6:7"
+        },
+        {
+          "n": 8,
+          "en": "There are threescore queens, And fourscore concubines, And maidens without number.",
+          "ref": "song-of-songs 6:8"
+        },
+        {
+          "n": 9,
+          "en": "My dove, my undefiled, is but one; She is the only one of her mother; She is the choice one of her that bore her. The daughters saw her, and called her happy; Yea, the queens and the concubines, and they praised her.",
+          "ref": "song-of-songs 6:9"
+        },
+        {
+          "n": 10,
+          "en": "Who is she that looketh forth as the dawn, Fair as the moon, Clear as the sun, Terrible as an army with banners?",
+          "ref": "song-of-songs 6:10"
+        },
+        {
+          "n": 11,
+          "en": "I went down into the garden of nuts, To look at the green plants of the valley, To see whether the vine budded, And the pomegranates were in flower.",
+          "ref": "song-of-songs 6:11"
+        },
+        {
+          "n": 12,
+          "en": "Before I was aware, my soul set me Upon the chariots of my princely people.",
+          "ref": "song-of-songs 6:12"
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "verses": [
+        {
+          "n": 1,
+          "en": "Return, return, O Shulammite; Return, return, that we may look upon thee. What will ye see in the Shulammite? As it were a dance of two companies.",
+          "ref": "song-of-songs 7:1"
+        },
+        {
+          "n": 2,
+          "en": "How beautiful are thy steps in sandals, O prince’s daughter! The roundings of thy thighs are like the links of a chain, The work of the hands of a skilled workman.",
+          "ref": "song-of-songs 7:2"
+        },
+        {
+          "n": 3,
+          "en": "Thy navel is like a round goblet, wherein no mingled wine is wanting; Thy belly is like a heap of wheat Set about with lilies.",
+          "ref": "song-of-songs 7:3"
+        },
+        {
+          "n": 4,
+          "en": "Thy two breasts are like two fawns that are twins of a gazelle.",
+          "ref": "song-of-songs 7:4"
+        },
+        {
+          "n": 5,
+          "en": "Thy neck is as a tower of ivory; Thine eyes as the pools in Heshbon, By the gate of Bath-rabbim; Thy nose is like the tower of Lebanon Which looketh toward Damascus.",
+          "ref": "song-of-songs 7:5"
+        },
+        {
+          "n": 6,
+          "en": "Thy head upon thee is like Carmel, and the hair of thy head like purple; The king is held captive in the tresses thereof.",
+          "ref": "song-of-songs 7:6"
+        },
+        {
+          "n": 7,
+          "en": "How fair and how pleasant art thou, O love, for delights! .",
+          "ref": "song-of-songs 7:7"
+        },
+        {
+          "n": 8,
+          "en": "This thy stature is like to a palm-tree, and thy breasts to clusters of grapes.",
+          "ref": "song-of-songs 7:8"
+        },
+        {
+          "n": 9,
+          "en": "I said: ‘I will climb up into the palm-tree, I will take hold of the branches thereof; and let thy breasts be as clusters of the vine, And the smell of thy countenance like apples;",
+          "ref": "song-of-songs 7:9"
+        },
+        {
+          "n": 10,
+          "en": "And the roof of thy mouth like the best wine, That glideth down smoothly for my beloved, moving gently the lips of those that are asleep.’",
+          "ref": "song-of-songs 7:10"
+        },
+        {
+          "n": 11,
+          "en": "I am my beloved’s, and his desire is toward me.",
+          "ref": "song-of-songs 7:11"
+        },
+        {
+          "n": 12,
+          "en": "Come, my beloved, let us go forth into the field; let us lodge in the villages.",
+          "ref": "song-of-songs 7:12"
+        },
+        {
+          "n": 13,
+          "en": "Let us get up early to the vineyards; let us see whether the vine hath budded, whether the vine-blossom be opened, and the pomegranates be in flower; there will I give thee my love.",
+          "ref": "song-of-songs 7:13"
+        },
+        {
+          "n": 14,
+          "en": "The mandrakes give forth fragrance, and at our doors are all manner of precious fruits, new and old, which I have laid up for thee, O my beloved.",
+          "ref": "song-of-songs 7:14"
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "verses": [
+        {
+          "n": 1,
+          "en": "Oh that thou wert as my brother, That sucked the breasts of my mother! When I should find thee without, I would kiss thee; Yea, and none would despise me.",
+          "ref": "song-of-songs 8:1"
+        },
+        {
+          "n": 2,
+          "en": "I would lead thee, and bring thee into my mother’s house, That thou mightest instruct me; I would cause thee to drink of spiced wine, Of the juice of my pomegranate.",
+          "ref": "song-of-songs 8:2"
+        },
+        {
+          "n": 3,
+          "en": "His left hand should be under my head, And his right hand should embrace me.",
+          "ref": "song-of-songs 8:3"
+        },
+        {
+          "n": 4,
+          "en": "’I adjure you, O daughters of Jerusalem: Why should ye awaken, or stir up love, Until it please?’",
+          "ref": "song-of-songs 8:4"
+        },
+        {
+          "n": 5,
+          "en": "Who is this that cometh up from the wilderness, Leaning upon her beloved? Under the apple-tree I awakened thee; There thy mother was in travail with thee; There was she in travail and brought thee forth.",
+          "ref": "song-of-songs 8:5"
+        },
+        {
+          "n": 6,
+          "en": "Set me as a seal upon thy heart, As a seal upon thine arm; For love is strong as death, Jealousy is cruel as the grave; The flashes thereof are flashes of fire, A very flame of the LORD.",
+          "ref": "song-of-songs 8:6"
+        },
+        {
+          "n": 7,
+          "en": "Many waters cannot quench love, Neither can the floods drown it; If a man would give all the substance of his house for love, He would utterly be contemned.",
+          "ref": "song-of-songs 8:7"
+        },
+        {
+          "n": 8,
+          "en": "We have a little sister, And she hath no breasts; What shall we do for our sister In the day when she shall be spoken for?",
+          "ref": "song-of-songs 8:8"
+        },
+        {
+          "n": 9,
+          "en": "If she be a wall, We will build upon her a turret of silver; And if she be a door, We will enclose her with boards of cedar.",
+          "ref": "song-of-songs 8:9"
+        },
+        {
+          "n": 10,
+          "en": "I am a wall, And my breasts like the towers thereof; Then was I in his eyes As one that found peace.",
+          "ref": "song-of-songs 8:10"
+        },
+        {
+          "n": 11,
+          "en": "Solomon had a vineyard at Baal-hamon; He gave over the vineyard unto keepers; Every one for the fruit thereof Brought in a thousand pieces of silver.",
+          "ref": "song-of-songs 8:11"
+        },
+        {
+          "n": 12,
+          "en": "My vineyard, which is mine, is before me; Thou, O Solomon, shalt have the thousand, And those that keep the fruit thereof two hundred.",
+          "ref": "song-of-songs 8:12"
+        },
+        {
+          "n": 13,
+          "en": "Thou that dwellest in the gardens, The companions hearken for thy voice: ‘Cause me to hear it.’",
+          "ref": "song-of-songs 8:13"
+        },
+        {
+          "n": 14,
+          "en": "Make haste, my beloved, And be thou like to a gazelle or to a young hart Upon the mountains of spices.",
+          "ref": "song-of-songs 8:14"
+        }
+      ]
+    }
+  ]
+}

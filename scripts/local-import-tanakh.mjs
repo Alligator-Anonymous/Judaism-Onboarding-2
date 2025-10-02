@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const BOOK_TO_IMPORT = "Numbers";
+const BOOK_TO_IMPORT = "Song of Songs";
 
 if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
   console.error("BOOK_TO_IMPORT must be a single book title string.");
@@ -13,7 +13,8 @@ if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
 const HEB_NAME = "Tanach with Ta'amei Hamikra.json";                 // Hebrew (sole source)
 const EN_NAME  = "The Holy Scriptures A New Translation JPS 1917.json"; // English (sole source)
 
-const SRC_ROOT = "Codex Imports"; // user placed all sources here
+const SRC_ROOT_CANDIDATES = ["Codex Imports", "Codex imports"];
+const SRC_ROOT = SRC_ROOT_CANDIDATES.find(dir => fs.existsSync(dir)) ?? SRC_ROOT_CANDIDATES[0];
 
 // Output packs (app expects these)
 const OUT_HE  = "app/renderer/data/packs/tanakh/he-taamei/books";
@@ -32,8 +33,23 @@ function slugify(book) {
 function findSource(book, langFolder, fileName) {
   const sections = ["Torah", "Prophets", "Writings"];
   for (const sec of sections) {
-    const p = path.join(SRC_ROOT, sec, book, langFolder, fileName);
-    if (fs.existsSync(p)) return p;
+    const folder = path.join(SRC_ROOT, sec, book, langFolder);
+    const exact = path.join(folder, fileName);
+    if (fs.existsSync(exact)) return exact;
+
+    if (!fs.existsSync(folder)) continue;
+
+    const jsonCandidates = fs
+      .readdirSync(folder)
+      .filter(name => name.toLowerCase().endsWith(".json"));
+
+    if (jsonCandidates.length === 1) {
+      const fallback = path.join(folder, jsonCandidates[0]);
+      console.warn(
+        `Using fallback source for ${book} (${langFolder}): expected ${fileName}, found ${jsonCandidates[0]}`
+      );
+      return fallback;
+    }
   }
   return null;
 }
@@ -61,15 +77,23 @@ function tryLoadOnqelos(book) {
 }
 
 // Normalize Sefaria-style per-book JSON into our shape
+function cleanEnglishVerse(str) {
+  if (typeof str !== "string") return null;
+  const withoutSmall = str.replace(/<small>.*?<\/small>/gis, "");
+  const withoutBreaks = withoutSmall.replace(/<br\s*\/?>/gi, " ");
+  const withoutTags = withoutBreaks.replace(/<[^>]+>/g, "");
+  const withoutCommunity = withoutTags.replace(/Sefaria Community Translation/gi, "");
+  const normalized = withoutCommunity.replace(/\s+/g, " ").trim();
+  return normalized.length ? normalized : null;
+}
+
 function normalize(book, heSrc, enSrc) {
   // Hebrew chapters (prefer `he`, else `text`)
   const heChapters = Array.isArray(heSrc?.he) ? heSrc.he
                     : Array.isArray(heSrc?.text) ? heSrc.text
                     : [];
-  // English chapters (prefer `text`, else `en`)
-  const enChapters = Array.isArray(enSrc?.text) ? enSrc.text
-                    : Array.isArray(enSrc?.en) ? enSrc.en
-                    : [];
+  // English chapters (JPS text only, no community translation fallback)
+  const enChapters = Array.isArray(enSrc?.text) ? enSrc.text : [];
 
   const chapters = [];
   for (let c = 0; c < heChapters.length; c++) {
@@ -78,7 +102,7 @@ function normalize(book, heSrc, enSrc) {
     const verses = [];
     for (let v = 0; v < heVerses.length; v++) {
       const he = typeof heVerses[v] === "string" ? heVerses[v].trim() : null;
-      const en = typeof enVerses[v] === "string" ? enVerses[v].trim() : null; // may be missing
+      const en = cleanEnglishVerse(enVerses[v]);
       verses.push({ n: v + 1, he, en, ref: `${slugify(book)} ${c + 1}:${v + 1}` });
     }
     chapters.push({ chapter: c + 1, verses });
@@ -99,6 +123,11 @@ function main() {
 
   const heSrc = readJsonSafe(heP);
   const enSrc = readJsonSafe(enP);
+
+  if (!Array.isArray(enSrc?.text)) {
+    console.error(`English source for ${book} is missing the expected JPS text array; refusing to fall back to other translations.`);
+    process.exit(1);
+  }
 
   const { chapters } = normalize(book, heSrc, enSrc);
 
