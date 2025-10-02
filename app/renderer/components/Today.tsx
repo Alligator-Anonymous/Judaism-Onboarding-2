@@ -2,18 +2,18 @@ import React, { useEffect, useMemo, useState } from "react";
 import { copy } from "@/copy";
 import { Card } from "./UI/Card";
 import { useCalendar } from "@stores/useCalendar";
-import { formatFriendlyGregorian, gregorianToHebrew } from "@lib/hebrewCalendar";
+import { formatFriendlyGregorian, type ParshaSummary } from "@lib/calendar";
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
+import { computeZmanim, formatZman, getActiveTimeZone } from "@lib/zmanim";
 
 export const Today: React.FC = () => {
   const hebrewDate = useCalendar((state) => state.hebrewDate);
   const parashah = useCalendar((state) => state.parashah);
-  const zmanim = useCalendar((state) => state.zmanim);
   const upcomingHoliday = useCalendar((state) => state.upcomingHoliday);
   const isShabbatEve = useCalendar((state) => state.isShabbatEve);
   const refresh = useCalendar((state) => state.refresh);
-  const settings = useSettings();
+  const zmanimSettings = useSettings((state) => state.zmanim);
   const registry = useContent((state) => state.registry);
   const [showConfetti, setShowConfetti] = useState(false);
 
@@ -23,9 +23,78 @@ export const Today: React.FC = () => {
     }
   }, [refresh, registry]);
 
-  const tz = settings.location.timezone;
+  const tz = getActiveTimeZone(zmanimSettings.timeZone);
   const now = useMemo(() => new Date(), []);
   const isShabbatDay = now.getDay() === 5 || now.getDay() === 6;
+
+  const activeLocation =
+    zmanimSettings.locationMode === "device" &&
+    zmanimSettings.deviceLocation.lat != null &&
+    zmanimSettings.deviceLocation.lon != null
+      ? zmanimSettings.deviceLocation
+      : zmanimSettings.manualLocation;
+
+  const hasLocation = activeLocation.lat != null && activeLocation.lon != null;
+
+  const zmanimResult = useMemo(() => {
+    if (!hasLocation) {
+      return null;
+    }
+    try {
+      return computeZmanim(now, { lat: activeLocation.lat!, lon: activeLocation.lon!, timeZone: tz }, {
+        dayLengthModel: zmanimSettings.dayLengthModel,
+        dawn: zmanimSettings.dawn,
+        nightfall: zmanimSettings.nightfall,
+        candleLightingOffsetMin: zmanimSettings.candleLightingOffsetMin
+      });
+    } catch (error) {
+      console.error("Failed to compute zmanim", error);
+      return null;
+    }
+  }, [
+    hasLocation,
+    activeLocation.lat,
+    activeLocation.lon,
+    tz,
+    now,
+    zmanimSettings.dayLengthModel,
+    zmanimSettings.dawn,
+    zmanimSettings.nightfall,
+    zmanimSettings.candleLightingOffsetMin
+  ]);
+
+  const formatOptions = useMemo(
+    () => ({
+      timeZone: tz,
+      timeFormat: zmanimSettings.timeFormat,
+      rounding: zmanimSettings.rounding
+    }),
+    [tz, zmanimSettings.timeFormat, zmanimSettings.rounding]
+  );
+
+  const primaryTimes = zmanimResult
+    ? {
+        dawn: formatZman(zmanimResult.alos, formatOptions),
+        sunrise: formatZman(zmanimResult.sunrise, formatOptions),
+        sunset: formatZman(zmanimResult.sunset, formatOptions),
+        nightfall: formatZman(zmanimResult.tzes, formatOptions)
+      }
+    : null;
+
+  const moreTimes = zmanimResult
+    ? [
+        { label: "Sof Zman Shema (Gra)", value: formatZman(zmanimResult.sofZmanShemaGra, formatOptions) },
+        { label: "Sof Zman Shema (M.A.)", value: formatZman(zmanimResult.sofZmanShemaMagenAvraham, formatOptions) },
+        { label: "Sof Zman Tefillah (Gra)", value: formatZman(zmanimResult.sofZmanTefillahGra, formatOptions) },
+        { label: "Sof Zman Tefillah (M.A.)", value: formatZman(zmanimResult.sofZmanTefillahMagenAvraham, formatOptions) },
+        { label: "Chatzot", value: formatZman(zmanimResult.chatzot, formatOptions) },
+        { label: "Mincha Gedola", value: formatZman(zmanimResult.minchaGedola, formatOptions) },
+        { label: "Mincha Ketana", value: formatZman(zmanimResult.minchaKetana, formatOptions) },
+        { label: "Plag HaMincha", value: formatZman(zmanimResult.plagHamincha, formatOptions) }
+      ].filter((item) => item.value !== "—")
+    : [];
+
+  const candleLightingTime = formatZman(zmanimResult?.candleLighting ?? null, formatOptions);
 
   const genesisChapter = registry?.tanakh["genesis-1"];
   const featuredVerse = genesisChapter?.verses[0];
@@ -44,13 +113,13 @@ export const Today: React.FC = () => {
         <Card tone="accent" className="border-2 border-pomegranate">
           <p className="font-semibold">{copy.today.shabbatBanner}</p>
           <p className="text-sm text-slate-700 dark:text-slate-200">
-            {copy.today.candleLighting(zmanim.sunset)}
+            {copy.today.candleLighting(candleLightingTime)}
           </p>
         </Card>
       )}
       <section className="grid gap-4 md:grid-cols-2">
-        <Card title="This Week’s Parashah" className="space-y-2" aria-live="polite">
-          <p className="text-2xl font-semibold">{parashah}</p>
+        <Card title="This Week’s Parashah" className="space-y-3" aria-live="polite">
+          <ParshaHighlight parsha={parashah} />
           {upcomingHoliday ? (
             <p className="text-sm text-slate-600 dark:text-slate-300">
               Next holiday: <strong>{upcomingHoliday.name}</strong> in {upcomingHoliday.daysAway} day(s)
@@ -60,24 +129,53 @@ export const Today: React.FC = () => {
           )}
         </Card>
         <Card title="Zmanim" className="space-y-2">
-          <dl className="grid grid-cols-2 gap-2 text-sm">
-            <div title="Alot HaShachar – dawn">
-              <dt className="text-slate-500">Dawn</dt>
-              <dd className="font-semibold">{zmanim.dawn}</dd>
+          {!hasLocation ? (
+            <div className="space-y-3 text-sm">
+              <p className="text-slate-600 dark:text-slate-300">
+                Set your location in Settings to see accurate times.
+              </p>
+              <a
+                href="#/settings"
+                className="inline-flex items-center justify-center rounded-lg border border-pomegranate px-3 py-1.5 text-sm font-semibold text-pomegranate transition hover:bg-pomegranate/10 focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/50"
+              >
+                Open Settings
+              </a>
             </div>
-            <div title="Hanetz HaChamah – sunrise">
-              <dt className="text-slate-500">Sunrise</dt>
-              <dd className="font-semibold">{zmanim.sunrise}</dd>
-            </div>
-            <div title="Shkiah – sunset">
-              <dt className="text-slate-500">Sunset</dt>
-              <dd className="font-semibold">{zmanim.sunset}</dd>
-            </div>
-            <div title="Tzeit HaKochavim – nightfall">
-              <dt className="text-slate-500">Nightfall</dt>
-              <dd className="font-semibold">{zmanim.nightfall}</dd>
-            </div>
-          </dl>
+          ) : (
+            <>
+              <dl className="grid grid-cols-2 gap-2 text-sm">
+                <div title="Alot HaShachar – dawn">
+                  <dt className="text-slate-500">Dawn</dt>
+                  <dd className="font-semibold">{primaryTimes?.dawn ?? "—"}</dd>
+                </div>
+                <div title="Hanetz HaChamah – sunrise">
+                  <dt className="text-slate-500">Sunrise</dt>
+                  <dd className="font-semibold">{primaryTimes?.sunrise ?? "—"}</dd>
+                </div>
+                <div title="Shkiah – sunset">
+                  <dt className="text-slate-500">Sunset</dt>
+                  <dd className="font-semibold">{primaryTimes?.sunset ?? "—"}</dd>
+                </div>
+                <div title="Tzeit HaKochavim – nightfall">
+                  <dt className="text-slate-500">Nightfall</dt>
+                  <dd className="font-semibold">{primaryTimes?.nightfall ?? "—"}</dd>
+                </div>
+              </dl>
+              {moreTimes.length > 0 ? (
+                <details className="rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-sm dark:border-slate-700 dark:bg-slate-900/40">
+                  <summary className="cursor-pointer font-semibold text-slate-700 dark:text-slate-200">More times</summary>
+                  <dl className="mt-2 space-y-2">
+                    {moreTimes.map((item) => (
+                      <div key={item.label} className="flex items-center justify-between gap-3">
+                        <dt className="text-slate-500">{item.label}</dt>
+                        <dd className="font-semibold text-slate-900 dark:text-white">{item.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </details>
+              ) : null}
+            </>
+          )}
           <p className="text-xs text-slate-400">{copy.today.zmanimHelp}</p>
         </Card>
       </section>
@@ -138,6 +236,44 @@ export const Today: React.FC = () => {
   );
 };
 
+interface ParshaHighlightProps {
+  parsha: ParshaSummary | null;
+}
+
+const ParshaHighlight: React.FC<ParshaHighlightProps> = ({ parsha }) => {
+  if (!parsha) {
+    return <p className="text-sm text-slate-500 dark:text-slate-300">Checking this week’s reading…</p>;
+  }
+
+  const destination = parsha.slug ? `#/texts/tanakh/torah/parsha/${parsha.slug}` : null;
+  const content = (
+    <div className="space-y-1">
+      <p className="text-lg font-semibold text-slate-900 dark:text-white">
+        Parsha: <span className="text-pomegranate">{parsha.shortName}</span>
+      </p>
+      {parsha.reading ? (
+        <p className="text-sm text-slate-600 dark:text-slate-300">{parsha.reading}</p>
+      ) : null}
+    </div>
+  );
+
+  if (!destination) {
+    return (
+      <div className="rounded-lg border border-transparent bg-pomegranate/5 px-4 py-3">{content}</div>
+    );
+  }
+
+  return (
+    <a
+      href={destination}
+      className="block rounded-lg border border-transparent bg-pomegranate/5 px-4 py-3 transition hover:border-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/40"
+    >
+      <span className="sr-only">Open the full parsha reading</span>
+      {content}
+    </a>
+  );
+};
+
 const Confetti: React.FC = () => (
   <div className="pointer-events-none fixed inset-0 flex animate-ping flex-wrap items-start justify-center gap-6">
     {Array.from({ length: 8 }).map((_, index) => (
@@ -189,7 +325,7 @@ const MonthCalendar: React.FC<MonthCalendarProps> = ({ referenceDate }) => {
                 if (!date) {
                   return <td key={idx} className="h-16" />;
                 }
-                const hebrew = gregorianToHebrew(date);
+                const hebrew = getHebrewDateParts(date);
                 const isToday = date.toDateString() === referenceDate.toDateString();
                 return (
                   <td
