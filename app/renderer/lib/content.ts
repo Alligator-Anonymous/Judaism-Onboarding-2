@@ -9,11 +9,13 @@ import {
   TanakhChapter,
   Commentary,
   AlefBetLetter,
-  TanakhMetadata,
-  ParshaMetadataEntry
+  TanakhManifest,
+  ParshaMetadataEntry,
+  ParshaRangeEntry
 } from "@/types";
-import tanakhMeta from "@/data/metadata/tanakh.index.json";
+import tanakhManifestData from "@/data/metadata/tanakh.manifest.json";
 import parshaMeta from "@/data/metadata/parshiyot.index.json";
+import parshaRangesData from "@/data/metadata/parsha.ranges.json";
 
 const jsonModules = import.meta.glob("@/data/packs/core-v1/**/*.json", {
   eager: true
@@ -33,8 +35,9 @@ export function loadContentRegistry(): ContentRegistry {
   }
   const manifest = (jsonModules[manifestKey] as { default: ContentPackManifest }).default;
 
-  const tanakhMetadata = tanakhMeta as TanakhMetadata;
+  const tanakhManifest = tanakhManifestData as TanakhManifest;
   const parshaMetadata = parshaMeta as ParshaMetadataEntry[];
+  const parshaRanges = parshaRangesData as ParshaRangeEntry[];
 
   const registry: ContentRegistry = {
     manifest,
@@ -44,8 +47,9 @@ export function loadContentRegistry(): ContentRegistry {
     holidays: {},
     faq: {},
     alefbet: [],
-    tanakhMeta: tanakhMetadata ?? null,
-    parshaMeta: parshaMetadata ?? []
+    tanakhManifest: tanakhManifest ?? null,
+    parshaMeta: parshaMetadata ?? [],
+    parshaRanges: parshaRanges ?? []
   };
 
   Object.entries(jsonModules).forEach(([key, mod]) => {

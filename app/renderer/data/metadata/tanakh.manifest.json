@@ -1,0 +1,34 @@
+{
+  "books": [
+    {
+      "slug": "genesis",
+      "title": "Genesis",
+      "heTitle": "בראשית",
+      "section": "Torah",
+      "chapters": 50,
+      "available": {
+        "he": true,
+        "en": {
+          "sct": true,
+          "jps1917": true
+        },
+        "onqelos": true
+      }
+    },
+    {
+      "slug": "exodus",
+      "title": "Exodus",
+      "heTitle": "שמות",
+      "section": "Torah",
+      "chapters": 40,
+      "available": {
+        "he": true,
+        "en": {
+          "sct": true,
+          "jps1917": true
+        },
+        "onqelos": true
+      }
+    }
+  ]
+}

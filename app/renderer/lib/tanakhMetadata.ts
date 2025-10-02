@@ -1,28 +1,81 @@
 // Codex change: Helper selectors for Tanakh sections, books, chapters, and parshiot.
-import {
-  ParshaMetadataEntry,
-  TanakhBookMetadata,
-  TanakhMetadata,
-  TanakhSectionMetadata
-} from "@/types";
+import { ParshaMetadataEntry, TanakhManifest, TanakhManifestBookAvailability } from "@/types";
+
+interface SectionDefinition {
+  id: string;
+  he: string;
+  en: string;
+}
+
+const SECTION_MAP: Record<string, SectionDefinition> = {
+  Torah: { id: "torah", he: "תורה", en: "Torah" },
+  Prophets: { id: "neviim", he: "נביאים", en: "Nevi'im" },
+  Writings: { id: "ketuvim", he: "כתובים", en: "Ketuvim" }
+};
+
+export interface ManifestBookInfo {
+  id: string;
+  he: string;
+  en: string;
+  chapters: number;
+  available: TanakhManifestBookAvailability;
+}
+
+export interface ManifestSectionInfo extends SectionDefinition {
+  books: ManifestBookInfo[];
+}
+
+function groupSections(manifest: TanakhManifest | null | undefined): ManifestSectionInfo[] {
+  if (!manifest?.books?.length) return [];
+  const orderMap = new Map<string, number>();
+  manifest.books.forEach((book, index) => orderMap.set(book.slug, index));
+  const sections = new Map<string, ManifestSectionInfo>();
+  for (const book of manifest.books) {
+    const sectionDef = SECTION_MAP[book.section];
+    if (!sectionDef) continue;
+    if (!sections.has(sectionDef.id)) {
+      sections.set(sectionDef.id, { ...sectionDef, books: [] });
+    }
+    const heTitle = book.heTitle ?? book.title;
+    const info: ManifestBookInfo = {
+      id: book.slug,
+      he: heTitle,
+      en: book.title,
+      chapters: book.chapters,
+      available: book.available
+    };
+    sections.get(sectionDef.id)!.books.push(info);
+  }
+  return Array.from(sections.values()).map((section) => ({
+    ...section,
+    books: section.books.sort((a, b) => {
+      const orderA = orderMap.get(a.id) ?? 0;
+      const orderB = orderMap.get(b.id) ?? 0;
+      return orderA - orderB;
+    })
+  }));
+}
+
+export function getSections(manifest: TanakhManifest | null | undefined): ManifestSectionInfo[] {
+  return groupSections(manifest);
+}
 
 export function getSectionBySlug(
-  meta: TanakhMetadata | null | undefined,
+  manifest: TanakhManifest | null | undefined,
   sectionSlug: string
-): TanakhSectionMetadata | undefined {
-  if (!meta) return undefined;
-  return meta.sections.find((section) => section.id === sectionSlug);
+): ManifestSectionInfo | undefined {
+  return groupSections(manifest).find((section) => section.id === sectionSlug);
 }
 
 export function getBookBySlug(
-  section: TanakhSectionMetadata | undefined,
+  section: ManifestSectionInfo | undefined,
   bookSlug: string
-): TanakhBookMetadata | undefined {
+): ManifestBookInfo | undefined {
   if (!section) return undefined;
   return section.books.find((book) => book.id === bookSlug);
 }
 
-export function getChapterCount(book: TanakhBookMetadata | undefined): number {
+export function getChapterCount(book: ManifestBookInfo | undefined): number {
   return book?.chapters ?? 0;
 }
 

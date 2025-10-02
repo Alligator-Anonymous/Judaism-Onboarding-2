@@ -3,13 +3,20 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { Select } from "@components/UI/Select";
 import { useContent } from "@stores/useContent";
 import { getBookBySlug, getChapterCount, getSectionBySlug } from "@lib/tanakhMetadata";
-import { getChapterCountFromBook, hasTranslation, loadBook, type TanakhTranslationId } from "@lib/tanakhLoader";
-import type { PackedTanakhBook } from "@/types";
+import {
+  getChapterCountFromBook,
+  hasTranslation,
+  loadBook,
+  type LoadedTanakhBook,
+  type TanakhTranslationId
+} from "@lib/tanakhLoader";
 
-const translationOptions = [
-  { id: "he-masoretic", label: "Hebrew (Masoretic)" },
-  { id: "ar-onqelos", label: "Targum Onqelos" }
-] as const;
+const translationOptions: { id: TanakhTranslationId; label: string }[] = [
+  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
+  { id: "en-sct", label: "English (Sefaria Community)" },
+  { id: "en-jps1917", label: "English (JPS 1917)" },
+  { id: "ar-onqelos", label: "Targum Onqelos (Aramaic)" }
+];
 
 interface ChapterViewProps {
   sectionSlug: string;
@@ -19,87 +26,81 @@ interface ChapterViewProps {
 
 export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug, chapterNumber }) => {
   const registry = useContent((state) => state.registry);
-  const section = getSectionBySlug(registry?.tanakhMeta, sectionSlug);
+  const section = getSectionBySlug(registry?.tanakhManifest, sectionSlug);
   const book = getBookBySlug(section, bookSlug);
-  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-masoretic");
+  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-taamei");
+  const [activeBook, setActiveBook] = React.useState<LoadedTanakhBook | null>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [rashiEnabled, setRashiEnabled] = React.useState(false);
-  const [baseBook, setBaseBook] = React.useState<PackedTanakhBook | null>(null);
-  const [baseBookError, setBaseBookError] = React.useState<string | null>(null);
-  const [baseLoading, setBaseLoading] = React.useState(true);
-  const [translationBook, setTranslationBook] = React.useState<PackedTanakhBook | null>(null);
-  const [translationLoading, setTranslationLoading] = React.useState(false);
-  const [translationError, setTranslationError] = React.useState<string | null>(null);
 
-  const isTorahBook = section?.id === "torah";
-  const onqelosAvailable = isTorahBook && hasTranslation(bookSlug, "ar-onqelos");
+  const availability = React.useMemo(() => {
+    return {
+      "he-taamei": Boolean(book?.available?.he ?? hasTranslation(bookSlug, "he-taamei")),
+      "en-sct": Boolean(book?.available?.en?.sct ?? hasTranslation(bookSlug, "en-sct")),
+      "en-jps1917": Boolean(book?.available?.en?.jps1917 ?? hasTranslation(bookSlug, "en-jps1917")),
+      "ar-onqelos": Boolean(book?.available?.onqelos ?? hasTranslation(bookSlug, "ar-onqelos"))
+    };
+  }, [book?.available, bookSlug]);
+
+  const defaultTranslation = React.useMemo<TanakhTranslationId>(() => {
+    const preferredOrder: TanakhTranslationId[] = [
+      "he-taamei",
+      "en-sct",
+      "en-jps1917",
+      "ar-onqelos"
+    ];
+    for (const option of preferredOrder) {
+      if (availability[option]) {
+        return option;
+      }
+    }
+    return "he-taamei";
+  }, [availability]);
+
+  React.useEffect(() => {
+    setTranslation(defaultTranslation);
+  }, [bookSlug, defaultTranslation]);
+
+  React.useEffect(() => {
+    if (availability[translation]) return;
+    setTranslation(defaultTranslation);
+  }, [availability, translation, defaultTranslation]);
 
   const chapterCountFromMeta = getChapterCount(book);
 
   React.useEffect(() => {
     let cancelled = false;
-    setBaseLoading(true);
-    setBaseBookError(null);
-    loadBook(bookSlug, "he-masoretic")
-      .then((loaded) => {
-        if (cancelled) return;
-        setBaseBook(loaded);
-        setBaseBookError(loaded ? null : "Missing Masoretic text for this book.");
-        setBaseLoading(false);
-      })
-      .catch((error) => {
-        if (cancelled) return;
-        setBaseBook(null);
-        setBaseBookError(error instanceof Error ? error.message : String(error));
-        setBaseLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [bookSlug]);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    if (translation === "he-masoretic") {
-      setTranslationBook(baseBook);
-      setTranslationError(null);
-      setTranslationLoading(false);
-      return () => {
-        cancelled = true;
-      };
-    }
-    if (!onqelosAvailable) {
-      setTranslation("he-masoretic");
-      return () => {
-        cancelled = true;
-      };
-    }
-    setTranslationLoading(true);
-    setTranslationError(null);
+    setLoading(true);
+    setError(null);
     loadBook(bookSlug, translation)
       .then((loaded) => {
         if (cancelled) return;
-        setTranslationBook(loaded);
-        setTranslationError(loaded ? null : "Translation not available yet.");
-        setTranslationLoading(false);
+        if (!loaded) {
+          setActiveBook(null);
+          setError("Translation not available yet.");
+        } else {
+          setActiveBook(loaded);
+        }
+        setLoading(false);
       })
-      .catch((error) => {
+      .catch((loadError) => {
         if (cancelled) return;
-        setTranslationBook(null);
-        setTranslationError(error instanceof Error ? error.message : String(error));
-        setTranslationLoading(false);
+        setActiveBook(null);
+        setError(loadError instanceof Error ? loadError.message : String(loadError));
+        setLoading(false);
       });
     return () => {
       cancelled = true;
     };
-  }, [bookSlug, translation, onqelosAvailable, baseBook]);
+  }, [bookSlug, translation]);
 
-  const activeBook = translation === "he-masoretic" ? baseBook : translationBook;
-  const chapterCount = baseBook ? getChapterCountFromBook(baseBook) : chapterCountFromMeta;
+  const chapterCount = activeBook ? getChapterCountFromBook(activeBook) : chapterCountFromMeta;
 
   const verses = React.useMemo(() => {
     if (!activeBook) return [];
-    const chapter = activeBook.chapters?.[String(chapterNumber)] ?? [];
-    return Array.isArray(chapter) ? chapter : [];
+    const chapter = activeBook.chapters.find((entry) => entry.chapter === chapterNumber);
+    return chapter ? chapter.verses : [];
   }, [activeBook, chapterNumber]);
 
   const prevChapter = chapterNumber > 1 ? chapterNumber - 1 : null;
@@ -119,7 +120,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [bookSlug, nextChapter, prevChapter, sectionSlug]);
 
-  if (!registry?.tanakhMeta) {
+  if (!registry?.tanakhManifest) {
     return <p className="text-sm text-slate-500">Loading Tanakh metadata…</p>;
   }
 
@@ -171,29 +172,34 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
           onChange={(event) => setTranslation(event.target.value as TanakhTranslationId)}
         >
           {translationOptions.map((option) => (
-            <option key={option.id} value={option.id} disabled={option.id === "ar-onqelos" && !onqelosAvailable}>
+            <option key={option.id} value={option.id} disabled={!availability[option.id]}>
               {option.label}
-              {option.id === "ar-onqelos" && !onqelosAvailable ? " (Unavailable)" : ""}
+              {!availability[option.id] ? " (Unavailable)" : ""}
             </option>
           ))}
         </Select>
         <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
-          {baseLoading || translationLoading ? (
+          {loading ? (
             <p className="text-sm text-slate-500 dark:text-slate-400">Loading chapter text…</p>
-          ) : baseBookError ? (
-            <p className="text-sm text-red-600 dark:text-red-400">{baseBookError}</p>
-          ) : translationError ? (
-            <p className="text-sm text-red-600 dark:text-red-400">{translationError}</p>
+          ) : error ? (
+            <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
           ) : verses.length === 0 ? (
             <p className="text-sm text-slate-500 dark:text-slate-400">No text available for this chapter.</p>
           ) : (
-            <ol dir="rtl" className="space-y-2 text-lg leading-relaxed">
+            <ol dir={activeBook?.direction ?? "rtl"} className="space-y-2 text-lg leading-relaxed">
               {verses.map((verse, index) => (
-                <li key={index} className="rounded-lg bg-slate-50 p-3 leading-loose text-slate-900 shadow-sm dark:bg-slate-800/80 dark:text-slate-100">
+                <li key={index} className="space-y-1 rounded-lg bg-slate-50 p-3 leading-loose text-slate-900 shadow-sm dark:bg-slate-800/80 dark:text-slate-100">
                   <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-pomegranate/10 text-xs font-semibold text-pomegranate dark:bg-pomegranate/20">
                     {index + 1}
                   </span>
-                  <span>{verse || "—"}</span>
+                  <div className="space-y-1">
+                    <span>{verse.primary ?? "—"}</span>
+                    {verse.secondary ? (
+                      <p className="text-sm text-slate-600 dark:text-slate-300" dir="ltr">
+                        {verse.secondary}
+                      </p>
+                    ) : null}
+                  </div>
                 </li>
               ))}
             </ol>
