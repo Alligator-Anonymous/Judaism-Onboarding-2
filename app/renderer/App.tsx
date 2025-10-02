@@ -223,21 +223,29 @@ export const App: React.FC = () => {
     }
   }
 
-  const renderNavLink = (item: { path: string; label: string }) => {
+  const getNavLinkClass = (active: boolean) =>
+    `rounded-full border px-4 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring focus-visible:ring-pomegranate ${
+      active
+        ? "border-pomegranate text-pomegranate shadow"
+        : "border-slate-300 text-slate-600 hover:border-pomegranate hover:text-pomegranate dark:border-slate-600 dark:text-slate-200"
+    }`;
+
+  const renderPrimaryNavLink = (item: { path: string; label: string }) => {
     const active =
       currentPath === item.path ||
       (item.path === "/practice" && practicePathSet.has(currentPath)) ||
       (item.path === "/texts" && isTextsPath);
     return (
-      <a
-        key={item.path}
-        href={`#${item.path}`}
-        className={`rounded-full border px-4 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring focus-visible:ring-pomegranate ${
-          active
-            ? "border-pomegranate text-pomegranate shadow"
-            : "border-slate-300 text-slate-600 hover:border-pomegranate hover:text-pomegranate dark:border-slate-600 dark:text-slate-200"
-        }`}
-      >
+      <a key={item.path} href={`#${item.path}`} className={getNavLinkClass(active)}>
+        {item.label}
+      </a>
+    );
+  };
+
+  const renderPracticeNavLink = (item: { path: string; label: string }) => {
+    const active = currentPath === item.path;
+    return (
+      <a key={item.path} href={`#${item.path}`} className={getNavLinkClass(active)}>
         {item.label}
       </a>
     );
@@ -260,9 +268,9 @@ export const App: React.FC = () => {
               {darkMode ? "Switch to light mode" : "Switch to dark mode"}
             </button>
           </div>
-          <nav className="flex flex-wrap gap-2">{primaryNavItems.map(renderNavLink)}</nav>
+          <nav className="flex flex-wrap gap-2">{primaryNavItems.map(renderPrimaryNavLink)}</nav>
           {isPracticeSection ? (
-            <nav className="flex flex-wrap gap-2 text-sm">{practiceNavItems.map(renderNavLink)}</nav>
+            <nav className="flex flex-wrap gap-2 text-sm">{practiceNavItems.map(renderPracticeNavLink)}</nav>
           ) : null}
         </header>
         <main
