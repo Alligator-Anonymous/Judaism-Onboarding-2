@@ -13,9 +13,8 @@ import {
 import type { ParshaRangeEntry } from "@/types";
 
 const translationOptions: { id: TanakhTranslationId; label: string }[] = [
-  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
-  { id: "en-sct", label: "English (Sefaria Community)" },
   { id: "en-jps1917", label: "English (JPS 1917)" },
+  { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
   { id: "ar-onqelos", label: "Targum Onqelos (Aramaic)" }
 ];
 
@@ -30,7 +29,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
   const [parshaRanges, setParshaRanges] = React.useState<ParshaRangeEntry[] | null>(null);
   const [parshaRange, setParshaRange] = React.useState<ParshaRangeEntry | null>(null);
   const [reading, setReading] = React.useState<ParshaReading | null>(null);
-  const [translation, setTranslation] = React.useState<TanakhTranslationId>("he-taamei");
+  const [translation, setTranslation] = React.useState<TanakhTranslationId>("en-jps1917");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -102,21 +101,19 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
   const availability = React.useMemo(() => {
     const fallback = {
       "he-taamei": parshaRange ? hasTranslation(parshaRange.book, "he-taamei") : false,
-      "en-sct": parshaRange ? hasTranslation(parshaRange.book, "en-sct") : false,
       "en-jps1917": parshaRange ? hasTranslation(parshaRange.book, "en-jps1917") : false,
       "ar-onqelos": parshaRange ? hasTranslation(parshaRange.book, "ar-onqelos") : false
     };
     if (!book?.book) return fallback;
     return {
       "he-taamei": book.book.available.he ?? fallback["he-taamei"],
-      "en-sct": book.book.available.en?.sct ?? fallback["en-sct"],
-      "en-jps1917": book.book.available.en?.jps1917 ?? fallback["en-jps1917"],
+      "en-jps1917": book.book.available.en ?? fallback["en-jps1917"],
       "ar-onqelos": book.book.available.onqelos ?? fallback["ar-onqelos"]
     };
   }, [book?.book, parshaRange]);
 
   const defaultTranslation = React.useMemo<TanakhTranslationId>(() => {
-    const order: TanakhTranslationId[] = ["he-taamei", "en-sct", "en-jps1917", "ar-onqelos"];
+    const order: TanakhTranslationId[] = ["en-jps1917", "he-taamei", "ar-onqelos"];
     for (const option of order) {
       if (availability[option]) {
         return option;

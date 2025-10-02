@@ -8,10 +8,7 @@
       "chapters": 50,
       "available": {
         "he": true,
-        "en": {
-          "sct": true,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": true
       }
     },
@@ -22,10 +19,7 @@
       "chapters": 40,
       "available": {
         "he": true,
-        "en": {
-          "sct": true,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": true
       }
     },
@@ -36,11 +30,8 @@
       "chapters": 27,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
-        "onqelos": false
+        "en": true,
+        "onqelos": true
       }
     },
     {
@@ -50,11 +41,8 @@
       "chapters": 36,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
-        "onqelos": false
+        "en": true,
+        "onqelos": true
       }
     },
     {
@@ -64,11 +52,8 @@
       "chapters": 34,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
-        "onqelos": false
+        "en": true,
+        "onqelos": true
       }
     },
     {
@@ -78,10 +63,7 @@
       "chapters": 24,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -92,10 +74,7 @@
       "chapters": 31,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -106,10 +85,7 @@
       "chapters": 24,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -120,10 +96,7 @@
       "chapters": 22,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -134,10 +107,7 @@
       "chapters": 25,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -148,10 +118,7 @@
       "chapters": 66,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -162,10 +129,7 @@
       "chapters": 52,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -176,10 +140,7 @@
       "chapters": 48,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -190,10 +151,7 @@
       "chapters": 14,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -204,10 +162,7 @@
       "chapters": 4,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -218,10 +173,7 @@
       "chapters": 9,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -232,10 +184,7 @@
       "chapters": 1,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -246,10 +195,7 @@
       "chapters": 4,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -260,10 +206,7 @@
       "chapters": 7,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -274,10 +217,7 @@
       "chapters": 3,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -288,10 +228,7 @@
       "chapters": 3,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -302,10 +239,7 @@
       "chapters": 3,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -316,10 +250,7 @@
       "chapters": 2,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -330,10 +261,7 @@
       "chapters": 14,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -344,10 +272,7 @@
       "chapters": 3,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -358,10 +283,7 @@
       "chapters": 150,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -372,10 +294,7 @@
       "chapters": 1,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -386,10 +305,7 @@
       "chapters": 42,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -400,10 +316,7 @@
       "chapters": 8,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -414,10 +327,7 @@
       "chapters": 4,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -428,10 +338,7 @@
       "chapters": 5,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -442,10 +349,7 @@
       "chapters": 12,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -456,10 +360,7 @@
       "chapters": 10,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -470,10 +371,7 @@
       "chapters": 12,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -484,10 +382,7 @@
       "chapters": 10,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -498,10 +393,7 @@
       "chapters": 13,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -512,10 +404,7 @@
       "chapters": 29,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     },
@@ -526,10 +415,7 @@
       "chapters": 36,
       "available": {
         "he": true,
-        "en": {
-          "sct": false,
-          "jps1917": true
-        },
+        "en": true,
         "onqelos": false
       }
     }
