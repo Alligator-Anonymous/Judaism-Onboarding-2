@@ -120,6 +120,32 @@
       }
     },
     {
+      "slug": "i-chronicles",
+      "title": "I Chronicles",
+      "section": "Ketuvim",
+      "chapters": 29,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ii-chronicles",
+      "title": "II Chronicles",
+      "section": "Ketuvim",
+      "chapters": 36,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "ruth",
       "title": "Ruth",
       "section": "Ketuvim",
