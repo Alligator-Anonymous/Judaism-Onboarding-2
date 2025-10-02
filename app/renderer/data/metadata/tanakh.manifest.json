@@ -42,10 +42,49 @@
       }
     },
     {
+      "slug": "amos",
+      "title": "Amos",
+      "section": "Nevi'im",
+      "chapters": 9,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "ezekiel",
       "title": "Ezekiel",
       "section": "Nevi'im",
       "chapters": 48,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "hosea",
+      "title": "Hosea",
+      "section": "Nevi'im",
+      "chapters": 14,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "i-kings",
+      "title": "I Kings",
+      "section": "Nevi'im",
+      "chapters": 22,
       "available": {
         "he": true,
         "en": {
@@ -120,10 +159,36 @@
       }
     },
     {
+      "slug": "joel",
+      "title": "Joel",
+      "section": "Nevi'im",
+      "chapters": 4,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "joshua",
       "title": "Joshua",
       "section": "Nevi'im",
       "chapters": 22,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "daniel",
+      "title": "Daniel",
+      "section": "Ketuvim",
+      "chapters": 12,
       "available": {
         "he": true,
         "en": {
