@@ -42,10 +42,62 @@
       }
     },
     {
-      "slug": "i-kings",
-      "title": "I Kings",
+      "slug": "amos",
+      "title": "Amos",
       "section": "Nevi'im",
-      "chapters": 22,
+      "chapters": 9,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ezekiel",
+      "title": "Ezekiel",
+      "section": "Nevi'im",
+      "chapters": 48,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "habakkuk",
+      "title": "Habakkuk",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "haggai",
+      "title": "Haggai",
+      "section": "Nevi'im",
+      "chapters": 2,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "hosea",
+      "title": "Hosea",
+      "section": "Nevi'im",
+      "chapters": 14,
       "available": {
         "he": true,
         "en": {
@@ -107,10 +159,153 @@
       }
     },
     {
+      "slug": "isaiah",
+      "title": "Isaiah",
+      "section": "Nevi'im",
+      "chapters": 66,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "jeremiah",
+      "title": "Jeremiah",
+      "section": "Nevi'im",
+      "chapters": 52,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "joel",
+      "title": "Joel",
+      "section": "Nevi'im",
+      "chapters": 4,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "jonah",
+      "title": "Jonah",
+      "section": "Nevi'im",
+      "chapters": 4,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "joshua",
       "title": "Joshua",
       "section": "Nevi'im",
       "chapters": 22,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "malachi",
+      "title": "Malachi",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "micah",
+      "title": "Micah",
+      "section": "Nevi'im",
+      "chapters": 7,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "nahum",
+      "title": "Nahum",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "obadiah",
+      "title": "Obadiah",
+      "section": "Nevi'im",
+      "chapters": 1,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "zechariah",
+      "title": "Zechariah",
+      "section": "Nevi'im",
+      "chapters": 14,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "zephaniah",
+      "title": "Zephaniah",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "daniel",
+      "title": "Daniel",
+      "section": "Ketuvim",
+      "chapters": 12,
       "available": {
         "he": true,
         "en": {
@@ -198,101 +393,10 @@
       }
     },
     {
-      "slug": "nehemiah",
-      "title": "Nehemiah",
+      "slug": "lamentations",
+      "title": "Lamentations",
       "section": "Ketuvim",
-      "chapters": 13,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "proverbs",
-      "title": "Proverbs",
-      "section": "Ketuvim",
-      "chapters": 31,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "psalms",
-      "title": "Psalms",
-      "section": "Ketuvim",
-      "chapters": 150,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "esther",
-      "title": "Esther",
-      "section": "Ketuvim",
-      "chapters": 10,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "ezra",
-      "title": "Ezra",
-      "section": "Ketuvim",
-      "chapters": 10,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "i-chronicles",
-      "title": "I Chronicles",
-      "section": "Ketuvim",
-      "chapters": 29,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "ii-chronicles",
-      "title": "II Chronicles",
-      "section": "Ketuvim",
-      "chapters": 36,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "job",
-      "title": "Job",
-      "section": "Ketuvim",
-      "chapters": 42,
+      "chapters": 5,
       "available": {
         "he": true,
         "en": {
