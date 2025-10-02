@@ -12,6 +12,8 @@ const SECTION_LABELS: Record<string, string> = {
 
 export const SiddurView: React.FC = () => {
   const transliterationMode = useSettings((state) => state.transliterationMode);
+  const parshaCycle = useSettings((state) => state.parshaCycle);
+  const setParshaCycle = useSettings((state) => state.setParshaCycle);
   const registry = useContent((state) => state.registry);
   const prayers = registry?.siddur.basic ?? [];
 
@@ -28,6 +30,31 @@ export const SiddurView: React.FC = () => {
       <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
         Prayer preferences now live in <a className="font-medium text-pomegranate underline" href="#/settings">Settings</a>.
         Adjust nusach, transliteration style, and kabbalah overlays there.
+        <div className="mt-3 flex flex-col gap-2 text-sm md:flex-row md:items-center md:justify-between">
+          <span className="font-medium text-slate-700 dark:text-slate-200">Parsha cycle: Diaspora / Israel</span>
+          <div className="inline-flex overflow-hidden rounded-lg border border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-900">
+            {(
+              [
+                { value: "diaspora" as const, label: "Diaspora" },
+                { value: "israel" as const, label: "Israel" }
+              ]
+            ).map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={`px-3 py-1 text-sm font-semibold transition focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 ${
+                  parshaCycle === option.value
+                    ? "bg-pomegranate text-white"
+                    : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                }`}
+                onClick={() => setParshaCycle(option.value)}
+                aria-pressed={parshaCycle === option.value}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {Object.entries(grouped).map(([section, sectionPrayers]) => (

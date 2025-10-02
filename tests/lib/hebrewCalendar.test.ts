@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { gregorianToHebrew, getParashahForDate, isErevShabbat } from "@lib/hebrewCalendar";
+import {
+  getHebrewDateParts,
+  getParshaForUpcomingShabbat,
+  isErevShabbat
+} from "@lib/calendar";
 
 describe("hebrewCalendar", () => {
   it("converts a known Gregorian date to the correct Hebrew date", () => {
-    const date = new Date("2023-09-16T00:00:00Z"); // Rosh Hashanah 5784
-    const hebrew = gregorianToHebrew(date);
+    const date = new Date("2023-09-16T12:00:00Z"); // Rosh Hashanah 5784
+    const hebrew = getHebrewDateParts(date);
     expect(hebrew.year).toBe(5784);
     expect(hebrew.monthName).toBe("Tishrei");
     expect(hebrew.day).toBe(1);
@@ -17,7 +21,7 @@ describe("hebrewCalendar", () => {
 
   it("returns a parashah name for any date", () => {
     const today = new Date("2024-03-25T00:00:00Z");
-    const parashah = getParashahForDate(today);
+    const parashah = getParshaForUpcomingShabbat(today);
     expect(parashah).toBeTruthy();
   });
 });
