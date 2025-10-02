@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const BOOK_TO_IMPORT = "Leviticus"; 
+const BOOK_TO_IMPORT = "Numbers";
 
 if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
   console.error("BOOK_TO_IMPORT must be a single book title string.");
