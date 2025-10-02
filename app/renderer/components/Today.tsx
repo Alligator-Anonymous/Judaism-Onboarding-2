@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { copy } from "@/copy";
 import { Card } from "./UI/Card";
 import { useCalendar } from "@stores/useCalendar";
-import { formatFriendlyGregorian, type ParshaSummary } from "@lib/calendar";
+import { formatFriendlyGregorian, getHebrewDateParts, type ParshaSummary } from "@lib/calendar";
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
 import { computeZmanim, formatZman, getActiveTimeZone } from "@lib/zmanim";
