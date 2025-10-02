@@ -13,7 +13,6 @@ import {
 
 const translationOptions: { id: TanakhTranslationId; label: string }[] = [
   { id: "he-taamei", label: "Hebrew (Ta'amei Hamikra)" },
-  { id: "en-sct", label: "English (Sefaria Community)" },
   { id: "en-jps1917", label: "English (JPS 1917)" },
   { id: "ar-onqelos", label: "Targum Onqelos (Aramaic)" }
 ];
@@ -37,8 +36,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
   const availability = React.useMemo(() => {
     return {
       "he-taamei": Boolean(book?.available?.he ?? hasTranslation(bookSlug, "he-taamei")),
-      "en-sct": Boolean(book?.available?.en?.sct ?? hasTranslation(bookSlug, "en-sct")),
-      "en-jps1917": Boolean(book?.available?.en?.jps1917 ?? hasTranslation(bookSlug, "en-jps1917")),
+      "en-jps1917": Boolean(book?.available?.en ?? hasTranslation(bookSlug, "en-jps1917")),
       "ar-onqelos": Boolean(book?.available?.onqelos ?? hasTranslation(bookSlug, "ar-onqelos"))
     };
   }, [book?.available, bookSlug]);
@@ -46,7 +44,6 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
   const defaultTranslation = React.useMemo<TanakhTranslationId>(() => {
     const preferredOrder: TanakhTranslationId[] = [
       "he-taamei",
-      "en-sct",
       "en-jps1917",
       "ar-onqelos"
     ];

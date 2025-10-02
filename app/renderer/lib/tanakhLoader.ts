@@ -6,7 +6,7 @@ import type {
   ParshaRangeEntry
 } from "@/types";
 
-export type TanakhTranslationId = "he-taamei" | "en-sct" | "en-jps1917" | "ar-onqelos";
+export type TanakhTranslationId = "he-taamei" | "en-jps1917" | "ar-onqelos";
 
 type BookModule<T> = { default: T };
 type BookImporter<T> = () => Promise<BookModule<T>>;
@@ -98,19 +98,18 @@ function mapHebrewBook(book: HebrewPackBook): LoadedTanakhBook {
   };
 }
 
-function mapEnglishBook(book: EnglishPackBook, variant: "sct" | "jps1917"): LoadedTanakhBook {
-  const translationId: TanakhTranslationId = variant === "sct" ? "en-sct" : "en-jps1917";
+function mapEnglishBook(book: EnglishPackBook): LoadedTanakhBook {
   return {
     bookId: book.bookId,
     bookTitle: book.bookTitle,
-    translationId,
+    translationId: "en-jps1917",
     direction: "ltr",
     chapters: book.chapters.map((chapter) => ({
       chapter: chapter.chapter,
       verses: chapter.verses.map((verse) => ({
         n: verse.n,
         ref: verse.ref,
-        primary: verse.en?.[variant] ?? null
+        primary: verse.en ?? null
       }))
     }))
   };
@@ -146,16 +145,17 @@ export async function loadBook(
     const book = await loadFromLookup(bookId, onqelosLookup, onqelosCache);
     return book ? mapOnqelosBook(book) : null;
   }
-  const variant = translationId === "en-sct" ? "sct" : "jps1917";
-  const englishBook = await loadFromLookup(bookId, englishLookup, englishCache);
-  return englishBook ? mapEnglishBook(englishBook, variant) : null;
+  if (translationId === "en-jps1917") {
+    const englishBook = await loadFromLookup(bookId, englishLookup, englishCache);
+    return englishBook ? mapEnglishBook(englishBook) : null;
+  }
+  return null;
 }
 
 export function hasTranslation(bookId: string, translationId: TanakhTranslationId): boolean {
   switch (translationId) {
     case "he-taamei":
       return hebrewLookup.has(bookId);
-    case "en-sct":
     case "en-jps1917":
       return englishLookup.has(bookId);
     case "ar-onqelos":

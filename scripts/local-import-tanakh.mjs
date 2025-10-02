@@ -226,7 +226,7 @@ function main() {
       chapter: ch.chapter,
       verses: ch.verses.map((v) => ({
         n: v.n,
-        en: { sct: null, jps1917: v.en ?? null },
+        en: v.en ?? null,
         ref: v.ref
       }))
     }))
@@ -262,10 +262,7 @@ function main() {
   entry.chapters = heOut.chapters.length;
   entry.available = {
     he: true,
-    en: {
-      sct: entry.available?.en?.sct ?? false,
-      jps1917: true
-    },
+    en: true,
     onqelos: !!onq
   };
   bySlug.set(slug, entry);
