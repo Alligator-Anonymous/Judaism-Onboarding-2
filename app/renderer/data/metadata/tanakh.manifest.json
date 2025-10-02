@@ -68,6 +68,32 @@
       }
     },
     {
+      "slug": "habakkuk",
+      "title": "Habakkuk",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "haggai",
+      "title": "Haggai",
+      "section": "Nevi'im",
+      "chapters": 2,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "hosea",
       "title": "Hosea",
       "section": "Nevi'im",
@@ -107,10 +133,10 @@
       }
     },
     {
-      "slug": "i-kings",
-      "title": "I Kings",
+      "slug": "ezekiel",
+      "title": "Ezekiel",
       "section": "Nevi'im",
-      "chapters": 22,
+      "chapters": 48,
       "available": {
         "he": true,
         "en": {
@@ -120,10 +146,10 @@
       }
     },
     {
-      "slug": "i-samuel",
-      "title": "I Samuel",
+      "slug": "hosea",
+      "title": "Hosea",
       "section": "Nevi'im",
-      "chapters": 31,
+      "chapters": 14,
       "available": {
         "he": true,
         "en": {
@@ -198,6 +224,19 @@
       }
     },
     {
+      "slug": "malachi",
+      "title": "Malachi",
+      "section": "Nevi'im",
+      "chapters": 3,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "micah",
       "title": "Micah",
       "section": "Nevi'im",
@@ -228,6 +267,32 @@
       "title": "Obadiah",
       "section": "Nevi'im",
       "chapters": 1,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "zechariah",
+      "title": "Zechariah",
+      "section": "Nevi'im",
+      "chapters": 14,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "zephaniah",
+      "title": "Zephaniah",
+      "section": "Nevi'im",
+      "chapters": 3,
       "available": {
         "he": true,
         "en": {
