@@ -366,10 +366,10 @@
       }
     },
     {
-      "slug": "proverbs",
-      "title": "Proverbs",
-      "section": "Ketuvim",
-      "chapters": 31,
+      "slug": "obadiah",
+      "title": "Obadiah",
+      "section": "Prophets",
+      "chapters": 1,
       "available": {
         "he": true,
         "en": {
