@@ -1,5 +1,6 @@
 // Codex change: Ensured settings expose accessibility and kabbalah preferences for new views.
 import { create } from "zustand";
+import type { ParshaCycle } from "@lib/calendar";
 
 export type Nusach = "ashkenaz" | "sefard" | "edot-mizrach";
 export type TransliterationMode = "ashkenazi" | "sephardi" | "none";
@@ -24,6 +25,7 @@ export interface SettingsState {
   kabbalahSystem: "none" | "gra" | "ari" | "ramak" | "kircher";
   location: LocationSettings;
   zmanimOffsets: ZmanimOffsets;
+  parshaCycle: ParshaCycle;
   minhagProfile?: string; // reserved for future customisations
   setDarkMode: (value: boolean) => void;
   setLargeText: (value: boolean) => void;
@@ -33,6 +35,7 @@ export interface SettingsState {
   setKabbalahSystem: (system: "none" | "gra" | "ari" | "ramak" | "kircher") => void;
   setLocation: (location: LocationSettings) => void;
   setZmanimOffsets: (offsets: ZmanimOffsets) => void;
+  setParshaCycle: (cycle: ParshaCycle) => void;
 }
 
 const defaultLocation: LocationSettings = {
@@ -53,6 +56,7 @@ export const useSettings = create<SettingsState>((set) => ({
     dawnOffsetMinutes: -72,
     nightfallOffsetMinutes: 40
   },
+  parshaCycle: "diaspora",
   setDarkMode: (value) => set({ darkMode: value }),
   setLargeText: (value) => set({ largeText: value }),
   setDyslexiaFriendlyHebrew: (value) => set({ dyslexiaFriendlyHebrew: value }),
@@ -60,5 +64,6 @@ export const useSettings = create<SettingsState>((set) => ({
   setTransliterationMode: (mode) => set({ transliterationMode: mode }),
   setKabbalahSystem: (system) => set({ kabbalahSystem: system }),
   setLocation: (location) => set({ location }),
-  setZmanimOffsets: (offsets) => set({ zmanimOffsets: offsets })
+  setZmanimOffsets: (offsets) => set({ zmanimOffsets: offsets }),
+  setParshaCycle: (cycle) => set({ parshaCycle: cycle })
 }));

@@ -10,6 +10,7 @@ import {
   type LoadedTanakhBook,
   type TanakhTranslationId
 } from "@lib/tanakhLoader";
+import { copyText } from "@lib/clipboard";
 
 const translationOptions: { id: TanakhTranslationId; label: string }[] = [
   { id: "en-jps1917", label: "English (JPS 1917)" },
@@ -32,6 +33,9 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [rashiEnabled, setRashiEnabled] = React.useState(false);
+  const [selectedVerses, setSelectedVerses] = React.useState<Set<number>>(new Set());
+  const [lastSelectedVerse, setLastSelectedVerse] = React.useState<number | null>(null);
+  const [copyMessage, setCopyMessage] = React.useState<string | null>(null);
 
   const availability = React.useMemo(() => {
     return {
@@ -100,6 +104,22 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
     return chapter ? chapter.verses : [];
   }, [activeBook, chapterNumber]);
 
+  React.useEffect(() => {
+    setSelectedVerses(new Set());
+    setLastSelectedVerse(null);
+    setCopyMessage(null);
+  }, [bookSlug, chapterNumber, translation]);
+
+  React.useEffect(() => {
+    if (!copyMessage) return;
+    const timer = window.setTimeout(() => setCopyMessage(null), 2500);
+    return () => window.clearTimeout(timer);
+  }, [copyMessage]);
+
+  const selectedVerseList = React.useMemo(() => {
+    return Array.from(selectedVerses).sort((a, b) => a - b);
+  }, [selectedVerses]);
+
   const prevChapter = chapterNumber > 1 ? chapterNumber - 1 : null;
   const nextChapter = chapterCount > chapterNumber ? chapterNumber + 1 : null;
 
@@ -137,6 +157,90 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
       </div>
     );
   }
+
+  const bookTitle = book.en;
+  const selectedCount = selectedVerseList.length;
+
+  const formatVerseForCopy = React.useCallback(
+    (verseNumber: number) => {
+      const verse = verses[verseNumber - 1];
+      if (!verse) return null;
+      const reference = `${bookTitle} ${chapterNumber}:${verseNumber}`;
+      const lines = [reference];
+      if (verse.primary) {
+        lines.push(verse.primary.trim());
+      }
+      if (verse.secondary) {
+        lines.push(verse.secondary.trim());
+      }
+      return lines.join("\n");
+    },
+    [bookTitle, chapterNumber, verses]
+  );
+
+  const handleCopyVerse = React.useCallback(
+    async (verseNumber: number) => {
+      const text = formatVerseForCopy(verseNumber);
+      if (!text) return;
+      try {
+        await copyText(text);
+        setCopyMessage(`Copied ${bookTitle} ${chapterNumber}:${verseNumber}`);
+      } catch (copyError) {
+        setCopyMessage("Copy failed. Try using your device’s copy command.");
+      }
+    },
+    [bookTitle, chapterNumber, formatVerseForCopy]
+  );
+
+  const handleCopySelected = React.useCallback(async () => {
+    const chunks = selectedVerseList
+      .map((verseNumber) => formatVerseForCopy(verseNumber))
+      .filter((value): value is string => Boolean(value));
+    if (chunks.length === 0) return;
+    try {
+      await copyText(chunks.join("\n\n"));
+      setCopyMessage(
+        `Copied ${chunks.length} verse${chunks.length === 1 ? "" : "s"} from ${bookTitle} ${chapterNumber}.`
+      );
+    } catch (copyError) {
+      setCopyMessage("Copy failed. Try using your device’s copy command.");
+    }
+  }, [bookTitle, chapterNumber, formatVerseForCopy, selectedVerseList]);
+
+  const toggleVerseSelection = React.useCallback(
+    (verseNumber: number, shiftKey: boolean) => {
+      setSelectedVerses((previous) => {
+        const next = new Set(previous);
+        if (shiftKey && lastSelectedVerse !== null && lastSelectedVerse !== verseNumber) {
+          const [start, end] = verseNumber > lastSelectedVerse ? [lastSelectedVerse, verseNumber] : [verseNumber, lastSelectedVerse];
+          for (let current = start; current <= end; current += 1) {
+            next.add(current);
+          }
+        } else if (next.has(verseNumber)) {
+          next.delete(verseNumber);
+        } else {
+          next.add(verseNumber);
+        }
+        return next;
+      });
+      setLastSelectedVerse(verseNumber);
+    },
+    [lastSelectedVerse]
+  );
+
+  const handleCheckboxChange = React.useCallback(
+    (verseNumber: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const nativeEvent = event.nativeEvent as MouseEvent | KeyboardEvent;
+      const shiftKey = Boolean(nativeEvent?.shiftKey);
+      toggleVerseSelection(verseNumber, shiftKey);
+    },
+    [toggleVerseSelection]
+  );
+
+  const clearSelection = React.useCallback(() => {
+    setSelectedVerses(new Set());
+    setLastSelectedVerse(null);
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -183,23 +287,87 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ sectionSlug, bookSlug,
           ) : verses.length === 0 ? (
             <p className="text-sm text-slate-500 dark:text-slate-400">No text available for this chapter.</p>
           ) : (
-            <ol dir={activeBook?.direction ?? "rtl"} className="space-y-2 text-lg leading-relaxed">
-              {verses.map((verse, index) => (
-                <li key={index} className="space-y-1 rounded-lg bg-slate-50 p-3 leading-loose text-slate-900 shadow-sm dark:bg-slate-800/80 dark:text-slate-100">
-                  <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-pomegranate/10 text-xs font-semibold text-pomegranate dark:bg-pomegranate/20">
-                    {index + 1}
-                  </span>
-                  <div className="space-y-1">
-                    <span>{verse.primary ?? "—"}</span>
-                    {verse.secondary ? (
-                      <p className="text-sm text-slate-600 dark:text-slate-300" dir="ltr">
-                        {verse.secondary}
-                      </p>
-                    ) : null}
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Select verses to copy them together, or copy any verse instantly.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => void handleCopySelected()}
+                    disabled={selectedCount === 0}
+                    className={`rounded-full border px-3 py-1 text-xs font-semibold transition focus:outline-none focus-visible:ring focus-visible:ring-pomegranate ${
+                      selectedCount === 0
+                        ? "cursor-not-allowed border-slate-200 text-slate-400 dark:border-slate-700 dark:text-slate-600"
+                        : "border-pomegranate/40 text-pomegranate hover:bg-pomegranate/10"
+                    }`}
+                  >
+                    Copy selected{selectedCount ? ` (${selectedCount})` : ""}
+                  </button>
+                  {selectedCount > 0 ? (
+                    <button
+                      type="button"
+                      onClick={clearSelection}
+                      className="rounded-full border border-transparent px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring focus-visible:ring-pomegranate dark:text-slate-200"
+                    >
+                      Clear selection
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+              {copyMessage ? (
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">{copyMessage}</p>
+              ) : null}
+              <ol dir={activeBook?.direction ?? "rtl"} className="space-y-3 text-lg leading-relaxed">
+                {verses.map((verse, index) => {
+                  const verseNumber = index + 1;
+                  const isSelected = selectedVerses.has(verseNumber);
+                  return (
+                    <li
+                      key={index}
+                      className={`space-y-2 rounded-lg border p-3 leading-loose shadow-sm transition ${
+                        isSelected
+                          ? "border-pomegranate/60 bg-pomegranate/10 dark:border-pomegranate/70 dark:bg-pomegranate/20"
+                          : "border-transparent bg-slate-50 dark:bg-slate-800/80"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-3">
+                          <input
+                            id={`chapter-verse-${verseNumber}`}
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={handleCheckboxChange(verseNumber)}
+                            className="h-4 w-4 rounded border-slate-300 text-pomegranate focus:ring-pomegranate dark:border-slate-600"
+                            aria-label={`Select verse ${verseNumber}`}
+                          />
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-pomegranate/10 text-xs font-semibold text-pomegranate dark:bg-pomegranate/20">
+                            {verseNumber}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => void handleCopyVerse(verseNumber)}
+                          className="rounded-full border border-transparent px-2 py-1 text-xs font-semibold text-pomegranate transition hover:border-pomegranate/40 hover:bg-pomegranate/10 focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/40"
+                          aria-label={`Copy verse ${verseNumber}`}
+                        >
+                          Copy
+                        </button>
+                      </div>
+                      <div className="space-y-1 pl-10">
+                        <span>{verse.primary ?? "—"}</span>
+                        {verse.secondary ? (
+                          <p className="text-sm text-slate-600 dark:text-slate-300" dir="ltr">
+                            {verse.secondary}
+                          </p>
+                        ) : null}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
           )}
         </div>
       </section>
