@@ -178,16 +178,40 @@ function main() {
   const bySlug = new Map(manifest.books.map(b => [b.slug, b]));
 
   const entry = bySlug.get(slug) || { slug, title: book, section: null, chapters: 0, available: {} };
-  entry.section = entry.section || (["Genesis","Exodus","Leviticus","Numbers","Deuteronomy"].includes(book) ? "Torah"
-                       : ["Joshua","Judges","Ruth","Samuel","Kings","Isaiah","Jeremiah","Ezekiel",
-                          "Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"]
-                         .some(n => book.includes(n)) ? "Nevi'im" : "Ketuvim");
+  entry.section =
+    entry.section ||
+    (["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy"].includes(book)
+      ? "Torah"
+      : [
+            "Joshua",
+            "Judges",
+            "Ruth",
+            "Samuel",
+            "Kings",
+            "Isaiah",
+            "Jeremiah",
+            "Ezekiel",
+            "Hosea",
+            "Joel",
+            "Amos",
+            "Obadiah",
+            "Jonah",
+            "Micah",
+            "Nahum",
+            "Habakkuk",
+            "Zephaniah",
+            "Haggai",
+            "Zechariah",
+            "Malachi"
+          ].some((n) => book.includes(n))
+        ? "Prophets"
+        : "Writings");
   entry.chapters = heOut.chapters.length;
   entry.available = { he: true, en: { jps1917: true }, onqelos: !!onq };
   bySlug.set(slug, entry);
 
   const books = Array.from(bySlug.values());
-  const secOrder = { "Torah": 0, "Nevi'im": 1, "Ketuvim": 2, null: 3, undefined: 3 };
+  const secOrder = { Torah: 0, Prophets: 1, Writings: 2, null: 3, undefined: 3 };
   books.sort((a,b) => (secOrder[a.section] - secOrder[b.section]) || a.title.localeCompare(b.title));
   writeJson(manifestPath, { books });
 
