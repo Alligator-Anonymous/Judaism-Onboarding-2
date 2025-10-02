@@ -4,6 +4,82 @@ import path from "node:path";
 
 const BOOK_TO_IMPORT = "Song of Songs";
 
+const CANONICAL_ORDER = [
+  "genesis",
+  "exodus",
+  "leviticus",
+  "numbers",
+  "deuteronomy",
+  "joshua",
+  "judges",
+  "i-samuel",
+  "ii-samuel",
+  "i-kings",
+  "ii-kings",
+  "isaiah",
+  "jeremiah",
+  "ezekiel",
+  "hosea",
+  "joel",
+  "amos",
+  "obadiah",
+  "jonah",
+  "micah",
+  "nahum",
+  "habakkuk",
+  "zephaniah",
+  "haggai",
+  "zechariah",
+  "malachi",
+  "psalms",
+  "proverbs",
+  "job",
+  "song-of-songs",
+  "ruth",
+  "lamentations",
+  "ecclesiastes",
+  "esther",
+  "daniel",
+  "ezra",
+  "nehemiah",
+  "i-chronicles",
+  "ii-chronicles"
+];
+
+const SECTION_BY_SLUG = (() => {
+  const torah = new Set(["genesis", "exodus", "leviticus", "numbers", "deuteronomy"]);
+  const formerProphets = new Set(["joshua", "judges", "i-samuel", "ii-samuel", "i-kings", "ii-kings"]);
+  const latterProphets = new Set([
+    "isaiah",
+    "jeremiah",
+    "ezekiel",
+    "hosea",
+    "joel",
+    "amos",
+    "obadiah",
+    "jonah",
+    "micah",
+    "nahum",
+    "habakkuk",
+    "zephaniah",
+    "haggai",
+    "zechariah",
+    "malachi"
+  ]);
+
+  const mapping = {};
+  for (const slug of CANONICAL_ORDER) {
+    if (torah.has(slug)) {
+      mapping[slug] = "Torah";
+    } else if (formerProphets.has(slug) || latterProphets.has(slug)) {
+      mapping[slug] = "Neviim";
+    } else {
+      mapping[slug] = "Ketuvim";
+    }
+  }
+  return mapping;
+})();
+
 if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
   console.error("BOOK_TO_IMPORT must be a single book title string.");
   process.exit(1);
@@ -135,9 +211,9 @@ function main() {
   const heOut = {
     bookId: slug,
     bookTitle: book,
-    chapters: chapters.map(ch => ({
+    chapters: chapters.map((ch) => ({
       chapter: ch.chapter,
-      verses: ch.verses.map(v => ({ n: v.n, he: v.he, ref: v.ref }))
+      verses: ch.verses.map((v) => ({ n: v.n, he: v.he, ref: v.ref }))
     }))
   };
   writeJson(path.join(OUT_HE, `${slug}.json`), heOut);
@@ -146,9 +222,13 @@ function main() {
   const enOut = {
     bookId: slug,
     bookTitle: book,
-    chapters: chapters.map(ch => ({
+    chapters: chapters.map((ch) => ({
       chapter: ch.chapter,
-      verses: ch.verses.map(v => ({ n: v.n, en: v.en ?? null, ref: v.ref }))
+      verses: ch.verses.map((v) => ({
+        n: v.n,
+        en: { sct: null, jps1917: v.en ?? null },
+        ref: v.ref
+      }))
     }))
   };
   writeJson(path.join(OUT_EN, `${slug}.json`), enOut);
@@ -178,41 +258,29 @@ function main() {
   const bySlug = new Map(manifest.books.map(b => [b.slug, b]));
 
   const entry = bySlug.get(slug) || { slug, title: book, section: null, chapters: 0, available: {} };
-  entry.section =
-    entry.section ||
-    (["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy"].includes(book)
-      ? "Torah"
-      : [
-            "Joshua",
-            "Judges",
-            "Ruth",
-            "Samuel",
-            "Kings",
-            "Isaiah",
-            "Jeremiah",
-            "Ezekiel",
-            "Hosea",
-            "Joel",
-            "Amos",
-            "Obadiah",
-            "Jonah",
-            "Micah",
-            "Nahum",
-            "Habakkuk",
-            "Zephaniah",
-            "Haggai",
-            "Zechariah",
-            "Malachi"
-          ].some((n) => book.includes(n))
-        ? "Prophets"
-        : "Writings");
+  entry.section = SECTION_BY_SLUG[slug] ?? entry.section ?? "Ketuvim";
   entry.chapters = heOut.chapters.length;
-  entry.available = { he: true, en: { jps1917: true }, onqelos: !!onq };
+  entry.available = {
+    he: true,
+    en: {
+      sct: entry.available?.en?.sct ?? false,
+      jps1917: true
+    },
+    onqelos: !!onq
+  };
   bySlug.set(slug, entry);
 
   const books = Array.from(bySlug.values());
-  const secOrder = { Torah: 0, Prophets: 1, Writings: 2, null: 3, undefined: 3 };
-  books.sort((a,b) => (secOrder[a.section] - secOrder[b.section]) || a.title.localeCompare(b.title));
+  books.sort((a, b) => {
+    const orderA = CANONICAL_ORDER.indexOf(a.slug);
+    const orderB = CANONICAL_ORDER.indexOf(b.slug);
+    if (orderA !== -1 && orderB !== -1) {
+      return orderA - orderB;
+    }
+    if (orderA !== -1) return -1;
+    if (orderB !== -1) return 1;
+    return a.title.localeCompare(b.title);
+  });
   writeJson(manifestPath, { books });
 
   console.log("Import complete for:", book);
