@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const BOOK_TO_IMPORT = "Numbers";
+const BOOK_TO_IMPORT = "Proverbs";
 
 if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
   console.error("BOOK_TO_IMPORT must be a single book title string.");
@@ -13,7 +13,8 @@ if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
 const HEB_NAME = "Tanach with Ta'amei Hamikra.json";                 // Hebrew (sole source)
 const EN_NAME  = "The Holy Scriptures A New Translation JPS 1917.json"; // English (sole source)
 
-const SRC_ROOT = "Codex Imports"; // user placed all sources here
+const SRC_ROOT_CANDIDATES = ["Codex Imports", "Codex imports"];
+const SRC_ROOT = SRC_ROOT_CANDIDATES.find(dir => fs.existsSync(dir)) ?? SRC_ROOT_CANDIDATES[0];
 
 // Output packs (app expects these)
 const OUT_HE  = "app/renderer/data/packs/tanakh/he-taamei/books";
@@ -32,8 +33,23 @@ function slugify(book) {
 function findSource(book, langFolder, fileName) {
   const sections = ["Torah", "Prophets", "Writings"];
   for (const sec of sections) {
-    const p = path.join(SRC_ROOT, sec, book, langFolder, fileName);
-    if (fs.existsSync(p)) return p;
+    const folder = path.join(SRC_ROOT, sec, book, langFolder);
+    const exact = path.join(folder, fileName);
+    if (fs.existsSync(exact)) return exact;
+
+    if (!fs.existsSync(folder)) continue;
+
+    const jsonCandidates = fs
+      .readdirSync(folder)
+      .filter(name => name.toLowerCase().endsWith(".json"));
+
+    if (jsonCandidates.length === 1) {
+      const fallback = path.join(folder, jsonCandidates[0]);
+      console.warn(
+        `Using fallback source for ${book} (${langFolder}): expected ${fileName}, found ${jsonCandidates[0]}`
+      );
+      return fallback;
+    }
   }
   return null;
 }

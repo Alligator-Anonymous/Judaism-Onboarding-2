@@ -107,6 +107,58 @@
       }
     },
     {
+      "slug": "i-kings",
+      "title": "I Kings",
+      "section": "Nevi'im",
+      "chapters": 22,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "i-samuel",
+      "title": "I Samuel",
+      "section": "Nevi'im",
+      "chapters": 31,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ii-kings",
+      "title": "II Kings",
+      "section": "Nevi'im",
+      "chapters": 25,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ii-samuel",
+      "title": "II Samuel",
+      "section": "Nevi'im",
+      "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "joshua",
       "title": "Joshua",
       "section": "Nevi'im",
@@ -189,6 +241,19 @@
       "title": "Nehemiah",
       "section": "Ketuvim",
       "chapters": 13,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "proverbs",
+      "title": "Proverbs",
+      "section": "Ketuvim",
+      "chapters": 31,
       "available": {
         "he": true,
         "en": {
