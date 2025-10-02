@@ -196,7 +196,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
     (index: number) => {
       const token = tokens[index];
       if (!token) return null;
-      const bookLabel = bookNameMap.get(token.bookId) ?? defaultParshaBookTitle || token.bookId;
+      const bookLabel = (bookNameMap.get(token.bookId) ?? defaultParshaBookTitle) || token.bookId;
       const reference = `${bookLabel} ${token.c}:${token.v}`;
       const lines = [reference];
       if (token.primary) {
@@ -218,7 +218,7 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
         await copyText(text);
         const token = tokens[index];
         if (token) {
-          const bookLabel = bookNameMap.get(token.bookId) ?? defaultParshaBookTitle || token.bookId;
+          const bookLabel = (bookNameMap.get(token.bookId) ?? defaultParshaBookTitle) || token.bookId;
           setCopyMessage(`Copied ${bookLabel} ${token.c}:${token.v}`);
         } else {
           setCopyMessage(`Copied verse from ${parsha.en}.`);
