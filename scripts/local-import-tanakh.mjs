@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const BOOK_TO_IMPORT = "Proverbs";
+const BOOK_TO_IMPORT = "Song of Songs";
 
 if (!BOOK_TO_IMPORT || typeof BOOK_TO_IMPORT !== "string") {
   console.error("BOOK_TO_IMPORT must be a single book title string.");
@@ -77,15 +77,23 @@ function tryLoadOnqelos(book) {
 }
 
 // Normalize Sefaria-style per-book JSON into our shape
+function cleanEnglishVerse(str) {
+  if (typeof str !== "string") return null;
+  const withoutSmall = str.replace(/<small>.*?<\/small>/gis, "");
+  const withoutBreaks = withoutSmall.replace(/<br\s*\/?>/gi, " ");
+  const withoutTags = withoutBreaks.replace(/<[^>]+>/g, "");
+  const withoutCommunity = withoutTags.replace(/Sefaria Community Translation/gi, "");
+  const normalized = withoutCommunity.replace(/\s+/g, " ").trim();
+  return normalized.length ? normalized : null;
+}
+
 function normalize(book, heSrc, enSrc) {
   // Hebrew chapters (prefer `he`, else `text`)
   const heChapters = Array.isArray(heSrc?.he) ? heSrc.he
                     : Array.isArray(heSrc?.text) ? heSrc.text
                     : [];
-  // English chapters (prefer `text`, else `en`)
-  const enChapters = Array.isArray(enSrc?.text) ? enSrc.text
-                    : Array.isArray(enSrc?.en) ? enSrc.en
-                    : [];
+  // English chapters (JPS text only, no community translation fallback)
+  const enChapters = Array.isArray(enSrc?.text) ? enSrc.text : [];
 
   const chapters = [];
   for (let c = 0; c < heChapters.length; c++) {
@@ -94,7 +102,7 @@ function normalize(book, heSrc, enSrc) {
     const verses = [];
     for (let v = 0; v < heVerses.length; v++) {
       const he = typeof heVerses[v] === "string" ? heVerses[v].trim() : null;
-      const en = typeof enVerses[v] === "string" ? enVerses[v].trim() : null; // may be missing
+      const en = cleanEnglishVerse(enVerses[v]);
       verses.push({ n: v + 1, he, en, ref: `${slugify(book)} ${c + 1}:${v + 1}` });
     }
     chapters.push({ chapter: c + 1, verses });
@@ -115,6 +123,11 @@ function main() {
 
   const heSrc = readJsonSafe(heP);
   const enSrc = readJsonSafe(enP);
+
+  if (!Array.isArray(enSrc?.text)) {
+    console.error(`English source for ${book} is missing the expected JPS text array; refusing to fall back to other translations.`);
+    process.exit(1);
+  }
 
   const { chapters } = normalize(book, heSrc, enSrc);
 
