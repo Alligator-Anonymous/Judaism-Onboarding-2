@@ -14,58 +14,6 @@
       }
     },
     {
-      "slug": "leviticus",
-      "title": "Leviticus",
-      "section": "Torah",
-      "chapters": 27,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "numbers",
-      "title": "Numbers",
-      "section": "Torah",
-      "chapters": 36,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "joshua",
-      "title": "Joshua",
-      "section": "Nevi'im",
-      "chapters": 24,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
-      "slug": "ruth",
-      "title": "Ruth",
-      "section": "Ketuvim",
-      "chapters": 4,
-      "available": {
-        "he": true,
-        "en": {
-          "jps1917": true
-        },
-        "onqelos": false
-      }
-    },
-    {
       "slug": "genesis",
       "title": "Genesis",
       "heTitle": "בראשית",
@@ -107,10 +55,36 @@
       }
     },
     {
+      "slug": "i-kings",
+      "title": "I Kings",
+      "section": "Nevi'im",
+      "chapters": 22,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "i-samuel",
       "title": "I Samuel",
       "section": "Nevi'im",
       "chapters": 31,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ii-kings",
+      "title": "II Kings",
+      "section": "Nevi'im",
+      "chapters": 25,
       "available": {
         "he": true,
         "en": {
@@ -137,6 +111,32 @@
       "title": "Joshua",
       "section": "Nevi'im",
       "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "i-chronicles",
+      "title": "I Chronicles",
+      "section": "Ketuvim",
+      "chapters": 29,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ii-chronicles",
+      "title": "II Chronicles",
+      "section": "Ketuvim",
+      "chapters": 36,
       "available": {
         "he": true,
         "en": {
