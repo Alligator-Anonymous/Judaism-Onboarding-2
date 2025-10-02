@@ -44,7 +44,7 @@
     {
       "slug": "amos",
       "title": "Amos",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 9,
       "available": {
         "he": true,
@@ -57,7 +57,7 @@
     {
       "slug": "ezekiel",
       "title": "Ezekiel",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 48,
       "available": {
         "he": true,
@@ -70,7 +70,7 @@
     {
       "slug": "habakkuk",
       "title": "Habakkuk",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 3,
       "available": {
         "he": true,
@@ -83,7 +83,7 @@
     {
       "slug": "haggai",
       "title": "Haggai",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 2,
       "available": {
         "he": true,
@@ -96,7 +96,7 @@
     {
       "slug": "hosea",
       "title": "Hosea",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 14,
       "available": {
         "he": true,
@@ -107,10 +107,10 @@
       }
     },
     {
-      "slug": "ezekiel",
-      "title": "Ezekiel",
-      "section": "Nevi'im",
-      "chapters": 48,
+      "slug": "i-kings",
+      "title": "I Kings",
+      "section": "Prophets",
+      "chapters": 22,
       "available": {
         "he": true,
         "en": {
@@ -120,10 +120,10 @@
       }
     },
     {
-      "slug": "hosea",
-      "title": "Hosea",
-      "section": "Nevi'im",
-      "chapters": 14,
+      "slug": "i-samuel",
+      "title": "I Samuel",
+      "section": "Prophets",
+      "chapters": 31,
       "available": {
         "he": true,
         "en": {
@@ -133,10 +133,10 @@
       }
     },
     {
-      "slug": "ezekiel",
-      "title": "Ezekiel",
-      "section": "Nevi'im",
-      "chapters": 48,
+      "slug": "ii-kings",
+      "title": "II Kings",
+      "section": "Prophets",
+      "chapters": 25,
       "available": {
         "he": true,
         "en": {
@@ -146,10 +146,10 @@
       }
     },
     {
-      "slug": "hosea",
-      "title": "Hosea",
-      "section": "Nevi'im",
-      "chapters": 14,
+      "slug": "ii-samuel",
+      "title": "II Samuel",
+      "section": "Prophets",
+      "chapters": 24,
       "available": {
         "he": true,
         "en": {
@@ -161,7 +161,7 @@
     {
       "slug": "isaiah",
       "title": "Isaiah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 66,
       "available": {
         "he": true,
@@ -174,7 +174,7 @@
     {
       "slug": "jeremiah",
       "title": "Jeremiah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 52,
       "available": {
         "he": true,
@@ -187,7 +187,7 @@
     {
       "slug": "joel",
       "title": "Joel",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 4,
       "available": {
         "he": true,
@@ -200,7 +200,7 @@
     {
       "slug": "jonah",
       "title": "Jonah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 4,
       "available": {
         "he": true,
@@ -213,7 +213,7 @@
     {
       "slug": "joshua",
       "title": "Joshua",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 22,
       "available": {
         "he": true,
@@ -226,7 +226,7 @@
     {
       "slug": "malachi",
       "title": "Malachi",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 3,
       "available": {
         "he": true,
@@ -239,7 +239,7 @@
     {
       "slug": "micah",
       "title": "Micah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 7,
       "available": {
         "he": true,
@@ -252,7 +252,7 @@
     {
       "slug": "nahum",
       "title": "Nahum",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 3,
       "available": {
         "he": true,
@@ -265,7 +265,7 @@
     {
       "slug": "obadiah",
       "title": "Obadiah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 1,
       "available": {
         "he": true,
@@ -278,7 +278,7 @@
     {
       "slug": "zechariah",
       "title": "Zechariah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 14,
       "available": {
         "he": true,
@@ -291,7 +291,7 @@
     {
       "slug": "zephaniah",
       "title": "Zephaniah",
-      "section": "Nevi'im",
+      "section": "Prophets",
       "chapters": 3,
       "available": {
         "he": true,
@@ -304,7 +304,7 @@
     {
       "slug": "daniel",
       "title": "Daniel",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 12,
       "available": {
         "he": true,
@@ -317,7 +317,7 @@
     {
       "slug": "ecclesiastes",
       "title": "Ecclesiastes",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 12,
       "available": {
         "he": true,
@@ -330,7 +330,7 @@
     {
       "slug": "esther",
       "title": "Esther",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 10,
       "available": {
         "he": true,
@@ -343,7 +343,7 @@
     {
       "slug": "ezra",
       "title": "Ezra",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 10,
       "available": {
         "he": true,
@@ -356,7 +356,7 @@
     {
       "slug": "i-chronicles",
       "title": "I Chronicles",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 29,
       "available": {
         "he": true,
@@ -369,7 +369,7 @@
     {
       "slug": "ii-chronicles",
       "title": "II Chronicles",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 36,
       "available": {
         "he": true,
@@ -382,7 +382,7 @@
     {
       "slug": "job",
       "title": "Job",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 42,
       "available": {
         "he": true,
@@ -395,7 +395,7 @@
     {
       "slug": "lamentations",
       "title": "Lamentations",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 5,
       "available": {
         "he": true,
@@ -408,7 +408,7 @@
     {
       "slug": "nehemiah",
       "title": "Nehemiah",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 13,
       "available": {
         "he": true,
@@ -421,7 +421,7 @@
     {
       "slug": "proverbs",
       "title": "Proverbs",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 31,
       "available": {
         "he": true,
@@ -434,7 +434,7 @@
     {
       "slug": "psalms",
       "title": "Psalms",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 150,
       "available": {
         "he": true,
@@ -447,7 +447,7 @@
     {
       "slug": "ruth",
       "title": "Ruth",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 4,
       "available": {
         "he": true,
@@ -460,7 +460,7 @@
     {
       "slug": "song-of-songs",
       "title": "Song of Songs",
-      "section": "Ketuvim",
+      "section": "Writings",
       "chapters": 8,
       "available": {
         "he": true,
