@@ -40,6 +40,19 @@
       }
     },
     {
+      "slug": "joshua",
+      "title": "Joshua",
+      "section": "Nevi'im",
+      "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
       "slug": "genesis",
       "title": "Genesis",
       "heTitle": "בראשית",
@@ -85,6 +98,19 @@
       "title": "Joshua",
       "section": "Nevi'im",
       "chapters": 24,
+      "available": {
+        "he": true,
+        "en": {
+          "jps1917": true
+        },
+        "onqelos": false
+      }
+    },
+    {
+      "slug": "ruth",
+      "title": "Ruth",
+      "section": "Ketuvim",
+      "chapters": 4,
       "available": {
         "he": true,
         "en": {
