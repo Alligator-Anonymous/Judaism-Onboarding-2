@@ -11,6 +11,7 @@ import {
   type TanakhTranslationId
 } from "@lib/tanakhLoader";
 import type { ParshaRangeEntry } from "@/types";
+import { copyText } from "@lib/clipboard";
 
 const translationOptions: { id: TanakhTranslationId; label: string }[] = [
   { id: "en-jps1917", label: "English (JPS 1917)" },
@@ -32,6 +33,9 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
   const [translation, setTranslation] = React.useState<TanakhTranslationId>("en-jps1917");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [selectedIndices, setSelectedIndices] = React.useState<Set<number>>(new Set());
+  const [lastSelectedIndex, setLastSelectedIndex] = React.useState<number | null>(null);
+  const [copyMessage, setCopyMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -98,6 +102,16 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
     return null;
   }, [parsha, sections]);
 
+  const bookNameMap = React.useMemo(() => {
+    const map = new Map<string, string>();
+    for (const section of sections) {
+      for (const entry of section.books) {
+        map.set(entry.id, entry.en);
+      }
+    }
+    return map;
+  }, [sections]);
+
   const availability = React.useMemo(() => {
     const fallback = {
       "he-taamei": parshaRange ? hasTranslation(parshaRange.book, "he-taamei") : false,
@@ -131,6 +145,22 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
     setTranslation(defaultTranslation);
   }, [availability, translation, defaultTranslation]);
 
+  React.useEffect(() => {
+    setSelectedIndices(new Set());
+    setLastSelectedIndex(null);
+    setCopyMessage(null);
+  }, [parshaSlug, translation, reading?.tokens?.length]);
+
+  React.useEffect(() => {
+    if (!copyMessage) return;
+    const timer = window.setTimeout(() => setCopyMessage(null), 2500);
+    return () => window.clearTimeout(timer);
+  }, [copyMessage]);
+
+  const selectedIndexList = React.useMemo(() => {
+    return Array.from(selectedIndices).sort((a, b) => a - b);
+  }, [selectedIndices]);
+
   if (!parsha) {
     return (
       <div className="space-y-4">
@@ -157,6 +187,96 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
     }
     return starts;
   }, [reading]);
+
+  const tokens = reading?.tokens ?? [];
+  const selectedCount = selectedIndexList.length;
+  const defaultParshaBookTitle = book?.book.en ?? "";
+
+  const formatTokenForCopy = React.useCallback(
+    (index: number) => {
+      const token = tokens[index];
+      if (!token) return null;
+      const bookLabel = bookNameMap.get(token.bookId) ?? defaultParshaBookTitle || token.bookId;
+      const reference = `${bookLabel} ${token.c}:${token.v}`;
+      const lines = [reference];
+      if (token.primary) {
+        lines.push(token.primary.trim());
+      }
+      if (token.secondary) {
+        lines.push(token.secondary.trim());
+      }
+      return lines.join("\n");
+    },
+    [bookNameMap, defaultParshaBookTitle, tokens]
+  );
+
+  const handleCopyToken = React.useCallback(
+    async (index: number) => {
+      const text = formatTokenForCopy(index);
+      if (!text) return;
+      try {
+        await copyText(text);
+        const token = tokens[index];
+        if (token) {
+          const bookLabel = bookNameMap.get(token.bookId) ?? defaultParshaBookTitle || token.bookId;
+          setCopyMessage(`Copied ${bookLabel} ${token.c}:${token.v}`);
+        } else {
+          setCopyMessage(`Copied verse from ${parsha.en}.`);
+        }
+      } catch (copyError) {
+        setCopyMessage("Copy failed. Try using your device’s copy command.");
+      }
+    },
+    [bookNameMap, defaultParshaBookTitle, formatTokenForCopy, parsha.en, tokens]
+  );
+
+  const handleCopySelectedTokens = React.useCallback(async () => {
+    const chunks = selectedIndexList
+      .map((index) => formatTokenForCopy(index))
+      .filter((value): value is string => Boolean(value));
+    if (chunks.length === 0) return;
+    try {
+      await copyText(chunks.join("\n\n"));
+      setCopyMessage(`Copied ${chunks.length} verse${chunks.length === 1 ? "" : "s"} from ${parsha.en}.`);
+    } catch (copyError) {
+      setCopyMessage("Copy failed. Try using your device’s copy command.");
+    }
+  }, [formatTokenForCopy, parsha.en, selectedIndexList]);
+
+  const toggleTokenSelection = React.useCallback(
+    (index: number, shiftKey: boolean) => {
+      setSelectedIndices((previous) => {
+        const next = new Set(previous);
+        if (shiftKey && lastSelectedIndex !== null && lastSelectedIndex !== index) {
+          const [start, end] = index > lastSelectedIndex ? [lastSelectedIndex, index] : [index, lastSelectedIndex];
+          for (let cursor = start; cursor <= end; cursor += 1) {
+            next.add(cursor);
+          }
+        } else if (next.has(index)) {
+          next.delete(index);
+        } else {
+          next.add(index);
+        }
+        return next;
+      });
+      setLastSelectedIndex(index);
+    },
+    [lastSelectedIndex]
+  );
+
+  const handleTokenCheckboxChange = React.useCallback(
+    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const nativeEvent = event.nativeEvent as MouseEvent | KeyboardEvent;
+      const shiftKey = Boolean(nativeEvent?.shiftKey);
+      toggleTokenSelection(index, shiftKey);
+    },
+    [toggleTokenSelection]
+  );
+
+  const clearTokenSelection = React.useCallback(() => {
+    setSelectedIndices(new Set());
+    setLastSelectedIndex(null);
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -205,36 +325,97 @@ export const ParshaView: React.FC<ParshaViewProps> = ({ parshaSlug }) => {
           <p className="text-sm text-slate-500 dark:text-slate-400">Loading parsha text…</p>
         ) : error ? (
           <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
-        ) : !reading || reading.tokens.length === 0 ? (
+        ) : !reading || tokens.length === 0 ? (
           <p className="text-sm text-slate-500 dark:text-slate-400">No text available for this parsha.</p>
         ) : (
-          <ol dir={reading.direction} className="space-y-4 text-lg leading-relaxed">
-            {reading.tokens.map((token) => {
-              const aliyah = aliyahStarts.get(`${token.c}:${token.v}`);
-              return (
-                <li key={`${token.c}:${token.v}`} className="space-y-2">
-                  {aliyah ? (
-                    <div className="inline-flex rounded-full bg-pomegranate/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-pomegranate dark:bg-pomegranate/20">
-                      Aliyah {aliyah}
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Select verses to copy them together, or copy any verse instantly.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => void handleCopySelectedTokens()}
+                  disabled={selectedCount === 0}
+                  className={`rounded-full border px-3 py-1 text-xs font-semibold transition focus:outline-none focus-visible:ring focus-visible:ring-pomegranate ${
+                    selectedCount === 0
+                      ? "cursor-not-allowed border-slate-200 text-slate-400 dark:border-slate-700 dark:text-slate-600"
+                      : "border-pomegranate/40 text-pomegranate hover:bg-pomegranate/10"
+                  }`}
+                >
+                  Copy selected{selectedCount ? ` (${selectedCount})` : ""}
+                </button>
+                {selectedCount > 0 ? (
+                  <button
+                    type="button"
+                    onClick={clearTokenSelection}
+                    className="rounded-full border border-transparent px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring focus-visible:ring-pomegranate dark:text-slate-200"
+                  >
+                    Clear selection
+                  </button>
+                ) : null}
+              </div>
+            </div>
+            {copyMessage ? (
+              <p className="text-xs text-emerald-600 dark:text-emerald-400">{copyMessage}</p>
+            ) : null}
+            <ol dir={reading.direction} className="space-y-4 text-lg leading-relaxed">
+              {tokens.map((token, index) => {
+                const aliyah = aliyahStarts.get(`${token.c}:${token.v}`);
+                const isSelected = selectedIndices.has(index);
+                const verseId = `parsha-verse-${token.c}-${token.v}-${index}`;
+                return (
+                  <li key={`${token.c}:${token.v}`} className="space-y-2">
+                    {aliyah ? (
+                      <div className="inline-flex rounded-full bg-pomegranate/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-pomegranate dark:bg-pomegranate/20">
+                        Aliyah {aliyah}
+                      </div>
+                    ) : null}
+                    <div
+                      className={`space-y-2 rounded-lg border p-3 leading-loose shadow-sm transition ${
+                        isSelected
+                          ? "border-pomegranate/60 bg-pomegranate/10 dark:border-pomegranate/70 dark:bg-pomegranate/20"
+                          : "border-transparent bg-slate-50 dark:bg-slate-800/80"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-3">
+                          <input
+                            id={verseId}
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={handleTokenCheckboxChange(index)}
+                            className="h-4 w-4 rounded border-slate-300 text-pomegranate focus:ring-pomegranate dark:border-slate-600"
+                            aria-label={`Select verse ${token.c}:${token.v}`}
+                          />
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-pomegranate/10 text-xs font-semibold text-pomegranate dark:bg-pomegranate/20">
+                            {token.c}:{token.v}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => void handleCopyToken(index)}
+                          className="rounded-full border border-transparent px-2 py-1 text-xs font-semibold text-pomegranate transition hover:border-pomegranate/40 hover:bg-pomegranate/10 focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/40"
+                          aria-label={`Copy verse ${token.c}:${token.v}`}
+                        >
+                          Copy
+                        </button>
+                      </div>
+                      <div className="space-y-1 pl-10">
+                        <span>{token.primary ?? "—"}</span>
+                        {token.secondary ? (
+                          <p className="text-sm text-slate-600 dark:text-slate-300" dir="ltr">
+                            {token.secondary}
+                          </p>
+                        ) : null}
+                      </div>
                     </div>
-                  ) : null}
-                  <div className="rounded-lg bg-slate-50 p-3 leading-loose text-slate-900 shadow-sm dark:bg-slate-800/80 dark:text-slate-100">
-                    <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-pomegranate/10 text-xs font-semibold text-pomegranate dark:bg-pomegranate/20">
-                      {token.c}:{token.v}
-                    </span>
-                    <div className="space-y-1">
-                      <span>{token.primary ?? "—"}</span>
-                      {token.secondary ? (
-                        <p className="text-sm text-slate-600 dark:text-slate-300" dir="ltr">
-                          {token.secondary}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
         )}
       </div>
       <div className="flex flex-wrap gap-3">
