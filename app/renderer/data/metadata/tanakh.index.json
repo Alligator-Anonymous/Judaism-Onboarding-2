@@ -6,11 +6,11 @@
       "he": "תורה",
       "en": "Torah",
       "books": [
-        { "id": "genesis", "he": "בראשית", "en": "Genesis", "chapters": 50 },
-        { "id": "exodus", "he": "שמות", "en": "Exodus", "chapters": 40 },
-        { "id": "leviticus", "he": "ויקרא", "en": "Leviticus", "chapters": 27 },
-        { "id": "numbers", "he": "במדבר", "en": "Numbers", "chapters": 36 },
-        { "id": "deuteronomy", "he": "דברים", "en": "Deuteronomy", "chapters": 34 }
+        { "id": "genesis", "he": "בְּרֵאשִׁית", "en": "Genesis", "chapters": 50 },
+        { "id": "exodus", "he": "שְׁמוֹת", "en": "Exodus", "chapters": 40 },
+        { "id": "leviticus", "he": "וַיִּקְרָא", "en": "Leviticus", "chapters": 27 },
+        { "id": "numbers", "he": "בְּמִדְבָּר", "en": "Numbers", "chapters": 36 },
+        { "id": "deuteronomy", "he": "דְּבָרִים", "en": "Deuteronomy", "chapters": 34 }
       ]
     },
     {
@@ -18,27 +18,27 @@
       "he": "נביאים",
       "en": "Nevi'im",
       "books": [
-        { "id": "joshua", "he": "יהושע", "en": "Joshua", "chapters": 24 },
-        { "id": "judges", "he": "שופטים", "en": "Judges", "chapters": 21 },
-        { "id": "samuel-1", "he": "שמואל א", "en": "1 Samuel", "chapters": 31 },
-        { "id": "samuel-2", "he": "שמואל ב", "en": "2 Samuel", "chapters": 24 },
-        { "id": "kings-1", "he": "מלכים א", "en": "1 Kings", "chapters": 22 },
-        { "id": "kings-2", "he": "מלכים ב", "en": "2 Kings", "chapters": 25 },
-        { "id": "isaiah", "he": "ישעיהו", "en": "Isaiah", "chapters": 66 },
-        { "id": "jeremiah", "he": "ירמיהו", "en": "Jeremiah", "chapters": 52 },
-        { "id": "ezekiel", "he": "יחזקאל", "en": "Ezekiel", "chapters": 48 },
-        { "id": "hosea", "he": "הושע", "en": "Hosea", "chapters": 14 },
-        { "id": "joel", "he": "יואל", "en": "Joel", "chapters": 4 },
-        { "id": "amos", "he": "עמוס", "en": "Amos", "chapters": 9 },
-        { "id": "obadiah", "he": "עובדיה", "en": "Obadiah", "chapters": 1 },
-        { "id": "jonah", "he": "יונה", "en": "Jonah", "chapters": 4 },
-        { "id": "micah", "he": "מיכה", "en": "Micah", "chapters": 7 },
-        { "id": "nahum", "he": "נחום", "en": "Nahum", "chapters": 3 },
-        { "id": "habakkuk", "he": "חבקוק", "en": "Habakkuk", "chapters": 3 },
-        { "id": "zephaniah", "he": "צפניה", "en": "Zephaniah", "chapters": 3 },
-        { "id": "haggai", "he": "חגי", "en": "Haggai", "chapters": 2 },
-        { "id": "zechariah", "he": "זכריה", "en": "Zechariah", "chapters": 14 },
-        { "id": "malachi", "he": "מלאכי", "en": "Malachi", "chapters": 3 }
+        { "id": "joshua", "he": "יְהוֹשֻׁעַ", "en": "Joshua", "chapters": 24 },
+        { "id": "judges", "he": "שֹׁפְטִים", "en": "Judges", "chapters": 21 },
+        { "id": "samuel-1", "he": "שְׁמוּאֵל א׳", "en": "1 Samuel", "chapters": 31 },
+        { "id": "samuel-2", "he": "שְׁמוּאֵל ב׳", "en": "2 Samuel", "chapters": 24 },
+        { "id": "kings-1", "he": "מְלָכִים א׳", "en": "1 Kings", "chapters": 22 },
+        { "id": "kings-2", "he": "מְלָכִים ב׳", "en": "2 Kings", "chapters": 25 },
+        { "id": "isaiah", "he": "יְשַׁעְיָהוּ", "en": "Isaiah", "chapters": 66 },
+        { "id": "jeremiah", "he": "יִרְמְיָהוּ", "en": "Jeremiah", "chapters": 52 },
+        { "id": "ezekiel", "he": "יְחֶזְקֵאל", "en": "Ezekiel", "chapters": 48 },
+        { "id": "hosea", "he": "הוֹשֵׁעַ", "en": "Hosea", "chapters": 14 },
+        { "id": "joel", "he": "יוֹאֵל", "en": "Joel", "chapters": 4 },
+        { "id": "amos", "he": "עָמוֹס", "en": "Amos", "chapters": 9 },
+        { "id": "obadiah", "he": "עֹבַדְיָה", "en": "Obadiah", "chapters": 1 },
+        { "id": "jonah", "he": "יוֹנָה", "en": "Jonah", "chapters": 4 },
+        { "id": "micah", "he": "מִיכָה", "en": "Micah", "chapters": 7 },
+        { "id": "nahum", "he": "נַחוּם", "en": "Nahum", "chapters": 3 },
+        { "id": "habakkuk", "he": "חֲבַקּוּק", "en": "Habakkuk", "chapters": 3 },
+        { "id": "zephaniah", "he": "צְפַנְיָה", "en": "Zephaniah", "chapters": 3 },
+        { "id": "haggai", "he": "חַגַּי", "en": "Haggai", "chapters": 2 },
+        { "id": "zechariah", "he": "זְכַרְיָה", "en": "Zechariah", "chapters": 14 },
+        { "id": "malachi", "he": "מַלְאָכִי", "en": "Malachi", "chapters": 3 }
       ]
     },
     {
@@ -46,19 +46,19 @@
       "he": "כתובים",
       "en": "Ketuvim",
       "books": [
-        { "id": "psalms", "he": "תהילים", "en": "Psalms", "chapters": 150 },
-        { "id": "proverbs", "he": "משלי", "en": "Proverbs", "chapters": 31 },
-        { "id": "job", "he": "איוב", "en": "Job", "chapters": 42 },
-        { "id": "song-of-songs", "he": "שיר השירים", "en": "Song of Songs", "chapters": 8 },
-        { "id": "ruth", "he": "רות", "en": "Ruth", "chapters": 4 },
-        { "id": "lamentations", "he": "איכה", "en": "Lamentations", "chapters": 5 },
-        { "id": "ecclesiastes", "he": "קהלת", "en": "Ecclesiastes", "chapters": 12 },
-        { "id": "esther", "he": "אסתר", "en": "Esther", "chapters": 10 },
-        { "id": "daniel", "he": "דניאל", "en": "Daniel", "chapters": 12 },
-        { "id": "ezra", "he": "עזרא", "en": "Ezra", "chapters": 10 },
-        { "id": "nehemiah", "he": "נחמיה", "en": "Nehemiah", "chapters": 13 },
-        { "id": "chronicles-1", "he": "דברי הימים א", "en": "1 Chronicles", "chapters": 29 },
-        { "id": "chronicles-2", "he": "דברי הימים ב", "en": "2 Chronicles", "chapters": 36 }
+        { "id": "psalms", "he": "תְּהִלִּים", "en": "Psalms", "chapters": 150 },
+        { "id": "proverbs", "he": "מִשְׁלֵי", "en": "Proverbs", "chapters": 31 },
+        { "id": "job", "he": "אִיּוֹב", "en": "Job", "chapters": 42 },
+        { "id": "song-of-songs", "he": "שִׁיר הַשִּׁירִים", "en": "Song of Songs", "chapters": 8 },
+        { "id": "ruth", "he": "רוּת", "en": "Ruth", "chapters": 4 },
+        { "id": "lamentations", "he": "אֵיכָה", "en": "Lamentations", "chapters": 5 },
+        { "id": "ecclesiastes", "he": "קֹהֶלֶת", "en": "Ecclesiastes", "chapters": 12 },
+        { "id": "esther", "he": "אֶסְתֵּר", "en": "Esther", "chapters": 10 },
+        { "id": "daniel", "he": "דָּנִיאֵל", "en": "Daniel", "chapters": 12 },
+        { "id": "ezra", "he": "עֶזְרָא", "en": "Ezra", "chapters": 10 },
+        { "id": "nehemiah", "he": "נְחֶמְיָה", "en": "Nehemiah", "chapters": 13 },
+        { "id": "chronicles-1", "he": "דִּבְרֵי הַיָּמִים א׳", "en": "1 Chronicles", "chapters": 29 },
+        { "id": "chronicles-2", "he": "דִּבְרֵי הַיָּמִים ב׳", "en": "2 Chronicles", "chapters": 36 }
       ]
     }
   ]

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { copy } from "@/copy";
 import { Card } from "./UI/Card";
 import { useCalendar } from "@stores/useCalendar";
-import { formatFriendlyGregorian, getHebrewDateParts } from "@lib/calendar";
+import { formatFriendlyGregorian, getHebrewDateParts, type ParshaSummary } from "@lib/calendar";
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
 
@@ -49,8 +49,8 @@ export const Today: React.FC = () => {
         </Card>
       )}
       <section className="grid gap-4 md:grid-cols-2">
-        <Card title="This Week’s Parashah" className="space-y-2" aria-live="polite">
-          <p className="text-2xl font-semibold">{parashah}</p>
+        <Card title="This Week’s Parashah" className="space-y-3" aria-live="polite">
+          <ParshaHighlight parsha={parashah} />
           {upcomingHoliday ? (
             <p className="text-sm text-slate-600 dark:text-slate-300">
               Next holiday: <strong>{upcomingHoliday.name}</strong> in {upcomingHoliday.daysAway} day(s)
@@ -135,6 +135,44 @@ export const Today: React.FC = () => {
         <div className="mt-2">Local time zone: {tz}</div>
       </footer>
     </div>
+  );
+};
+
+interface ParshaHighlightProps {
+  parsha: ParshaSummary | null;
+}
+
+const ParshaHighlight: React.FC<ParshaHighlightProps> = ({ parsha }) => {
+  if (!parsha) {
+    return <p className="text-sm text-slate-500 dark:text-slate-300">Checking this week’s reading…</p>;
+  }
+
+  const destination = parsha.slug ? `#/texts/tanakh/torah/parsha/${parsha.slug}` : null;
+  const content = (
+    <div className="space-y-1">
+      <p className="text-lg font-semibold text-slate-900 dark:text-white">
+        Parsha: <span className="text-pomegranate">{parsha.shortName}</span>
+      </p>
+      {parsha.reading ? (
+        <p className="text-sm text-slate-600 dark:text-slate-300">{parsha.reading}</p>
+      ) : null}
+    </div>
+  );
+
+  if (!destination) {
+    return (
+      <div className="rounded-lg border border-transparent bg-pomegranate/5 px-4 py-3">{content}</div>
+    );
+  }
+
+  return (
+    <a
+      href={destination}
+      className="block rounded-lg border border-transparent bg-pomegranate/5 px-4 py-3 transition hover:border-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/40"
+    >
+      <span className="sr-only">Open the full parsha reading</span>
+      {content}
+    </a>
   );
 };
 

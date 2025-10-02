@@ -19,9 +19,10 @@ describe("hebrewCalendar", () => {
     expect(isErevShabbat(friday)).toBe(true);
   });
 
-  it("returns a parashah name for any date", () => {
+  it("returns a parashah summary for any date", () => {
     const today = new Date("2024-03-25T00:00:00Z");
     const parashah = getParshaForUpcomingShabbat(today);
     expect(parashah).toBeTruthy();
+    expect(parashah?.label).toMatch(/Parashat/i);
   });
 });

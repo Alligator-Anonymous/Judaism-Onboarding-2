@@ -5,7 +5,8 @@ import {
   getHebrewDateParts,
   getParshaForUpcomingShabbat,
   getUpcomingHoliday,
-  isErevShabbat
+  isErevShabbat,
+  type ParshaSummary
 } from "@lib/calendar";
 import { useSettings } from "./useSettings";
 import type { Holiday } from "@/types";
@@ -13,7 +14,7 @@ import type { Holiday } from "@/types";
 interface CalendarState {
   date: Date;
   hebrewDate: string;
-  parashah: string;
+  parashah: ParshaSummary | null;
   zmanim: {
     sunrise: string;
     sunset: string;
@@ -38,7 +39,7 @@ function formatZmanim(date: Date, timezone: string) {
 export const useCalendar = create<CalendarState>((set) => ({
   date: new Date(),
   hebrewDate: "",
-  parashah: "",
+  parashah: null,
   zmanim: {
     sunrise: "",
     sunset: "",
@@ -51,14 +52,15 @@ export const useCalendar = create<CalendarState>((set) => ({
     const now = new Date();
     const settings = useSettings.getState();
     const hebrew = getHebrewDateParts(now);
-    const parashah =
-      getParshaForUpcomingShabbat(now, { cycle: settings.parshaCycle }) ?? "";
+    const parashah = getParshaForUpcomingShabbat(now, {
+      cycle: settings.parshaCycle
+    });
     const zmanim = formatZmanim(now, settings.location.timezone);
     const upcoming = getUpcomingHoliday(now, holidays.map((h) => ({ ...h, dates: h.dates })));
     set({
       date: now,
       hebrewDate: formatHebrewDate(hebrew),
-      parashah,
+      parashah: parashah ?? null,
       zmanim,
       upcomingHoliday: upcoming ? { name: upcoming.name, daysAway: upcoming.daysAway } : null,
       isShabbatEve: isErevShabbat(now)
