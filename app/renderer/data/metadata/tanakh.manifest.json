@@ -3,7 +3,7 @@
     {
       "slug": "genesis",
       "title": "Genesis",
-      "heTitle": "בראשית",
+      "heTitle": "בְּרֵאשִׁית",
       "section": "Torah",
       "chapters": 50,
       "available": {
@@ -21,7 +21,8 @@
         "he": true,
         "en": true,
         "onqelos": true
-      }
+      },
+      "heTitle": "שְׁמוֹת"
     },
     {
       "slug": "leviticus",
@@ -32,7 +33,8 @@
         "he": true,
         "en": true,
         "onqelos": true
-      }
+      },
+      "heTitle": "וַיִּקְרָא"
     },
     {
       "slug": "numbers",
@@ -43,7 +45,8 @@
         "he": true,
         "en": true,
         "onqelos": true
-      }
+      },
+      "heTitle": "בְּמִדְבָּר"
     },
     {
       "slug": "deuteronomy",
@@ -54,7 +57,8 @@
         "he": true,
         "en": true,
         "onqelos": true
-      }
+      },
+      "heTitle": "דְּבָרִים"
     },
     {
       "slug": "joshua",
@@ -65,7 +69,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "יְהוֹשֻׁעַ"
     },
     {
       "slug": "i-samuel",
@@ -76,7 +81,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "שְׁמוּאֵל א׳"
     },
     {
       "slug": "ii-samuel",
@@ -87,7 +93,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "שְׁמוּאֵל ב׳"
     },
     {
       "slug": "i-kings",
@@ -98,7 +105,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "מְלָכִים א׳"
     },
     {
       "slug": "ii-kings",
@@ -109,7 +117,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "מְלָכִים ב׳"
     },
     {
       "slug": "isaiah",
@@ -120,7 +129,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "יְשַׁעְיָהוּ"
     },
     {
       "slug": "jeremiah",
@@ -131,7 +141,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "יִרְמְיָהוּ"
     },
     {
       "slug": "ezekiel",
@@ -142,7 +153,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "יְחֶזְקֵאל"
     },
     {
       "slug": "hosea",
@@ -153,7 +165,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "הוֹשֵׁעַ"
     },
     {
       "slug": "joel",
@@ -164,7 +177,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "יוֹאֵל"
     },
     {
       "slug": "amos",
@@ -175,7 +189,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "עָמוֹס"
     },
     {
       "slug": "obadiah",
@@ -186,7 +201,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "עֹבַדְיָה"
     },
     {
       "slug": "jonah",
@@ -197,7 +213,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "יוֹנָה"
     },
     {
       "slug": "micah",
@@ -208,7 +225,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "מִיכָה"
     },
     {
       "slug": "nahum",
@@ -219,7 +237,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "נַחוּם"
     },
     {
       "slug": "habakkuk",
@@ -230,7 +249,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "חֲבַקּוּק"
     },
     {
       "slug": "zephaniah",
@@ -241,7 +261,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "צְפַנְיָה"
     },
     {
       "slug": "haggai",
@@ -252,7 +273,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "חַגַּי"
     },
     {
       "slug": "zechariah",
@@ -263,7 +285,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "זְכַרְיָה"
     },
     {
       "slug": "malachi",
@@ -274,7 +297,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "מַלְאָכִי"
     },
     {
       "slug": "psalms",
@@ -285,7 +309,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "תְּהִלִּים"
     },
     {
       "slug": "obadiah",
@@ -296,7 +321,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "עֹבַדְיָה"
     },
     {
       "slug": "job",
@@ -307,7 +333,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "אִיּוֹב"
     },
     {
       "slug": "song-of-songs",
@@ -318,7 +345,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "שִׁיר הַשִּׁירִים"
     },
     {
       "slug": "ruth",
@@ -329,7 +357,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "רוּת"
     },
     {
       "slug": "lamentations",
@@ -340,7 +369,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "אֵיכָה"
     },
     {
       "slug": "ecclesiastes",
@@ -351,7 +381,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "קֹהֶלֶת"
     },
     {
       "slug": "esther",
@@ -362,7 +393,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "אֶסְתֵּר"
     },
     {
       "slug": "daniel",
@@ -373,7 +405,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "דָּנִיאֵל"
     },
     {
       "slug": "ezra",
@@ -384,7 +417,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "עֶזְרָא"
     },
     {
       "slug": "nehemiah",
@@ -395,7 +429,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "נְחֶמְיָה"
     },
     {
       "slug": "i-chronicles",
@@ -406,7 +441,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "דִּבְרֵי הַיָּמִים א׳"
     },
     {
       "slug": "ii-chronicles",
@@ -417,7 +453,8 @@
         "he": true,
         "en": true,
         "onqelos": false
-      }
+      },
+      "heTitle": "דִּבְרֵי הַיָּמִים ב׳"
     }
   ]
 }

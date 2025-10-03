@@ -246,10 +246,11 @@ const ParshaHighlight: React.FC<ParshaHighlightProps> = ({ parsha }) => {
   }
 
   const destination = parsha.slug ? `#/texts/tanakh/torah/parsha/${parsha.slug}` : null;
+  const displayName = parsha.shortName.replace(/^Parashat\s+/i, "").trim();
   const content = (
     <div className="space-y-1">
       <p className="text-lg font-semibold text-slate-900 dark:text-white">
-        Parsha: <span className="text-pomegranate">{parsha.shortName}</span>
+        Parsha: <span className="text-pomegranate">{displayName}</span>
       </p>
       {parsha.reading ? (
         <p className="text-sm text-slate-600 dark:text-slate-300">{parsha.reading}</p>

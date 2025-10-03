@@ -20,6 +20,7 @@ import { BookIndex } from "@components/Texts/BookIndex";
 import { ChapterView } from "@components/Texts/ChapterView";
 import { ParshaIndex } from "@components/Texts/ParshaIndex";
 import { ParshaView } from "@components/Texts/ParshaView";
+import { JournalView } from "@components/Journal/JournalView";
 
 interface PageSectionProps {
   title: string;
@@ -40,7 +41,9 @@ const practiceNavItems = [
 const primaryNavItems = [
   { path: "/", label: copy.tabs.today },
   { path: "/texts", label: copy.tabs.texts },
+  { path: "/siddur", label: copy.tabs.siddur },
   { path: "/practice", label: copy.tabs.practice },
+  { path: "/journal", label: copy.tabs.journal },
   { path: "/settings", label: "Settings" }
 ] as const;
 
@@ -118,14 +121,22 @@ export const App: React.FC = () => {
   const currentPath = path || "/";
 
   const isTextsPath = currentPath === "/texts" || currentPath.startsWith("/texts/");
+  const isSiddurPath = currentPath === "/siddur" || currentPath.startsWith("/siddur/");
 
   useEffect(() => {
-    const isKnownPrimary = primaryNavItems.some((item) => item.path === currentPath);
+    const isKnownPrimary =
+      primaryNavItems.some((item) => item.path === currentPath) || isSiddurPath;
     const isKnownPractice = practicePathSet.has(currentPath);
     if (!(isKnownPrimary || isKnownPractice || isTextsPath)) {
       navigate("/");
     }
-  }, [currentPath, navigate, isTextsPath]);
+  }, [currentPath, navigate, isTextsPath, isSiddurPath]);
+
+  useEffect(() => {
+    if (currentPath.startsWith("/texts/siddur")) {
+      navigate("/siddur");
+    }
+  }, [currentPath, navigate]);
   const isPracticeSection = practiceNavItems.some((item) => item.path === currentPath);
 
   const segments = currentPath.split("/").filter(Boolean);
@@ -168,8 +179,13 @@ export const App: React.FC = () => {
     } else {
       content = <TextsView />;
     }
+  } else if (segments[0] === "siddur") {
+    content = <SiddurView />;
   } else {
     switch (currentPath) {
+      case "/siddur":
+        content = <SiddurView />;
+        break;
       case "/practice":
         content = <PracticeView practiceNavItems={practiceNavItems} />;
         break;
@@ -214,6 +230,9 @@ export const App: React.FC = () => {
           </PageSection>
         );
         break;
+      case "/journal":
+        content = <JournalView />;
+        break;
       case "/settings":
         content = <SettingsView />;
         break;
@@ -234,7 +253,9 @@ export const App: React.FC = () => {
     const active =
       currentPath === item.path ||
       (item.path === "/practice" && practicePathSet.has(currentPath)) ||
-      (item.path === "/texts" && isTextsPath);
+      (item.path === "/texts" && isTextsPath) ||
+      (item.path === "/siddur" && isSiddurPath) ||
+      (item.path === "/journal" && currentPath.startsWith("/journal"));
     return (
       <a key={item.path} href={`#${item.path}`} className={getNavLinkClass(active)}>
         {item.label}

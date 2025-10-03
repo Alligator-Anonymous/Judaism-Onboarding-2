@@ -36,15 +36,15 @@ export const TextsView: React.FC = () => {
           )}
         </a>
         <a
-          href="#/texts/siddur"
+          href="#/siddur"
           className="group block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-pomegranate hover:shadow-lg focus:outline-none focus-visible:ring focus-visible:ring-pomegranate dark:border-slate-700 dark:bg-slate-900"
         >
           <div className="flex items-baseline justify-between">
-            <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Daily Siddur</h3>
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Siddur</h3>
             <span className="text-sm uppercase tracking-wide text-slate-400">Live</span>
           </div>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-            Access the beginner-friendly siddur experience with nusach, transliteration, and accessibility controls.
+            Visit the dedicated Siddur tab to browse categories and placeholder prayers ready for future text.
           </p>
         </a>
       </div>
