@@ -1,18 +1,27 @@
 // Codex change: Ensured settings expose accessibility and kabbalah preferences for new views.
 import { create } from "zustand";
+import type { ParshaCycle } from "@lib/calendar";
+import type { RoundingMode, TimeFormat, TwilightPreference } from "@lib/zmanim";
 
 export type Nusach = "ashkenaz" | "sefard" | "edot-mizrach";
 export type TransliterationMode = "ashkenazi" | "sephardi" | "none";
 
-export interface LocationSettings {
-  latitude: number;
-  longitude: number;
-  timezone: string;
+export interface ZmanimLocation {
+  lat: number | null;
+  lon: number | null;
 }
 
-export interface ZmanimOffsets {
-  dawnOffsetMinutes: number;
-  nightfallOffsetMinutes: number;
+export interface ZmanimSettings {
+  locationMode: "manual" | "device";
+  manualLocation: ZmanimLocation;
+  deviceLocation: ZmanimLocation;
+  timeZone: string | null;
+  dayLengthModel: "gra" | "magenAvraham";
+  dawn: TwilightPreference;
+  nightfall: TwilightPreference;
+  candleLightingOffsetMin: number;
+  rounding: RoundingMode;
+  timeFormat: TimeFormat;
 }
 
 export interface SettingsState {
@@ -22,23 +31,41 @@ export interface SettingsState {
   nusach: Nusach;
   transliterationMode: TransliterationMode;
   kabbalahSystem: "none" | "gra" | "ari" | "ramak" | "kircher";
-  location: LocationSettings;
-  zmanimOffsets: ZmanimOffsets;
-  minhagProfile?: string; // reserved for future customisations
+  parshaCycle: ParshaCycle;
+  zmanim: ZmanimSettings;
+  minhagProfile?: string;
   setDarkMode: (value: boolean) => void;
   setLargeText: (value: boolean) => void;
   setDyslexiaFriendlyHebrew: (value: boolean) => void;
   setNusach: (nusach: Nusach) => void;
   setTransliterationMode: (mode: TransliterationMode) => void;
   setKabbalahSystem: (system: "none" | "gra" | "ari" | "ramak" | "kircher") => void;
-  setLocation: (location: LocationSettings) => void;
-  setZmanimOffsets: (offsets: ZmanimOffsets) => void;
+  setParshaCycle: (cycle: ParshaCycle) => void;
+  setLocationMode: (mode: "manual" | "device") => void;
+  setManualLocation: (location: ZmanimLocation) => void;
+  useDeviceLocation: () => void;
+  setTimeZone: (timeZone: string | null) => void;
+  setDayLengthModel: (model: "gra" | "magenAvraham") => void;
+  setDawnPreference: (preference: TwilightPreference) => void;
+  setNightfallPreference: (preference: TwilightPreference) => void;
+  setCandleLightingOffset: (minutes: number) => void;
+  setZmanimRounding: (rounding: RoundingMode) => void;
+  setTimeFormat: (format: TimeFormat) => void;
 }
 
-const defaultLocation: LocationSettings = {
-  latitude: 40.7128,
-  longitude: -74.006,
-  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"
+const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+
+const defaultZmanim: ZmanimSettings = {
+  locationMode: "manual",
+  manualLocation: { lat: 40.7128, lon: -74.006 },
+  deviceLocation: { lat: null, lon: null },
+  timeZone: defaultTimeZone,
+  dayLengthModel: "gra",
+  dawn: { type: "fixedMinutes", value: 72 },
+  nightfall: { type: "fixedMinutes", value: 72 },
+  candleLightingOffsetMin: 18,
+  rounding: "nearestMinute",
+  timeFormat: "12h"
 };
 
 export const useSettings = create<SettingsState>((set) => ({
@@ -48,17 +75,97 @@ export const useSettings = create<SettingsState>((set) => ({
   nusach: "ashkenaz",
   transliterationMode: "ashkenazi",
   kabbalahSystem: "none",
-  location: defaultLocation,
-  zmanimOffsets: {
-    dawnOffsetMinutes: -72,
-    nightfallOffsetMinutes: 40
-  },
+  parshaCycle: "diaspora",
+  zmanim: defaultZmanim,
   setDarkMode: (value) => set({ darkMode: value }),
   setLargeText: (value) => set({ largeText: value }),
   setDyslexiaFriendlyHebrew: (value) => set({ dyslexiaFriendlyHebrew: value }),
   setNusach: (nusach) => set({ nusach }),
   setTransliterationMode: (mode) => set({ transliterationMode: mode }),
   setKabbalahSystem: (system) => set({ kabbalahSystem: system }),
-  setLocation: (location) => set({ location }),
-  setZmanimOffsets: (offsets) => set({ zmanimOffsets: offsets })
+  setParshaCycle: (cycle) => set({ parshaCycle: cycle }),
+  setLocationMode: (mode) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        locationMode: mode
+      }
+    })),
+  setManualLocation: (location) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        manualLocation: location
+      }
+    })),
+  useDeviceLocation: () => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        set((state) => ({
+          zmanim: {
+            ...state.zmanim,
+            locationMode: "device",
+            deviceLocation: { lat: latitude, lon: longitude }
+          }
+        }));
+      },
+      () => {
+        // Ignore errors silently; user can keep manual mode.
+      },
+      { enableHighAccuracy: true, maximumAge: 300_000 }
+    );
+  },
+  setTimeZone: (timeZone) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        timeZone
+      }
+    })),
+  setDayLengthModel: (model) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        dayLengthModel: model
+      }
+    })),
+  setDawnPreference: (preference) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        dawn: preference
+      }
+    })),
+  setNightfallPreference: (preference) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        nightfall: preference
+      }
+    })),
+  setCandleLightingOffset: (minutes) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        candleLightingOffsetMin: minutes
+      }
+    })),
+  setZmanimRounding: (rounding) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        rounding
+      }
+    })),
+  setTimeFormat: (format) =>
+    set((state) => ({
+      zmanim: {
+        ...state.zmanim,
+        timeFormat: format
+      }
+    }))
 }));

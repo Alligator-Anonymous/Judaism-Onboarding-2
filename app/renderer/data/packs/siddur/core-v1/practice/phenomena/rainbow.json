@@ -1,0 +1,67 @@
+{
+  "id": "practice-phenomena-rainbow",
+  "title": "Blessing on a Rainbow",
+  "tags": [
+    "practice",
+    "phenomena"
+  ],
+  "variants": [
+    {
+      "id": "ashkenaz",
+      "label": "Nusach Ashkenaz",
+      "languages": [
+        "he",
+        "en"
+      ],
+      "body": [
+        {
+          "heading": "Placeholder",
+          "text": "TODO: insert text"
+        }
+      ]
+    },
+    {
+      "id": "sefardi",
+      "label": "Nusach Sefardi",
+      "languages": [
+        "he",
+        "en"
+      ],
+      "body": [
+        {
+          "heading": "Placeholder",
+          "text": "TODO: insert text"
+        }
+      ]
+    },
+    {
+      "id": "edot_mizrah",
+      "label": "Edot HaMizrah",
+      "languages": [
+        "he",
+        "en"
+      ],
+      "body": [
+        {
+          "heading": "Placeholder",
+          "text": "TODO: insert text"
+        }
+      ]
+    },
+    {
+      "id": "nusach_ari",
+      "label": "Nusach Ari",
+      "languages": [
+        "he",
+        "en"
+      ],
+      "body": [
+        {
+          "heading": "Placeholder",
+          "text": "TODO: insert text"
+        }
+      ]
+    }
+  ],
+  "heTitle": "ברכה על הקשת"
+}

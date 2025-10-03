@@ -5,7 +5,9 @@ export const copy = {
   tabs: {
     today: "Today",
     texts: "Texts",
-    practice: "Practice"
+    siddur: "Siddur",
+    practice: "Practice",
+    journal: "Journal"
   },
   today: {
     welcome: "Shalom! Here is today’s snapshot.",
