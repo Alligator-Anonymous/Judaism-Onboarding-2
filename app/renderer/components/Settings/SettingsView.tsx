@@ -2,6 +2,7 @@
 import React from "react";
 import { Select } from "@components/UI/Select";
 import { NusachSelector } from "@components/Siddur/NusachSelector";
+import { SiddurTraditionSelector } from "@components/Siddur/SiddurTraditionSelector";
 import { KabbalahSystemSelector } from "./KabbalahSystemSelector";
 import { useSettings } from "@stores/useSettings";
 import type { TwilightPreference } from "@lib/zmanim";
@@ -53,9 +54,10 @@ export const SettingsView: React.FC = () => {
           <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Prayer customs</h3>
             <p className="text-sm text-slate-600 dark:text-slate-300">
-              Choose the nusach and transliteration style that matches your teacher or community.
+              Choose the tradition, nusach, and transliteration style that matches your teacher or community.
             </p>
             <div className="space-y-4">
+              <SiddurTraditionSelector />
               <NusachSelector />
               <label className="block space-y-2 text-sm">
                 <span className="font-medium">Transliteration</span>
