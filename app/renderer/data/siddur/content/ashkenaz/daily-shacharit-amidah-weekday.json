@@ -1,0 +1,22 @@
+{
+  "id": "daily-shacharit-amidah-weekday",
+  "title_en": "Weekday Amidah",
+  "title_he": "עמידת ימות החול",
+  "segments": [
+    {
+      "label_en": "Avot",
+      "he": "בָּרוּךְ אַתָּה ה' אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ...",
+      "en": "Blessed are You, Eternal One, God of our ancestors..."
+    },
+    {
+      "label_en": "Gevurot",
+      "he": "אַתָּה גִּבּוֹר לְעוֹלָם ה'...",
+      "en": "You are eternally mighty, Adonai..."
+    },
+    {
+      "label_en": "Kedushat Hashem",
+      "he": "אַתָּה קָדוֹשׁ וְשִׁמְךָ קָדוֹשׁ...",
+      "en": "You are holy and Your Name is holy, and holy ones praise You every day."
+    }
+  ]
+}

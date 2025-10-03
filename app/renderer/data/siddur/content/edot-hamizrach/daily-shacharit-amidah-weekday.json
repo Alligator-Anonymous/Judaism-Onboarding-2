@@ -1,0 +1,17 @@
+{
+  "id": "daily-shacharit-amidah-weekday",
+  "title_en": "Weekday Amidah (Edot HaMizrach)",
+  "title_he": "עמידת ימות החול (עדות המזרח)",
+  "segments": [
+    {
+      "label_en": "Opening",
+      "he": "אֲדֹנָי שְׂפָתַי תִּפְתָּח...",
+      "en": "My Master, open my lips and my mouth will declare Your praise."
+    },
+    {
+      "label_en": "Kedushat Hashem",
+      "he": "נְקַדֵּשׁ אֶת שִׁמְךָ בָּעוֹלָם...",
+      "en": "We sanctify Your Name in this world as they sanctify it in the heavens."
+    }
+  ]
+}

@@ -1,0 +1,530 @@
+{
+  "version": "2024.06.01",
+  "categories": [
+    {
+      "id": "daily",
+      "title_en": "Daily Prayer",
+      "title_he": "תפילות יומיומיות",
+      "description": "Shacharit, Mincha, Ma'ariv, Musaf, and daily additions.",
+      "sections": [
+        {
+          "id": "daily-shacharit",
+          "title_en": "Shacharit",
+          "title_he": "שחרית",
+          "sections": [
+            {
+              "id": "daily-shacharit-wake-up",
+              "title_en": "Awakening & Blessings",
+              "prayers": [
+                { "id": "daily-shacharit-modeh-ani", "title_en": "Modeh Ani", "title_he": "מודה אני" },
+                { "id": "daily-shacharit-netilat-yadayim", "title_en": "Netilat Yadayim", "title_he": "נטילת ידיים" },
+                { "id": "daily-shacharit-morning-blessings", "title_en": "Birchot HaShachar", "title_he": "ברכות השחר" },
+                { "id": "daily-shacharit-tallit", "title_en": "Blessing on the Tallit", "title_he": "ברכת הטלית" },
+                { "id": "daily-shacharit-tefillin", "title_en": "Blessings on Tefillin", "title_he": "ברכות התפילין" }
+              ]
+            },
+            {
+              "id": "daily-shacharit-pesukei",
+              "title_en": "Pesukei D'Zimra",
+              "prayers": [
+                { "id": "daily-shacharit-baruch-sheamar", "title_en": "Baruch She'amar", "title_he": "ברוך שאמר" },
+                { "id": "daily-shacharit-psalms", "title_en": "Selected Psalms", "title_he": "פסוקי דזמרה" },
+                { "id": "daily-shacharit-az-yashir", "title_en": "Az Yashir", "title_he": "אז ישיר" },
+                { "id": "daily-shacharit-yishtabach", "title_en": "Yishtabach", "title_he": "ישתבח" }
+              ]
+            },
+            {
+              "id": "daily-shacharit-shema",
+              "title_en": "Shema & Blessings",
+              "prayers": [
+                { "id": "daily-shacharit-barchu", "title_en": "Barchu", "title_he": "ברכו" },
+                { "id": "daily-shacharit-yotzer-or", "title_en": "Yotzer Or", "title_he": "יוצר אור" },
+                { "id": "daily-shacharit-ahavah-rabba", "title_en": "Ahavah Rabbah", "title_he": "אהבה רבה" },
+                { "id": "daily-shacharit-shema", "title_en": "Shema", "title_he": "שמע" },
+                { "id": "daily-shacharit-vayomer", "title_en": "Vayomer", "title_he": "ויאמר" },
+                { "id": "daily-shacharit-emet-veyatziv", "title_en": "Emet V'Yatziv", "title_he": "אמת ויציב" }
+              ]
+            },
+            {
+              "id": "daily-shacharit-amidah",
+              "title_en": "Amidah",
+              "prayers": [
+                { "id": "daily-shacharit-amidah-intro", "title_en": "Amidah Introduction", "title_he": "עמידה - פתיחה" },
+                { "id": "daily-shacharit-amidah-weekday", "title_en": "Weekday Amidah", "title_he": "עמידה לימות החול" },
+                { "id": "daily-shacharit-amidah-chorus", "title_en": "Kedushah", "title_he": "קדושה" },
+                { "id": "daily-shacharit-amidah-conclusion", "title_en": "Amidah Conclusion", "title_he": "עמידה - סיום" }
+              ]
+            },
+            {
+              "id": "daily-shacharit-tachanun",
+              "title_en": "Post-Amidah",
+              "prayers": [
+                { "id": "daily-shacharit-tachanun", "title_en": "Tachanun", "title_he": "תחנון" },
+                { "id": "daily-shacharit-ashrei", "title_en": "Ashrei", "title_he": "אשרי" },
+                { "id": "daily-shacharit-uva-letzion", "title_en": "U'va Letzion", "title_he": "ובא לציון" },
+                { "id": "daily-shacharit-aleinu", "title_en": "Aleinu", "title_he": "עלינו" }
+              ]
+            },
+            {
+              "id": "daily-shacharit-omer",
+              "title_en": "Sefirat HaOmer",
+              "description": "Count the Omer with meditations and daily intentions.",
+              "prayers": [
+                { "id": "daily-omer-intro", "title_en": "Introduction", "title_he": "פתיחה" },
+                { "id": "daily-omer-count", "title_en": "Today's Count", "title_he": "ספירה יומית" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "daily-mincha",
+          "title_en": "Mincha",
+          "title_he": "מנחה",
+          "prayers": [
+            { "id": "daily-mincha-ashrei", "title_en": "Ashrei", "title_he": "אשרי" },
+            { "id": "daily-mincha-amidah", "title_en": "Mincha Amidah", "title_he": "עמידת מנחה" },
+            { "id": "daily-mincha-tachanun", "title_en": "Tachanun", "title_he": "תחנון" },
+            { "id": "daily-mincha-aleinu", "title_en": "Aleinu", "title_he": "עלינו" }
+          ]
+        },
+        {
+          "id": "daily-maariv",
+          "title_en": "Ma'ariv",
+          "title_he": "מעריב",
+          "sections": [
+            {
+              "id": "daily-maariv-shema",
+              "title_en": "Shema & Blessings",
+              "prayers": [
+                { "id": "daily-maariv-barchu", "title_en": "Barchu", "title_he": "ברכו" },
+                { "id": "daily-maariv-maariv-aravim", "title_en": "Ma'ariv Aravim", "title_he": "מעריב ערבים" },
+                { "id": "daily-maariv-ahavat-olam", "title_en": "Ahavat Olam", "title_he": "אהבת עולם" },
+                { "id": "daily-maariv-shema", "title_en": "Shema", "title_he": "שמע" },
+                { "id": "daily-maariv-emet-veemuna", "title_en": "Emet V'Emunah", "title_he": "אמת ואמונה" }
+              ]
+            },
+            {
+              "id": "daily-maariv-amidah",
+              "title_en": "Amidah",
+              "prayers": [
+                { "id": "daily-maariv-amidah", "title_en": "Ma'ariv Amidah", "title_he": "עמידת ערבית" },
+                { "id": "daily-maariv-aleinu", "title_en": "Aleinu", "title_he": "עלינו" },
+                { "id": "daily-maariv-kaddish", "title_en": "Kaddish Variants", "title_he": "קדיש" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "daily-musaf",
+          "title_en": "Musaf",
+          "title_he": "מוסף",
+          "description": "Additional service for Shabbat, Rosh Chodesh, and festivals.",
+          "prayers": [
+            { "id": "daily-musaf-opening", "title_en": "Musaf Opening", "title_he": "פתיחת מוסף" },
+            { "id": "daily-musaf-amidah", "title_en": "Musaf Amidah", "title_he": "עמידת מוסף" },
+            { "id": "daily-musaf-kedushah", "title_en": "Musaf Kedushah", "title_he": "קדושת מוסף" }
+          ]
+        },
+        {
+          "id": "daily-insertions",
+          "title_en": "Shared Additions",
+          "prayers": [
+            { "id": "additions-yaaleh-veyavo", "title_en": "Ya'aleh V'Yavo", "title_he": "יעלה ויבוא" },
+            { "id": "additions-al-hanisim", "title_en": "Al HaNisim", "title_he": "על הניסים" },
+            { "id": "additions-tal", "title_en": "Tal", "title_he": "טל" },
+            { "id": "additions-geshem", "title_en": "Geshem", "title_he": "גשם" },
+            { "id": "additions-vten-tal-umatar", "title_en": "V'ten Tal U'Matar", "title_he": "ותן טל ומטר" },
+            { "id": "additions-tachanun-rules", "title_en": "Tachanun Rules", "title_he": "כללי תחנון" },
+            { "id": "additions-shir-shel-yom", "title_en": "Shir Shel Yom", "title_he": "שיר של יום" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shabbat",
+      "title_en": "Shabbat",
+      "title_he": "שבת",
+      "description": "Welcoming and honoring Shabbat.",
+      "sections": [
+        {
+          "id": "shabbat-kabbalat",
+          "title_en": "Kabbalat Shabbat",
+          "prayers": [
+            { "id": "shabbat-lecha-dodi", "title_en": "Lecha Dodi", "title_he": "לכה דודי" },
+            { "id": "shabbat-mizmor-shir", "title_en": "Mizmor Shir", "title_he": "מזמור שיר" },
+            { "id": "shabbat-kabbalat-psalms", "title_en": "Kabbalat Shabbat Psalms", "title_he": "תהילים לקבלת שבת" }
+          ]
+        },
+        {
+          "id": "shabbat-evening",
+          "title_en": "Shabbat Evening",
+          "prayers": [
+            { "id": "shabbat-arvit-amidah", "title_en": "Shabbat Evening Amidah", "title_he": "עמידת ערבית לשבת" },
+            { "id": "shabbat-kiddush-night", "title_en": "Friday Night Kiddush", "title_he": "קידוש ליל שבת" },
+            { "id": "shabbat-zmirot-night", "title_en": "Shabbat Table Zemirot", "title_he": "זמירות שבת" }
+          ]
+        },
+        {
+          "id": "shabbat-morning",
+          "title_en": "Shabbat Morning",
+          "prayers": [
+            { "id": "shabbat-shacharit-pesukei", "title_en": "Shabbat Pesukei D'Zimra", "title_he": "פסוקי דזמרה לשבת" },
+            { "id": "shabbat-shacharit-amidah", "title_en": "Shabbat Shacharit Amidah", "title_he": "עמידת שחרית לשבת" },
+            { "id": "shabbat-torah-service", "title_en": "Torah Service", "title_he": "הוצאת ספר תורה" }
+          ]
+        },
+        {
+          "id": "shabbat-musaf",
+          "title_en": "Musaf",
+          "prayers": [
+            { "id": "shabbat-musaf-amidah", "title_en": "Shabbat Musaf Amidah", "title_he": "עמידת מוסף לשבת" },
+            { "id": "shabbat-musaf-kedushah", "title_en": "Kedushat HaYom", "title_he": "קדושת היום" }
+          ]
+        },
+        {
+          "id": "shabbat-mincha",
+          "title_en": "Shabbat Mincha",
+          "prayers": [
+            { "id": "shabbat-mincha-amidah", "title_en": "Shabbat Mincha Amidah", "title_he": "עמידת מנחה לשבת" },
+            { "id": "shabbat-mincha-torah", "title_en": "Mincha Torah Reading", "title_he": "קריאת התורה במנחה" }
+          ]
+        },
+        {
+          "id": "shabbat-conclusion",
+          "title_en": "Conclusion",
+          "prayers": [
+            { "id": "shabbat-seudah-shlishit", "title_en": "Seudah Shlishit Zemirot", "title_he": "זמירות סעודה שלישית" },
+            { "id": "shabbat-havdalah", "title_en": "Havdalah", "title_he": "הבדלה" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rosh-chodesh",
+      "title_en": "Rosh Chodesh",
+      "title_he": "ראש חודש",
+      "sections": [
+        {
+          "id": "rosh-chodesh-prayers",
+          "title_en": "Rosh Chodesh Liturgy",
+          "prayers": [
+            { "id": "rosh-chodesh-halel", "title_en": "Hallel", "title_he": "הלל" },
+            { "id": "rosh-chodesh-yaaleh-veyavo", "title_en": "Ya'aleh V'Yavo", "title_he": "יעלה ויבוא" },
+            { "id": "rosh-chodesh-musaf", "title_en": "Musaf for Rosh Chodesh", "title_he": "מוסף לראש חודש" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "festivals",
+      "title_en": "Festivals & High Holidays",
+      "title_he": "חגים ומועדים",
+      "sections": [
+        {
+          "id": "festivals-rosh-hashanah",
+          "title_en": "Rosh Hashanah",
+          "prayers": [
+            { "id": "rosh-hashanah-shacharit", "title_en": "Festival Shacharit", "title_he": "שחרית של ראש השנה" },
+            { "id": "rosh-hashanah-musaf", "title_en": "Musaf with Malchuyot, Zichronot, Shofarot", "title_he": "מוסף לראש השנה" },
+            { "id": "rosh-hashanah-tekiah", "title_en": "Shofar Service", "title_he": "תקיעות שופר" }
+          ]
+        },
+        {
+          "id": "festivals-yom-kippur",
+          "title_en": "Yom Kippur",
+          "prayers": [
+            { "id": "yom-kippur-kol-nidrei", "title_en": "Kol Nidrei", "title_he": "כל נדרי" },
+            { "id": "yom-kippur-vidui", "title_en": "Vidui", "title_he": "וידוי" },
+            { "id": "yom-kippur-neilah", "title_en": "Ne'ilah", "title_he": "נעילה" }
+          ]
+        },
+        {
+          "id": "festivals-pesach",
+          "title_en": "Pesach",
+          "prayers": [
+            { "id": "pesach-halel", "title_en": "Festival Hallel", "title_he": "הלל של מועדים" },
+            { "id": "pesach-musaf", "title_en": "Musaf for Pesach", "title_he": "מוסף לפסח" },
+            { "id": "pesach-seder", "title_en": "Seder Highlights", "title_he": "הגדה - עיקרי הסדר" }
+          ]
+        },
+        {
+          "id": "festivals-shavuot",
+          "title_en": "Shavuot",
+          "prayers": [
+            { "id": "shavuot-akdamut", "title_en": "Akdamut", "title_he": "אקדמות" },
+            { "id": "shavuot-musaf", "title_en": "Musaf for Shavuot", "title_he": "מוסף לשבועות" }
+          ]
+        },
+        {
+          "id": "festivals-sukkot",
+          "title_en": "Sukkot & Shemini Atzeret",
+          "prayers": [
+            { "id": "sukkot-halel", "title_en": "Hallel for Sukkot", "title_he": "הלל לסוכות" },
+            { "id": "sukkot-hoshaanot", "title_en": "Hoshanot", "title_he": "הושענות" },
+            { "id": "shemini-atzeret-yizkor", "title_en": "Yizkor", "title_he": "יזכור" }
+          ]
+        },
+        {
+          "id": "festivals-chanukah",
+          "title_en": "Chanukah",
+          "prayers": [
+            { "id": "chanukah-hanukah-lights", "title_en": "Lighting the Menorah", "title_he": "הדלקת נרות חנוכה" },
+            { "id": "chanukah-al-hanisim", "title_en": "Al HaNisim", "title_he": "על הניסים" },
+            { "id": "chanukah-hallel", "title_en": "Chanukah Hallel", "title_he": "הלל לחנוכה" }
+          ]
+        },
+        {
+          "id": "festivals-purim",
+          "title_en": "Purim",
+          "prayers": [
+            { "id": "purim-megillah", "title_en": "Megillat Esther", "title_he": "מגילת אסתר" },
+            { "id": "purim-al-hanisim", "title_en": "Al HaNisim", "title_he": "על הניסים" },
+            { "id": "purim-shoshanat-yaakov", "title_en": "Shoshanat Ya'akov", "title_he": "שושנת יעקב" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fast-days",
+      "title_en": "Fast Days",
+      "title_he": "תעניות",
+      "sections": [
+        {
+          "id": "fast-days-gedaliah",
+          "title_en": "Tzom Gedaliah",
+          "prayers": [
+            { "id": "fast-gedaliah-selichot", "title_en": "Selichot", "title_he": "סליחות" },
+            { "id": "fast-gedaliah-torah", "title_en": "Torah Reading", "title_he": "קריאת התורה" }
+          ]
+        },
+        {
+          "id": "fast-days-tevet",
+          "title_en": "Asarah B'Tevet",
+          "prayers": [
+            { "id": "fast-tevet-selichot", "title_en": "Selichot", "title_he": "סליחות" },
+            { "id": "fast-tevet-mincha", "title_en": "Mincha Amidah", "title_he": "עמידת מנחה" }
+          ]
+        },
+        {
+          "id": "fast-days-tammuz",
+          "title_en": "Shivah Asar B'Tammuz",
+          "prayers": [
+            { "id": "fast-tammuz-selichot", "title_en": "Selichot", "title_he": "סליחות" },
+            { "id": "fast-tammuz-kinot", "title_en": "Kinot", "title_he": "קינות" }
+          ]
+        },
+        {
+          "id": "fast-days-tisha-bav",
+          "title_en": "Tisha B'Av",
+          "prayers": [
+            { "id": "tisha-bav-eicha", "title_en": "Megillat Eicha", "title_he": "מגילת איכה" },
+            { "id": "tisha-bav-kinot", "title_en": "Kinot", "title_he": "קינות" },
+            { "id": "tisha-bav-havdalah", "title_en": "Havdalah", "title_he": "הבדלה" }
+          ]
+        },
+        {
+          "id": "fast-days-esther",
+          "title_en": "Ta'anit Esther",
+          "prayers": [
+            { "id": "fast-esther-selichot", "title_en": "Selichot", "title_he": "סליחות" },
+            { "id": "fast-esther-megillah", "title_en": "Megillah Highlights", "title_he": "מגילה" }
+          ]
+        },
+        {
+          "id": "fast-days-yom-kippur",
+          "title_en": "Yom Kippur Katan",
+          "prayers": [
+            { "id": "fast-katan-seder", "title_en": "Yom Kippur Katan Order", "title_he": "סדר יום כיפור קטן" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "synagogue",
+      "title_en": "Synagogue Service Flow",
+      "title_he": "סדרי בית כנסת",
+      "sections": [
+        {
+          "id": "synagogue-torah-service",
+          "title_en": "Torah Service",
+          "prayers": [
+            { "id": "synagogue-torah-removal", "title_en": "Removing the Torah", "title_he": "הוצאת ספר תורה" },
+            { "id": "synagogue-aliyah-before", "title_en": "Blessing Before Aliyah", "title_he": "ברכה לפני עליה" },
+            { "id": "synagogue-aliyah-after", "title_en": "Blessing After Aliyah", "title_he": "ברכה אחרי עליה" },
+            { "id": "synagogue-hagbah", "title_en": "Hagbah & Gelilah", "title_he": "הגבהה וגלילה" }
+          ]
+        },
+        {
+          "id": "synagogue-kaddish",
+          "title_en": "Kaddish Variants",
+          "prayers": [
+            { "id": "synagogue-hatsi-kaddish", "title_en": "Half Kaddish", "title_he": "חצי קדיש" },
+            { "id": "synagogue-kaddish-shalem", "title_en": "Full Kaddish", "title_he": "קדיש שלם" },
+            { "id": "synagogue-mourners-kaddish", "title_en": "Mourner's Kaddish", "title_he": "קדיש יתום" }
+          ]
+        },
+        {
+          "id": "synagogue-haftara",
+          "title_en": "Haftara",
+          "prayers": [
+            { "id": "synagogue-haftara-blessings", "title_en": "Haftara Blessings", "title_he": "ברכות ההפטרה" },
+            { "id": "synagogue-mi-sheberach", "title_en": "Mi Shebeirach", "title_he": "מי שברך" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice-specific",
+      "title_en": "Practice-Specific",
+      "title_he": "מנהגים ייחודיים",
+      "sections": [
+        {
+          "id": "practice-daily",
+          "title_en": "Daily Routines",
+          "prayers": [
+            { "id": "practice-asher-yatzar", "title_en": "Asher Yatzar", "title_he": "אשר יצר" },
+            { "id": "practice-tzitzit", "title_en": "Blessing on Tzitzit", "title_he": "ברכת הציצית" },
+            { "id": "practice-hanachat-tefillin", "title_en": "Putting on Tefillin", "title_he": "הנחת תפילין" }
+          ]
+        },
+        {
+          "id": "practice-seasonal",
+          "title_en": "Seasonal",
+          "prayers": [
+            { "id": "practice-kiddush-levanah", "title_en": "Kiddush Levanah", "title_he": "קידוש לבנה" },
+            { "id": "practice-bedikat-chametz", "title_en": "Bedikat Chametz", "title_he": "בדיקת חמץ" },
+            { "id": "practice-sfeirat-haomer", "title_en": "Sefirat HaOmer Guide", "title_he": "הדרכת ספירה" }
+          ]
+        },
+        {
+          "id": "practice-phenomena",
+          "title_en": "Natural Phenomena",
+          "prayers": [
+            { "id": "practice-rainbow", "title_en": "Rainbow Blessing", "title_he": "ברכת הקשת" },
+            { "id": "practice-thunder", "title_en": "Thunder & Lightning", "title_he": "ברכות רעם וברק" },
+            { "id": "practice-ocean", "title_en": "Seeing the Ocean", "title_he": "ברכת הים" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meals",
+      "title_en": "Meals & Food Blessings",
+      "title_he": "ברכות המזון",
+      "sections": [
+        {
+          "id": "meals-before",
+          "title_en": "Before Eating",
+          "prayers": [
+            { "id": "meals-hamotzi", "title_en": "HaMotzi", "title_he": "המוציא" },
+            { "id": "meals-mezonot", "title_en": "Mezonot", "title_he": "מזונות" },
+            { "id": "meals-haetz", "title_en": "Borei Pri Ha'etz", "title_he": "בורא פרי העץ" },
+            { "id": "meals-haadama", "title_en": "Borei Pri Ha'adamah", "title_he": "בורא פרי האדמה" },
+            { "id": "meals-shehakol", "title_en": "Shehakol", "title_he": "שהכל" }
+          ]
+        },
+        {
+          "id": "meals-after",
+          "title_en": "After Eating",
+          "prayers": [
+            { "id": "meals-birkat-hamazon", "title_en": "Birkat HaMazon", "title_he": "ברכת המזון" },
+            { "id": "meals-al-hamichya", "title_en": "Al HaMichya", "title_he": "על המחיה" },
+            { "id": "meals-al-haetz", "title_en": "Al Ha'etz", "title_he": "על העץ" },
+            { "id": "meals-borei-nefashot", "title_en": "Borei Nefashot", "title_he": "בורא נפשות" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bedtime",
+      "title_en": "Bedtime & Personal",
+      "title_he": "שעת השינה",
+      "sections": [
+        {
+          "id": "bedtime-shema",
+          "title_en": "Bedtime Shema",
+          "prayers": [
+            { "id": "bedtime-shema-intro", "title_en": "Introduction", "title_he": "פתיחה" },
+            { "id": "bedtime-shema-paragraphs", "title_en": "Shema Paragraphs", "title_he": "פרשיות שמע" },
+            { "id": "bedtime-hamapil", "title_en": "Hamapil", "title_he": "המפיל" }
+          ]
+        },
+        {
+          "id": "bedtime-personal",
+          "title_en": "Personal Prayers",
+          "prayers": [
+            { "id": "bedtime-vidui", "title_en": "Personal Vidui", "title_he": "וידוי אישי" },
+            { "id": "bedtime-tefilat-haderech", "title_en": "Tefilat HaDerech", "title_he": "תפילת הדרך" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "life-cycle",
+      "title_en": "Life-Cycle & Special Occasions",
+      "title_he": "מעגל החיים",
+      "sections": [
+        {
+          "id": "life-cycle-birth",
+          "title_en": "Birth & Naming",
+          "prayers": [
+            { "id": "life-cycle-brit-milah", "title_en": "Brit Milah", "title_he": "ברית מילה" },
+            { "id": "life-cycle-pidyon-haben", "title_en": "Pidyon HaBen", "title_he": "פדיון הבן" },
+            { "id": "life-cycle-naming-daughter", "title_en": "Naming a Daughter", "title_he": "מתן שם לבת" }
+          ]
+        },
+        {
+          "id": "life-cycle-marriage",
+          "title_en": "Marriage",
+          "prayers": [
+            { "id": "life-cycle-erusin", "title_en": "Erusin Blessings", "title_he": "ברכות אירוסין" },
+            { "id": "life-cycle-sheva-berachot", "title_en": "Sheva Berachot", "title_he": "שבע ברכות" }
+          ]
+        },
+        {
+          "id": "life-cycle-healing",
+          "title_en": "Healing",
+          "prayers": [
+            { "id": "life-cycle-mi-sheberach", "title_en": "Mi Shebeirach for Healing", "title_he": "מי שברך לרפואה" },
+            { "id": "life-cycle-birkat-hagomel", "title_en": "Birkat HaGomel", "title_he": "ברכת הגומל" }
+          ]
+        },
+        {
+          "id": "life-cycle-mourning",
+          "title_en": "Mourning",
+          "prayers": [
+            { "id": "life-cycle-kaddish", "title_en": "Mourner's Kaddish", "title_he": "קדיש יתום" },
+            { "id": "life-cycle-kel-maleh", "title_en": "Kel Maleh Rachamim", "title_he": "אל מלא רחמים" },
+            { "id": "life-cycle-yizkor", "title_en": "Yizkor", "title_he": "יזכור" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seasonal-inserts",
+      "title_en": "Additions & Seasonal Inserts",
+      "title_he": "תוספות ועונות",
+      "sections": [
+        {
+          "id": "seasonal-major",
+          "title_en": "Major Inserts",
+          "prayers": [
+            { "id": "additions-yaaleh-veyavo", "title_en": "Ya'aleh V'Yavo", "title_he": "יעלה ויבוא" },
+            { "id": "additions-al-hanisim", "title_en": "Al HaNisim", "title_he": "על הניסים" },
+            { "id": "additions-tal", "title_en": "Morid HaTal", "title_he": "מוריד הטל" },
+            { "id": "additions-geshem", "title_en": "Mashiv HaRuach", "title_he": "משיב הרוח" }
+          ]
+        },
+        {
+          "id": "seasonal-guidance",
+          "title_en": "Guidance",
+          "prayers": [
+            { "id": "additions-vten-tal-umatar", "title_en": "V'ten Tal U'Matar", "title_he": "ותן טל ומטר" },
+            { "id": "additions-tachanun-rules", "title_en": "When to Omit Tachanun", "title_he": "מתי מדלגים על תחנון" },
+            { "id": "additions-shir-shel-yom", "title_en": "Shir Shel Yom", "title_he": "שיר של יום" }
+          ]
+        }
+      ]
+    }
+  ]
+}

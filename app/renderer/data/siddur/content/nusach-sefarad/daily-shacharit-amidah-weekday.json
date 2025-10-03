@@ -1,0 +1,16 @@
+{
+  "id": "daily-shacharit-amidah-weekday",
+  "title_en": "Weekday Amidah (Nusach Sefarad)",
+  "title_he": "עמידת ימות החול (נוסח ספרד)",
+  "segments": [
+    {
+      "label_en": "Avot",
+      "he": "ה' שְׂפָתַי תִּפְתָּח...",
+      "en": "Adonai, open my lips that my mouth may declare Your praise."
+    },
+    {
+      "he": "בָּרוּךְ אַתָּה ה' אֱלֹהֵינוּ...",
+      "en": "Blessed are You..."
+    }
+  ]
+}
