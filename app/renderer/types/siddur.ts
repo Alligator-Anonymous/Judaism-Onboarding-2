@@ -1,81 +1,121 @@
-export type SiddurTag =
-  | "daily"
-  | "shabbat"
-  | "rosh_chodesh"
-  | "yom_tov"
-  | "chol_hamoed"
+export type SiddurTradition = "ashkenaz" | "sefard" | "edot_hamizrach";
+
+export type SiddurImportance = "core" | "extended";
+
+export type SiddurMode = "basic" | "full";
+
+export type SiddurStatus = "placeholder";
+
+export type SiddurDiasporaContext = "diaspora" | "israel" | "both";
+
+export type SiddurWeekdayKey = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
+
+export type SiddurHolidayKey =
+  | "rosh_hashanah"
+  | "yom_kippur"
+  | "pesach"
+  | "shavuot"
+  | "sukkot"
+  | "shemini_atzeret"
+  | "simchat_torah"
   | "chanukah"
-  | "purim"
-  | "fast_day"
-  | "omer"
-  | "mourner"
-  | "life_cycle"
-  | "synagogue"
-  | "festival"
-  | "weekday"
-  | "special_insert"
-  | "practice"
-  | "meal"
-  | "bedtime"
-  | "seasonal"
-  | "personal"
-  | "education"
-  | "omer_day"
-  | string;
+  | "purim";
 
-export type SiddurLanguage = "he" | "en";
+export type SiddurFastDayKey =
+  | "tzom_gedaliah"
+  | "asara_btevet"
+  | "taanit_esther"
+  | "shivah_asar_btammuz"
+  | "tisha_bav"
+  | "taanit_bechorot";
 
-export interface SiddurEntryBodySection {
-  heading: string;
-  text: string;
+export interface SiddurApplicability {
+  shabbat: boolean | null;
+  roshChodesh: boolean | null;
+  omer: boolean | null;
+  motzaeiShabbat: boolean | null;
+  holidays: SiddurHolidayKey[];
+  fastDays: SiddurFastDayKey[];
+  weekdays: SiddurWeekdayKey[];
+  diasporaOrIsrael: SiddurDiasporaContext;
+  requiresMinyan: boolean;
+  mournerOnly: boolean;
+  kaddishType?: string | null;
+  amidahSection?: string | null;
+  pesukeiSection?: string | null;
+  torahReadingContext?: string | null;
 }
 
-export interface SiddurEntryVariant {
-  id: string;
-  label: string;
-  languages: SiddurLanguage[];
-  body: SiddurEntryBodySection[];
+export interface SiddurLanguageReserve {
+  [key: string]: unknown;
 }
 
-export interface SiddurEntry {
+export interface SiddurBaseEntry {
   id: string;
   title: string;
-  heTitle?: string;
-  tags: SiddurTag[];
-  variants: SiddurEntryVariant[];
+  description?: string;
+  outline?: string[];
+  order: number;
+  importance: SiddurImportance;
+  nusach: SiddurTradition[];
+  applicability: SiddurApplicability;
   notes?: string;
+  status: SiddurStatus;
+  he: SiddurLanguageReserve;
+  en: SiddurLanguageReserve;
 }
 
-export interface SiddurManifestEntryRef {
-  type: "entry";
-  id: string;
-  title: string;
-  description?: string;
-  entryId: string;
-  tags?: SiddurTag[];
+export interface SiddurCategoryEntry extends SiddurBaseEntry {
+  type: "category";
 }
 
-export interface SiddurManifestGroup {
-  type: "group";
-  id: string;
-  title: string;
-  description?: string;
-  children: SiddurManifestNode[];
+export interface SiddurServiceEntry extends SiddurBaseEntry {
+  type: "service";
+  categoryId: string;
+  categoryName: string;
 }
 
-export type SiddurManifestNode = SiddurManifestEntryRef | SiddurManifestGroup;
-
-export interface SiddurManifestCategory {
-  id: string;
-  title: string;
-  description?: string;
-  children: SiddurManifestNode[];
+export interface SiddurBucketEntry extends SiddurBaseEntry {
+  type: "bucket";
+  categoryId: string;
+  categoryName: string;
+  serviceId: string;
+  serviceName: string;
 }
 
-export interface SiddurManifest {
+export interface SiddurItemEntry extends SiddurBaseEntry {
+  type: "item";
+  categoryId: string;
+  categoryName: string;
+  serviceId: string;
+  serviceName: string;
+  bucketId: string;
+  bucketName: string;
+  tags?: string[];
+}
+
+export interface SiddurMetadata {
+  categories: SiddurCategoryEntry[];
+  services: SiddurServiceEntry[];
+  buckets: SiddurBucketEntry[];
+  items: SiddurItemEntry[];
+}
+
+export interface SiddurPrayerSegment {
+  label_en?: string;
+  label_he?: string;
+  he?: string;
+  en?: string;
+}
+
+export interface SiddurPrayerContent {
   id: string;
-  name: string;
-  version: string;
-  categories: SiddurManifestCategory[];
-  entries: Record<string, string>;
+  title_en: string;
+  title_he?: string;
+  segments: SiddurPrayerSegment[];
+}
+
+export interface SiddurContentLibrary {
+  common: Record<string, SiddurPrayerContent>;
+  traditions: Record<SiddurTradition, Record<string, SiddurPrayerContent>>;
 }

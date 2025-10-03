@@ -2,6 +2,7 @@
 import React from "react";
 import { Select } from "@components/UI/Select";
 import { NusachSelector } from "@components/Siddur/NusachSelector";
+import { SiddurTraditionSelector } from "@components/Siddur/SiddurTraditionSelector";
 import { KabbalahSystemSelector } from "./KabbalahSystemSelector";
 import { useSettings } from "@stores/useSettings";
 import type { TwilightPreference } from "@lib/zmanim";
@@ -21,6 +22,10 @@ export const SettingsView: React.FC = () => {
   const setLargeText = useSettings((state) => state.setLargeText);
   const dyslexiaFriendlyHebrew = useSettings((state) => state.dyslexiaFriendlyHebrew);
   const setDyslexiaFriendlyHebrew = useSettings((state) => state.setDyslexiaFriendlyHebrew);
+  const siddurMode = useSettings((state) => state.siddurMode);
+  const setSiddurMode = useSettings((state) => state.setSiddurMode);
+  const siddurShowApplicable = useSettings((state) => state.siddurShowApplicable);
+  const setSiddurShowApplicable = useSettings((state) => state.setSiddurShowApplicable);
   const zmanimSettings = useSettings((state) => state.zmanim);
   const setLocationMode = useSettings((state) => state.setLocationMode);
   const setManualLocation = useSettings((state) => state.setManualLocation);
@@ -53,9 +58,36 @@ export const SettingsView: React.FC = () => {
           <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Prayer customs</h3>
             <p className="text-sm text-slate-600 dark:text-slate-300">
-              Choose the nusach and transliteration style that matches your teacher or community.
+              Choose the tradition, nusach, and transliteration style that matches your teacher or community.
             </p>
             <div className="space-y-4">
+              <SiddurTraditionSelector />
+              <div>
+                <span className="block text-sm font-medium text-slate-700 dark:text-slate-200">Siddur mode</span>
+                <div className="mt-2 inline-flex overflow-hidden rounded-lg border border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-900">
+                  {["basic", "full"].map((modeOption) => (
+                    <button
+                      key={modeOption}
+                      type="button"
+                      className={`px-3 py-1 text-sm font-semibold transition focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 ${
+                        siddurMode === modeOption ? "bg-pomegranate text-white" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                      }`}
+                      onClick={() => setSiddurMode(modeOption as typeof siddurMode)}
+                    >
+                      {modeOption === "basic" ? "Basic" : "Full"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                <input
+                  type="checkbox"
+                  checked={siddurShowApplicable}
+                  onChange={(event) => setSiddurShowApplicable(event.target.checked)}
+                  className="h-4 w-4 rounded border-slate-300 text-pomegranate focus:ring-pomegranate"
+                />
+                Show only what applies today
+              </label>
               <NusachSelector />
               <label className="block space-y-2 text-sm">
                 <span className="font-medium">Transliteration</span>
