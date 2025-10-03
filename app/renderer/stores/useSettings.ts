@@ -2,8 +2,10 @@
 import { create } from "zustand";
 import type { ParshaCycle } from "@lib/calendar";
 import type { RoundingMode, TimeFormat, TwilightPreference } from "@lib/zmanim";
+import type { SiddurTradition } from "@/types/siddur";
 
 export type Nusach = "ashkenaz" | "sefard" | "edot-mizrach";
+export type { SiddurTradition } from "@/types/siddur";
 export type TransliterationMode = "ashkenazi" | "sephardi" | "none";
 
 export interface ZmanimLocation {
@@ -29,6 +31,7 @@ export interface SettingsState {
   largeText: boolean;
   dyslexiaFriendlyHebrew: boolean;
   nusach: Nusach;
+  siddurTradition: SiddurTradition;
   transliterationMode: TransliterationMode;
   kabbalahSystem: "none" | "gra" | "ari" | "ramak" | "kircher";
   parshaCycle: ParshaCycle;
@@ -38,6 +41,7 @@ export interface SettingsState {
   setLargeText: (value: boolean) => void;
   setDyslexiaFriendlyHebrew: (value: boolean) => void;
   setNusach: (nusach: Nusach) => void;
+  setSiddurTradition: (tradition: SiddurTradition) => void;
   setTransliterationMode: (mode: TransliterationMode) => void;
   setKabbalahSystem: (system: "none" | "gra" | "ari" | "ramak" | "kircher") => void;
   setParshaCycle: (cycle: ParshaCycle) => void;
@@ -73,6 +77,7 @@ export const useSettings = create<SettingsState>((set) => ({
   largeText: false,
   dyslexiaFriendlyHebrew: false,
   nusach: "ashkenaz",
+  siddurTradition: "ashkenaz",
   transliterationMode: "ashkenazi",
   kabbalahSystem: "none",
   parshaCycle: "diaspora",
@@ -81,6 +86,7 @@ export const useSettings = create<SettingsState>((set) => ({
   setLargeText: (value) => set({ largeText: value }),
   setDyslexiaFriendlyHebrew: (value) => set({ dyslexiaFriendlyHebrew: value }),
   setNusach: (nusach) => set({ nusach }),
+  setSiddurTradition: (tradition) => set({ siddurTradition: tradition }),
   setTransliterationMode: (mode) => set({ transliterationMode: mode }),
   setKabbalahSystem: (system) => set({ kabbalahSystem: system }),
   setParshaCycle: (cycle) => set({ parshaCycle: cycle }),

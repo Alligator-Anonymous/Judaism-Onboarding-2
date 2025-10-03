@@ -1,166 +1,359 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
 import type {
+  SiddurContentLibrary,
   SiddurManifest,
   SiddurManifestCategory,
-  SiddurManifestGroup,
-  SiddurManifestNode
+  SiddurManifestSection,
+  SiddurManifestPrayer,
+  SiddurPrayerContent,
+  SiddurTradition
 } from "@/types/siddur";
 
 interface SearchResult {
-  entryId: string;
+  prayerId: string;
   title: string;
-  tags: string[];
   breadcrumbs: string[];
   categoryId: string;
-  groupPath: string[];
+  sectionPath: string[];
+  tags: string[];
 }
 
-type ManifestGroupNode = SiddurManifestGroup;
+const TRADITION_LABELS: Record<SiddurTradition, string> = {
+  ashkenaz: "Ashkenaz",
+  "nusach-sefarad": "Nusach Sefarad",
+  "edot-hamizrach": "Edot HaMizrach"
+};
 
-type NodeList = SiddurManifestNode[];
+function getSections(section?: SiddurManifestSection | null): SiddurManifestSection[] {
+  if (!section) return [];
+  return section.sections ?? [];
+}
 
-function collectEntries(
-  manifest: SiddurManifest,
-  entries: Record<string, { title: string; tags: string[] }>
-): SearchResult[] {
+function getPrayers(section?: SiddurManifestSection | null): SiddurManifestPrayer[] {
+  if (!section) return [];
+  return section.prayers ?? [];
+}
+
+function findCategory(manifest: SiddurManifest | null, id: string | null): SiddurManifestCategory | null {
+  if (!manifest || !id) return null;
+  return manifest.categories.find((category) => category.id === id) ?? null;
+}
+
+function resolveSection(category: SiddurManifestCategory | null, path: string[]): SiddurManifestSection | null {
+  if (!category || path.length === 0) return null;
+  let current: SiddurManifestSection | null = null;
+  let cursorSections = category.sections;
+
+  path.forEach((segment) => {
+    const next = cursorSections.find((section) => section.id === segment) ?? null;
+    current = next;
+    cursorSections = next?.sections ?? [];
+  });
+
+  return current;
+}
+
+function collectSearchIndex(manifest: SiddurManifest | null): SearchResult[] {
+  if (!manifest) return [];
   const results: SearchResult[] = [];
 
   manifest.categories.forEach((category) => {
     const walk = (
-      nodes: NodeList,
-      groupPath: string[],
+      sections: SiddurManifestSection[] | undefined,
+      path: string[],
       breadcrumbTitles: string[]
     ) => {
-      nodes.forEach((node) => {
-        if (node.type === "group") {
-          walk(node.children, [...groupPath, node.id], [...breadcrumbTitles, node.title]);
-        } else {
-          const entry = entries[node.entryId];
-          const mergedTags = Array.from(
-            new Set([...(entry?.tags ?? []), ...(node.tags ?? [])])
-          );
+      if (!sections) return;
+
+      sections.forEach((section) => {
+        const nextPath = [...path, section.id];
+        const nextBreadcrumbs = [...breadcrumbTitles, section.title_en];
+
+        (section.prayers ?? []).forEach((prayer) => {
           results.push({
-            entryId: node.entryId,
-            title: entry?.title ?? node.title,
-            tags: mergedTags,
-            breadcrumbs: [category.title, ...breadcrumbTitles, node.title],
+            prayerId: prayer.id,
+            title: prayer.title_en,
+            breadcrumbs: [category.title_en, ...nextBreadcrumbs, prayer.title_en],
             categoryId: category.id,
-            groupPath,
+            sectionPath: nextPath,
+            tags: prayer.tags ?? []
           });
+        });
+
+        if (section.sections && section.sections.length > 0) {
+          walk(section.sections, nextPath, nextBreadcrumbs);
         }
       });
     };
 
-    walk(category.children, [], []);
+    walk(category.sections, [], []);
   });
 
   return results;
 }
 
-function findCategory(
-  manifest: SiddurManifest | null,
-  categoryId: string | null
-): SiddurManifestCategory | null {
-  if (!manifest || !categoryId) return null;
-  return manifest.categories.find((category) => category.id === categoryId) ?? null;
+function resolveContent(
+  library: SiddurContentLibrary | null,
+  prayerId: string,
+  tradition: SiddurTradition
+): SiddurPrayerContent | null {
+  if (!library) return null;
+  const { common, traditions } = library;
+  const traditionMap = traditions?.[tradition];
+  if (traditionMap && traditionMap[prayerId]) {
+    return traditionMap[prayerId];
+  }
+  if (common && common[prayerId]) {
+    return common[prayerId];
+  }
+  const ashkenazFallback = traditions?.ashkenaz;
+  if (ashkenazFallback && ashkenazFallback[prayerId]) {
+    return ashkenazFallback[prayerId];
+  }
+  return null;
 }
 
-function resolveGroupPath(
-  category: SiddurManifestCategory,
-  stack: string[]
-): { id: string; title: string }[] {
-  const segments: { id: string; title: string }[] = [];
-  let nodes: NodeList = category.children;
-
-  stack.forEach((groupId) => {
-    const group = nodes.find(
-      (node): node is ManifestGroupNode => node.type === "group" && node.id === groupId
-    );
-    if (group) {
-      segments.push({ id: group.id, title: group.title });
-      nodes = group.children;
-    }
-  });
-
-  return segments;
+interface SectionSummaryProps {
+  section: SiddurManifestSection;
+  path: string[];
+  isActive: boolean;
+  onSelectSection: (path: string[]) => void;
+  onSelectPrayer: (prayerId: string) => void;
 }
 
-function getActiveNodes(category: SiddurManifestCategory, stack: string[]): NodeList {
-  let nodes: NodeList = category.children;
+const SectionSummary: React.FC<SectionSummaryProps> = ({ section, path, isActive, onSelectSection, onSelectPrayer }) => {
+  const childSections = getSections(section);
+  const prayers = getPrayers(section);
 
-  stack.forEach((groupId) => {
-    const group = nodes.find(
-      (node): node is ManifestGroupNode => node.type === "group" && node.id === groupId
-    );
-    nodes = group ? group.children : [];
-  });
-
-  return nodes;
-}
-
-function EntryTags({ tags }: { tags: string[] }) {
-  if (!tags.length) return null;
   return (
-    <div className="flex flex-wrap gap-2 text-xs">
-      {tags.map((tag) => (
-        <span
-          key={tag}
-          className="inline-flex items-center rounded-full bg-pomegranate/10 px-3 py-1 font-semibold uppercase tracking-wide text-pomegranate"
-        >
-          {tag.replace(/_/g, " ")}
-        </span>
-      ))}
+    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-pomegranate/50 hover:shadow-md focus-within:border-pomegranate dark:border-slate-700 dark:bg-slate-900">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{section.title_en}</h3>
+          {section.title_he ? (
+            <p className="text-sm text-slate-500" dir="rtl">
+              {section.title_he}
+            </p>
+          ) : null}
+          {section.description ? (
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{section.description}</p>
+          ) : null}
+        </div>
+        {!isActive ? (
+          <button
+            type="button"
+            onClick={() => onSelectSection(path)}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-pomegranate hover:text-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/50 dark:border-slate-600 dark:text-slate-300"
+          >
+            View section
+          </button>
+        ) : null}
+      </div>
+      {childSections.length > 0 ? (
+        <div className="flex flex-wrap gap-2">
+          {childSections.map((child) => (
+            <button
+              key={child.id}
+              type="button"
+              onClick={() => onSelectSection([...path, child.id])}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-pomegranate hover:text-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/50 dark:border-slate-600 dark:text-slate-300"
+            >
+              {child.title_en}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      {prayers.length > 0 ? (
+        <div className="space-y-2">
+          {prayers.map((prayer) => (
+            <button
+              key={prayer.id}
+              type="button"
+              onClick={() => onSelectPrayer(prayer.id)}
+              className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
+            >
+              <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{prayer.title_en}</span>
+              {prayer.title_he ? (
+                <span className="mt-1 block text-sm text-slate-500" dir="rtl">
+                  {prayer.title_he}
+                </span>
+              ) : null}
+              {prayer.description ? (
+                <span className="mt-1 block text-xs text-slate-500">{prayer.description}</span>
+              ) : null}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
+};
+
+interface PrayerContentViewProps {
+  content: SiddurPrayerContent | null;
 }
 
-function VariantBadges({ labels }: { labels: string[] }) {
-  if (!labels.length) return null;
+const PrayerContentView: React.FC<PrayerContentViewProps> = ({ content }) => {
+  if (!content) {
+    return (
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 shadow-inner dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+        <h3 className="text-lg font-semibold">Content coming soon</h3>
+        <p className="mt-2 text-sm">
+          This prayer has not been populated yet for the selected tradition. Check back as we continue to expand the Siddur.
+        </p>
+      </div>
+    );
+  }
+
+  const header = (
+    <header>
+      <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{content.title_en}</h2>
+      {content.title_he ? (
+        <p className="text-xl text-right font-semibold text-slate-700 dark:text-slate-200" dir="rtl">
+          {content.title_he}
+        </p>
+      ) : null}
+    </header>
+  );
+
+  if (content.segments.length === 0) {
+    return (
+      <div className="space-y-6">
+        {header}
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 shadow-inner dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+          <h3 className="text-lg font-semibold">Content coming soon</h3>
+          <p className="mt-2 text-sm">
+            This prayer outline is ready, but the text segments have not been added yet.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-wrap gap-2">
-      {labels.map((label) => (
-        <span
-          key={label}
-          className="inline-flex items-center rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600 dark:border-slate-600 dark:text-slate-300"
-        >
-          {label}
-        </span>
-      ))}
+    <div className="space-y-6">
+      {header}
+      <div className="space-y-5">
+        {content.segments.map((segment, index) => (
+          <article key={`${content.id}-segment-${index}`} className="space-y-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+            {(segment.label_en || segment.label_he) ? (
+              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <span>{segment.label_en}</span>
+                {segment.label_he ? (
+                  <span dir="rtl" className="text-right">
+                    {segment.label_he}
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
+            {segment.he ? (
+              <p dir="rtl" className="text-xl leading-relaxed text-slate-900 dark:text-slate-100">
+                {segment.he}
+              </p>
+            ) : null}
+            {segment.en ? (
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{segment.en}</p>
+            ) : null}
+          </article>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export const SiddurView: React.FC = () => {
-  const transliterationMode = useSettings((state) => state.transliterationMode);
+  const tradition = useSettings((state) => state.siddurTradition);
   const nusach = useSettings((state) => state.nusach);
+  const transliterationMode = useSettings((state) => state.transliterationMode);
+  const hydrate = useContent((state) => state.hydrate);
   const registry = useContent((state) => state.registry);
 
+  React.useEffect(() => {
+    hydrate();
+  }, [hydrate]);
+
   const manifest = registry?.siddur.manifest ?? null;
-  const entryMap = registry?.siddur.entries ?? {};
+  const contentLibrary = registry?.siddur.content ?? null;
 
-  const [query, setQuery] = useState("");
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-  const [groupStack, setGroupStack] = useState<string[]>([]);
-  const [activeEntryId, setActiveEntryId] = useState<string | null>(null);
+  const [query, setQuery] = React.useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = React.useState<string | null>(null);
+  const [sectionPath, setSectionPath] = React.useState<string[]>([]);
+  const [activePrayerId, setActivePrayerId] = React.useState<string | null>(null);
 
-  const sanitizedQuery = query.trim();
+  const searchIndex = React.useMemo(() => collectSearchIndex(manifest), [manifest]);
+  const category = React.useMemo(() => findCategory(manifest, selectedCategoryId), [manifest, selectedCategoryId]);
+  const currentSection = React.useMemo(() => resolveSection(category, sectionPath), [category, sectionPath]);
 
-  const entryLookup = useMemo(
-    () =>
-      Object.fromEntries(
-        Object.entries(entryMap).map(([id, entry]) => [id, { title: entry.title, tags: entry.tags ?? [] }])
-      ),
-    [entryMap]
-  );
+  const breadcrumbs = React.useMemo(() => {
+    if (!category) return [] as string[];
+    const crumbs = [category.title_en];
 
-  const searchIndex = useMemo(
-    () => (manifest ? collectEntries(manifest, entryLookup) : []),
-    [manifest, entryLookup]
-  );
+    let walker = category.sections;
+    sectionPath.forEach((segment) => {
+      const next = walker.find((section) => section.id === segment);
+      if (next) {
+        crumbs.push(next.title_en);
+        walker = next.sections ?? [];
+      }
+    });
 
-  const categoryCounts = useMemo(() => {
+    if (activePrayerId) {
+      const matches = searchIndex.find((entry) => entry.prayerId === activePrayerId);
+      if (matches) {
+        crumbs.push(matches.title);
+      }
+    }
+
+    return crumbs;
+  }, [category, sectionPath, activePrayerId, searchIndex]);
+
+  const filteredResults = React.useMemo(() => {
+    const trimmed = query.trim().toLowerCase();
+    if (!trimmed) return [] as SearchResult[];
+
+    return searchIndex.filter((entry) => {
+      const haystack = `${entry.title} ${entry.tags.join(" ")}`.toLowerCase();
+      return haystack.includes(trimmed);
+    });
+  }, [query, searchIndex]);
+
+  const handleBack = () => {
+    if (activePrayerId) {
+      setActivePrayerId(null);
+      return;
+    }
+    if (sectionPath.length > 0) {
+      setSectionPath((prev) => prev.slice(0, -1));
+      return;
+    }
+    setSelectedCategoryId(null);
+  };
+
+  const handleSelectCategory = (id: string) => {
+    setSelectedCategoryId(id);
+    setSectionPath([]);
+    setActivePrayerId(null);
+  };
+
+  const handleSelectSection = (path: string[]) => {
+    setSectionPath(path);
+    setActivePrayerId(null);
+  };
+
+  const handleSelectPrayer = (prayerId: string) => {
+    setActivePrayerId(prayerId);
+  };
+
+  const handleSearchSelect = (result: SearchResult) => {
+    setSelectedCategoryId(result.categoryId);
+    setSectionPath(result.sectionPath);
+    setActivePrayerId(result.prayerId);
+    setQuery("");
+  };
+
+  const categoryCounts = React.useMemo(() => {
     const counts = new Map<string, number>();
     searchIndex.forEach((item) => {
       counts.set(item.categoryId, (counts.get(item.categoryId) ?? 0) + 1);
@@ -168,171 +361,9 @@ export const SiddurView: React.FC = () => {
     return counts;
   }, [searchIndex]);
 
-  const category = findCategory(manifest, selectedCategoryId);
-  const groupSegments = category ? resolveGroupPath(category, groupStack) : [];
-
-  const breadcrumbs = useMemo(() => {
-    if (!category) return [] as string[];
-    const labels = [category.title, ...groupSegments.map((segment) => segment.title)];
-    if (activeEntryId) {
-      const node = entryMap[activeEntryId];
-      if (node) {
-        labels.push(node.title);
-      }
-    }
-    return labels;
-  }, [category, groupSegments, activeEntryId, entryMap]);
-
-  const filteredResults = useMemo(() => {
-    if (!sanitizedQuery) return [] as SearchResult[];
-    const lower = sanitizedQuery.toLowerCase();
-    return searchIndex.filter((item) => {
-      const haystack = `${item.title} ${item.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(lower);
-    });
-  }, [sanitizedQuery, searchIndex]);
-
-  const handleSelectCategory = (id: string) => {
-    setSelectedCategoryId(id);
-    setGroupStack([]);
-    setActiveEntryId(null);
-  };
-
-  const handleSelectNode = (node: SiddurManifestNode) => {
-    if (node.type === "group") {
-      setGroupStack((prev) => [...prev, node.id]);
-      setActiveEntryId(null);
-    } else {
-      setActiveEntryId(node.entryId);
-    }
-  };
-
-  const handleSearchSelect = (result: SearchResult) => {
-    setSelectedCategoryId(result.categoryId);
-    setGroupStack(result.groupPath);
-    setActiveEntryId(result.entryId);
-    setQuery("");
-  };
-
-  const handleBack = () => {
-    if (activeEntryId) {
-      setActiveEntryId(null);
-      return;
-    }
-    if (groupStack.length > 0) {
-      setGroupStack((prev) => prev.slice(0, -1));
-      return;
-    }
-    setSelectedCategoryId(null);
-  };
-
-  const renderCategoryCards = () => {
-    if (!manifest) {
-      return (
-        <p className="text-sm text-slate-500">Siddur content is loading…</p>
-      );
-    }
-
-    return (
-      <div className="grid gap-4 md:grid-cols-2">
-        {manifest.categories.map((cat) => {
-          const entryTotal = categoryCounts.get(cat.id) ?? 0;
-          return (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => handleSelectCategory(cat.id)}
-              className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-800"
-            >
-              <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">{cat.title}</span>
-              {cat.description ? (
-                <span className="mt-2 text-sm text-slate-600 dark:text-slate-300">{cat.description}</span>
-              ) : null}
-              <span className="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                {entryTotal} placeholder entr{entryTotal === 1 ? "y" : "ies"}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    );
-  };
-
-  const renderNodeList = () => {
-    if (!category) return null;
-    const nodes = getActiveNodes(category, groupStack);
-
-    if (!nodes.length) {
-      return <p className="text-sm text-slate-500">No prayers available in this section yet.</p>;
-    }
-
-    return (
-      <div className="space-y-3">
-        {nodes.map((node) => {
-          if (node.type === "group") {
-            return (
-              <button
-                key={node.id}
-                type="button"
-                onClick={() => handleSelectNode(node)}
-                className="flex w-full flex-col rounded-xl border border-slate-200 bg-slate-50 p-4 text-left shadow-sm transition hover:border-pomegranate hover:bg-white focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-800/60 dark:hover:bg-slate-800"
-              >
-                <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{node.title}</span>
-                {node.description ? (
-                  <span className="mt-1 text-sm text-slate-600 dark:text-slate-300">{node.description}</span>
-                ) : null}
-                <span className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Explore prayers →</span>
-              </button>
-            );
-          }
-
-          return (
-            <button
-              key={node.id}
-              type="button"
-              onClick={() => handleSelectNode(node)}
-              className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
-            >
-              <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{node.title}</span>
-              <EntryTags tags={Array.from(new Set([...(entryMap[node.entryId]?.tags ?? []), ...(node.tags ?? [])]))} />
-            </button>
-          );
-        })}
-      </div>
-    );
-  };
-
-  const renderEntryView = () => {
-    if (!category || !activeEntryId) return null;
-    const entry = entryMap[activeEntryId];
-    if (!entry) {
-      return <p className="text-sm text-slate-500">This entry is not available yet.</p>;
-    }
-
-    const variantLabels = entry.variants.map((variant) => variant.label);
-
-    return (
-      <div className="space-y-4">
-        <div>
-          <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{entry.title}</h2>
-          {entry.heTitle ? (
-            <p className="text-xl text-right font-semibold text-slate-700 dark:text-slate-200" dir="rtl">
-              {entry.heTitle}
-            </p>
-          ) : null}
-        </div>
-        <VariantBadges labels={variantLabels} />
-        <EntryTags tags={entry.tags ?? []} />
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 shadow-inner dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-          <h3 className="text-lg font-semibold">Coming soon</h3>
-          <p className="mt-2 text-sm">
-            Full liturgy for this prayer will be added in a future update. For now, use this placeholder to explore the structure
-            and associated nusach options.
-          </p>
-        </div>
-      </div>
-    );
-  };
+  const resolvedContent = activePrayerId
+    ? resolveContent(contentLibrary ?? null, activePrayerId, tradition)
+    : null;
 
   return (
     <div className="space-y-6">
@@ -341,19 +372,20 @@ export const SiddurView: React.FC = () => {
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Siddur</h1>
             <p className="text-sm text-slate-600 dark:text-slate-300">
-              Explore the prayer flow with placeholder content. Actual liturgy will arrive in future packs.
+              Explore the prayer flow with a tradition-aware manifest. Texts load locally and will expand over time.
             </p>
           </div>
           <div className="text-xs text-slate-500 dark:text-slate-400">
-            <p>Transliteration preference: {transliterationMode}</p>
+            <p>Siddur tradition: {TRADITION_LABELS[tradition] ?? tradition}</p>
             <p>Preferred nusach: {nusach}</p>
+            <p>Transliteration mode: {transliterationMode}</p>
           </div>
         </div>
         <input
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search by title or tag…"
+          placeholder="Search for a prayer or tag…"
           className="w-full rounded-full border border-slate-300 bg-white px-4 py-2 text-sm shadow-sm transition focus:border-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-600 dark:bg-slate-800"
         />
         {breadcrumbs.length ? (
@@ -366,7 +398,7 @@ export const SiddurView: React.FC = () => {
             ))}
           </div>
         ) : null}
-        {(selectedCategoryId || activeEntryId || groupStack.length > 0) && (
+        {(selectedCategoryId || activePrayerId || sectionPath.length > 0) && (
           <button
             type="button"
             onClick={handleBack}
@@ -377,16 +409,16 @@ export const SiddurView: React.FC = () => {
         )}
       </header>
 
-      {sanitizedQuery ? (
+      {query.trim() ? (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Search results</h2>
           {filteredResults.length === 0 ? (
-            <p className="text-sm text-slate-500">No matches yet. Try a different title or tag.</p>
+            <p className="text-sm text-slate-500">No prayers matched your search yet.</p>
           ) : (
             <div className="space-y-2">
               {filteredResults.map((result) => (
                 <button
-                  key={`${result.entryId}-${result.breadcrumbs.join("-")}`}
+                  key={`${result.prayerId}-${result.breadcrumbs.join("-")}`}
                   type="button"
                   onClick={() => handleSearchSelect(result)}
                   className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
@@ -394,7 +426,6 @@ export const SiddurView: React.FC = () => {
                   <div className="flex flex-col gap-1">
                     <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{result.title}</span>
                     <span className="text-xs text-slate-500">{result.breadcrumbs.join(" › ")}</span>
-                    <EntryTags tags={result.tags} />
                   </div>
                 </button>
               ))}
@@ -403,16 +434,67 @@ export const SiddurView: React.FC = () => {
         </section>
       ) : null}
 
-      {!sanitizedQuery && !activeEntryId && !groupStack.length && !selectedCategoryId
-        ? renderCategoryCards()
-        : null}
+      {!query.trim() && !selectedCategoryId ? (
+        <section className="grid gap-4 md:grid-cols-2">
+          {(manifest?.categories ?? []).map((cat) => {
+            const total = categoryCounts.get(cat.id) ?? 0;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => handleSelectCategory(cat.id)}
+                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
+              >
+                <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">{cat.title_en}</span>
+                {cat.title_he ? (
+                  <span className="text-sm text-slate-500" dir="rtl">
+                    {cat.title_he}
+                  </span>
+                ) : null}
+                {cat.description ? (
+                  <span className="mt-2 text-sm text-slate-600 dark:text-slate-300">{cat.description}</span>
+                ) : null}
+                <span className="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  {total} prayer{total === 1 ? "" : "s"} mapped
+                </span>
+              </button>
+            );
+          })}
+        </section>
+      ) : null}
 
-      {!sanitizedQuery && category && !activeEntryId ? renderNodeList() : null}
+      {!query.trim() && !selectedCategoryId && (!manifest || manifest.categories.length === 0) ? (
+        <p className="text-sm text-slate-500">Siddur manifest is loading…</p>
+      ) : null}
 
-      {!sanitizedQuery && activeEntryId ? renderEntryView() : null}
+      {!query.trim() && category && !activePrayerId ? (
+        <section className="space-y-4">
+          {(currentSection ? [currentSection] : category.sections).map((section) => {
+            const path = currentSection ? sectionPath : [section.id];
+            const isActive = currentSection ? path.join("/") === sectionPath.join("/") : false;
+            return (
+            <SectionSummary
+              key={section.id}
+              section={section}
+              path={path}
+              isActive={isActive}
+              onSelectSection={handleSelectSection}
+              onSelectPrayer={handleSelectPrayer}
+            />
+            );
+          })}
+          {currentSection && getPrayers(currentSection).length === 0 && getSections(currentSection).length === 0 ? (
+            <p className="text-sm text-slate-500">This section will be populated soon.</p>
+          ) : null}
+        </section>
+      ) : null}
+
+      {!query.trim() && activePrayerId ? (
+        <PrayerContentView content={resolvedContent} />
+      ) : null}
 
       <footer className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-400">
-        Siddur entries currently contain placeholder text. Always consult a trusted rabbi or printed siddur for personal prayer.
+        Siddur entries reference local placeholder texts. Always consult a trusted rabbi or printed siddur for personal prayer.
       </footer>
     </div>
   );

@@ -1,0 +1,21 @@
+{
+  "id": "daily-shacharit-morning-blessings",
+  "title_en": "Birchot HaShachar",
+  "title_he": "ברכות השחר",
+  "segments": [
+    {
+      "label_en": "Opening",
+      "he": "בָּרוּךְ אַתָּה...",
+      "en": "Blessed are You... who has given the rooster understanding to distinguish between day and night."
+    },
+    {
+      "he": "בָּרוּךְ אַתָּה ה'... פּוֹקֵחַ עִוְרִים",
+      "en": "...Who gives sight to the blind."
+    },
+    {
+      "label_en": "Closing",
+      "he": "יִהְיוּ לְרָצוֹן אִמְרֵי פִי...",
+      "en": "May the words of my mouth and the meditations of my heart be acceptable before You."
+    }
+  ]
+}
