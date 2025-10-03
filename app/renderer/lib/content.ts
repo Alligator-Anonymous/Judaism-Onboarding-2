@@ -13,11 +13,16 @@ import {
   ParshaMetadataEntry,
   ParshaRangeEntry
 } from "@/types";
+import type { SiddurEntry, SiddurManifest } from "@/types/siddur";
 import tanakhManifestData from "@/data/metadata/tanakh.manifest.json";
 import parshaMeta from "@/data/metadata/parshiyot.index.json";
 import parshaRangesData from "@/data/metadata/parsha.ranges.json";
 
-const jsonModules = import.meta.glob("@/data/packs/core-v1/**/*.json", {
+const coreModules = import.meta.glob("@/data/packs/core-v1/**/*.json", {
+  eager: true
+});
+
+const siddurModules = import.meta.glob("@/data/packs/siddur/core-v1/**/*.json", {
   eager: true
 });
 
@@ -29,11 +34,16 @@ function extractRelativePath(path: string): string | null {
 }
 
 export function loadContentRegistry(): ContentRegistry {
-  const manifestKey = Object.keys(jsonModules).find((key) => key.endsWith("pack.json"));
+  const manifestKey = Object.keys(coreModules).find((key) => key.endsWith("pack.json"));
   if (!manifestKey) {
     throw new Error("Core content pack manifest not found");
   }
-  const manifest = (jsonModules[manifestKey] as { default: ContentPackManifest }).default;
+  const manifest = (coreModules[manifestKey] as { default: ContentPackManifest }).default;
+
+  const siddurManifestKey = Object.keys(siddurModules).find((key) => key.endsWith("manifest.json"));
+  const siddurManifest = siddurManifestKey
+    ? ((siddurModules[siddurManifestKey] as { default: SiddurManifest }).default as SiddurManifest)
+    : null;
 
   const tanakhManifest = tanakhManifestData as TanakhManifest;
   const parshaMetadata = parshaMeta as ParshaMetadataEntry[];
@@ -41,7 +51,7 @@ export function loadContentRegistry(): ContentRegistry {
 
   const registry: ContentRegistry = {
     manifest,
-    siddur: {},
+    siddur: { manifest: siddurManifest, entries: {}, legacy: {} },
     tanakh: {},
     commentary: {},
     holidays: {},
@@ -52,14 +62,16 @@ export function loadContentRegistry(): ContentRegistry {
     parshaRanges: parshaRanges ?? []
   };
 
-  Object.entries(jsonModules).forEach(([key, mod]) => {
+  const legacySiddur: Record<string, Prayer[]> = {};
+
+  Object.entries(coreModules).forEach(([key, mod]) => {
     if (key.endsWith("pack.json")) return;
     const data = (mod as { default: unknown }).default ?? mod;
     const relative = extractRelativePath(key);
     if (!relative) return;
 
     if (relative.startsWith("siddur/")) {
-      registry.siddur[relative.split("/")[1].replace(/\\..+$/, "")] = data as Prayer[];
+      legacySiddur[relative.split("/")[1].replace(/\\..+$/, "")] = data as Prayer[];
     } else if (relative.startsWith("tanakh/")) {
       const bookKey = relative.split("/")[1].replace(/\\..+$/, "");
       registry.tanakh[bookKey] = data as TanakhChapter;
@@ -76,6 +88,37 @@ export function loadContentRegistry(): ContentRegistry {
       registry.alefbet = data as AlefBetLetter[];
     }
   });
+
+  const siddurPathMap = new Map<string, SiddurEntry>();
+
+  Object.entries(siddurModules).forEach(([key, mod]) => {
+    if (key.endsWith("manifest.json")) return;
+    const relative = (() => {
+      const pivot = "/packs/siddur/core-v1/";
+      const index = key.lastIndexOf(pivot);
+      if (index === -1) return null;
+      return key.slice(index + pivot.length);
+    })();
+    if (!relative) return;
+    const data = (mod as { default: SiddurEntry }).default as SiddurEntry;
+    siddurPathMap.set(relative.replace(/\.json$/i, ".json"), data);
+  });
+
+  if (siddurManifest) {
+    Object.entries(siddurManifest.entries).forEach(([entryId, path]) => {
+      const normalizedPath = path.endsWith(".json") ? path : `${path}.json`;
+      const entry = siddurPathMap.get(normalizedPath);
+      if (entry) {
+        registry.siddur.entries[entryId] = entry;
+      }
+    });
+  }
+
+  if (Object.keys(legacySiddur).length > 0) {
+    registry.siddur.legacy = legacySiddur;
+  } else {
+    delete registry.siddur.legacy;
+  }
 
   return registry;
 }
