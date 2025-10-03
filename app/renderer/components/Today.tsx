@@ -6,6 +6,7 @@ import { formatFriendlyGregorian, getHebrewDateParts, type ParshaSummary } from 
 import { useSettings } from "@stores/useSettings";
 import { useContent } from "@stores/useContent";
 import { computeZmanim, formatZman, getActiveTimeZone } from "@lib/zmanim";
+import type { ParshaMetadataEntry } from "@/types";
 
 export const Today: React.FC = () => {
   const hebrewDate = useCalendar((state) => state.hebrewDate);
@@ -119,7 +120,7 @@ export const Today: React.FC = () => {
       )}
       <section className="grid gap-4 md:grid-cols-2">
         <Card title="This Week’s Parashah" className="space-y-3" aria-live="polite">
-          <ParshaHighlight parsha={parashah} />
+          <ParshaHighlight parsha={parashah} parshaMeta={registry?.parshaMeta ?? []} />
           {upcomingHoliday ? (
             <p className="text-sm text-slate-600 dark:text-slate-300">
               Next holiday: <strong>{upcomingHoliday.name}</strong> in {upcomingHoliday.daysAway} day(s)
@@ -238,15 +239,36 @@ export const Today: React.FC = () => {
 
 interface ParshaHighlightProps {
   parsha: ParshaSummary | null;
+  parshaMeta: ParshaMetadataEntry[];
 }
 
-const ParshaHighlight: React.FC<ParshaHighlightProps> = ({ parsha }) => {
+const ParshaHighlight: React.FC<ParshaHighlightProps> = ({ parsha, parshaMeta }) => {
   if (!parsha) {
     return <p className="text-sm text-slate-500 dark:text-slate-300">Checking this week’s reading…</p>;
   }
 
-  const destination = parsha.slug ? `#/texts/tanakh/torah/parsha/${parsha.slug}` : null;
-  const displayName = parsha.shortName.replace(/^Parashat\s+/i, "").trim();
+  const displayName = React.useMemo(() => {
+    const base = parsha.shortName || parsha.label || "";
+    return base.replace(/^(Parashat|Parsha)\s+/i, "").trim();
+  }, [parsha]);
+
+  const resolvedSlug = React.useMemo(() => {
+    if (parsha.slug) {
+      return parsha.slug;
+    }
+    const candidate = slugifyParshaName(displayName || parsha.shortName || parsha.label || "");
+    if (!candidate) {
+      return null;
+    }
+    const match = parshaMeta.find((entry) => {
+      if (!entry) return false;
+      if (entry.id === candidate) return true;
+      return slugifyParshaName(entry.en) === candidate;
+    });
+    return match?.id ?? candidate;
+  }, [parsha.slug, displayName, parsha.shortName, parsha.label, parshaMeta]);
+
+  const destination = resolvedSlug ? `#/texts/tanakh/torah/parsha/${resolvedSlug}` : null;
   const content = (
     <div className="space-y-1">
       <p className="text-lg font-semibold text-slate-900 dark:text-white">
@@ -284,6 +306,20 @@ const Confetti: React.FC = () => (
     ))}
   </div>
 );
+
+function slugifyParshaName(value: string): string {
+  if (!value) {
+    return "";
+  }
+  return value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .trim();
+}
 
 interface MonthCalendarProps {
   referenceDate: Date;
