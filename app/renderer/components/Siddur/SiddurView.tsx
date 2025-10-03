@@ -1,419 +1,511 @@
-import React, { useMemo, useState } from "react";
-import { useSettings } from "@stores/useSettings";
+import React from "react";
+import clsx from "clsx";
 import { useContent } from "@stores/useContent";
-import type {
-  SiddurManifest,
-  SiddurManifestCategory,
-  SiddurManifestGroup,
-  SiddurManifestNode
-} from "@/types/siddur";
+import { useSettings } from "@stores/useSettings";
+import {
+  buildSiddurNavigation,
+  createSiddurFilterContext,
+  getTodaySiddurOutline,
+  type SiddurFilterContext,
+  type SiddurNavigationBucket,
+  type SiddurNavigationCategory,
+  type SiddurNavigationItem,
+  type SiddurNavigationService
+} from "@lib/siddur";
+import type { SiddurMetadata, SiddurTradition } from "@/types/siddur";
 
 interface SearchResult {
-  entryId: string;
-  title: string;
-  tags: string[];
-  breadcrumbs: string[];
-  categoryId: string;
-  groupPath: string[];
+  item: SiddurNavigationItem;
+  category: SiddurNavigationCategory;
+  service: SiddurNavigationService;
+  bucket: SiddurNavigationBucket;
 }
 
-type ManifestGroupNode = SiddurManifestGroup;
+const formatApplicabilityBadge = (applicable: boolean, showOnlyApplicable: boolean) => {
+  if (showOnlyApplicable || applicable) {
+    return null;
+  }
+  return (
+    <span className="ml-3 inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:bg-amber-900/60 dark:text-amber-200">
+      Not in effect today
+    </span>
+  );
+};
 
-type NodeList = SiddurManifestNode[];
+const PlaceholderText: React.FC = () => (
+  <div className="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+    Text coming soon. This placeholder will update when primary sources are added.
+  </div>
+);
 
-function collectEntries(
-  manifest: SiddurManifest,
-  entries: Record<string, { title: string; tags: string[] }>
-): SearchResult[] {
-  const results: SearchResult[] = [];
+function ensureActiveCategory(
+  navigation: ReturnType<typeof buildSiddurNavigation>,
+  activeId: string | null
+): string | null {
+  if (activeId && navigation.categoryMap.has(activeId)) {
+    return activeId;
+  }
+  const first = navigation.categories[0];
+  return first ? first.category.id : null;
+}
 
-  manifest.categories.forEach((category) => {
-    const walk = (
-      nodes: NodeList,
-      groupPath: string[],
-      breadcrumbTitles: string[]
-    ) => {
-      nodes.forEach((node) => {
-        if (node.type === "group") {
-          walk(node.children, [...groupPath, node.id], [...breadcrumbTitles, node.title]);
-        } else {
-          const entry = entries[node.entryId];
-          const mergedTags = Array.from(
-            new Set([...(entry?.tags ?? []), ...(node.tags ?? [])])
-          );
-          results.push({
-            entryId: node.entryId,
-            title: entry?.title ?? node.title,
-            tags: mergedTags,
-            breadcrumbs: [category.title, ...breadcrumbTitles, node.title],
-            categoryId: category.id,
-            groupPath,
+function ensureActiveService(
+  navigation: ReturnType<typeof buildSiddurNavigation>,
+  categoryId: string | null,
+  activeId: string | null
+): string | null {
+  if (!categoryId) return null;
+  const category = navigation.categoryMap.get(categoryId);
+  if (!category) return null;
+  if (activeId && category.services.some((service) => service.service.id === activeId)) {
+    return activeId;
+  }
+  const first = category.services[0];
+  return first ? first.service.id : null;
+}
+
+function ensureActiveBucket(
+  navigation: ReturnType<typeof buildSiddurNavigation>,
+  serviceId: string | null,
+  activeId: string | null
+): string | null {
+  if (!serviceId) return null;
+  const service = navigation.serviceMap.get(serviceId);
+  if (!service) return null;
+  if (activeId && service.buckets.some((bucket) => bucket.bucket.id === activeId)) {
+    return activeId;
+  }
+  const first = service.buckets[0];
+  return first ? first.bucket.id : null;
+}
+
+const SiddurView: React.FC = () => {
+  const { registry, hydrate } = useContent();
+  const tradition = useSettings((state) => state.siddurTradition);
+  const mode = useSettings((state) => state.siddurMode);
+  const showOnlyApplicable = useSettings((state) => state.siddurShowApplicable);
+  const diasporaOrIsrael = useSettings((state) => (state.parshaCycle === "israel" ? "israel" : "diaspora"));
+
+  React.useEffect(() => {
+    hydrate();
+  }, [hydrate]);
+
+  const metadata = (registry?.siddur.metadata ?? null) as SiddurMetadata | null;
+
+  const context = React.useMemo<SiddurFilterContext>(() => {
+    return createSiddurFilterContext({
+      date: new Date(),
+      diasporaOrIsrael,
+      hasMinyan: false,
+      isMourner: false
+    });
+  }, [diasporaOrIsrael]);
+
+  const navigation = React.useMemo(() => {
+    return buildSiddurNavigation({
+      metadata,
+      tradition,
+      mode,
+      showOnlyApplicable,
+      context
+    });
+  }, [metadata, tradition, mode, showOnlyApplicable, context]);
+
+  const [activeCategoryId, setActiveCategoryId] = React.useState<string | null>(null);
+  const [activeServiceId, setActiveServiceId] = React.useState<string | null>(null);
+  const [activeBucketId, setActiveBucketId] = React.useState<string | null>(null);
+  const [activeItemId, setActiveItemId] = React.useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  React.useEffect(() => {
+    const categoryId = ensureActiveCategory(navigation, activeCategoryId);
+    setActiveCategoryId(categoryId);
+  }, [navigation.categories.length]);
+
+  React.useEffect(() => {
+    const categoryId = ensureActiveCategory(navigation, activeCategoryId);
+    const serviceId = ensureActiveService(navigation, categoryId, activeServiceId);
+    setActiveServiceId(serviceId);
+    const bucketId = ensureActiveBucket(navigation, serviceId, activeBucketId);
+    setActiveBucketId(bucketId);
+    if (activeItemId && (!bucketId || !navigation.itemMap.has(activeItemId))) {
+      setActiveItemId(null);
+    }
+  }, [navigation, activeCategoryId, activeServiceId, activeBucketId, activeItemId]);
+
+  const activeCategory = activeCategoryId ? navigation.categoryMap.get(activeCategoryId) ?? null : null;
+  const activeService = activeServiceId ? navigation.serviceMap.get(activeServiceId) ?? null : null;
+  const activeBucket = activeBucketId ? navigation.bucketMap.get(activeBucketId) ?? null : null;
+  const activeItem = activeItemId ? navigation.itemMap.get(activeItemId) ?? null : null;
+
+  const searchResults = React.useMemo<SearchResult[]>(() => {
+    if (!searchTerm) return [];
+    const term = searchTerm.trim().toLowerCase();
+    if (!term) return [];
+    const results: SearchResult[] = [];
+    navigation.categories.forEach((category) => {
+      category.services.forEach((service) => {
+        service.buckets.forEach((bucket) => {
+          bucket.items.forEach((item) => {
+            const haystack = `${item.item.title} ${item.item.description ?? ""}`.toLowerCase();
+            if (haystack.includes(term)) {
+              results.push({ item, category, service, bucket });
+            }
           });
-        }
+        });
       });
-    };
-
-    walk(category.children, [], []);
-  });
-
-  return results;
-}
-
-function findCategory(
-  manifest: SiddurManifest | null,
-  categoryId: string | null
-): SiddurManifestCategory | null {
-  if (!manifest || !categoryId) return null;
-  return manifest.categories.find((category) => category.id === categoryId) ?? null;
-}
-
-function resolveGroupPath(
-  category: SiddurManifestCategory,
-  stack: string[]
-): { id: string; title: string }[] {
-  const segments: { id: string; title: string }[] = [];
-  let nodes: NodeList = category.children;
-
-  stack.forEach((groupId) => {
-    const group = nodes.find(
-      (node): node is ManifestGroupNode => node.type === "group" && node.id === groupId
-    );
-    if (group) {
-      segments.push({ id: group.id, title: group.title });
-      nodes = group.children;
-    }
-  });
-
-  return segments;
-}
-
-function getActiveNodes(category: SiddurManifestCategory, stack: string[]): NodeList {
-  let nodes: NodeList = category.children;
-
-  stack.forEach((groupId) => {
-    const group = nodes.find(
-      (node): node is ManifestGroupNode => node.type === "group" && node.id === groupId
-    );
-    nodes = group ? group.children : [];
-  });
-
-  return nodes;
-}
-
-function EntryTags({ tags }: { tags: string[] }) {
-  if (!tags.length) return null;
-  return (
-    <div className="flex flex-wrap gap-2 text-xs">
-      {tags.map((tag) => (
-        <span
-          key={tag}
-          className="inline-flex items-center rounded-full bg-pomegranate/10 px-3 py-1 font-semibold uppercase tracking-wide text-pomegranate"
-        >
-          {tag.replace(/_/g, " ")}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function VariantBadges({ labels }: { labels: string[] }) {
-  if (!labels.length) return null;
-  return (
-    <div className="flex flex-wrap gap-2">
-      {labels.map((label) => (
-        <span
-          key={label}
-          className="inline-flex items-center rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600 dark:border-slate-600 dark:text-slate-300"
-        >
-          {label}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-export const SiddurView: React.FC = () => {
-  const transliterationMode = useSettings((state) => state.transliterationMode);
-  const nusach = useSettings((state) => state.nusach);
-  const registry = useContent((state) => state.registry);
-
-  const manifest = registry?.siddur.manifest ?? null;
-  const entryMap = registry?.siddur.entries ?? {};
-
-  const [query, setQuery] = useState("");
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-  const [groupStack, setGroupStack] = useState<string[]>([]);
-  const [activeEntryId, setActiveEntryId] = useState<string | null>(null);
-
-  const sanitizedQuery = query.trim();
-
-  const entryLookup = useMemo(
-    () =>
-      Object.fromEntries(
-        Object.entries(entryMap).map(([id, entry]) => [id, { title: entry.title, tags: entry.tags ?? [] }])
-      ),
-    [entryMap]
-  );
-
-  const searchIndex = useMemo(
-    () => (manifest ? collectEntries(manifest, entryLookup) : []),
-    [manifest, entryLookup]
-  );
-
-  const categoryCounts = useMemo(() => {
-    const counts = new Map<string, number>();
-    searchIndex.forEach((item) => {
-      counts.set(item.categoryId, (counts.get(item.categoryId) ?? 0) + 1);
     });
-    return counts;
-  }, [searchIndex]);
-
-  const category = findCategory(manifest, selectedCategoryId);
-  const groupSegments = category ? resolveGroupPath(category, groupStack) : [];
-
-  const breadcrumbs = useMemo(() => {
-    if (!category) return [] as string[];
-    const labels = [category.title, ...groupSegments.map((segment) => segment.title)];
-    if (activeEntryId) {
-      const node = entryMap[activeEntryId];
-      if (node) {
-        labels.push(node.title);
-      }
-    }
-    return labels;
-  }, [category, groupSegments, activeEntryId, entryMap]);
-
-  const filteredResults = useMemo(() => {
-    if (!sanitizedQuery) return [] as SearchResult[];
-    const lower = sanitizedQuery.toLowerCase();
-    return searchIndex.filter((item) => {
-      const haystack = `${item.title} ${item.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(lower);
-    });
-  }, [sanitizedQuery, searchIndex]);
-
-  const handleSelectCategory = (id: string) => {
-    setSelectedCategoryId(id);
-    setGroupStack([]);
-    setActiveEntryId(null);
-  };
-
-  const handleSelectNode = (node: SiddurManifestNode) => {
-    if (node.type === "group") {
-      setGroupStack((prev) => [...prev, node.id]);
-      setActiveEntryId(null);
-    } else {
-      setActiveEntryId(node.entryId);
-    }
-  };
-
-  const handleSearchSelect = (result: SearchResult) => {
-    setSelectedCategoryId(result.categoryId);
-    setGroupStack(result.groupPath);
-    setActiveEntryId(result.entryId);
-    setQuery("");
-  };
+    return results;
+  }, [searchTerm, navigation]);
 
   const handleBack = () => {
-    if (activeEntryId) {
-      setActiveEntryId(null);
+    if (activeItemId) {
+      setActiveItemId(null);
       return;
     }
-    if (groupStack.length > 0) {
-      setGroupStack((prev) => prev.slice(0, -1));
+    if (activeBucketId) {
+      setActiveBucketId(null);
       return;
     }
-    setSelectedCategoryId(null);
+    if (activeServiceId) {
+      setActiveServiceId(null);
+      setActiveBucketId(null);
+      return;
+    }
+    if (activeCategoryId) {
+      setActiveCategoryId(null);
+      setActiveServiceId(null);
+      setActiveBucketId(null);
+      return;
+    }
   };
 
-  const renderCategoryCards = () => {
-    if (!manifest) {
-      return (
-        <p className="text-sm text-slate-500">Siddur content is loading…</p>
-      );
-    }
-
+  if (!metadata) {
     return (
-      <div className="grid gap-4 md:grid-cols-2">
-        {manifest.categories.map((cat) => {
-          const entryTotal = categoryCounts.get(cat.id) ?? 0;
-          return (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => handleSelectCategory(cat.id)}
-              className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-800"
-            >
-              <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">{cat.title}</span>
-              {cat.description ? (
-                <span className="mt-2 text-sm text-slate-600 dark:text-slate-300">{cat.description}</span>
-              ) : null}
-              <span className="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                {entryTotal} placeholder entr{entryTotal === 1 ? "y" : "ies"}
-              </span>
-            </button>
-          );
-        })}
+      <div className="p-6">
+        <p className="text-sm text-slate-500 dark:text-slate-300">Loading siddur structure…</p>
       </div>
     );
-  };
+  }
 
-  const renderNodeList = () => {
-    if (!category) return null;
-    const nodes = getActiveNodes(category, groupStack);
+  const hasResults = navigation.categories.length > 0;
 
-    if (!nodes.length) {
-      return <p className="text-sm text-slate-500">No prayers available in this section yet.</p>;
-    }
+  const renderCategoryList = () => (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {navigation.categories.map((category) => (
+        <button
+          key={category.category.id}
+          type="button"
+          onClick={() => {
+            setActiveCategoryId(category.category.id);
+            setActiveServiceId(null);
+            setActiveBucketId(null);
+            setActiveItemId(null);
+          }}
+          className={clsx(
+            "rounded-2xl border p-5 text-left shadow-sm transition",
+            activeCategoryId === category.category.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{category.category.title}</h3>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{category.category.description}</p>
+          {formatApplicabilityBadge(category.applicableToday, showOnlyApplicable)}
+        </button>
+      ))}
+    </div>
+  );
 
-    return (
-      <div className="space-y-3">
-        {nodes.map((node) => {
-          if (node.type === "group") {
-            return (
-              <button
-                key={node.id}
-                type="button"
-                onClick={() => handleSelectNode(node)}
-                className="flex w-full flex-col rounded-xl border border-slate-200 bg-slate-50 p-4 text-left shadow-sm transition hover:border-pomegranate hover:bg-white focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-800/60 dark:hover:bg-slate-800"
-              >
-                <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{node.title}</span>
-                {node.description ? (
-                  <span className="mt-1 text-sm text-slate-600 dark:text-slate-300">{node.description}</span>
-                ) : null}
-                <span className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Explore prayers →</span>
-              </button>
-            );
-          }
+  const renderServiceList = (category: SiddurNavigationCategory) => (
+    <div className="space-y-4">
+      {category.services.map((service) => (
+        <button
+          key={service.service.id}
+          type="button"
+          onClick={() => {
+            setActiveServiceId(service.service.id);
+            setActiveBucketId(null);
+            setActiveItemId(null);
+          }}
+          className={clsx(
+            "w-full rounded-xl border p-4 text-left shadow-sm transition",
+            activeServiceId === service.service.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <h4 className="text-base font-semibold text-slate-900 dark:text-slate-100">{service.service.title}</h4>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{service.service.description}</p>
+            </div>
+            {formatApplicabilityBadge(service.applicableToday, showOnlyApplicable)}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
 
-          return (
-            <button
-              key={node.id}
-              type="button"
-              onClick={() => handleSelectNode(node)}
-              className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
-            >
-              <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{node.title}</span>
-              <EntryTags tags={Array.from(new Set([...(entryMap[node.entryId]?.tags ?? []), ...(node.tags ?? [])]))} />
-            </button>
-          );
-        })}
-      </div>
-    );
-  };
+  const renderBucketList = (service: SiddurNavigationService) => (
+    <div className="space-y-4">
+      {service.buckets.map((bucket) => (
+        <button
+          key={bucket.bucket.id}
+          type="button"
+          onClick={() => {
+            setActiveBucketId(bucket.bucket.id);
+            setActiveItemId(null);
+          }}
+          className={clsx(
+            "w-full rounded-xl border p-4 text-left shadow-sm transition",
+            activeBucketId === bucket.bucket.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <h5 className="text-base font-semibold text-slate-900 dark:text-slate-100">{bucket.bucket.title}</h5>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{bucket.bucket.description}</p>
+            </div>
+            {formatApplicabilityBadge(bucket.applicableToday, showOnlyApplicable)}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
 
-  const renderEntryView = () => {
-    if (!category || !activeEntryId) return null;
-    const entry = entryMap[activeEntryId];
-    if (!entry) {
-      return <p className="text-sm text-slate-500">This entry is not available yet.</p>;
-    }
+  const renderItemList = (bucket: SiddurNavigationBucket) => (
+    <div className="space-y-3">
+      {bucket.items.map((entry) => (
+        <button
+          key={entry.item.id}
+          type="button"
+          onClick={() => setActiveItemId(entry.item.id)}
+          className={clsx(
+            "w-full rounded-xl border p-4 text-left shadow-sm transition",
+            activeItemId === entry.item.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="text-base font-semibold text-slate-900 dark:text-slate-100">{entry.item.title}</div>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{entry.item.description}</p>
+            </div>
+            {formatApplicabilityBadge(entry.applicableToday, showOnlyApplicable)}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
 
-    const variantLabels = entry.variants.map((variant) => variant.label);
-
-    return (
-      <div className="space-y-4">
-        <div>
-          <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{entry.title}</h2>
-          {entry.heTitle ? (
-            <p className="text-xl text-right font-semibold text-slate-700 dark:text-slate-200" dir="rtl">
-              {entry.heTitle}
-            </p>
-          ) : null}
-        </div>
-        <VariantBadges labels={variantLabels} />
-        <EntryTags tags={entry.tags ?? []} />
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 shadow-inner dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-          <h3 className="text-lg font-semibold">Coming soon</h3>
-          <p className="mt-2 text-sm">
-            Full liturgy for this prayer will be added in a future update. For now, use this placeholder to explore the structure
-            and associated nusach options.
-          </p>
-        </div>
-      </div>
-    );
-  };
-
-  return (
+  const renderItemDetail = (entry: SiddurNavigationItem, bucket: SiddurNavigationBucket, service: SiddurNavigationService, category: SiddurNavigationCategory) => (
     <div className="space-y-6">
-      <header className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Siddur</h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Explore the prayer flow with placeholder content. Actual liturgy will arrive in future packs.
-            </p>
-          </div>
-          <div className="text-xs text-slate-500 dark:text-slate-400">
-            <p>Transliteration preference: {transliterationMode}</p>
-            <p>Preferred nusach: {nusach}</p>
-          </div>
-        </div>
-        <input
-          type="search"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search by title or tag…"
-          className="w-full rounded-full border border-slate-300 bg-white px-4 py-2 text-sm shadow-sm transition focus:border-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-600 dark:bg-slate-800"
-        />
-        {breadcrumbs.length ? (
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            {breadcrumbs.map((crumb, index) => (
-              <React.Fragment key={`${crumb}-${index}`}>
-                {index > 0 ? <span>/</span> : null}
-                <span>{crumb}</span>
-              </React.Fragment>
-            ))}
+      <div>
+        <p className="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {category.category.title} → {service.service.title} → {bucket.bucket.title}
+        </p>
+        <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">{entry.item.title}</h2>
+        <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{entry.item.description}</p>
+        {entry.item.outline && entry.item.outline.length > 0 ? (
+          <div className="mt-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Outline</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-sm text-slate-600 dark:text-slate-300">
+              {entry.item.outline.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
           </div>
         ) : null}
-        {(selectedCategoryId || activeEntryId || groupStack.length > 0) && (
+        {!entry.applicableToday && !showOnlyApplicable ? (
+          <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-200">
+            This item is not in effect right now. Check the notes for when it is used.
+          </div>
+        ) : null}
+        {entry.item.notes ? (
+          <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+            <span className="font-semibold">Notes:</span> {entry.item.notes}
+          </div>
+        ) : null}
+        <PlaceholderText />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Applicability</h3>
+        <ul className="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-300">
+          <li>Mode: {mode === "basic" ? "Basic" : "Full"}</li>
+          <li>Tradition: {formatTraditionLabel(tradition)}</li>
+          <li>
+            Status: {entry.applicableToday ? "Active today" : "Not active today"}
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+
+  const formatTraditionLabel = (value: SiddurTradition) => {
+    switch (value) {
+      case "ashkenaz":
+        return "Ashkenaz";
+      case "sefard":
+        return "Sefard";
+      case "edot_hamizrach":
+        return "Edot HaMizrach";
+      default:
+        return value;
+    }
+  };
+
+  const renderSearchResults = () => (
+    <div className="space-y-3">
+      {searchResults.length === 0 ? (
+        <p className="text-sm text-slate-500 dark:text-slate-300">No prayers matched your search.</p>
+      ) : (
+        searchResults.map(({ item, bucket, service, category }) => (
           <button
+            key={`${item.item.id}-${bucket.bucket.id}`}
             type="button"
-            onClick={handleBack}
-            className="inline-flex items-center gap-2 self-start rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-pomegranate hover:text-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-600 dark:text-slate-300"
+            onClick={() => {
+              setActiveCategoryId(category.category.id);
+              setActiveServiceId(service.service.id);
+              setActiveBucketId(bucket.bucket.id);
+              setActiveItemId(item.item.id);
+            }}
+            className="w-full rounded-xl border border-slate-200 p-4 text-left shadow-sm transition hover:border-pomegranate/70 hover:shadow dark:border-slate-700"
           >
-            ← Back
+            <div className="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              {category.category.title} → {service.service.title} → {bucket.bucket.title}
+            </div>
+            <div className="mt-1 text-base font-semibold text-slate-900 dark:text-slate-100">{item.item.title}</div>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{item.item.description}</p>
+            {formatApplicabilityBadge(item.applicableToday, showOnlyApplicable)}
           </button>
-        )}
+        ))
+      )}
+    </div>
+  );
+
+  const todaySummary = React.useMemo(() => {
+    if (!metadata) return [] as SiddurNavigationCategory[];
+    return getTodaySiddurOutline(metadata, tradition, mode, context);
+  }, [metadata, tradition, mode, context]);
+
+  return (
+    <div className="space-y-6 p-6">
+      <header className="space-y-2">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Siddur</h1>
+        <p className="text-sm text-slate-600 dark:text-slate-300">
+          Browse structured categories for each service. Mode: {mode === "basic" ? "Basic" : "Full"} · Tradition: {formatTraditionLabel(tradition)}
+        </p>
       </header>
 
-      {sanitizedQuery ? (
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Search results</h2>
-          {filteredResults.length === 0 ? (
-            <p className="text-sm text-slate-500">No matches yet. Try a different title or tag.</p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+        <label htmlFor="siddur-search" className="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          Search prayers
+        </label>
+        <input
+          id="siddur-search"
+          type="search"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Search by title or description"
+          className="mt-2 w-full rounded-lg border border-slate-300 bg-white p-2 text-sm shadow-sm focus:border-pomegranate focus:outline-none focus:ring focus:ring-pomegranate/30 dark:border-slate-600 dark:bg-slate-950"
+        />
+        {searchTerm ? (
+          <div className="mt-4">{renderSearchResults()}</div>
+        ) : null}
+      </section>
+
+      {!showOnlyApplicable ? (
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Today at a glance</h2>
+          {todaySummary.length === 0 ? (
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">No specific items are active today with the current filters.</p>
           ) : (
-            <div className="space-y-2">
-              {filteredResults.map((result) => (
-                <button
-                  key={`${result.entryId}-${result.breadcrumbs.join("-")}`}
-                  type="button"
-                  onClick={() => handleSearchSelect(result)}
-                  className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
-                >
-                  <div className="flex flex-col gap-1">
-                    <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{result.title}</span>
-                    <span className="text-xs text-slate-500">{result.breadcrumbs.join(" › ")}</span>
-                    <EntryTags tags={result.tags} />
-                  </div>
-                </button>
+            <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              {todaySummary.map((category) => (
+                <li key={category.category.id}>
+                  <span className="font-semibold text-slate-800 dark:text-slate-100">{category.category.title}</span>
+                  <ul className="mt-1 space-y-1 pl-4">
+                    {category.services.map((service) => (
+                      <li key={service.service.id}>
+                        <span className="font-medium text-slate-700 dark:text-slate-200">{service.service.title}</span>
+                        <ul className="mt-1 space-y-1 pl-4">
+                          {service.buckets.map((bucket) => (
+                            <li key={bucket.bucket.id}>
+                              <span className="text-slate-600 dark:text-slate-300">{bucket.bucket.title}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </section>
       ) : null}
 
-      {!sanitizedQuery && !activeEntryId && !groupStack.length && !selectedCategoryId
-        ? renderCategoryCards()
-        : null}
-
-      {!sanitizedQuery && category && !activeEntryId ? renderNodeList() : null}
-
-      {!sanitizedQuery && activeEntryId ? renderEntryView() : null}
-
-      <footer className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-400">
-        Siddur entries currently contain placeholder text. Always consult a trusted rabbi or printed siddur for personal prayer.
-      </footer>
+      {searchTerm ? null : !hasResults ? (
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+          No siddur entries match your current filters. Try switching to Full mode or disabling the "Show only what applies today" option.
+        </div>
+      ) : (
+        <section className="space-y-4">
+          {activeCategory && activeService && activeBucket && activeItem ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderItemDetail(activeItem, activeBucket, activeService, activeCategory)}
+            </div>
+          ) : activeCategory && activeService && activeBucket ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderItemList(activeBucket)}
+            </div>
+          ) : activeCategory && activeService ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderBucketList(activeService)}
+            </div>
+          ) : activeCategory ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderServiceList(activeCategory)}
+            </div>
+          ) : (
+            renderCategoryList()
+          )}
+        </section>
+      )}
     </div>
   );
 };
+
+export default SiddurView;

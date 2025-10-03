@@ -1,6 +1,6 @@
 // Codex change: Extended shared types with Tanakh metadata definitions.
 
-import type { SiddurEntry, SiddurManifest } from "./types/siddur";
+import type { SiddurContentLibrary, SiddurMetadata } from "./types/siddur";
 
 export interface VerseWord {
   surface: string;
@@ -177,9 +177,8 @@ export interface ContentRegistry {
 }
 
 export interface SiddurRegistry {
-  manifest: SiddurManifest | null;
-  entries: Record<string, SiddurEntry>;
-  legacy?: Record<string, Prayer[]>;
+  metadata: SiddurMetadata | null;
+  content: SiddurContentLibrary;
 }
 
 export interface ParshaMetadataEntry {

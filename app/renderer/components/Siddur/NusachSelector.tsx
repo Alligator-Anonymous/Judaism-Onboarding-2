@@ -6,7 +6,7 @@ import { useSettings, type Nusach } from "@stores/useSettings";
 const NUSACH_LABELS: Record<Nusach, string> = {
   ashkenaz: "Ashkenaz",
   sefard: "Sefard",
-  "edot-mizrach": "Edot Mizrach"
+  edot_hamizrach: "Edot HaMizrach"
 };
 
 export const NusachSelector: React.FC = () => {
