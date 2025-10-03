@@ -12,7 +12,12 @@ import {
   type SiddurNavigationItem,
   type SiddurNavigationService
 } from "@lib/siddur";
-import type { SiddurMetadata, SiddurTradition } from "@/types/siddur";
+import type {
+  SiddurContentLibrary,
+  SiddurMetadata,
+  SiddurPrayerContent,
+  SiddurTradition
+} from "@/types/siddur";
 
 interface SearchResult {
   item: SiddurNavigationItem;
@@ -91,6 +96,7 @@ const SiddurView: React.FC = () => {
   }, [hydrate]);
 
   const metadata = (registry?.siddur.metadata ?? null) as SiddurMetadata | null;
+  const library = (registry?.siddur.content ?? null) as SiddurContentLibrary | null;
 
   const context = React.useMemo<SiddurFilterContext>(() => {
     return createSiddurFilterContext({
@@ -110,6 +116,72 @@ const SiddurView: React.FC = () => {
       context
     });
   }, [metadata, tradition, mode, showOnlyApplicable, context]);
+
+  const resolvePrayerContent = React.useCallback(
+    (id: string): SiddurPrayerContent | null => {
+      if (!library) return null;
+
+      const traditionLayer = library.traditions?.[tradition]?.[id];
+      if (traditionLayer) {
+        return traditionLayer;
+      }
+
+      const commonLayer = library.common?.[id];
+      if (commonLayer) {
+        return commonLayer;
+      }
+
+      if (tradition !== "ashkenaz") {
+        const ashkenazLayer = library.traditions?.ashkenaz?.[id];
+        if (ashkenazLayer) {
+          return ashkenazLayer;
+        }
+      }
+
+      return null;
+    },
+    [library, tradition]
+  );
+
+  const renderPrayerContent = (content: SiddurPrayerContent) => (
+    <div className="mt-6 space-y-5">
+      {content.title_he ? (
+        <p
+          className="text-2xl font-semibold text-slate-900 dark:text-slate-100"
+          dir="rtl"
+          lang="he"
+        >
+          {content.title_he}
+        </p>
+      ) : null}
+      {content.segments.map((segment, index) => (
+        <div key={`${content.id}-segment-${index}`} className="space-y-2">
+          {segment.label_en || segment.label_he ? (
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              {segment.label_en ? <span>{segment.label_en}</span> : null}
+              {segment.label_he ? (
+                <span className="ml-2" dir="rtl" lang="he">
+                  {segment.label_he}
+                </span>
+              ) : null}
+            </div>
+          ) : null}
+          {segment.he ? (
+            <p
+              className="text-xl leading-relaxed text-slate-900 dark:text-slate-100"
+              dir="rtl"
+              lang="he"
+            >
+              {segment.he}
+            </p>
+          ) : null}
+          {segment.en ? (
+            <p className="text-base leading-relaxed text-slate-700 dark:text-slate-300">{segment.en}</p>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
 
   const [activeCategoryId, setActiveCategoryId] = React.useState<string | null>(null);
   const [activeServiceId, setActiveServiceId] = React.useState<string | null>(null);
@@ -302,48 +374,57 @@ const SiddurView: React.FC = () => {
     </div>
   );
 
-  const renderItemDetail = (entry: SiddurNavigationItem, bucket: SiddurNavigationBucket, service: SiddurNavigationService, category: SiddurNavigationCategory) => (
-    <div className="space-y-6">
-      <div>
-        <p className="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
-          {category.category.title} → {service.service.title} → {bucket.bucket.title}
-        </p>
-        <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">{entry.item.title}</h2>
-        <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{entry.item.description}</p>
-        {entry.item.outline && entry.item.outline.length > 0 ? (
-          <div className="mt-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Outline</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-6 text-sm text-slate-600 dark:text-slate-300">
-              {entry.item.outline.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-        {!entry.applicableToday && !showOnlyApplicable ? (
-          <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-200">
-            This item is not in effect right now. Check the notes for when it is used.
-          </div>
-        ) : null}
-        {entry.item.notes ? (
-          <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
-            <span className="font-semibold">Notes:</span> {entry.item.notes}
-          </div>
-        ) : null}
-        <PlaceholderText />
+  const renderItemDetail = (
+    entry: SiddurNavigationItem,
+    bucket: SiddurNavigationBucket,
+    service: SiddurNavigationService,
+    category: SiddurNavigationCategory
+  ) => {
+    const content = resolvePrayerContent(entry.item.id);
+
+    return (
+      <div className="space-y-6">
+        <div>
+          <p className="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            {category.category.title} → {service.service.title} → {bucket.bucket.title}
+          </p>
+          <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">{entry.item.title}</h2>
+          <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{entry.item.description}</p>
+          {entry.item.outline && entry.item.outline.length > 0 ? (
+            <div className="mt-4">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Outline</h3>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-sm text-slate-600 dark:text-slate-300">
+                {entry.item.outline.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+          {!entry.applicableToday && !showOnlyApplicable ? (
+            <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-200">
+              This item is not in effect right now. Check the notes for when it is used.
+            </div>
+          ) : null}
+          {entry.item.notes ? (
+            <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+              <span className="font-semibold">Notes:</span> {entry.item.notes}
+            </div>
+          ) : null}
+          {content ? renderPrayerContent(content) : <PlaceholderText />}
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Applicability</h3>
+          <ul className="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-300">
+            <li>Mode: {mode === "basic" ? "Basic" : "Full"}</li>
+            <li>Tradition: {formatTraditionLabel(tradition)}</li>
+            <li>
+              Status: {entry.applicableToday ? "Active today" : "Not active today"}
+            </li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Applicability</h3>
-        <ul className="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-300">
-          <li>Mode: {mode === "basic" ? "Basic" : "Full"}</li>
-          <li>Tradition: {formatTraditionLabel(tradition)}</li>
-          <li>
-            Status: {entry.applicableToday ? "Active today" : "Not active today"}
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const formatTraditionLabel = (value: SiddurTradition) => {
     switch (value) {
