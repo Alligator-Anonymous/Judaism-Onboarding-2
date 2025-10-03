@@ -1,0 +1,3141 @@
+{
+  "id": "siddur-core-v1",
+  "name": "Siddur Core Pack",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "daily",
+      "title": "Daily",
+      "description": "Daily prayers for morning, afternoon, and evening.",
+      "children": [
+        {
+          "type": "group",
+          "id": "daily-shacharit",
+          "title": "Shacharit (Morning)",
+          "children": [
+            {
+              "type": "entry",
+              "id": "daily-shacharit-birchot-hashachar",
+              "title": "Morning Blessings (Birchot HaShachar)",
+              "entryId": "daily-shacharit-birchot-hashachar",
+              "tags": [
+                "daily",
+                "weekday"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-tallit-and-tefillin",
+              "title": "Tallit and Tefillin Blessings",
+              "entryId": "daily-shacharit-tallit-and-tefillin",
+              "tags": [
+                "daily",
+                "practice"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-pesukei-dezimra",
+              "title": "Pesukei DeZimra",
+              "entryId": "daily-shacharit-pesukei-dezimra",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-nishmat",
+              "title": "Nishmat",
+              "entryId": "daily-shacharit-nishmat",
+              "tags": [
+                "shabbat",
+                "yom_tov"
+              ],
+              "description": "Recited on Shabbat and festivals."
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-yotzer-or",
+              "title": "Yotzer Or",
+              "entryId": "daily-shacharit-yotzer-or",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-ahavah-rabbah",
+              "title": "Ahavah Rabbah",
+              "entryId": "daily-shacharit-ahavah-rabbah",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shema",
+              "title": "Shema",
+              "entryId": "daily-shema",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-emet-ve-yatziv",
+              "title": "Emet VeYatziv",
+              "entryId": "daily-shacharit-emet-ve-yatziv",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-amidah-weekday",
+              "title": "Weekday Amidah (19 Blessings)",
+              "entryId": "daily-amidah-weekday",
+              "tags": [
+                "daily",
+                "weekday"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-tachanun-long",
+              "title": "Tachanun (Long Form)",
+              "entryId": "daily-tachanun-long",
+              "tags": [
+                "daily",
+                "weekday",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-tachanun-short",
+              "title": "Tachanun (Short Form)",
+              "entryId": "daily-tachanun-short",
+              "tags": [
+                "daily",
+                "weekday",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-ashrei",
+              "title": "Ashrei",
+              "entryId": "daily-ashrei",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-uva-leti",
+              "title": "Uva Letzion",
+              "entryId": "daily-uva-leti",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-aleinu",
+              "title": "Aleinu",
+              "entryId": "daily-aleinu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shacharit-psalm-of-the-day",
+              "title": "Psalm of the Day",
+              "entryId": "daily-shacharit-psalm-of-the-day",
+              "tags": [
+                "daily",
+                "special_insert"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "daily-mincha",
+          "title": "Mincha (Afternoon)",
+          "children": [
+            {
+              "type": "entry",
+              "id": "daily-ashrei",
+              "title": "Ashrei",
+              "entryId": "daily-ashrei",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-amidah-weekday",
+              "title": "Weekday Amidah (19 Blessings)",
+              "entryId": "daily-amidah-weekday",
+              "tags": [
+                "daily",
+                "weekday"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-tachanun-long",
+              "title": "Tachanun (Long Form)",
+              "entryId": "daily-tachanun-long",
+              "tags": [
+                "daily",
+                "weekday",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-tachanun-short",
+              "title": "Tachanun (Short Form)",
+              "entryId": "daily-tachanun-short",
+              "tags": [
+                "daily",
+                "weekday",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-aleinu",
+              "title": "Aleinu",
+              "entryId": "daily-aleinu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "daily-maariv",
+          "title": "Ma'ariv (Evening)",
+          "children": [
+            {
+              "type": "entry",
+              "id": "daily-maariv-barchu",
+              "title": "Barchu",
+              "entryId": "daily-maariv-barchu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-maariv-aravim",
+              "title": "Ma'ariv Aravim",
+              "entryId": "daily-maariv-aravim",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-maariv-ahavat-olam",
+              "title": "Ahavat Olam",
+              "entryId": "daily-maariv-ahavat-olam",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-shema",
+              "title": "Shema",
+              "entryId": "daily-shema",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-maariv-emet-veemunah",
+              "title": "Emet VeEmunah",
+              "entryId": "daily-maariv-emet-veemunah",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-amidah-weekday",
+              "title": "Weekday Amidah (19 Blessings)",
+              "entryId": "daily-amidah-weekday",
+              "tags": [
+                "daily",
+                "weekday"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-aleinu",
+              "title": "Aleinu",
+              "entryId": "daily-aleinu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "daily-musaf",
+          "title": "Musaf and Shared Additions",
+          "children": [
+            {
+              "type": "entry",
+              "id": "daily-musaf-overview",
+              "title": "Musaf Service Overview",
+              "entryId": "daily-musaf-overview",
+              "tags": [
+                "shabbat",
+                "rosh_chodesh",
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shared-hallel",
+              "title": "Hallel",
+              "entryId": "shared-hallel",
+              "tags": [
+                "yom_tov",
+                "rosh_chodesh",
+                "chanukah"
+              ]
+            }
+          ],
+          "description": "Musaf applies on Shabbat, Rosh Chodesh, and festivals."
+        },
+        {
+          "type": "group",
+          "id": "daily-omer",
+          "title": "Counting the Omer",
+          "children": [
+            {
+              "type": "entry",
+              "id": "omer-introduction",
+              "title": "Counting the Omer Overview",
+              "entryId": "omer-introduction",
+              "tags": [
+                "omer",
+                "seasonal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-01",
+              "title": "Counting the Omer Day 1",
+              "entryId": "omer-day-01",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-02",
+              "title": "Counting the Omer Day 2",
+              "entryId": "omer-day-02",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-03",
+              "title": "Counting the Omer Day 3",
+              "entryId": "omer-day-03",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-04",
+              "title": "Counting the Omer Day 4",
+              "entryId": "omer-day-04",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-05",
+              "title": "Counting the Omer Day 5",
+              "entryId": "omer-day-05",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-06",
+              "title": "Counting the Omer Day 6",
+              "entryId": "omer-day-06",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-07",
+              "title": "Counting the Omer Day 7",
+              "entryId": "omer-day-07",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-08",
+              "title": "Counting the Omer Day 8",
+              "entryId": "omer-day-08",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-09",
+              "title": "Counting the Omer Day 9",
+              "entryId": "omer-day-09",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-10",
+              "title": "Counting the Omer Day 10",
+              "entryId": "omer-day-10",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-11",
+              "title": "Counting the Omer Day 11",
+              "entryId": "omer-day-11",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-12",
+              "title": "Counting the Omer Day 12",
+              "entryId": "omer-day-12",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-13",
+              "title": "Counting the Omer Day 13",
+              "entryId": "omer-day-13",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-14",
+              "title": "Counting the Omer Day 14",
+              "entryId": "omer-day-14",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-15",
+              "title": "Counting the Omer Day 15",
+              "entryId": "omer-day-15",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-16",
+              "title": "Counting the Omer Day 16",
+              "entryId": "omer-day-16",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-17",
+              "title": "Counting the Omer Day 17",
+              "entryId": "omer-day-17",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-18",
+              "title": "Counting the Omer Day 18",
+              "entryId": "omer-day-18",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-19",
+              "title": "Counting the Omer Day 19",
+              "entryId": "omer-day-19",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-20",
+              "title": "Counting the Omer Day 20",
+              "entryId": "omer-day-20",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-21",
+              "title": "Counting the Omer Day 21",
+              "entryId": "omer-day-21",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-22",
+              "title": "Counting the Omer Day 22",
+              "entryId": "omer-day-22",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-23",
+              "title": "Counting the Omer Day 23",
+              "entryId": "omer-day-23",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-24",
+              "title": "Counting the Omer Day 24",
+              "entryId": "omer-day-24",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-25",
+              "title": "Counting the Omer Day 25",
+              "entryId": "omer-day-25",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-26",
+              "title": "Counting the Omer Day 26",
+              "entryId": "omer-day-26",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-27",
+              "title": "Counting the Omer Day 27",
+              "entryId": "omer-day-27",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-28",
+              "title": "Counting the Omer Day 28",
+              "entryId": "omer-day-28",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-29",
+              "title": "Counting the Omer Day 29",
+              "entryId": "omer-day-29",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-30",
+              "title": "Counting the Omer Day 30",
+              "entryId": "omer-day-30",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-31",
+              "title": "Counting the Omer Day 31",
+              "entryId": "omer-day-31",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-32",
+              "title": "Counting the Omer Day 32",
+              "entryId": "omer-day-32",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-33",
+              "title": "Counting the Omer Day 33",
+              "entryId": "omer-day-33",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-34",
+              "title": "Counting the Omer Day 34",
+              "entryId": "omer-day-34",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-35",
+              "title": "Counting the Omer Day 35",
+              "entryId": "omer-day-35",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-36",
+              "title": "Counting the Omer Day 36",
+              "entryId": "omer-day-36",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-37",
+              "title": "Counting the Omer Day 37",
+              "entryId": "omer-day-37",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-38",
+              "title": "Counting the Omer Day 38",
+              "entryId": "omer-day-38",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-39",
+              "title": "Counting the Omer Day 39",
+              "entryId": "omer-day-39",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-40",
+              "title": "Counting the Omer Day 40",
+              "entryId": "omer-day-40",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-41",
+              "title": "Counting the Omer Day 41",
+              "entryId": "omer-day-41",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-42",
+              "title": "Counting the Omer Day 42",
+              "entryId": "omer-day-42",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-43",
+              "title": "Counting the Omer Day 43",
+              "entryId": "omer-day-43",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-44",
+              "title": "Counting the Omer Day 44",
+              "entryId": "omer-day-44",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-45",
+              "title": "Counting the Omer Day 45",
+              "entryId": "omer-day-45",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-46",
+              "title": "Counting the Omer Day 46",
+              "entryId": "omer-day-46",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-47",
+              "title": "Counting the Omer Day 47",
+              "entryId": "omer-day-47",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-48",
+              "title": "Counting the Omer Day 48",
+              "entryId": "omer-day-48",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "omer-day-49",
+              "title": "Counting the Omer Day 49",
+              "entryId": "omer-day-49",
+              "tags": [
+                "omer",
+                "omer_day"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shabbat",
+      "title": "Shabbat",
+      "description": "Friday night through Havdalah structure.",
+      "children": [
+        {
+          "type": "group",
+          "id": "shabbat-kabbalat",
+          "title": "Kabbalat Shabbat",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-kabbalat-six-psalms",
+              "title": "Kabbalat Shabbat Psalms",
+              "entryId": "shabbat-kabbalat-six-psalms",
+              "tags": [
+                "shabbat",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-kabbalat-lecha-dodi",
+              "title": "Lecha Dodi",
+              "entryId": "shabbat-kabbalat-lecha-dodi",
+              "tags": [
+                "shabbat"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-maariv",
+          "title": "Shabbat Evening Service",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-maariv-amidah",
+              "title": "Shabbat Maariv Amidah",
+              "entryId": "shabbat-maariv-amidah",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-maariv-vayechulu",
+              "title": "Vayechulu",
+              "entryId": "shabbat-maariv-vayechulu",
+              "tags": [
+                "shabbat",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-maariv-magen-avot",
+              "title": "Magen Avot",
+              "entryId": "shabbat-maariv-magen-avot",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-aleinu",
+              "title": "Aleinu",
+              "entryId": "daily-aleinu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-shacharit",
+          "title": "Shabbat Morning Service",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-shacharit-framework",
+              "title": "Shacharit for Shabbat Overview",
+              "entryId": "shabbat-shacharit-framework",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-shacharit-nishmat",
+              "title": "Nishmat for Shabbat",
+              "entryId": "shabbat-shacharit-nishmat",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-shacharit-shema-blessings",
+              "title": "Shema and Blessings (Shabbat)",
+              "entryId": "shabbat-shacharit-shema-blessings",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-shacharit-amidah",
+              "title": "Shabbat Shacharit Amidah",
+              "entryId": "shabbat-shacharit-amidah",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-shacharit-torah-service",
+              "title": "Torah Service (Shabbat)",
+              "entryId": "shabbat-shacharit-torah-service",
+              "tags": [
+                "shabbat",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-ashrei",
+              "title": "Ashrei",
+              "entryId": "daily-ashrei",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-uva-leti",
+              "title": "Uva Letzion",
+              "entryId": "daily-uva-leti",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-aleinu",
+              "title": "Aleinu",
+              "entryId": "daily-aleinu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-musaf",
+          "title": "Shabbat Musaf",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-musaf-amidah",
+              "title": "Shabbat Musaf Amidah",
+              "entryId": "shabbat-musaf-amidah",
+              "tags": [
+                "shabbat"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-mincha",
+          "title": "Shabbat Mincha",
+          "children": [
+            {
+              "type": "entry",
+              "id": "daily-ashrei",
+              "title": "Ashrei",
+              "entryId": "daily-ashrei",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-mincha-amidah",
+              "title": "Shabbat Mincha Amidah",
+              "entryId": "shabbat-mincha-amidah",
+              "tags": [
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-mincha-tzidkatcha",
+              "title": "Tzidkatcha",
+              "entryId": "shabbat-mincha-tzidkatcha",
+              "tags": [
+                "shabbat"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-kiddush",
+          "title": "Kiddush",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-kiddush-friday-night",
+              "title": "Kiddush for Friday Night",
+              "entryId": "shabbat-kiddush-friday-night",
+              "tags": [
+                "shabbat",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-kiddush-day",
+              "title": "Kiddush for Shabbat Day",
+              "entryId": "shabbat-kiddush-day",
+              "tags": [
+                "shabbat",
+                "meal"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-havdalah",
+          "title": "Havdalah",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-havdalah",
+              "title": "Havdalah",
+              "entryId": "shabbat-havdalah",
+              "tags": [
+                "shabbat",
+                "practice"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "shabbat-zmirot",
+          "title": "Zmirot",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shabbat-zmirot-shalom-aleichem",
+              "title": "Shalom Aleichem",
+              "entryId": "shabbat-zmirot-shalom-aleichem",
+              "tags": [
+                "shabbat",
+                "practice"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-zmirot-eishet-chayil",
+              "title": "Eishet Chayil",
+              "entryId": "shabbat-zmirot-eishet-chayil",
+              "tags": [
+                "shabbat",
+                "practice"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shabbat-zmirot-tzaddik-katamar",
+              "title": "Tzaddik Katamar",
+              "entryId": "shabbat-zmirot-tzaddik-katamar",
+              "tags": [
+                "shabbat",
+                "practice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rosh-chodesh",
+      "title": "Rosh Chodesh",
+      "description": "New month services and announcements.",
+      "children": [
+        {
+          "type": "group",
+          "id": "rosh-chodesh-services",
+          "title": "Rosh Chodesh Services",
+          "children": [
+            {
+              "type": "entry",
+              "id": "rosh-chodesh-shacharit",
+              "title": "Shacharit for Rosh Chodesh",
+              "entryId": "rosh-chodesh-shacharit",
+              "tags": [
+                "rosh_chodesh"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-chodesh-halel",
+              "title": "Rosh Chodesh Hallel",
+              "entryId": "rosh-chodesh-halel",
+              "tags": [
+                "rosh_chodesh",
+                "chol_hamoed"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-chodesh-musaf",
+              "title": "Musaf for Rosh Chodesh",
+              "entryId": "rosh-chodesh-musaf",
+              "tags": [
+                "rosh_chodesh"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-chodesh-torah-service",
+              "title": "Rosh Chodesh Torah Service",
+              "entryId": "rosh-chodesh-torah-service",
+              "tags": [
+                "rosh_chodesh",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-chodesh-birkat-hachodesh",
+              "title": "Birkat HaChodesh",
+              "entryId": "rosh-chodesh-birkat-hachodesh",
+              "tags": [
+                "rosh_chodesh",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-kiddush-levanah",
+              "title": "Kiddush Levanah",
+              "entryId": "practice-kiddush-levanah",
+              "tags": [
+                "practice",
+                "seasonal"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "festivals-high-holidays",
+      "title": "Festivals and High Holidays",
+      "description": "Guides for major holidays throughout the year.",
+      "children": [
+        {
+          "type": "group",
+          "id": "festival-rosh-hashanah",
+          "title": "Rosh Hashanah",
+          "children": [
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-candle-lighting",
+              "title": "Rosh Hashanah Candle Lighting",
+              "entryId": "rosh-hashanah-candle-lighting",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-maariv",
+              "title": "Maariv for Rosh Hashanah",
+              "entryId": "rosh-hashanah-maariv",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-kiddush-night",
+              "title": "Kiddush for Rosh Hashanah Night",
+              "entryId": "rosh-hashanah-kiddush-night",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-shacharit",
+              "title": "Shacharit for Rosh Hashanah",
+              "entryId": "rosh-hashanah-shacharit",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-musaf",
+              "title": "Musaf for Rosh Hashanah",
+              "entryId": "rosh-hashanah-musaf",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-malchuyot",
+              "title": "Malchuyot",
+              "entryId": "rosh-hashanah-malchuyot",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-zichronot",
+              "title": "Zichronot",
+              "entryId": "rosh-hashanah-zichronot",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-shofarot",
+              "title": "Shofarot",
+              "entryId": "rosh-hashanah-shofarot",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-shofar-service",
+              "title": "Shofar Service",
+              "entryId": "rosh-hashanah-shofar-service",
+              "tags": [
+                "yom_tov",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-mincha",
+              "title": "Mincha for Rosh Hashanah",
+              "entryId": "rosh-hashanah-mincha",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-second-night-maaliv",
+              "title": "Second Night Maariv",
+              "entryId": "rosh-hashanah-second-night-maaliv",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-tashlich",
+              "title": "Tashlich",
+              "entryId": "rosh-hashanah-tashlich",
+              "tags": [
+                "yom_tov",
+                "practice"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "rosh-hashanah-havdalah",
+              "title": "Rosh Hashanah Havdalah",
+              "entryId": "rosh-hashanah-havdalah",
+              "tags": [
+                "yom_tov",
+                "practice"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-yom-kippur",
+          "title": "Yom Kippur",
+          "children": [
+            {
+              "type": "entry",
+              "id": "yom-kippur-kol-nidrei",
+              "title": "Kol Nidrei",
+              "entryId": "yom-kippur-kol-nidrei",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "yom-kippur-maariv",
+              "title": "Yom Kippur Maariv",
+              "entryId": "yom-kippur-maariv",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "yom-kippur-shacharit",
+              "title": "Yom Kippur Shacharit",
+              "entryId": "yom-kippur-shacharit",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "yom-kippur-musaf",
+              "title": "Yom Kippur Musaf",
+              "entryId": "yom-kippur-musaf",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "yom-kippur-mincha",
+              "title": "Yom Kippur Mincha",
+              "entryId": "yom-kippur-mincha",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "yom-kippur-neilah",
+              "title": "Ne'ilah",
+              "entryId": "yom-kippur-neilah",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "yom-kippur-havdalah",
+              "title": "Yom Kippur Havdalah",
+              "entryId": "yom-kippur-havdalah",
+              "tags": [
+                "yom_tov",
+                "fast_day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-pesach",
+          "title": "Pesach",
+          "children": [
+            {
+              "type": "entry",
+              "id": "pesach-candle-lighting",
+              "title": "Pesach Candle Lighting",
+              "entryId": "pesach-candle-lighting",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-maariv",
+              "title": "Pesach Maariv",
+              "entryId": "pesach-maariv",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-kiddush-night",
+              "title": "Pesach Seder Kiddush",
+              "entryId": "pesach-kiddush-night",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-shacharit",
+              "title": "Pesach Shacharit",
+              "entryId": "pesach-shacharit",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-halel",
+              "title": "Pesach Hallel",
+              "entryId": "pesach-halel",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-musaf",
+              "title": "Pesach Musaf",
+              "entryId": "pesach-musaf",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-chol-hamoed",
+              "title": "Pesach Chol HaMoed",
+              "entryId": "pesach-chol-hamoed",
+              "tags": [
+                "chol_hamoed",
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-omer",
+              "title": "Counting the Omer (Pesach)",
+              "entryId": "pesach-omer",
+              "tags": [
+                "omer",
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-yizkor",
+              "title": "Pesach Yizkor",
+              "entryId": "pesach-yizkor",
+              "tags": [
+                "yom_tov",
+                "mourner"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "pesach-havdalah",
+              "title": "Pesach Havdalah",
+              "entryId": "pesach-havdalah",
+              "tags": [
+                "yom_tov"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-shavuot",
+          "title": "Shavuot",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shavuot-candle-lighting",
+              "title": "Shavuot Candle Lighting",
+              "entryId": "shavuot-candle-lighting",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-maariv",
+              "title": "Shavuot Maariv",
+              "entryId": "shavuot-maariv",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-kiddush-night",
+              "title": "Shavuot Night Kiddush",
+              "entryId": "shavuot-kiddush-night",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-shacharit",
+              "title": "Shavuot Shacharit",
+              "entryId": "shavuot-shacharit",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-halel",
+              "title": "Shavuot Hallel",
+              "entryId": "shavuot-halel",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-musaf",
+              "title": "Shavuot Musaf",
+              "entryId": "shavuot-musaf",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-akdamut",
+              "title": "Akdamut",
+              "entryId": "shavuot-akdamut",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-yizkor",
+              "title": "Shavuot Yizkor",
+              "entryId": "shavuot-yizkor",
+              "tags": [
+                "yom_tov",
+                "mourner"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shavuot-havdalah",
+              "title": "Shavuot Havdalah",
+              "entryId": "shavuot-havdalah",
+              "tags": [
+                "yom_tov"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-sukkot",
+          "title": "Sukkot & Simchat Torah",
+          "children": [
+            {
+              "type": "entry",
+              "id": "sukkot-candle-lighting",
+              "title": "Sukkot Candle Lighting",
+              "entryId": "sukkot-candle-lighting",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-ushpizin",
+              "title": "Ushpizin Invitation",
+              "entryId": "sukkot-ushpizin",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-maariv",
+              "title": "Sukkot Maariv",
+              "entryId": "sukkot-maariv",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-kiddush-night",
+              "title": "Kiddush for Sukkot Night",
+              "entryId": "sukkot-kiddush-night",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-shacharit",
+              "title": "Sukkot Shacharit",
+              "entryId": "sukkot-shacharit",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-halel",
+              "title": "Sukkot Hallel",
+              "entryId": "sukkot-halel",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-hoshanot",
+              "title": "Hoshanot",
+              "entryId": "sukkot-hoshanot",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-musaf",
+              "title": "Sukkot Musaf",
+              "entryId": "sukkot-musaf",
+              "tags": [
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-shehecheyanu",
+              "title": "Shehecheyanu for Festivals",
+              "entryId": "sukkot-shehecheyanu",
+              "tags": [
+                "yom_tov",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-hakafot",
+              "title": "Hakafot",
+              "entryId": "sukkot-hakafot",
+              "tags": [
+                "yom_tov",
+                "festival",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-geshem",
+              "title": "Tefillat Geshem",
+              "entryId": "sukkot-geshem",
+              "tags": [
+                "yom_tov",
+                "seasonal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-yizkor",
+              "title": "Sukkot / Shemini Atzeret Yizkor",
+              "entryId": "sukkot-yizkor",
+              "tags": [
+                "yom_tov",
+                "mourner"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "sukkot-havdalah",
+              "title": "Sukkot Havdalah",
+              "entryId": "sukkot-havdalah",
+              "tags": [
+                "yom_tov"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-chanukah",
+          "title": "Chanukah",
+          "children": [
+            {
+              "type": "entry",
+              "id": "chanukah-candle-lighting",
+              "title": "Chanukah Candle Lighting",
+              "entryId": "chanukah-candle-lighting",
+              "tags": [
+                "chanukah",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "chanukah-al-hanisim",
+              "title": "Al HaNisim for Chanukah",
+              "entryId": "chanukah-al-hanisim",
+              "tags": [
+                "chanukah",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "chanukah-halel",
+              "title": "Chanukah Hallel",
+              "entryId": "chanukah-halel",
+              "tags": [
+                "chanukah",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "chanukah-torah-reading",
+              "title": "Chanukah Torah Reading",
+              "entryId": "chanukah-torah-reading",
+              "tags": [
+                "chanukah",
+                "synagogue"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-purim",
+          "title": "Purim",
+          "children": [
+            {
+              "type": "entry",
+              "id": "purim-al-hanisim",
+              "title": "Al HaNisim for Purim",
+              "entryId": "purim-al-hanisim",
+              "tags": [
+                "purim",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "purim-megillah",
+              "title": "Megillah Reading",
+              "entryId": "purim-megillah",
+              "tags": [
+                "purim",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "purim-mishloach-manot",
+              "title": "Mishloach Manot",
+              "entryId": "purim-mishloach-manot",
+              "tags": [
+                "purim",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "purim-matanot-laevyonim",
+              "title": "Matanot La'Evyonim",
+              "entryId": "purim-matanot-laevyonim",
+              "tags": [
+                "purim",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "purim-seudah",
+              "title": "Purim Seudah",
+              "entryId": "purim-seudah",
+              "tags": [
+                "purim",
+                "meal"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fast-days",
+      "title": "Fast Days",
+      "description": "Structured outlines for minor and major fasts.",
+      "children": [
+        {
+          "type": "group",
+          "id": "festival-tzom-gedaliah",
+          "title": "Tzom Gedaliah",
+          "children": [
+            {
+              "type": "entry",
+              "id": "tzom-gedaliah-shacharit",
+              "title": "Tzom Gedaliah Shacharit",
+              "entryId": "tzom-gedaliah-shacharit",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tzom-gedaliah-mincha",
+              "title": "Tzom Gedaliah Mincha",
+              "entryId": "tzom-gedaliah-mincha",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tzom-gedaliah-maaliv",
+              "title": "Tzom Gedaliah Ma'ariv",
+              "entryId": "tzom-gedaliah-maaliv",
+              "tags": [
+                "fast_day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-asarah-btevet",
+          "title": "Asarah B'Tevet",
+          "children": [
+            {
+              "type": "entry",
+              "id": "asarah-btevet-shacharit",
+              "title": "Asarah B'Tevet Shacharit",
+              "entryId": "asarah-btevet-shacharit",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "asarah-btevet-mincha",
+              "title": "Asarah B'Tevet Mincha",
+              "entryId": "asarah-btevet-mincha",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "asarah-btevet-maaliv",
+              "title": "Asarah B'Tevet Ma'ariv",
+              "entryId": "asarah-btevet-maaliv",
+              "tags": [
+                "fast_day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-taanit-esther",
+          "title": "Ta'anit Esther",
+          "children": [
+            {
+              "type": "entry",
+              "id": "taanit-esther-shacharit",
+              "title": "Ta'anit Esther Shacharit",
+              "entryId": "taanit-esther-shacharit",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "taanit-esther-mincha",
+              "title": "Ta'anit Esther Mincha",
+              "entryId": "taanit-esther-mincha",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "taanit-esther-maaliv",
+              "title": "Ta'anit Esther Ma'ariv",
+              "entryId": "taanit-esther-maaliv",
+              "tags": [
+                "fast_day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "festival-shivah-asar-betammuz",
+          "title": "Shivah Asar BeTammuz",
+          "children": [
+            {
+              "type": "entry",
+              "id": "shivah-asar-betammuz-shacharit",
+              "title": "Shivah Asar BeTammuz Shacharit",
+              "entryId": "shivah-asar-betammuz-shacharit",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shivah-asar-betammuz-mincha",
+              "title": "Shivah Asar BeTammuz Mincha",
+              "entryId": "shivah-asar-betammuz-mincha",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "shivah-asar-betammuz-maaliv",
+              "title": "Shivah Asar BeTammuz Ma'ariv",
+              "entryId": "shivah-asar-betammuz-maaliv",
+              "tags": [
+                "fast_day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "tisha-bav",
+          "title": "Tisha B'Av",
+          "children": [
+            {
+              "type": "entry",
+              "id": "tisha-bav-shacharit",
+              "title": "Tisha B'Av Shacharit",
+              "entryId": "tisha-bav-shacharit",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tisha-bav-maaliv",
+              "title": "Tisha B'Av Ma'ariv",
+              "entryId": "tisha-bav-maaliv",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tisha-bav-mincha",
+              "title": "Tisha B'Av Mincha",
+              "entryId": "tisha-bav-mincha",
+              "tags": [
+                "fast_day"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tisha-bav-eicha",
+              "title": "Eicha Reading",
+              "entryId": "tisha-bav-eicha",
+              "tags": [
+                "fast_day",
+                "mourner"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tisha-bav-kinot",
+              "title": "Kinot",
+              "entryId": "tisha-bav-kinot",
+              "tags": [
+                "fast_day",
+                "mourner"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "tisha-bav-havdalah",
+              "title": "Tisha B'Av Havdalah",
+              "entryId": "tisha-bav-havdalah",
+              "tags": [
+                "fast_day"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "synagogue-service-flow",
+      "title": "Synagogue Service Flow",
+      "description": "Torah service components and communal responses.",
+      "children": [
+        {
+          "type": "group",
+          "id": "synagogue-torah-service",
+          "title": "Torah Service",
+          "children": [
+            {
+              "type": "entry",
+              "id": "synagogue-service-overview",
+              "title": "Torah Service Overview",
+              "entryId": "synagogue-service-overview",
+              "tags": [
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-removing-scroll",
+              "title": "Removing the Torah Scroll",
+              "entryId": "synagogue-removing-scroll",
+              "tags": [
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-before-aliyah",
+              "title": "Blessing Before an Aliyah",
+              "entryId": "synagogue-before-aliyah",
+              "tags": [
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-after-aliyah",
+              "title": "Blessing After an Aliyah",
+              "entryId": "synagogue-after-aliyah",
+              "tags": [
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-mi-sheberach",
+              "title": "Mi Sheberach",
+              "entryId": "synagogue-mi-sheberach",
+              "tags": [
+                "synagogue",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-hagbahah-gelilah",
+              "title": "Hagbahah and Gelilah",
+              "entryId": "synagogue-hagbahah-gelilah",
+              "tags": [
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-aliyot-weekday",
+              "title": "Weekday Aliyot Structure",
+              "entryId": "synagogue-aliyot-weekday",
+              "tags": [
+                "synagogue",
+                "weekday"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-aliyot-shabbat",
+              "title": "Shabbat Aliyot Structure",
+              "entryId": "synagogue-aliyot-shabbat",
+              "tags": [
+                "synagogue",
+                "shabbat"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-half-kaddish",
+              "title": "Half Kaddish",
+              "entryId": "synagogue-half-kaddish",
+              "tags": [
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-ashrei",
+              "title": "Ashrei",
+              "entryId": "daily-ashrei",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-uva-leti",
+              "title": "Uva Letzion",
+              "entryId": "daily-uva-leti",
+              "tags": [
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "daily-aleinu",
+              "title": "Aleinu",
+              "entryId": "daily-aleinu",
+              "tags": [
+                "daily",
+                "synagogue"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-mourners-kaddish",
+              "title": "Mourner's Kaddish",
+              "entryId": "synagogue-mourners-kaddish",
+              "tags": [
+                "synagogue",
+                "mourner"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "synagogue-haftara-blessings",
+              "title": "Haftara Blessings",
+              "entryId": "synagogue-haftara-blessings",
+              "tags": [
+                "synagogue"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice-specific-blessings",
+      "title": "Practice-Specific Blessings",
+      "description": "Blessings for daily routines and special moments.",
+      "children": [
+        {
+          "type": "group",
+          "id": "practice-daily",
+          "title": "Daily Routines",
+          "children": [
+            {
+              "type": "entry",
+              "id": "practice-netilat-yadayim",
+              "title": "Netilat Yadayim (Morning)",
+              "entryId": "practice-netilat-yadayim",
+              "tags": [
+                "practice",
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-asher-yatzar",
+              "title": "Asher Yatzar",
+              "entryId": "practice-asher-yatzar",
+              "tags": [
+                "practice",
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-tzitzit",
+              "title": "Tzitzit / Tallit Katan",
+              "entryId": "practice-tzitzit",
+              "tags": [
+                "practice",
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-tefillin",
+              "title": "Tefillin Blessings",
+              "entryId": "practice-tefillin",
+              "tags": [
+                "practice",
+                "daily"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-netilat-yadayim-meal",
+              "title": "Netilat Yadayim before Bread",
+              "entryId": "practice-netilat-yadayim-meal",
+              "tags": [
+                "practice",
+                "meal"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "practice-seasonal",
+          "title": "Seasonal and Preparations",
+          "children": [
+            {
+              "type": "entry",
+              "id": "practice-kiddush-levanah",
+              "title": "Kiddush Levanah",
+              "entryId": "practice-kiddush-levanah",
+              "tags": [
+                "practice",
+                "seasonal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-bedikat-chametz",
+              "title": "Bedikat Chametz",
+              "entryId": "practice-bedikat-chametz",
+              "tags": [
+                "practice",
+                "festival"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-sefirat-haomer",
+              "title": "Sefirat HaOmer Guide",
+              "entryId": "practice-sefirat-haomer",
+              "tags": [
+                "practice",
+                "omer"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-mezuzah",
+              "title": "Mezuzah Affixing",
+              "entryId": "practice-mezuzah",
+              "tags": [
+                "practice",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-chanukat-habayit",
+              "title": "Chanukat HaBayit",
+              "entryId": "practice-chanukat-habayit",
+              "tags": [
+                "practice",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-shehecheyanu",
+              "title": "Shehecheyanu",
+              "entryId": "practice-shehecheyanu",
+              "tags": [
+                "practice",
+                "seasonal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-birkat-hagomel",
+              "title": "Birkat HaGomel",
+              "entryId": "practice-birkat-hagomel",
+              "tags": [
+                "practice",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-havdalah",
+              "title": "Havdalah Practice Guide",
+              "entryId": "practice-havdalah",
+              "tags": [
+                "practice"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "practice-phenomena",
+          "title": "Phenomena and Experiences",
+          "children": [
+            {
+              "type": "entry",
+              "id": "practice-phenomena-rainbow",
+              "title": "Blessing on a Rainbow",
+              "entryId": "practice-phenomena-rainbow",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-phenomena-lightning",
+              "title": "Blessing on Lightning",
+              "entryId": "practice-phenomena-lightning",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-phenomena-thunder",
+              "title": "Blessing on Thunder",
+              "entryId": "practice-phenomena-thunder",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-phenomena-ocean",
+              "title": "Blessing on the Ocean",
+              "entryId": "practice-phenomena-ocean",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-phenomena-wise-person",
+              "title": "Blessing on Meeting a Wise Person",
+              "entryId": "practice-phenomena-wise-person",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-phenomena-fragrant-spices",
+              "title": "Blessing on Fragrant Spices",
+              "entryId": "practice-phenomena-fragrant-spices",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "practice-phenomena-new-fruit",
+              "title": "Blessing on New Fruit",
+              "entryId": "practice-phenomena-new-fruit",
+              "tags": [
+                "practice",
+                "phenomena"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meals-and-food-blessings",
+      "title": "Meals and Food Blessings",
+      "description": "Brachot before and after eating, candle lighting, and kiddush variations.",
+      "children": [
+        {
+          "type": "group",
+          "id": "meals-before",
+          "title": "Before Eating",
+          "children": [
+            {
+              "type": "entry",
+              "id": "meal-before-hamotzi",
+              "title": "Blessing before Bread (HaMotzi)",
+              "entryId": "meal-before-hamotzi",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-before-mezonot",
+              "title": "Blessing before Grain Foods (Mezonot)",
+              "entryId": "meal-before-mezonot",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-before-haetz",
+              "title": "Blessing before Fruit of the Tree (HaEtz)",
+              "entryId": "meal-before-haetz",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-before-haadamah",
+              "title": "Blessing before Produce of the Ground (HaAdamah)",
+              "entryId": "meal-before-haadamah",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-before-shehakol",
+              "title": "Blessing before Everything (Shehakol)",
+              "entryId": "meal-before-shehakol",
+              "tags": [
+                "meal"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "meals-after",
+          "title": "After Eating",
+          "children": [
+            {
+              "type": "entry",
+              "id": "meal-after-birkat-hamazon",
+              "title": "Birkat HaMazon",
+              "entryId": "meal-after-birkat-hamazon",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-after-al-hamichya",
+              "title": "Al HaMichya",
+              "entryId": "meal-after-al-hamichya",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-after-al-haetz",
+              "title": "Al HaEtz",
+              "entryId": "meal-after-al-haetz",
+              "tags": [
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-after-borei-nefashot",
+              "title": "Borei Nefashot",
+              "entryId": "meal-after-borei-nefashot",
+              "tags": [
+                "meal"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "meals-candle-lighting",
+          "title": "Candle Lighting",
+          "children": [
+            {
+              "type": "entry",
+              "id": "meal-candle-lighting-shabbat",
+              "title": "Shabbat Candle Lighting",
+              "entryId": "meal-candle-lighting-shabbat",
+              "tags": [
+                "shabbat",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-candle-lighting-yom-tov",
+              "title": "Festival Candle Lighting",
+              "entryId": "meal-candle-lighting-yom-tov",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "meals-kiddush",
+          "title": "Kiddush Variants",
+          "children": [
+            {
+              "type": "entry",
+              "id": "meal-kiddush-shabbat-night",
+              "title": "Kiddush (Shabbat Night)",
+              "entryId": "meal-kiddush-shabbat-night",
+              "tags": [
+                "shabbat",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-kiddush-shabbat-day",
+              "title": "Kiddush (Shabbat Day)",
+              "entryId": "meal-kiddush-shabbat-day",
+              "tags": [
+                "shabbat",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-kiddush-yom-tov-night",
+              "title": "Kiddush (Yom Tov Night)",
+              "entryId": "meal-kiddush-yom-tov-night",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "meal-kiddush-yom-tov-day",
+              "title": "Kiddush (Yom Tov Day)",
+              "entryId": "meal-kiddush-yom-tov-day",
+              "tags": [
+                "yom_tov",
+                "meal"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bedtime-and-personal",
+      "title": "Bedtime and Personal",
+      "description": "Bedtime Shema, travel prayers, and personal devotion.",
+      "children": [
+        {
+          "type": "group",
+          "id": "bedtime-core",
+          "title": "Bedtime and Personal Prayers",
+          "children": [
+            {
+              "type": "entry",
+              "id": "bedtime-shema-intro",
+              "title": "Bedtime Shema Introduction",
+              "entryId": "bedtime-shema-intro",
+              "tags": [
+                "bedtime"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "bedtime-shema-paragraphs",
+              "title": "Bedtime Shema Paragraphs",
+              "entryId": "bedtime-shema-paragraphs",
+              "tags": [
+                "bedtime"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "bedtime-hamapil",
+              "title": "Hamapil",
+              "entryId": "bedtime-hamapil",
+              "tags": [
+                "bedtime"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "bedtime-vidui-personal",
+              "title": "Personal Vidui",
+              "entryId": "bedtime-vidui-personal",
+              "tags": [
+                "personal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "bedtime-tefilat-haderech",
+              "title": "Tefilat HaDerech",
+              "entryId": "bedtime-tefilat-haderech",
+              "tags": [
+                "personal",
+                "practice"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "bedtime-personal-prayers",
+              "title": "Personal Prayers",
+              "entryId": "bedtime-personal-prayers",
+              "tags": [
+                "personal"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "life-cycle-and-special-occasions",
+      "title": "Life-Cycle and Special Occasions",
+      "description": "Celebrations, healing prayers, and remembrance rituals.",
+      "children": [
+        {
+          "type": "group",
+          "id": "life-cycle-ceremonies",
+          "title": "Life-Cycle Ceremonies",
+          "children": [
+            {
+              "type": "entry",
+              "id": "life-cycle-brit-milah-before",
+              "title": "Brit Milah - Before",
+              "entryId": "life-cycle-brit-milah-before",
+              "tags": [
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-brit-milah-after",
+              "title": "Brit Milah - After",
+              "entryId": "life-cycle-brit-milah-after",
+              "tags": [
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-pidyon-haben",
+              "title": "Pidyon HaBen",
+              "entryId": "life-cycle-pidyon-haben",
+              "tags": [
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-sheva-berachot",
+              "title": "Sheva Berachot",
+              "entryId": "life-cycle-sheva-berachot",
+              "tags": [
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-naming-a-daughter",
+              "title": "Naming a Daughter",
+              "entryId": "life-cycle-naming-a-daughter",
+              "tags": [
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-birkat-hagomel",
+              "title": "Birkat HaGomel",
+              "entryId": "life-cycle-birkat-hagomel",
+              "tags": [
+                "life_cycle"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "life-cycle-healing-and-memory",
+          "title": "Healing and Memory",
+          "children": [
+            {
+              "type": "entry",
+              "id": "life-cycle-refuah-mi-sheberach",
+              "title": "Mi Sheberach for Healing",
+              "entryId": "life-cycle-refuah-mi-sheberach",
+              "tags": [
+                "life_cycle",
+                "personal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-yizkor",
+              "title": "Yizkor",
+              "entryId": "life-cycle-yizkor",
+              "tags": [
+                "mourner",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-kel-maleh",
+              "title": "Kel Maleh Rachamim",
+              "entryId": "life-cycle-kel-maleh",
+              "tags": [
+                "mourner",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-mourners-kaddish",
+              "title": "Mourner's Kaddish",
+              "entryId": "life-cycle-mourners-kaddish",
+              "tags": [
+                "mourner",
+                "life_cycle"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "life-cycle-memorial-service",
+              "title": "Memorial Service",
+              "entryId": "life-cycle-memorial-service",
+              "tags": [
+                "mourner",
+                "life_cycle"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "additions-and-seasonal-inserts",
+      "title": "Additions and Seasonal Inserts",
+      "description": "Guidance for seasonal liturgical changes.",
+      "children": [
+        {
+          "type": "group",
+          "id": "seasonal-additions",
+          "title": "Seasonal Inserts",
+          "children": [
+            {
+              "type": "entry",
+              "id": "additions-tachanun-rules",
+              "title": "Tachanun Omission Guide",
+              "entryId": "additions-tachanun-rules",
+              "tags": [
+                "special_insert",
+                "weekday"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-yaaleh-veyavo",
+              "title": "Ya'aleh VeYavo",
+              "entryId": "additions-yaaleh-veyavo",
+              "tags": [
+                "rosh_chodesh",
+                "yom_tov",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-al-hanisim",
+              "title": "Al HaNisim Overview",
+              "entryId": "additions-al-hanisim",
+              "tags": [
+                "chanukah",
+                "purim",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-tal",
+              "title": "Tal (Dew) Insert",
+              "entryId": "additions-tal",
+              "tags": [
+                "seasonal",
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-geshem",
+              "title": "Geshem (Rain) Insert",
+              "entryId": "additions-geshem",
+              "tags": [
+                "seasonal",
+                "yom_tov"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-vten-tal-umatar",
+              "title": "V'ten Tal U'Matar Switch",
+              "entryId": "additions-vten-tal-umatar",
+              "tags": [
+                "seasonal",
+                "special_insert"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-shir-shel-yom",
+              "title": "Shir Shel Yom",
+              "entryId": "additions-shir-shel-yom",
+              "tags": [
+                "daily",
+                "seasonal"
+              ]
+            },
+            {
+              "type": "entry",
+              "id": "additions-omit-insert-rules",
+              "title": "Insert/Omit Notes",
+              "entryId": "additions-omit-insert-rules",
+              "tags": [
+                "special_insert"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "entries": {
+    "daily-shacharit-birchot-hashachar": "daily/shacharit/birchot-hashachar.json",
+    "daily-shacharit-tallit-and-tefillin": "daily/shacharit/tallit-and-tefillin.json",
+    "daily-shacharit-pesukei-dezimra": "daily/shacharit/pesukei-dezimra.json",
+    "daily-shacharit-nishmat": "daily/shacharit/nishmat.json",
+    "daily-shacharit-yotzer-or": "daily/shacharit/yotzer-or.json",
+    "daily-shacharit-ahavah-rabbah": "daily/shacharit/ahavah-rabbah.json",
+    "daily-shema": "daily/shared/shema.json",
+    "daily-shacharit-emet-ve-yatziv": "daily/shacharit/emet-ve-yatziv.json",
+    "daily-amidah-weekday": "daily/shared/amidah-weekday.json",
+    "daily-tachanun-long": "daily/shared/tachanun-long.json",
+    "daily-tachanun-short": "daily/shared/tachanun-short.json",
+    "daily-ashrei": "daily/shared/ashrei.json",
+    "daily-uva-leti": "daily/shared/uva-leti.json",
+    "daily-aleinu": "daily/shared/aleinu.json",
+    "daily-shacharit-psalm-of-the-day": "daily/shacharit/psalm-of-the-day.json",
+    "daily-maariv-barchu": "daily/maariv/barchu.json",
+    "daily-maariv-aravim": "daily/maariv/maariv-aravim.json",
+    "daily-maariv-ahavat-olam": "daily/maariv/ahavat-olam.json",
+    "daily-maariv-emet-veemunah": "daily/maariv/emet-veemunah.json",
+    "daily-musaf-overview": "daily/musaf/musaf-overview.json",
+    "shared-hallel": "daily/shared/hallel.json",
+    "omer-introduction": "daily/omer/omer-intro.json",
+    "shabbat-kabbalat-six-psalms": "shabbat/kabbalat-shabbat/six-psalms.json",
+    "shabbat-kabbalat-lecha-dodi": "shabbat/kabbalat-shabbat/lecha-dodi.json",
+    "shabbat-maariv-amidah": "shabbat/maariv/maariv-amidah.json",
+    "shabbat-maariv-vayechulu": "shabbat/maariv/vayechulu.json",
+    "shabbat-maariv-magen-avot": "shabbat/maariv/magen-avot.json",
+    "shabbat-shacharit-framework": "shabbat/shacharit/framework.json",
+    "shabbat-shacharit-nishmat": "shabbat/shacharit/nishmat.json",
+    "shabbat-shacharit-shema-blessings": "shabbat/shacharit/shema-blessings.json",
+    "shabbat-shacharit-amidah": "shabbat/shacharit/amidah.json",
+    "shabbat-shacharit-torah-service": "shabbat/shacharit/torah-service.json",
+    "shabbat-musaf-amidah": "shabbat/musaf/musaf-amidah.json",
+    "shabbat-mincha-amidah": "shabbat/mincha/amidah.json",
+    "shabbat-mincha-tzidkatcha": "shabbat/mincha/tzidkatcha.json",
+    "shabbat-havdalah": "shabbat/havdalah/havdalah.json",
+    "shabbat-kiddush-friday-night": "shabbat/kiddush/friday-night.json",
+    "shabbat-kiddush-day": "shabbat/kiddush/shabbat-day.json",
+    "shabbat-zmirot-shalom-aleichem": "shabbat/zmirot/shalom-aleichem.json",
+    "shabbat-zmirot-eishet-chayil": "shabbat/zmirot/eishet-chayil.json",
+    "shabbat-zmirot-tzaddik-katamar": "shabbat/zmirot/tzaddik-katamar.json",
+    "rosh-chodesh-shacharit": "rosh-chodesh/shacharit/shacharit.json",
+    "rosh-chodesh-halel": "rosh-chodesh/shacharit/hallel.json",
+    "rosh-chodesh-musaf": "rosh-chodesh/other/musaf.json",
+    "rosh-chodesh-torah-service": "rosh-chodesh/other/torah-service.json",
+    "rosh-chodesh-birkat-hachodesh": "rosh-chodesh/other/birkat-hachodesh.json",
+    "rosh-hashanah-candle-lighting": "festivals/rosh-hashanah/candle-lighting.json",
+    "rosh-hashanah-maariv": "festivals/rosh-hashanah/maariv.json",
+    "rosh-hashanah-kiddush-night": "festivals/rosh-hashanah/kiddush-night.json",
+    "rosh-hashanah-shacharit": "festivals/rosh-hashanah/shacharit.json",
+    "rosh-hashanah-musaf": "festivals/rosh-hashanah/musaf-overview.json",
+    "rosh-hashanah-malchuyot": "festivals/rosh-hashanah/malchuyot.json",
+    "rosh-hashanah-zichronot": "festivals/rosh-hashanah/zichronot.json",
+    "rosh-hashanah-shofarot": "festivals/rosh-hashanah/shofarot.json",
+    "rosh-hashanah-shofar-service": "festivals/rosh-hashanah/shofar-service.json",
+    "rosh-hashanah-mincha": "festivals/rosh-hashanah/mincha.json",
+    "rosh-hashanah-second-night-maaliv": "festivals/rosh-hashanah/maariv-second-night.json",
+    "rosh-hashanah-tashlich": "festivals/rosh-hashanah/tashlich.json",
+    "rosh-hashanah-havdalah": "festivals/rosh-hashanah/havdalah.json",
+    "yom-kippur-kol-nidrei": "festivals/yom-kippur/kol-nidrei.json",
+    "yom-kippur-maariv": "festivals/yom-kippur/maariv.json",
+    "yom-kippur-shacharit": "festivals/yom-kippur/shacharit.json",
+    "yom-kippur-musaf": "festivals/yom-kippur/musaf.json",
+    "yom-kippur-mincha": "festivals/yom-kippur/mincha.json",
+    "yom-kippur-neilah": "festivals/yom-kippur/neilah.json",
+    "yom-kippur-havdalah": "festivals/yom-kippur/havdalah.json",
+    "pesach-candle-lighting": "festivals/pesach/candle-lighting.json",
+    "pesach-maariv": "festivals/pesach/maariv.json",
+    "pesach-kiddush-night": "festivals/pesach/kiddush-night.json",
+    "pesach-shacharit": "festivals/pesach/shacharit.json",
+    "pesach-halel": "festivals/pesach/hallel.json",
+    "pesach-musaf": "festivals/pesach/musaf.json",
+    "pesach-chol-hamoed": "festivals/pesach/chol-hamoed.json",
+    "pesach-omer": "festivals/pesach/omer.json",
+    "pesach-yizkor": "festivals/pesach/yizkor.json",
+    "pesach-havdalah": "festivals/pesach/havdalah.json",
+    "shavuot-candle-lighting": "festivals/shavuot/candle-lighting.json",
+    "shavuot-maariv": "festivals/shavuot/maariv.json",
+    "shavuot-kiddush-night": "festivals/shavuot/kiddush-night.json",
+    "shavuot-shacharit": "festivals/shavuot/shacharit.json",
+    "shavuot-halel": "festivals/shavuot/hallel.json",
+    "shavuot-musaf": "festivals/shavuot/musaf.json",
+    "shavuot-akdamut": "festivals/shavuot/akdamut.json",
+    "shavuot-yizkor": "festivals/shavuot/yizkor.json",
+    "shavuot-havdalah": "festivals/shavuot/havdalah.json",
+    "sukkot-candle-lighting": "festivals/sukkot/candle-lighting.json",
+    "sukkot-ushpizin": "festivals/sukkot/ushpizin.json",
+    "sukkot-maariv": "festivals/sukkot/maariv.json",
+    "sukkot-kiddush-night": "festivals/sukkot/kiddush-night.json",
+    "sukkot-shacharit": "festivals/sukkot/shacharit.json",
+    "sukkot-halel": "festivals/sukkot/hallel.json",
+    "sukkot-hoshanot": "festivals/sukkot/hoshanot.json",
+    "sukkot-musaf": "festivals/sukkot/musaf.json",
+    "sukkot-shehecheyanu": "festivals/sukkot/shehecheyanu.json",
+    "sukkot-hakafot": "festivals/sukkot/hakafot.json",
+    "sukkot-geshem": "festivals/sukkot/geshem.json",
+    "sukkot-yizkor": "festivals/sukkot/yizkor.json",
+    "sukkot-havdalah": "festivals/sukkot/havdalah.json",
+    "chanukah-candle-lighting": "festivals/chanukah/candle-lighting.json",
+    "chanukah-al-hanisim": "festivals/chanukah/al-hanisim.json",
+    "chanukah-halel": "festivals/chanukah/hallel.json",
+    "chanukah-torah-reading": "festivals/chanukah/torah-reading.json",
+    "purim-al-hanisim": "festivals/purim/al-hanisim.json",
+    "purim-megillah": "festivals/purim/megillah.json",
+    "purim-mishloach-manot": "festivals/purim/mishloach-manot.json",
+    "purim-matanot-laevyonim": "festivals/purim/matanot-laevyonim.json",
+    "purim-seudah": "festivals/purim/seudah.json",
+    "tzom-gedaliah-shacharit": "fast-days/tzom-gedaliah/shacharit.json",
+    "tzom-gedaliah-mincha": "fast-days/tzom-gedaliah/mincha.json",
+    "tzom-gedaliah-maaliv": "fast-days/tzom-gedaliah/maariv.json",
+    "asarah-btevet-shacharit": "fast-days/asarah-btevet/shacharit.json",
+    "asarah-btevet-mincha": "fast-days/asarah-btevet/mincha.json",
+    "asarah-btevet-maaliv": "fast-days/asarah-btevet/maariv.json",
+    "taanit-esther-shacharit": "fast-days/taanit-esther/shacharit.json",
+    "taanit-esther-mincha": "fast-days/taanit-esther/mincha.json",
+    "taanit-esther-maaliv": "fast-days/taanit-esther/maariv.json",
+    "shivah-asar-betammuz-shacharit": "fast-days/shivah-asar-betammuz/shacharit.json",
+    "shivah-asar-betammuz-mincha": "fast-days/shivah-asar-betammuz/mincha.json",
+    "shivah-asar-betammuz-maaliv": "fast-days/shivah-asar-betammuz/maariv.json",
+    "tisha-bav-shacharit": "fast-days/tisha-bav/shacharit.json",
+    "tisha-bav-mincha": "fast-days/tisha-bav/mincha.json",
+    "tisha-bav-maaliv": "fast-days/tisha-bav/maariv.json",
+    "tisha-bav-eicha": "fast-days/tisha-bav/eicha.json",
+    "tisha-bav-kinot": "fast-days/tisha-bav/kinot.json",
+    "tisha-bav-havdalah": "fast-days/tisha-bav/havdalah.json",
+    "synagogue-service-overview": "synagogue/core/overview.json",
+    "synagogue-removing-scroll": "synagogue/core/removing-scroll.json",
+    "synagogue-before-aliyah": "synagogue/core/before-aliyah.json",
+    "synagogue-after-aliyah": "synagogue/core/after-aliyah.json",
+    "synagogue-mi-sheberach": "synagogue/core/mi-sheberach.json",
+    "synagogue-hagbahah-gelilah": "synagogue/core/hagbahah-gelilah.json",
+    "synagogue-aliyot-weekday": "synagogue/core/aliyot-weekday.json",
+    "synagogue-aliyot-shabbat": "synagogue/core/aliyot-shabbat.json",
+    "synagogue-half-kaddish": "synagogue/core/half-kaddish.json",
+    "synagogue-mourners-kaddish": "synagogue/core/mourners-kaddish.json",
+    "synagogue-haftara-blessings": "synagogue/core/haftara-blessings.json",
+    "practice-netilat-yadayim": "practice/daily/netilat-yadayim.json",
+    "practice-asher-yatzar": "practice/daily/asher-yatzar.json",
+    "practice-tzitzit": "practice/daily/tzitzit.json",
+    "practice-tefillin": "practice/daily/tefillin.json",
+    "practice-kiddush-levanah": "practice/seasonal/kiddush-levanah.json",
+    "practice-bedikat-chametz": "practice/seasonal/bedikat-chametz.json",
+    "practice-sefirat-haomer": "practice/seasonal/sefirat-haomer.json",
+    "practice-phenomena-rainbow": "practice/phenomena/rainbow.json",
+    "practice-phenomena-lightning": "practice/phenomena/lightning.json",
+    "practice-phenomena-thunder": "practice/phenomena/thunder.json",
+    "practice-phenomena-ocean": "practice/phenomena/ocean.json",
+    "practice-phenomena-wise-person": "practice/phenomena/wise-person.json",
+    "practice-phenomena-fragrant-spices": "practice/phenomena/fragrant-spices.json",
+    "practice-phenomena-new-fruit": "practice/phenomena/new-fruit.json",
+    "practice-netilat-yadayim-meal": "practice/daily/netilat-yadayim-meal.json",
+    "practice-mezuzah": "practice/seasonal/mezuzah.json",
+    "practice-chanukat-habayit": "practice/seasonal/chanukat-habayit.json",
+    "practice-shehecheyanu": "practice/seasonal/shehecheyanu.json",
+    "practice-birkat-hagomel": "practice/seasonal/birkat-hagomel.json",
+    "practice-havdalah": "practice/seasonal/havdalah.json",
+    "meal-before-hamotzi": "meals/before/hamotzi.json",
+    "meal-before-mezonot": "meals/before/mezonot.json",
+    "meal-before-haetz": "meals/before/haetz.json",
+    "meal-before-haadamah": "meals/before/haadamah.json",
+    "meal-before-shehakol": "meals/before/shehakol.json",
+    "meal-after-birkat-hamazon": "meals/after/birkat-hamazon.json",
+    "meal-after-al-hamichya": "meals/after/al-hamichya.json",
+    "meal-after-al-haetz": "meals/after/al-haetz.json",
+    "meal-after-borei-nefashot": "meals/after/borei-nefashot.json",
+    "meal-candle-lighting-shabbat": "meals/candle-lighting/shabbat.json",
+    "meal-candle-lighting-yom-tov": "meals/candle-lighting/yom-tov.json",
+    "meal-kiddush-shabbat-night": "meals/kiddush/shabbat-night.json",
+    "meal-kiddush-shabbat-day": "meals/kiddush/shabbat-day.json",
+    "meal-kiddush-yom-tov-night": "meals/kiddush/yom-tov-night.json",
+    "meal-kiddush-yom-tov-day": "meals/kiddush/yom-tov-day.json",
+    "bedtime-shema-intro": "bedtime/bedtime-shema-intro.json",
+    "bedtime-shema-paragraphs": "bedtime/bedtime-shema-paragraphs.json",
+    "bedtime-hamapil": "bedtime/bedtime-hamapil.json",
+    "bedtime-vidui-personal": "bedtime/vidui-personal.json",
+    "bedtime-tefilat-haderech": "bedtime/tefilat-haderech.json",
+    "bedtime-personal-prayers": "bedtime/personal-prayers.json",
+    "life-cycle-brit-milah-before": "life-cycle/brit-milah-before.json",
+    "life-cycle-brit-milah-after": "life-cycle/brit-milah-after.json",
+    "life-cycle-pidyon-haben": "life-cycle/pidyon-haben.json",
+    "life-cycle-sheva-berachot": "life-cycle/sheva-berachot.json",
+    "life-cycle-naming-a-daughter": "life-cycle/naming-a-daughter.json",
+    "life-cycle-birkat-hagomel": "life-cycle/birkat-hagomel.json",
+    "life-cycle-refuah-mi-sheberach": "life-cycle/refuah-mi-sheberach.json",
+    "life-cycle-yizkor": "life-cycle/yizkor.json",
+    "life-cycle-kel-maleh": "life-cycle/kel-maleh.json",
+    "life-cycle-mourners-kaddish": "life-cycle/mourners-kaddish.json",
+    "life-cycle-memorial-service": "life-cycle/memorial-service.json",
+    "additions-tachanun-rules": "additions/tachanun-rules.json",
+    "additions-yaaleh-veyavo": "additions/yaaleh-veyavo.json",
+    "additions-al-hanisim": "additions/al-hanisim.json",
+    "additions-tal": "additions/tal.json",
+    "additions-geshem": "additions/geshem.json",
+    "additions-vten-tal-umatar": "additions/vten-tal-umatar.json",
+    "additions-shir-shel-yom": "additions/shir-shel-yom.json",
+    "additions-omit-insert-rules": "additions/omit-insert-rules.json",
+    "omer-day-01": "daily/omer/omer-day-01.json",
+    "omer-day-02": "daily/omer/omer-day-02.json",
+    "omer-day-03": "daily/omer/omer-day-03.json",
+    "omer-day-04": "daily/omer/omer-day-04.json",
+    "omer-day-05": "daily/omer/omer-day-05.json",
+    "omer-day-06": "daily/omer/omer-day-06.json",
+    "omer-day-07": "daily/omer/omer-day-07.json",
+    "omer-day-08": "daily/omer/omer-day-08.json",
+    "omer-day-09": "daily/omer/omer-day-09.json",
+    "omer-day-10": "daily/omer/omer-day-10.json",
+    "omer-day-11": "daily/omer/omer-day-11.json",
+    "omer-day-12": "daily/omer/omer-day-12.json",
+    "omer-day-13": "daily/omer/omer-day-13.json",
+    "omer-day-14": "daily/omer/omer-day-14.json",
+    "omer-day-15": "daily/omer/omer-day-15.json",
+    "omer-day-16": "daily/omer/omer-day-16.json",
+    "omer-day-17": "daily/omer/omer-day-17.json",
+    "omer-day-18": "daily/omer/omer-day-18.json",
+    "omer-day-19": "daily/omer/omer-day-19.json",
+    "omer-day-20": "daily/omer/omer-day-20.json",
+    "omer-day-21": "daily/omer/omer-day-21.json",
+    "omer-day-22": "daily/omer/omer-day-22.json",
+    "omer-day-23": "daily/omer/omer-day-23.json",
+    "omer-day-24": "daily/omer/omer-day-24.json",
+    "omer-day-25": "daily/omer/omer-day-25.json",
+    "omer-day-26": "daily/omer/omer-day-26.json",
+    "omer-day-27": "daily/omer/omer-day-27.json",
+    "omer-day-28": "daily/omer/omer-day-28.json",
+    "omer-day-29": "daily/omer/omer-day-29.json",
+    "omer-day-30": "daily/omer/omer-day-30.json",
+    "omer-day-31": "daily/omer/omer-day-31.json",
+    "omer-day-32": "daily/omer/omer-day-32.json",
+    "omer-day-33": "daily/omer/omer-day-33.json",
+    "omer-day-34": "daily/omer/omer-day-34.json",
+    "omer-day-35": "daily/omer/omer-day-35.json",
+    "omer-day-36": "daily/omer/omer-day-36.json",
+    "omer-day-37": "daily/omer/omer-day-37.json",
+    "omer-day-38": "daily/omer/omer-day-38.json",
+    "omer-day-39": "daily/omer/omer-day-39.json",
+    "omer-day-40": "daily/omer/omer-day-40.json",
+    "omer-day-41": "daily/omer/omer-day-41.json",
+    "omer-day-42": "daily/omer/omer-day-42.json",
+    "omer-day-43": "daily/omer/omer-day-43.json",
+    "omer-day-44": "daily/omer/omer-day-44.json",
+    "omer-day-45": "daily/omer/omer-day-45.json",
+    "omer-day-46": "daily/omer/omer-day-46.json",
+    "omer-day-47": "daily/omer/omer-day-47.json",
+    "omer-day-48": "daily/omer/omer-day-48.json",
+    "omer-day-49": "daily/omer/omer-day-49.json"
+  }
+}
