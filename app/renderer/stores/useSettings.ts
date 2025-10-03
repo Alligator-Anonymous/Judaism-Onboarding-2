@@ -2,9 +2,9 @@
 import { create } from "zustand";
 import type { ParshaCycle } from "@lib/calendar";
 import type { RoundingMode, TimeFormat, TwilightPreference } from "@lib/zmanim";
-import type { SiddurTradition } from "@/types/siddur";
+import type { SiddurMode, SiddurTradition } from "@/types/siddur";
 
-export type Nusach = "ashkenaz" | "sefard" | "edot-mizrach";
+export type Nusach = "ashkenaz" | "sefard" | "edot_hamizrach";
 export type { SiddurTradition } from "@/types/siddur";
 export type TransliterationMode = "ashkenazi" | "sephardi" | "none";
 
@@ -31,6 +31,8 @@ export interface SettingsState {
   largeText: boolean;
   dyslexiaFriendlyHebrew: boolean;
   nusach: Nusach;
+  siddurMode: SiddurMode;
+  siddurShowApplicable: boolean;
   siddurTradition: SiddurTradition;
   transliterationMode: TransliterationMode;
   kabbalahSystem: "none" | "gra" | "ari" | "ramak" | "kircher";
@@ -41,6 +43,8 @@ export interface SettingsState {
   setLargeText: (value: boolean) => void;
   setDyslexiaFriendlyHebrew: (value: boolean) => void;
   setNusach: (nusach: Nusach) => void;
+  setSiddurMode: (mode: SiddurMode) => void;
+  setSiddurShowApplicable: (value: boolean) => void;
   setSiddurTradition: (tradition: SiddurTradition) => void;
   setTransliterationMode: (mode: TransliterationMode) => void;
   setKabbalahSystem: (system: "none" | "gra" | "ari" | "ramak" | "kircher") => void;
@@ -77,6 +81,8 @@ export const useSettings = create<SettingsState>((set) => ({
   largeText: false,
   dyslexiaFriendlyHebrew: false,
   nusach: "ashkenaz",
+  siddurMode: "basic",
+  siddurShowApplicable: true,
   siddurTradition: "ashkenaz",
   transliterationMode: "ashkenazi",
   kabbalahSystem: "none",
@@ -86,6 +92,8 @@ export const useSettings = create<SettingsState>((set) => ({
   setLargeText: (value) => set({ largeText: value }),
   setDyslexiaFriendlyHebrew: (value) => set({ dyslexiaFriendlyHebrew: value }),
   setNusach: (nusach) => set({ nusach }),
+  setSiddurMode: (mode) => set({ siddurMode: mode }),
+  setSiddurShowApplicable: (value) => set({ siddurShowApplicable: value }),
   setSiddurTradition: (tradition) => set({ siddurTradition: tradition }),
   setTransliterationMode: (mode) => set({ transliterationMode: mode }),
   setKabbalahSystem: (system) => set({ kabbalahSystem: system }),

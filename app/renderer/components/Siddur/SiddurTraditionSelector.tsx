@@ -4,8 +4,8 @@ import { useSettings, type SiddurTradition } from "@stores/useSettings";
 
 const TRADITION_LABELS: Record<SiddurTradition, string> = {
   ashkenaz: "Ashkenaz",
-  "nusach-sefarad": "Nusach Sefarad",
-  "edot-hamizrach": "Edot HaMizrach"
+  sefard: "Nusach Sefard",
+  edot_hamizrach: "Edot HaMizrach"
 };
 
 export const SiddurTraditionSelector: React.FC = () => {

@@ -1,501 +1,511 @@
 import React from "react";
-import { useSettings } from "@stores/useSettings";
+import clsx from "clsx";
 import { useContent } from "@stores/useContent";
-import type {
-  SiddurContentLibrary,
-  SiddurManifest,
-  SiddurManifestCategory,
-  SiddurManifestSection,
-  SiddurManifestPrayer,
-  SiddurPrayerContent,
-  SiddurTradition
-} from "@/types/siddur";
+import { useSettings } from "@stores/useSettings";
+import {
+  buildSiddurNavigation,
+  createSiddurFilterContext,
+  getTodaySiddurOutline,
+  type SiddurFilterContext,
+  type SiddurNavigationBucket,
+  type SiddurNavigationCategory,
+  type SiddurNavigationItem,
+  type SiddurNavigationService
+} from "@lib/siddur";
+import type { SiddurMetadata, SiddurTradition } from "@/types/siddur";
 
 interface SearchResult {
-  prayerId: string;
-  title: string;
-  breadcrumbs: string[];
-  categoryId: string;
-  sectionPath: string[];
-  tags: string[];
+  item: SiddurNavigationItem;
+  category: SiddurNavigationCategory;
+  service: SiddurNavigationService;
+  bucket: SiddurNavigationBucket;
 }
 
-const TRADITION_LABELS: Record<SiddurTradition, string> = {
-  ashkenaz: "Ashkenaz",
-  "nusach-sefarad": "Nusach Sefarad",
-  "edot-hamizrach": "Edot HaMizrach"
-};
-
-function getSections(section?: SiddurManifestSection | null): SiddurManifestSection[] {
-  if (!section) return [];
-  return section.sections ?? [];
-}
-
-function getPrayers(section?: SiddurManifestSection | null): SiddurManifestPrayer[] {
-  if (!section) return [];
-  return section.prayers ?? [];
-}
-
-function findCategory(manifest: SiddurManifest | null, id: string | null): SiddurManifestCategory | null {
-  if (!manifest || !id) return null;
-  return manifest.categories.find((category) => category.id === id) ?? null;
-}
-
-function resolveSection(category: SiddurManifestCategory | null, path: string[]): SiddurManifestSection | null {
-  if (!category || path.length === 0) return null;
-  let current: SiddurManifestSection | null = null;
-  let cursorSections = category.sections;
-
-  path.forEach((segment) => {
-    const next = cursorSections.find((section) => section.id === segment) ?? null;
-    current = next;
-    cursorSections = next?.sections ?? [];
-  });
-
-  return current;
-}
-
-function collectSearchIndex(manifest: SiddurManifest | null): SearchResult[] {
-  if (!manifest) return [];
-  const results: SearchResult[] = [];
-
-  manifest.categories.forEach((category) => {
-    const walk = (
-      sections: SiddurManifestSection[] | undefined,
-      path: string[],
-      breadcrumbTitles: string[]
-    ) => {
-      if (!sections) return;
-
-      sections.forEach((section) => {
-        const nextPath = [...path, section.id];
-        const nextBreadcrumbs = [...breadcrumbTitles, section.title_en];
-
-        (section.prayers ?? []).forEach((prayer) => {
-          results.push({
-            prayerId: prayer.id,
-            title: prayer.title_en,
-            breadcrumbs: [category.title_en, ...nextBreadcrumbs, prayer.title_en],
-            categoryId: category.id,
-            sectionPath: nextPath,
-            tags: prayer.tags ?? []
-          });
-        });
-
-        if (section.sections && section.sections.length > 0) {
-          walk(section.sections, nextPath, nextBreadcrumbs);
-        }
-      });
-    };
-
-    walk(category.sections, [], []);
-  });
-
-  return results;
-}
-
-function resolveContent(
-  library: SiddurContentLibrary | null,
-  prayerId: string,
-  tradition: SiddurTradition
-): SiddurPrayerContent | null {
-  if (!library) return null;
-  const { common, traditions } = library;
-  const traditionMap = traditions?.[tradition];
-  if (traditionMap && traditionMap[prayerId]) {
-    return traditionMap[prayerId];
+const formatApplicabilityBadge = (applicable: boolean, showOnlyApplicable: boolean) => {
+  if (showOnlyApplicable || applicable) {
+    return null;
   }
-  if (common && common[prayerId]) {
-    return common[prayerId];
-  }
-  const ashkenazFallback = traditions?.ashkenaz;
-  if (ashkenazFallback && ashkenazFallback[prayerId]) {
-    return ashkenazFallback[prayerId];
-  }
-  return null;
-}
-
-interface SectionSummaryProps {
-  section: SiddurManifestSection;
-  path: string[];
-  isActive: boolean;
-  onSelectSection: (path: string[]) => void;
-  onSelectPrayer: (prayerId: string) => void;
-}
-
-const SectionSummary: React.FC<SectionSummaryProps> = ({ section, path, isActive, onSelectSection, onSelectPrayer }) => {
-  const childSections = getSections(section);
-  const prayers = getPrayers(section);
-
   return (
-    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-pomegranate/50 hover:shadow-md focus-within:border-pomegranate dark:border-slate-700 dark:bg-slate-900">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{section.title_en}</h3>
-          {section.title_he ? (
-            <p className="text-sm text-slate-500" dir="rtl">
-              {section.title_he}
-            </p>
-          ) : null}
-          {section.description ? (
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{section.description}</p>
-          ) : null}
-        </div>
-        {!isActive ? (
-          <button
-            type="button"
-            onClick={() => onSelectSection(path)}
-            className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-pomegranate hover:text-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/50 dark:border-slate-600 dark:text-slate-300"
-          >
-            View section
-          </button>
-        ) : null}
-      </div>
-      {childSections.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
-          {childSections.map((child) => (
-            <button
-              key={child.id}
-              type="button"
-              onClick={() => onSelectSection([...path, child.id])}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-pomegranate hover:text-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/50 dark:border-slate-600 dark:text-slate-300"
-            >
-              {child.title_en}
-            </button>
-          ))}
-        </div>
-      ) : null}
-      {prayers.length > 0 ? (
-        <div className="space-y-2">
-          {prayers.map((prayer) => (
-            <button
-              key={prayer.id}
-              type="button"
-              onClick={() => onSelectPrayer(prayer.id)}
-              className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
-            >
-              <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{prayer.title_en}</span>
-              {prayer.title_he ? (
-                <span className="mt-1 block text-sm text-slate-500" dir="rtl">
-                  {prayer.title_he}
-                </span>
-              ) : null}
-              {prayer.description ? (
-                <span className="mt-1 block text-xs text-slate-500">{prayer.description}</span>
-              ) : null}
-            </button>
-          ))}
-        </div>
-      ) : null}
-    </div>
+    <span className="ml-3 inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:bg-amber-900/60 dark:text-amber-200">
+      Not in effect today
+    </span>
   );
 };
 
-interface PrayerContentViewProps {
-  content: SiddurPrayerContent | null;
+const PlaceholderText: React.FC = () => (
+  <div className="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+    Text coming soon. This placeholder will update when primary sources are added.
+  </div>
+);
+
+function ensureActiveCategory(
+  navigation: ReturnType<typeof buildSiddurNavigation>,
+  activeId: string | null
+): string | null {
+  if (activeId && navigation.categoryMap.has(activeId)) {
+    return activeId;
+  }
+  const first = navigation.categories[0];
+  return first ? first.category.id : null;
 }
 
-const PrayerContentView: React.FC<PrayerContentViewProps> = ({ content }) => {
-  if (!content) {
-    return (
-      <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 shadow-inner dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-        <h3 className="text-lg font-semibold">Content coming soon</h3>
-        <p className="mt-2 text-sm">
-          This prayer has not been populated yet for the selected tradition. Check back as we continue to expand the Siddur.
-        </p>
-      </div>
-    );
+function ensureActiveService(
+  navigation: ReturnType<typeof buildSiddurNavigation>,
+  categoryId: string | null,
+  activeId: string | null
+): string | null {
+  if (!categoryId) return null;
+  const category = navigation.categoryMap.get(categoryId);
+  if (!category) return null;
+  if (activeId && category.services.some((service) => service.service.id === activeId)) {
+    return activeId;
   }
+  const first = category.services[0];
+  return first ? first.service.id : null;
+}
 
-  const header = (
-    <header>
-      <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{content.title_en}</h2>
-      {content.title_he ? (
-        <p className="text-xl text-right font-semibold text-slate-700 dark:text-slate-200" dir="rtl">
-          {content.title_he}
-        </p>
-      ) : null}
-    </header>
-  );
-
-  if (content.segments.length === 0) {
-    return (
-      <div className="space-y-6">
-        {header}
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 shadow-inner dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-          <h3 className="text-lg font-semibold">Content coming soon</h3>
-          <p className="mt-2 text-sm">
-            This prayer outline is ready, but the text segments have not been added yet.
-          </p>
-        </div>
-      </div>
-    );
+function ensureActiveBucket(
+  navigation: ReturnType<typeof buildSiddurNavigation>,
+  serviceId: string | null,
+  activeId: string | null
+): string | null {
+  if (!serviceId) return null;
+  const service = navigation.serviceMap.get(serviceId);
+  if (!service) return null;
+  if (activeId && service.buckets.some((bucket) => bucket.bucket.id === activeId)) {
+    return activeId;
   }
+  const first = service.buckets[0];
+  return first ? first.bucket.id : null;
+}
 
-  return (
-    <div className="space-y-6">
-      {header}
-      <div className="space-y-5">
-        {content.segments.map((segment, index) => (
-          <article key={`${content.id}-segment-${index}`} className="space-y-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-            {(segment.label_en || segment.label_he) ? (
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                <span>{segment.label_en}</span>
-                {segment.label_he ? (
-                  <span dir="rtl" className="text-right">
-                    {segment.label_he}
-                  </span>
-                ) : null}
-              </div>
-            ) : null}
-            {segment.he ? (
-              <p dir="rtl" className="text-xl leading-relaxed text-slate-900 dark:text-slate-100">
-                {segment.he}
-              </p>
-            ) : null}
-            {segment.en ? (
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{segment.en}</p>
-            ) : null}
-          </article>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export const SiddurView: React.FC = () => {
+const SiddurView: React.FC = () => {
+  const { registry, hydrate } = useContent();
   const tradition = useSettings((state) => state.siddurTradition);
-  const nusach = useSettings((state) => state.nusach);
-  const transliterationMode = useSettings((state) => state.transliterationMode);
-  const hydrate = useContent((state) => state.hydrate);
-  const registry = useContent((state) => state.registry);
+  const mode = useSettings((state) => state.siddurMode);
+  const showOnlyApplicable = useSettings((state) => state.siddurShowApplicable);
+  const diasporaOrIsrael = useSettings((state) => (state.parshaCycle === "israel" ? "israel" : "diaspora"));
 
   React.useEffect(() => {
     hydrate();
   }, [hydrate]);
 
-  const manifest = registry?.siddur.manifest ?? null;
-  const contentLibrary = registry?.siddur.content ?? null;
+  const metadata = (registry?.siddur.metadata ?? null) as SiddurMetadata | null;
 
-  const [query, setQuery] = React.useState("");
-  const [selectedCategoryId, setSelectedCategoryId] = React.useState<string | null>(null);
-  const [sectionPath, setSectionPath] = React.useState<string[]>([]);
-  const [activePrayerId, setActivePrayerId] = React.useState<string | null>(null);
-
-  const searchIndex = React.useMemo(() => collectSearchIndex(manifest), [manifest]);
-  const category = React.useMemo(() => findCategory(manifest, selectedCategoryId), [manifest, selectedCategoryId]);
-  const currentSection = React.useMemo(() => resolveSection(category, sectionPath), [category, sectionPath]);
-
-  const breadcrumbs = React.useMemo(() => {
-    if (!category) return [] as string[];
-    const crumbs = [category.title_en];
-
-    let walker = category.sections;
-    sectionPath.forEach((segment) => {
-      const next = walker.find((section) => section.id === segment);
-      if (next) {
-        crumbs.push(next.title_en);
-        walker = next.sections ?? [];
-      }
+  const context = React.useMemo<SiddurFilterContext>(() => {
+    return createSiddurFilterContext({
+      date: new Date(),
+      diasporaOrIsrael,
+      hasMinyan: false,
+      isMourner: false
     });
+  }, [diasporaOrIsrael]);
 
-    if (activePrayerId) {
-      const matches = searchIndex.find((entry) => entry.prayerId === activePrayerId);
-      if (matches) {
-        crumbs.push(matches.title);
-      }
+  const navigation = React.useMemo(() => {
+    return buildSiddurNavigation({
+      metadata,
+      tradition,
+      mode,
+      showOnlyApplicable,
+      context
+    });
+  }, [metadata, tradition, mode, showOnlyApplicable, context]);
+
+  const [activeCategoryId, setActiveCategoryId] = React.useState<string | null>(null);
+  const [activeServiceId, setActiveServiceId] = React.useState<string | null>(null);
+  const [activeBucketId, setActiveBucketId] = React.useState<string | null>(null);
+  const [activeItemId, setActiveItemId] = React.useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  React.useEffect(() => {
+    const categoryId = ensureActiveCategory(navigation, activeCategoryId);
+    setActiveCategoryId(categoryId);
+  }, [navigation.categories.length]);
+
+  React.useEffect(() => {
+    const categoryId = ensureActiveCategory(navigation, activeCategoryId);
+    const serviceId = ensureActiveService(navigation, categoryId, activeServiceId);
+    setActiveServiceId(serviceId);
+    const bucketId = ensureActiveBucket(navigation, serviceId, activeBucketId);
+    setActiveBucketId(bucketId);
+    if (activeItemId && (!bucketId || !navigation.itemMap.has(activeItemId))) {
+      setActiveItemId(null);
     }
+  }, [navigation, activeCategoryId, activeServiceId, activeBucketId, activeItemId]);
 
-    return crumbs;
-  }, [category, sectionPath, activePrayerId, searchIndex]);
+  const activeCategory = activeCategoryId ? navigation.categoryMap.get(activeCategoryId) ?? null : null;
+  const activeService = activeServiceId ? navigation.serviceMap.get(activeServiceId) ?? null : null;
+  const activeBucket = activeBucketId ? navigation.bucketMap.get(activeBucketId) ?? null : null;
+  const activeItem = activeItemId ? navigation.itemMap.get(activeItemId) ?? null : null;
 
-  const filteredResults = React.useMemo(() => {
-    const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return [] as SearchResult[];
-
-    return searchIndex.filter((entry) => {
-      const haystack = `${entry.title} ${entry.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(trimmed);
+  const searchResults = React.useMemo<SearchResult[]>(() => {
+    if (!searchTerm) return [];
+    const term = searchTerm.trim().toLowerCase();
+    if (!term) return [];
+    const results: SearchResult[] = [];
+    navigation.categories.forEach((category) => {
+      category.services.forEach((service) => {
+        service.buckets.forEach((bucket) => {
+          bucket.items.forEach((item) => {
+            const haystack = `${item.item.title} ${item.item.description ?? ""}`.toLowerCase();
+            if (haystack.includes(term)) {
+              results.push({ item, category, service, bucket });
+            }
+          });
+        });
+      });
     });
-  }, [query, searchIndex]);
+    return results;
+  }, [searchTerm, navigation]);
 
   const handleBack = () => {
-    if (activePrayerId) {
-      setActivePrayerId(null);
+    if (activeItemId) {
+      setActiveItemId(null);
       return;
     }
-    if (sectionPath.length > 0) {
-      setSectionPath((prev) => prev.slice(0, -1));
+    if (activeBucketId) {
+      setActiveBucketId(null);
       return;
     }
-    setSelectedCategoryId(null);
+    if (activeServiceId) {
+      setActiveServiceId(null);
+      setActiveBucketId(null);
+      return;
+    }
+    if (activeCategoryId) {
+      setActiveCategoryId(null);
+      setActiveServiceId(null);
+      setActiveBucketId(null);
+      return;
+    }
   };
 
-  const handleSelectCategory = (id: string) => {
-    setSelectedCategoryId(id);
-    setSectionPath([]);
-    setActivePrayerId(null);
-  };
+  if (!metadata) {
+    return (
+      <div className="p-6">
+        <p className="text-sm text-slate-500 dark:text-slate-300">Loading siddur structure…</p>
+      </div>
+    );
+  }
 
-  const handleSelectSection = (path: string[]) => {
-    setSectionPath(path);
-    setActivePrayerId(null);
-  };
+  const hasResults = navigation.categories.length > 0;
 
-  const handleSelectPrayer = (prayerId: string) => {
-    setActivePrayerId(prayerId);
-  };
+  const renderCategoryList = () => (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {navigation.categories.map((category) => (
+        <button
+          key={category.category.id}
+          type="button"
+          onClick={() => {
+            setActiveCategoryId(category.category.id);
+            setActiveServiceId(null);
+            setActiveBucketId(null);
+            setActiveItemId(null);
+          }}
+          className={clsx(
+            "rounded-2xl border p-5 text-left shadow-sm transition",
+            activeCategoryId === category.category.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{category.category.title}</h3>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{category.category.description}</p>
+          {formatApplicabilityBadge(category.applicableToday, showOnlyApplicable)}
+        </button>
+      ))}
+    </div>
+  );
 
-  const handleSearchSelect = (result: SearchResult) => {
-    setSelectedCategoryId(result.categoryId);
-    setSectionPath(result.sectionPath);
-    setActivePrayerId(result.prayerId);
-    setQuery("");
-  };
+  const renderServiceList = (category: SiddurNavigationCategory) => (
+    <div className="space-y-4">
+      {category.services.map((service) => (
+        <button
+          key={service.service.id}
+          type="button"
+          onClick={() => {
+            setActiveServiceId(service.service.id);
+            setActiveBucketId(null);
+            setActiveItemId(null);
+          }}
+          className={clsx(
+            "w-full rounded-xl border p-4 text-left shadow-sm transition",
+            activeServiceId === service.service.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <h4 className="text-base font-semibold text-slate-900 dark:text-slate-100">{service.service.title}</h4>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{service.service.description}</p>
+            </div>
+            {formatApplicabilityBadge(service.applicableToday, showOnlyApplicable)}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
 
-  const categoryCounts = React.useMemo(() => {
-    const counts = new Map<string, number>();
-    searchIndex.forEach((item) => {
-      counts.set(item.categoryId, (counts.get(item.categoryId) ?? 0) + 1);
-    });
-    return counts;
-  }, [searchIndex]);
+  const renderBucketList = (service: SiddurNavigationService) => (
+    <div className="space-y-4">
+      {service.buckets.map((bucket) => (
+        <button
+          key={bucket.bucket.id}
+          type="button"
+          onClick={() => {
+            setActiveBucketId(bucket.bucket.id);
+            setActiveItemId(null);
+          }}
+          className={clsx(
+            "w-full rounded-xl border p-4 text-left shadow-sm transition",
+            activeBucketId === bucket.bucket.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <h5 className="text-base font-semibold text-slate-900 dark:text-slate-100">{bucket.bucket.title}</h5>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{bucket.bucket.description}</p>
+            </div>
+            {formatApplicabilityBadge(bucket.applicableToday, showOnlyApplicable)}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
 
-  const resolvedContent = activePrayerId
-    ? resolveContent(contentLibrary ?? null, activePrayerId, tradition)
-    : null;
+  const renderItemList = (bucket: SiddurNavigationBucket) => (
+    <div className="space-y-3">
+      {bucket.items.map((entry) => (
+        <button
+          key={entry.item.id}
+          type="button"
+          onClick={() => setActiveItemId(entry.item.id)}
+          className={clsx(
+            "w-full rounded-xl border p-4 text-left shadow-sm transition",
+            activeItemId === entry.item.id
+              ? "border-pomegranate shadow-md"
+              : "border-slate-200 hover:border-pomegranate/70 hover:shadow"
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="text-base font-semibold text-slate-900 dark:text-slate-100">{entry.item.title}</div>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{entry.item.description}</p>
+            </div>
+            {formatApplicabilityBadge(entry.applicableToday, showOnlyApplicable)}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
 
-  return (
+  const renderItemDetail = (entry: SiddurNavigationItem, bucket: SiddurNavigationBucket, service: SiddurNavigationService, category: SiddurNavigationCategory) => (
     <div className="space-y-6">
-      <header className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Siddur</h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Explore the prayer flow with a tradition-aware manifest. Texts load locally and will expand over time.
-            </p>
-          </div>
-          <div className="text-xs text-slate-500 dark:text-slate-400">
-            <p>Siddur tradition: {TRADITION_LABELS[tradition] ?? tradition}</p>
-            <p>Preferred nusach: {nusach}</p>
-            <p>Transliteration mode: {transliterationMode}</p>
-          </div>
-        </div>
-        <input
-          type="search"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search for a prayer or tag…"
-          className="w-full rounded-full border border-slate-300 bg-white px-4 py-2 text-sm shadow-sm transition focus:border-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-600 dark:bg-slate-800"
-        />
-        {breadcrumbs.length ? (
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            {breadcrumbs.map((crumb, index) => (
-              <React.Fragment key={`${crumb}-${index}`}>
-                {index > 0 ? <span>/</span> : null}
-                <span>{crumb}</span>
-              </React.Fragment>
-            ))}
+      <div>
+        <p className="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {category.category.title} → {service.service.title} → {bucket.bucket.title}
+        </p>
+        <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">{entry.item.title}</h2>
+        <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{entry.item.description}</p>
+        {entry.item.outline && entry.item.outline.length > 0 ? (
+          <div className="mt-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Outline</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-sm text-slate-600 dark:text-slate-300">
+              {entry.item.outline.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
           </div>
         ) : null}
-        {(selectedCategoryId || activePrayerId || sectionPath.length > 0) && (
+        {!entry.applicableToday && !showOnlyApplicable ? (
+          <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-200">
+            This item is not in effect right now. Check the notes for when it is used.
+          </div>
+        ) : null}
+        {entry.item.notes ? (
+          <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+            <span className="font-semibold">Notes:</span> {entry.item.notes}
+          </div>
+        ) : null}
+        <PlaceholderText />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Applicability</h3>
+        <ul className="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-300">
+          <li>Mode: {mode === "basic" ? "Basic" : "Full"}</li>
+          <li>Tradition: {formatTraditionLabel(tradition)}</li>
+          <li>
+            Status: {entry.applicableToday ? "Active today" : "Not active today"}
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+
+  const formatTraditionLabel = (value: SiddurTradition) => {
+    switch (value) {
+      case "ashkenaz":
+        return "Ashkenaz";
+      case "sefard":
+        return "Sefard";
+      case "edot_hamizrach":
+        return "Edot HaMizrach";
+      default:
+        return value;
+    }
+  };
+
+  const renderSearchResults = () => (
+    <div className="space-y-3">
+      {searchResults.length === 0 ? (
+        <p className="text-sm text-slate-500 dark:text-slate-300">No prayers matched your search.</p>
+      ) : (
+        searchResults.map(({ item, bucket, service, category }) => (
           <button
+            key={`${item.item.id}-${bucket.bucket.id}`}
             type="button"
-            onClick={handleBack}
-            className="inline-flex items-center gap-2 self-start rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-pomegranate hover:text-pomegranate focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-600 dark:text-slate-300"
+            onClick={() => {
+              setActiveCategoryId(category.category.id);
+              setActiveServiceId(service.service.id);
+              setActiveBucketId(bucket.bucket.id);
+              setActiveItemId(item.item.id);
+            }}
+            className="w-full rounded-xl border border-slate-200 p-4 text-left shadow-sm transition hover:border-pomegranate/70 hover:shadow dark:border-slate-700"
           >
-            ← Back
+            <div className="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              {category.category.title} → {service.service.title} → {bucket.bucket.title}
+            </div>
+            <div className="mt-1 text-base font-semibold text-slate-900 dark:text-slate-100">{item.item.title}</div>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{item.item.description}</p>
+            {formatApplicabilityBadge(item.applicableToday, showOnlyApplicable)}
           </button>
-        )}
+        ))
+      )}
+    </div>
+  );
+
+  const todaySummary = React.useMemo(() => {
+    if (!metadata) return [] as SiddurNavigationCategory[];
+    return getTodaySiddurOutline(metadata, tradition, mode, context);
+  }, [metadata, tradition, mode, context]);
+
+  return (
+    <div className="space-y-6 p-6">
+      <header className="space-y-2">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Siddur</h1>
+        <p className="text-sm text-slate-600 dark:text-slate-300">
+          Browse structured categories for each service. Mode: {mode === "basic" ? "Basic" : "Full"} · Tradition: {formatTraditionLabel(tradition)}
+        </p>
       </header>
 
-      {query.trim() ? (
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Search results</h2>
-          {filteredResults.length === 0 ? (
-            <p className="text-sm text-slate-500">No prayers matched your search yet.</p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+        <label htmlFor="siddur-search" className="block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          Search prayers
+        </label>
+        <input
+          id="siddur-search"
+          type="search"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Search by title or description"
+          className="mt-2 w-full rounded-lg border border-slate-300 bg-white p-2 text-sm shadow-sm focus:border-pomegranate focus:outline-none focus:ring focus:ring-pomegranate/30 dark:border-slate-600 dark:bg-slate-950"
+        />
+        {searchTerm ? (
+          <div className="mt-4">{renderSearchResults()}</div>
+        ) : null}
+      </section>
+
+      {!showOnlyApplicable ? (
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Today at a glance</h2>
+          {todaySummary.length === 0 ? (
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">No specific items are active today with the current filters.</p>
           ) : (
-            <div className="space-y-2">
-              {filteredResults.map((result) => (
-                <button
-                  key={`${result.prayerId}-${result.breadcrumbs.join("-")}`}
-                  type="button"
-                  onClick={() => handleSearchSelect(result)}
-                  className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
-                >
-                  <div className="flex flex-col gap-1">
-                    <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{result.title}</span>
-                    <span className="text-xs text-slate-500">{result.breadcrumbs.join(" › ")}</span>
-                  </div>
-                </button>
+            <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              {todaySummary.map((category) => (
+                <li key={category.category.id}>
+                  <span className="font-semibold text-slate-800 dark:text-slate-100">{category.category.title}</span>
+                  <ul className="mt-1 space-y-1 pl-4">
+                    {category.services.map((service) => (
+                      <li key={service.service.id}>
+                        <span className="font-medium text-slate-700 dark:text-slate-200">{service.service.title}</span>
+                        <ul className="mt-1 space-y-1 pl-4">
+                          {service.buckets.map((bucket) => (
+                            <li key={bucket.bucket.id}>
+                              <span className="text-slate-600 dark:text-slate-300">{bucket.bucket.title}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </section>
       ) : null}
 
-      {!query.trim() && !selectedCategoryId ? (
-        <section className="grid gap-4 md:grid-cols-2">
-          {(manifest?.categories ?? []).map((cat) => {
-            const total = categoryCounts.get(cat.id) ?? 0;
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => handleSelectCategory(cat.id)}
-                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-pomegranate hover:shadow-md focus:outline-none focus-visible:ring focus-visible:ring-pomegranate/60 dark:border-slate-700 dark:bg-slate-900"
-              >
-                <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">{cat.title_en}</span>
-                {cat.title_he ? (
-                  <span className="text-sm text-slate-500" dir="rtl">
-                    {cat.title_he}
-                  </span>
-                ) : null}
-                {cat.description ? (
-                  <span className="mt-2 text-sm text-slate-600 dark:text-slate-300">{cat.description}</span>
-                ) : null}
-                <span className="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  {total} prayer{total === 1 ? "" : "s"} mapped
-                </span>
-              </button>
-            );
-          })}
-        </section>
-      ) : null}
-
-      {!query.trim() && !selectedCategoryId && (!manifest || manifest.categories.length === 0) ? (
-        <p className="text-sm text-slate-500">Siddur manifest is loading…</p>
-      ) : null}
-
-      {!query.trim() && category && !activePrayerId ? (
+      {searchTerm ? null : !hasResults ? (
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+          No siddur entries match your current filters. Try switching to Full mode or disabling the "Show only what applies today" option.
+        </div>
+      ) : (
         <section className="space-y-4">
-          {(currentSection ? [currentSection] : category.sections).map((section) => {
-            const path = currentSection ? sectionPath : [section.id];
-            const isActive = currentSection ? path.join("/") === sectionPath.join("/") : false;
-            return (
-            <SectionSummary
-              key={section.id}
-              section={section}
-              path={path}
-              isActive={isActive}
-              onSelectSection={handleSelectSection}
-              onSelectPrayer={handleSelectPrayer}
-            />
-            );
-          })}
-          {currentSection && getPrayers(currentSection).length === 0 && getSections(currentSection).length === 0 ? (
-            <p className="text-sm text-slate-500">This section will be populated soon.</p>
-          ) : null}
+          {activeCategory && activeService && activeBucket && activeItem ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderItemDetail(activeItem, activeBucket, activeService, activeCategory)}
+            </div>
+          ) : activeCategory && activeService && activeBucket ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderItemList(activeBucket)}
+            </div>
+          ) : activeCategory && activeService ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderBucketList(activeService)}
+            </div>
+          ) : activeCategory ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-pomegranate hover:text-pomegranate/80"
+              >
+                ← Back
+              </button>
+              {renderServiceList(activeCategory)}
+            </div>
+          ) : (
+            renderCategoryList()
+          )}
         </section>
-      ) : null}
-
-      {!query.trim() && activePrayerId ? (
-        <PrayerContentView content={resolvedContent} />
-      ) : null}
-
-      <footer className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-400">
-        Siddur entries reference local placeholder texts. Always consult a trusted rabbi or printed siddur for personal prayer.
-      </footer>
+      )}
     </div>
   );
 };
+
+export default SiddurView;

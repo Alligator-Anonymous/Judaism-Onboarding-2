@@ -14,14 +14,14 @@ import {
 } from "@/types";
 import type {
   SiddurContentLibrary,
-  SiddurManifest,
+  SiddurMetadata,
   SiddurPrayerContent,
   SiddurTradition
 } from "@/types/siddur";
 import tanakhManifestData from "@/data/metadata/tanakh.manifest.json";
 import parshaMeta from "@/data/metadata/parshiyot.index.json";
 import parshaRangesData from "@/data/metadata/parsha.ranges.json";
-import siddurManifestData from "@/data/siddur/manifest.json";
+import { SIDDUR_METADATA } from "@/data/siddur/metadata";
 
 const coreModules = import.meta.glob("@/data/packs/core-v1/**/*.json", {
   eager: true
@@ -45,8 +45,6 @@ export function loadContentRegistry(): ContentRegistry {
   }
   const manifest = (coreModules[manifestKey] as { default: ContentPackManifest }).default;
 
-  const siddurManifest = (siddurManifestData as SiddurManifest) ?? null;
-
   const tanakhManifest = tanakhManifestData as TanakhManifest;
   const parshaMetadata = parshaMeta as ParshaMetadataEntry[];
   const parshaRanges = parshaRangesData as ParshaRangeEntry[];
@@ -54,13 +52,13 @@ export function loadContentRegistry(): ContentRegistry {
   const registry: ContentRegistry = {
     manifest,
     siddur: {
-      manifest: siddurManifest,
+      metadata: SIDDUR_METADATA as SiddurMetadata,
       content: {
         common: {},
         traditions: {
           ashkenaz: {},
-          "nusach-sefarad": {},
-          "edot-hamizrach": {}
+          sefard: {},
+          edot_hamizrach: {}
         }
       }
     },
@@ -124,7 +122,7 @@ export function loadContentRegistry(): ContentRegistry {
     }
 
     const tradition = maybeTradition as SiddurTradition;
-    if (tradition === "ashkenaz" || tradition === "nusach-sefarad" || tradition === "edot-hamizrach") {
+    if (tradition === "ashkenaz" || tradition === "sefard" || tradition === "edot_hamizrach") {
       const map = ensureTradition(tradition);
       map[data.id] = data;
     }
